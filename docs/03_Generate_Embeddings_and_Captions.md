@@ -1,0 +1,16 @@
+---
+title: 03_Generate_Embeddings_and_Captions
+nav_order: 5
+has_children: true
+has_toc: false
+---
+# 03_Generate_Embeddings_and_Captions
+
+## Overview
+
+TBD.
+
+## Notes
+
+- TBD.
+
