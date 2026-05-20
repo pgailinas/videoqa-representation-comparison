@@ -1,10 +1,10 @@
 ---
-title: Dataset Overview
+title: 02_Extract_Frames_and_Clips
 nav_order: 4
 has_children: true
 has_toc: false
 ---
-# Dataset Overview
+# 02_Extract_Frames_and_Clips
 
 ## Overview
 
