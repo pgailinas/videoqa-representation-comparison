@@ -10,3 +10,7 @@ url: https://pgailinas.github.io
 baseurl: /video-question-answering
 
 toc: false
+
+ga_tracking: G-DWJVXLK3B3
+ga_tracking_anonymize_ip: true
+
