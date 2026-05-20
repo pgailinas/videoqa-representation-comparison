@@ -1,0 +1,12 @@
+title: Video Question Answering
+description: TBD
+
+remote_theme: just-the-docs/just-the-docs@v0.12.0
+
+plugins:
+  - jekyll-remote-theme
+
+url: https://pgailinas.github.io
+baseurl: /video-question-answering
+
+toc: false
