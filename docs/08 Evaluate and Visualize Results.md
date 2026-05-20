@@ -1,10 +1,10 @@
 ---
-title: 07 Run Iterative RAG Experiments
-nav_order: 8
+title: 08 Evaluate and Visualize Results
+nav_order: 9
 has_children: true
 has_toc: false
 ---
-# 07 Run Iterative RAG Experiments
+# 08 Evaluate and Visualize Results
 
 ## Overview
 
