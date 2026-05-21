@@ -7,13 +7,33 @@ nav_order: 0
 
 TBD.
 
-## Project Overview
+# Project Overview
 
-TBD.
+## Purpose
 
-## Pipeline Structure
+## Motivation
 
-TBD.
+## What Is Video Question Answering?
+
+## Why VideoQA Is Challenging
+
+## What Is Retrieval-Augmented Generation?
+
+## Why RAG Is Useful for VideoQA
+
+## Project Research Direction
+
+## System Pipeline
+
+## Planned Experiments
+
+## Datasets
+
+## Models and Tools
+
+## Repository Organization
+
+## Expected Outcomes
 
 ---
 
