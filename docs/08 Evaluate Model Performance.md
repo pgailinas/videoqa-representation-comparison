@@ -1,10 +1,10 @@
 ---
-title: 08 Evaluate and Visualize Results
+title: 08 Evaluate Model Performance
 nav_order: 9
 has_children: true
 has_toc: false
 ---
-# 08 Evaluate and Visualize Results
+# 08 Evaluate Model Performance
 
 ## Overview
 
