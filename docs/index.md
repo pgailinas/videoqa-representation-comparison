@@ -3,10 +3,6 @@ title: Home
 nav_order: 0
 ---
 
-# Video Question Answering Project
-
-TBD.
-
 # Project Overview
 
 ## Purpose
