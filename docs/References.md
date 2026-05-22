@@ -1,8 +1,6 @@
 ---
-title: References
-nav_order: 1
-has_children: true
-has_toc: false
+title: References and Further Reading
+nav_exclude: true
 ---
 
 # References
