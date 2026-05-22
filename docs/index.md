@@ -26,6 +26,9 @@ Key topics explored include:
 
 The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
 
+**IMPORTANT NOTE:**  
+The notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
+
 ## Motivation
 
 ## What Is Video Question Answering (VideoQA)
@@ -51,9 +54,6 @@ The project is intended for students, researchers, and developers interested in 
 ## Expected Outcomes
 
 ---
-
-**IMPORTANT NOTE:**  
-The notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
 
 ## Author
 
