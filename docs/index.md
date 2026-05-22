@@ -38,7 +38,7 @@ Additional objectives include evaluating temporal understanding, contextual grou
 
 ## Datasets
 
-Multiple public VideoQA and multimodal video datasets will be evaluated to support baseline experiments, retrieval testing, and comparative analysis across different video domains.
+Public VideoQA datasets such as MSVD-QA and TGIF-QA will be used to evaluate baseline VideoQA and RAG pipelines. The datasets provide videos, captions, and question-answer annotations for testing multimodal retrieval, temporal reasoning, and question-answering performance across different video types. Standardized preprocessing, frame extraction, clip generation, and metadata organization will be used to support consistent experiments and comparative evaluation.
 
 ## System Pipeline
 
