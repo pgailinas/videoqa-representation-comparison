@@ -1,10 +1,10 @@
 ---
-title: 06 Run RAG VideoQA
-nav_order: 7
+title: 04 Run RAG VideoQA
+nav_order: 5
 has_children: true
 has_toc: false
 ---
-# 06 Run RAG VideoQA
+# 04 Run RAG VideoQA
 
 ## Overview
 
