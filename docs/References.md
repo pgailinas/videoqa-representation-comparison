@@ -1,7 +1,7 @@
 ---
 title: References
-nav_order: 0
-has_children: false
+nav_order: 1
+has_children: true
 has_toc: false
 ---
 
