@@ -1,5 +1,5 @@
 ---
-title: 06_Run_RAG_VideoQA
+title: 06 Run RAG VideoQA
 nav_order: 7
 has_children: true
 has_toc: false
