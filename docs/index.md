@@ -64,7 +64,9 @@ The project will evaluate how different embedding models, retrieval pipelines, a
 
 ## Repository Structure
 
-The repository provides a structured, notebook-driven pipeline for experimentation, reproducibility, and educational walkthroughs focused on multimodal AI systems. The project emphasizes modular processing stages, scalable dataset handling, baseline versus RAG-based comparisons, and iterative evaluation of retrieval strategies through organized notebooks, datasets, configuration files, and experimental outputs.
+The repository provides a structured, notebook-driven workflow for VideoQA experimentation, reproducibility, and educational walkthroughs focused on multimodal AI and RAG systems. The project is organized into modular processing stages that guide users through dataset preparation, frame and clip extraction, embedding generation, vector indexing, baseline VideoQA inference, RAG-based retrieval pipelines, iterative retrieval experiments, and comparative performance evaluation.
+
+The repository structure emphasizes scalable dataset handling, reusable configuration management, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and visualization components. Supporting directories include organized datasets, extracted media assets, metadata files, vector indexes, generated embeddings, experimental outputs, figures, configuration files, and documentation resources designed to support both research-oriented experimentation and tutorial-style learning workflows.
 
 ## Expected Outcomes
 
