@@ -20,21 +20,15 @@ The notebooks are publicly available through GitHub and can be viewed without an
 
 The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, Video Question Answering (VideoQA) requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and large language model integration. The emergence of retrieval-augmented generation (RAG) techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
 
-## What Is Video Question Answering (VideoQA)
+## Video Question Answering (VideoQA)
 
-Video Question Answering (VideoQA) is a multimodal AI task in which a system analyzes video content and generates answers to natural-language questions about events, objects, actions, and temporal relationships within the video.
+Video Question Answering (VideoQA) is a multimodal AI task in which a system analyzes video content and generates answers to natural-language questions about events, objects, actions, and temporal relationships within a video.
 
-### Why VideoQA Is Challenging
+Unlike static-image understanding, VideoQA requires reasoning across both spatial and temporal information, including motion, scene transitions, long-context dependencies, and relationships distributed throughout a video sequence.
 
-Unlike static-image understanding, VideoQA requires simultaneous reasoning across visual content, temporal sequences, motion, scene changes, and long-context information distributed throughout a video.
+## Retrieval-Augmented Generation (RAG)
 
-## What Is Retrieval-Augmented Generation (RAG)
-
-Retrieval-Augmented Generation (RAG) combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality.
-
-### Why RAG Is Useful for VideoQA
-
-RAG enables VideoQA systems to retrieve the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding.
+Retrieval-Augmented Generation (RAG) combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality. In VideoQA systems, RAG enables retrieval of the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding across large video streams.
 
 ## Research Objectives
 
