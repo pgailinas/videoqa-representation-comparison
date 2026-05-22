@@ -1,5 +1,5 @@
 ---
-title: Project_Directory_Structure
+title: Project Directory Structure
 nav_order: 1
 has_children: true
 has_toc: false
