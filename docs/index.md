@@ -70,7 +70,9 @@ The repository structure emphasizes scalable dataset handling, reusable configur
 
 ## Expected Outcomes
 
-The project aims to provide practical insight into multimodal retrieval architectures, VideoQA system behavior, and the effectiveness of RAG techniques for temporal video reasoning.
+The project aims to provide practical insight into multimodal retrieval architectures, VideoQA system behavior, and the effectiveness of RAG techniques for temporal video reasoning. Experimental results are expected to demonstrate how retrieval quality, embedding selection, iterative retrieval refinement, and contextual grounding influence question-answering accuracy across different video domains and question types.
+
+The project will also produce a reproducible, notebook-driven VideoQA research framework that can be extended for future experimentation with multimodal embeddings, vector databases, retrieval strategies, and LLM-based reasoning pipelines. Additional outcomes may include comparative performance benchmarks, retrieval analysis visualizations, and architectural insights into the tradeoffs between baseline VideoQA inference and iterative RAG-based approaches.
 
 ---
 
