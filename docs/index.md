@@ -66,6 +66,25 @@ The project aims to provide practical insight into multimodal retrieval architec
 
 ---
 
+## References and Further Reading
+
+Additional papers, datasets, models, and technical resources related to this project are available on the [References and Further Reading](References.md) page.
+
+### VideoQA and Multimodal AI
+- [MSVD-QA Dataset](https://www.cs.utexas.edu/users/ml/clamp/videoDescription/)
+- [TGIF-QA Paper](https://arxiv.org/abs/1704.04497)
+- [Next-QA Benchmark](https://arxiv.org/abs/2105.08276)
+
+### Retrieval-Augmented Generation (RAG)
+- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+
+### Embeddings and Vector Search
+- [OpenAI CLIP](https://github.com/openai/CLIP)
+- [FAISS](https://github.com/facebookresearch/faiss)
+- [ChromaDB](https://www.trychroma.com/)
+
+---
+
 ## Author
 
 **Phil Gailinas**  
