@@ -1,5 +1,5 @@
 ---
-title: 05_Run_Baseline_VideoQA
+title: 05 Run Baseline VideoQA
 nav_order: 6
 has_children: true
 has_toc: false
