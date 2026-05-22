@@ -11,19 +11,6 @@ This project explores retrieval-augmented generation (RAG) techniques for Video 
 
 The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
 
-The repository provides a structured, notebook-driven pipeline designed for experimentation, reproducibility, and educational walkthroughs. The project emphasizes modular processing stages, scalable dataset handling, baseline versus RAG-based comparisons, and iterative evaluation of retrieval strategies for multimodal AI systems.
-
-Key topics explored include:
-
-- Video Question Answering (VideoQA)
-- Retrieval-Augmented Generation (RAG)
-- Multimodal embeddings
-- Vector similarity search
-- Temporal video understanding
-- Frame and clip retrieval strategies
-- Large language model integration
-- Experimental evaluation and analysis
-
 The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
 
 **IMPORTANT NOTE:**  
@@ -71,7 +58,7 @@ The implementation will integrate open-source multimodal models, vector database
 
 ## Repository Structure
 
-The repository is organized into modular notebooks, documentation pages, datasets, configuration files, and experimental outputs to support reproducibility and educational walkthroughs.
+The repository provides a structured, notebook-driven pipeline for experimentation, reproducibility, and educational walkthroughs focused on multimodal AI systems. The project emphasizes modular processing stages, scalable dataset handling, baseline versus RAG-based comparisons, and iterative evaluation of retrieval strategies through organized notebooks, datasets, configuration files, and experimental outputs.
 
 ## Expected Outcomes
 
