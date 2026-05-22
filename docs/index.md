@@ -7,7 +7,7 @@ nav_order: 0
 
 ## Purpose
 
-This project explores retrieval-augmented generation (RAG) techniques for Video Question Answering (VideoQA) using multimodal video understanding pipelines.
+This project explores Retrieval-Augmented Generation (RAG) techniques for Video Question Answering (VideoQA) using multimodal video understanding pipelines.
 
 The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
 
@@ -18,17 +18,17 @@ The notebooks are publicly available through GitHub and can be viewed without an
 
 ## Motivation
 
-The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, Video Question Answering (VideoQA) requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and large language model integration. The emergence of retrieval-augmented generation (RAG) techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
+The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, VideoQA requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and large language model integration. The emergence of RAG techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
 
 ## Video Question Answering (VideoQA)
 
-Video Question Answering (VideoQA) is a multimodal AI task in which a system analyzes video content and generates answers to natural-language questions about events, objects, actions, and temporal relationships within a video.
+VideoQA is a multimodal AI task in which a system analyzes video content and generates answers to natural-language questions about events, objects, actions, and temporal relationships within a video.
 
 Unlike static-image understanding, VideoQA requires reasoning across both spatial and temporal information, including motion, scene transitions, long-context dependencies, and relationships distributed throughout a video sequence.
 
 ## Retrieval-Augmented Generation (RAG)
 
-Retrieval-Augmented Generation (RAG) combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality. In VideoQA systems, RAG enables retrieval of the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding across large video streams.
+RAG combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality. In VideoQA systems, RAG enables retrieval of the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding across large video streams.
 
 ## Research Objectives
 
