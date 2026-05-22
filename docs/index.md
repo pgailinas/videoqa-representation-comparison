@@ -31,27 +31,51 @@ The notebooks are publicly available through GitHub and can be viewed without an
 
 ## Motivation
 
+Modern multimodal AI systems increasingly require the ability to understand both visual and temporal information in video, making VideoQA an important research area for evaluating contextual reasoning and retrieval capabilities.
+
 ## What Is Video Question Answering (VideoQA)
+
+Video Question Answering (VideoQA) is a multimodal AI task in which a system analyzes video content and generates answers to natural-language questions about events, objects, actions, and temporal relationships within the video.
 
 ### Why VideoQA Is Challenging
 
+Unlike static-image understanding, VideoQA requires simultaneous reasoning across visual content, temporal sequences, motion, scene changes, and long-context information distributed throughout a video.
+
 ## What Is Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality.
 
 ### Why RAG Is Useful for VideoQA
 
+RAG enables VideoQA systems to retrieve the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding.
+
 ## Research Objectives
+
+This project investigates how retrieval strategies, multimodal embeddings, and large language models interact to improve VideoQA accuracy and temporal reasoning performance.
 
 ## Datasets
 
+Multiple public VideoQA and multimodal video datasets will be evaluated to support baseline experiments, retrieval testing, and comparative analysis across different video domains.
+
 ## System Pipeline
+
+The pipeline processes raw videos through frame extraction, embedding generation, vector indexing, retrieval, and large language model inference to support end-to-end VideoQA experimentation.
 
 ## Planned Experiments
 
+The project will compare baseline VideoQA methods against RAG-enhanced approaches using multiple retrieval configurations, embedding models, and evaluation strategies.
+
 ## Models and Tools
+
+The implementation will integrate open-source multimodal models, vector databases, Python-based AI frameworks, and notebook-driven experimentation workflows.
 
 ## Repository Structure
 
+The repository is organized into modular notebooks, documentation pages, datasets, configuration files, and experimental outputs to support reproducibility and educational walkthroughs.
+
 ## Expected Outcomes
+
+The project aims to provide practical insight into multimodal retrieval architectures, VideoQA system behavior, and the effectiveness of RAG techniques for temporal video reasoning.
 
 ---
 
