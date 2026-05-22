@@ -42,7 +42,9 @@ Public VideoQA datasets such as MSVD-QA and TGIF-QA will be used to evaluate bas
 
 ## System Pipeline
 
-The pipeline processes raw videos through frame extraction, embedding generation, vector indexing, retrieval, and LLM inference to support end-to-end VideoQA experimentation.
+The VideoQA pipeline processes raw videos through a sequence of multimodal analysis stages to support end-to-end retrieval and question-answering experiments. Video files are first decoded and segmented into frames and short clips for downstream processing. Visual embeddings and optional caption or transcript features are then generated using pretrained multimodal models. The resulting embeddings and metadata are stored in a vector database to support similarity-based retrieval during question answering.
+
+At inference time, user questions are converted into query embeddings and matched against the indexed video content to retrieve relevant frames, clips, captions, or transcript segments. Retrieved context is then provided to a LLM to generate grounded natural-language answers. The pipeline supports comparative evaluation between baseline VideoQA methods and RAG approaches using different retrieval strategies, embedding models, and LLM configurations.
 
 ## Planned Experiments
 
