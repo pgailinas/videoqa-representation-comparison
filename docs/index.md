@@ -5,6 +5,8 @@ nav_order: 0
 
 # Video Question Answering Project Overview
 
+## Purpose
+
 This project explores retrieval-augmented generation (RAG) techniques for Video Question Answering (VideoQA) using multimodal video understanding pipelines.
 
 The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
@@ -24,7 +26,7 @@ Key topics explored include:
 
 The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
 
-## Purpose
+
 
 ## Motivation
 
