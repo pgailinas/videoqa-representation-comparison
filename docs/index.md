@@ -46,6 +46,12 @@ The VideoQA pipeline processes raw videos through a sequence of multimodal analy
 
 At inference time, user questions are converted into query embeddings and matched against the indexed video content to retrieve relevant frames, clips, captions, or transcript segments. Retrieved context is then provided to a LLM to generate grounded natural-language answers. The pipeline supports comparative evaluation between baseline VideoQA methods and RAG approaches using different retrieval strategies, embedding models, and LLM configurations.
 
+---
+
+### Pipeline Flowchart
+
+![VideoQA Pipeline](images/overview_pipeline.png)
+
 ## Planned Experiments
 
 The project will compare baseline VideoQA methods against RAG-enhanced approaches using multiple retrieval configurations, embedding models, and evaluation strategies.
