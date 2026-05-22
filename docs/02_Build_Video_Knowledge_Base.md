@@ -1,10 +1,10 @@
 ---
-title: 02 Extract Frames and Clips
+title: 02 Build Video Knowledge Base
 nav_order: 3
 has_children: true
 has_toc: false
 ---
-# 02 Extract Frames and Clips
+# 02 Build Video Knowledge Base
 
 ## Overview
 
