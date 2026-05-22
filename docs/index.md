@@ -18,7 +18,7 @@ The notebooks are publicly available through GitHub and can be viewed without an
 
 ## Motivation
 
-Modern multimodal AI systems increasingly require the ability to understand both visual and temporal information in video, making VideoQA an important research area for evaluating contextual reasoning and retrieval capabilities.
+The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, Video Question Answering (VideoQA) requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and large language model integration. The emergence of retrieval-augmented generation (RAG) techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
 
 ## What Is Video Question Answering (VideoQA)
 
