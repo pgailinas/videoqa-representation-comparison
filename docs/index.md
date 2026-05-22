@@ -26,29 +26,27 @@ Key topics explored include:
 
 The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
 
-
-
 ## Motivation
 
-## What Is Video Question Answering?
+## What Is Video Question Answering (VideoQA)
 
-## Why VideoQA Is Challenging
+### Why VideoQA Is Challenging
 
-## What Is Retrieval-Augmented Generation?
+## What Is Retrieval-Augmented Generation (RAG)
 
-## Why RAG Is Useful for VideoQA
+### Why RAG Is Useful for VideoQA
 
-## Project Research Direction
+## Research Objectives
+
+## Datasets
 
 ## System Pipeline
 
 ## Planned Experiments
 
-## Datasets
-
 ## Models and Tools
 
-## Repository Organization
+## Repository Structure
 
 ## Expected Outcomes
 
