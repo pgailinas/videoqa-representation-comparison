@@ -32,9 +32,9 @@ RAG combines external information retrieval with LLM reasoning to improve contex
 
 ## Research Objectives
 
-This project investigates how retrieval strategies, multimodal embeddings, and large language models interact to improve VideoQA accuracy and temporal reasoning performance. The research focuses on evaluating how frame- and clip-level retrieval methods influence contextual grounding, long-video understanding, and response quality within retrieval-augmented multimodal AI systems.
+This project investigates how retrieval strategies, multimodal embeddings, and LLMs interact to improve VideoQA accuracy and temporal reasoning performance. The research focuses on evaluating how frame- and clip-level retrieval methods influence contextual grounding, long-video understanding, and response quality within retrieval-augmented multimodal AI systems.
 
-The project also explores tradeoffs involving embedding generation, vector similarity search, retrieval granularity, and large language model reasoning across different VideoQA workflows. Baseline approaches will be compared against RAG-enhanced pipelines to analyze retrieval effectiveness, scalability, hallucination reduction, and overall system performance.
+The project also explores tradeoffs involving embedding generation, vector similarity search, retrieval granularity, and LLM reasoning across different VideoQA workflows. Baseline approaches will be compared against RAG-enhanced pipelines to analyze retrieval effectiveness, scalability, hallucination reduction, and overall system performance.
 
 Additional objectives include developing a modular experimental framework for reproducible VideoQA research, supporting iterative experimentation with open-source models, public datasets, and scalable notebook-driven AI workflows.
 
