@@ -9,7 +9,7 @@ nav_order: 0
 
 This project explores Retrieval-Augmented Generation (RAG) techniques for Video Question Answering (VideoQA) using multimodal video understanding pipelines.
 
-The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
+The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model (LLM) reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
 
 The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
 
@@ -18,7 +18,7 @@ The notebooks are publicly available through GitHub and can be viewed without an
 
 ## Motivation
 
-The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, VideoQA requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and large language model integration. The emergence of RAG techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
+The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, VideoQA requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating retrieval strategies, long-context inference, and LLM integration. The emergence of RAG techniques has further expanded interest in scalable methods for grounding AI reasoning in relevant video content while reducing hallucinations and improving contextual accuracy.
 
 ## Video Question Answering (VideoQA)
 
@@ -28,11 +28,11 @@ Unlike static-image understanding, VideoQA requires reasoning across both spatia
 
 ## Retrieval-Augmented Generation (RAG)
 
-RAG combines external information retrieval with large language model reasoning to improve contextual accuracy, scalability, and response quality. In VideoQA systems, RAG enables retrieval of the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding across large video streams.
+RAG combines external information retrieval with LLM reasoning to improve contextual accuracy, scalability, and response quality. In VideoQA systems, RAG enables retrieval of the most relevant frames, clips, captions, or embeddings before reasoning, helping reduce hallucinations and improve long-context video understanding across large video streams.
 
 ## Research Objectives
 
-This project investigates how retrieval strategies, multimodal embeddings, and large language models interact to improve VideoQA accuracy and temporal reasoning performance.
+This project investigates how retrieval strategies, multimodal embeddings, and LLMs interact to improve VideoQA accuracy and temporal reasoning performance.
 
 ## Datasets
 
@@ -40,7 +40,7 @@ Multiple public VideoQA and multimodal video datasets will be evaluated to suppo
 
 ## System Pipeline
 
-The pipeline processes raw videos through frame extraction, embedding generation, vector indexing, retrieval, and large language model inference to support end-to-end VideoQA experimentation.
+The pipeline processes raw videos through frame extraction, embedding generation, vector indexing, retrieval, and LLM inference to support end-to-end VideoQA experimentation.
 
 ## Planned Experiments
 
