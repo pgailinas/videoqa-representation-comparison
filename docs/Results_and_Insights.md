@@ -1,5 +1,5 @@
 ---
-title: Results_and_Insights
+title: Results and Insights
 nav_order: 10
 has_children: true
 has_toc: false
