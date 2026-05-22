@@ -1,5 +1,5 @@
 ---
-title: 04 Build Vector Index
+title: 04_Build_Vector_Index
 nav_order: 5
 has_children: true
 has_toc: false
