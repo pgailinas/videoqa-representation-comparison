@@ -54,11 +54,13 @@ At inference time, user questions are converted into query embeddings and matche
 
 ## Planned Experiments
 
-The project will compare baseline VideoQA methods against RAG-enhanced approaches using multiple retrieval configurations, embedding models, and evaluation strategies.
+The project will compare baseline VideoQA methods against RAG approaches using multiple retrieval configurations, embedding models, and evaluation strategies. Experiments will analyze how retrieval quality, context selection, iterative retrieval refinement, and multimodal embeddings affect question-answering accuracy, temporal reasoning performance, and response grounding. Comparative evaluation will include baseline LLM inference without retrieval, single-pass RAG pipelines, and iterative RAG workflows that perform recursive evidence retrieval and reasoning across video frames, clips, captions, and transcript data.
 
 ## Models and Tools
 
-The implementation will integrate open-source multimodal models, vector databases, Python-based AI frameworks, and notebook-driven experimentation workflows.
+The implementation will integrate open-source multimodal models, vector databases, Python-based AI frameworks, and notebook-driven experimentation workflows to support end-to-end VideoQA research and evaluation. Candidate components may include pretrained vision-language embedding models, multimodal LLMs, vector similarity search frameworks, and GPU-accelerated inference libraries operating within Google Colab and local development environments.
+
+The project will evaluate how different embedding models, retrieval pipelines, and LLM configurations affect retrieval accuracy, temporal reasoning, and grounded response generation. Supporting tools may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related multimodal processing libraries for frame extraction, embedding generation, indexing, retrieval, and evaluation.
 
 ## Repository Structure
 
