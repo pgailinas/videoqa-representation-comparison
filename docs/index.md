@@ -32,7 +32,7 @@ RAG combines external information retrieval with LLM reasoning to improve contex
 
 ## Research Objectives
 
-This project investigates how RAG techniques affect VideoQA performance across multimodal video understanding pipelines. The research focuses on comparing baseline and RAG-enhanced approaches using different frame- and clip-retrieval strategies, multimodal embeddings, and large language model reasoning methods.
+This project investigates how RAG techniques affect VideoQA performance across multimodal video understanding pipelines. The research focuses on comparing baseline and RAG-enhanced approaches using different frame- and clip-retrieval strategies, multimodal embeddings, and LLM reasoning methods.
 
 Additional objectives include evaluating temporal understanding, contextual grounding, retrieval effectiveness, and hallucination reduction across multiple VideoQA workflows and public datasets.
 
