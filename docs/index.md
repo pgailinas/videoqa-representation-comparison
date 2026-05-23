@@ -53,9 +53,11 @@ The architecture supports evaluation of multiple retrieval strategies, embedding
 
 ## Experimental Methodology
 
-The experimental framework evaluates baseline VideoQA pipelines alongside RAG-enhanced approaches using multiple retrieval configurations, multimodal embedding strategies, and LLM inference workflows. Comparative analysis is performed across frame-level, clip-level, and multimodal evidence representations to investigate their impact on question-answering accuracy, temporal reasoning, and contextual inference performance.
+The experimental framework evaluates baseline VideoQA pipelines alongside RAG-enhanced approaches using multiple retrieval configurations, multimodal embedding strategies, and LLM inference workflows. Comparative analysis is performed across frame-level, clip-level, and multimodal evidence representations to investigate their impact on question-answering accuracy, temporal reasoning, contextual grounding, and retrieval effectiveness.
 
-The methodology includes evaluation of baseline LLM inference without external retrieval, single-pass RAG pipelines, and iterative RAG workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Experiments are designed to analyze how retrieval granularity, embedding selection, and iterative inference behavior influence VideoQA performance across multiple benchmark datasets and retrieval architectures.
+The methodology includes evaluation of baseline multimodal models and LLM inference workflows without external retrieval, as well as single-pass and iterative RAG pipelines incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Representative baseline and multimodal components may include architectures such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, and related vision-language models integrated within retrieval and inference workflows.
+
+Experiments are designed to analyze how retrieval granularity, embedding selection, vector similarity search strategies, and iterative inference behavior influence VideoQA performance across multiple benchmark datasets and retrieval architectures. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic similarity measures, contextual relevance, and comparative inference performance across baseline and RAG-enhanced systems.
 
 ## Implementation Framework
 
