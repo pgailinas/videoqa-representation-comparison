@@ -7,13 +7,13 @@ nav_order: 0
 
 ## Project Overview
 
-This project explores Retrieval-Augmented Generation (RAG) techniques for Video Question Answering (VideoQA) using multimodal video understanding pipelines.
+This project investigates Retrieval-Augmented Generation (RAG) techniques for Video Question Answering (VideoQA) through comparative evaluation of multimodal retrieval, embedding, and large language model (LLM) reasoning strategies across video understanding pipelines.
 
-The workflow combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and large language model (LLM) reasoning to evaluate how effectively AI systems can answer natural-language questions about video content.
+The research framework integrates video preprocessing, frame and clip retrieval, multimodal embedding generation, vector database indexing, and LLM-based inference to study how retrieval architectures influence contextual grounding, temporal reasoning, and question-answering performance within VideoQA systems.
 
-The project is intended for students, researchers, and developers interested in modern multimodal AI workflows and practical VideoQA system design.
+The repository provides a reproducible experimental environment for evaluating baseline and RAG-enhanced VideoQA approaches using public datasets, modular notebook-driven workflows, and configurable multimodal AI components designed to support research-oriented experimentation and future IEEE-style publication development.
 
-**IMPORTANT NOTE:**  
+**## Reproducibility and Access**  
 The notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
 
 ## Motivation and Research Problem
