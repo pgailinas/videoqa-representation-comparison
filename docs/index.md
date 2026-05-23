@@ -92,7 +92,7 @@ Additional papers, datasets, models, and technical resources related to this pro
 **Phil Gailinas**  
 - M.S. Computer Engineering candidate  
 - University of New Mexico
-- Started 05-20-2026
+- Project initiated 05-20-2026
 
 ## License
 
