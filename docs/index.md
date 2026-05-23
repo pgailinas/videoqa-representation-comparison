@@ -25,7 +25,9 @@ Despite recent advances in multimodal AI, significant research challenges remain
 
 This project investigates how RAG architectures influence VideoQA performance across multimodal video understanding systems. The research emphasizes comparative evaluation of baseline and RAG-enhanced pipelines using different frame- and clip-retrieval strategies, multimodal embedding approaches, and LLM inference configurations.
 
-The objectives of this work include analyzing the impact of retrieval granularity, embedding selection, and iterative evidence refinement on temporal reasoning, contextual grounding, and question-answering accuracy across multiple public VideoQA datasets. Additional investigation focuses on the interaction between retrieval architectures and LLM-based reasoning within multimodal video inference workflows.
+The objectives of this work include evaluating how retrieval granularity, embedding selection, and iterative evidence refinement influence temporal reasoning, contextual grounding, retrieval quality, and question-answering accuracy across multiple public VideoQA datasets. Comparative experiments analyze baseline LLM inference without retrieval, single-pass RAG pipelines, and iterative RAG workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations.
+
+Additional objectives include measuring how different retrieval strategies and embedding configurations affect answer accuracy, contextual relevance, retrieval precision, and inference behavior within multimodal VideoQA systems. The project also investigates the interaction between retrieval architectures and LLM-based reasoning across varying video domains, question types, and multimodal inference workflows.
 
 ## Datasets
 
@@ -55,15 +57,15 @@ The methodology includes evaluation of baseline LLM inference without external r
 
 ## Implementation Framework
 
-The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible VideoQA experimentation across baseline and RAG-enhanced inference pipelines. The architecture is designed to support modular evaluation of multimodal embeddings, retrieval configurations, vector indexing strategies, and LLM-based reasoning workflows within both Google Colab and local development environments.
+The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible VideoQA experimentation across baseline and RAG-enhanced inference pipelines. The framework is designed to support modular evaluation of multimodal embeddings, retrieval configurations, vector indexing strategies, and LLM-based reasoning workflows within both Google Colab and local development environments.
 
-The framework incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries to support scalable multimodal retrieval and inference experiments. Supporting technologies include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for feature extraction, embedding generation, vector indexing, retrieval, and experimental evaluation.
+The implementation incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries to support scalable multimodal retrieval and inference experiments. Supporting technologies include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for feature extraction, embedding generation, vector indexing, retrieval, and experimental evaluation.
 
 ## Repository Organization
 
-The repository is organized as a modular research framework supporting reproducible VideoQA experimentation across baseline and RAG-enhanced inference pipelines. The structure separates dataset preparation, multimodal feature extraction, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization components into independently executable notebook and configuration stages.
+The repository is organized as a modular notebook-driven research environment designed to support reproducible VideoQA experimentation and comparative evaluation workflows. The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval pipelines, inference workflows, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
 
-The repository organization emphasizes scalable dataset management, reusable configuration infrastructure, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and analysis workflows. Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources designed to support extensible multimodal AI research and comparative evaluation.
+The repository organization emphasizes scalable dataset management, reusable configuration infrastructure, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and analysis stages. Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
 
 ## Expected Contributions
 
