@@ -13,26 +13,28 @@ The research framework integrates video preprocessing, frame and clip retrieval,
 
 The repository provides a reproducible experimental environment for evaluating baseline and RAG-enhanced VideoQA approaches using public datasets, modular notebook-driven workflows, and configurable multimodal AI components designed to support research-oriented experimentation and future IEEE-style publication development.
 
-**## Reproducibility and Access**  
+## Reproducibility and Access
 The notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
 
 ## Motivation and Research Problem
 
-The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, Video Question Answering (VideoQA) requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating long-context inference, retrieval effectiveness, and large language model (LLM) integration.
+The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, temporal sequences, motion, and contextual relationships distributed across long video streams. Unlike static-image understanding, Video Question Answering (VideoQA) requires multimodal reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating long-context inference, contextual grounding, and large language model (LLM) integration.
 
-Recent Retrieval-Augmented Generation (RAG) approaches have expanded interest in scalable methods for grounding LLM reasoning in relevant video content through retrieval of frames, clips, captions, transcripts, and multimodal embeddings prior to inference. These approaches aim to improve contextual accuracy and reduce hallucinations during question answering across complex video sequences.
+Recent Retrieval-Augmented Generation (RAG) approaches have introduced scalable methods for grounding LLM reasoning in relevant video content through retrieval of frames, clips, captions, transcripts, and multimodal embeddings prior to inference. These methods aim to improve contextual accuracy and reduce hallucinations during question answering across complex video sequences.
 
-Despite recent advances in multimodal AI, important research challenges remain involving retrieval quality, temporal grounding, embedding selection, iterative retrieval refinement, and the interaction between retrieval architectures and LLM-based reasoning within VideoQA systems. This project investigates these challenges through comparative evaluation of baseline and RAG-enhanced VideoQA pipelines across multiple retrieval and inference configurations.
+Despite recent advances in multimodal AI, significant research challenges remain involving temporal grounding, embedding selection, iterative evidence refinement, and the interaction between multimodal retrieval architectures and LLM-based reasoning within VideoQA systems. This project investigates these challenges through comparative evaluation of baseline and RAG-enhanced VideoQA pipelines across multiple retrieval and inference configurations.
 
 ## Research Objectives
 
-This project investigates how RAG techniques affect VideoQA performance across multimodal video understanding pipelines. The research focuses on comparing baseline and RAG-enhanced approaches using different frame- and clip-retrieval strategies, multimodal embeddings, and LLM reasoning methods.
+This project investigates how Retrieval-Augmented Generation (RAG) architectures influence Video Question Answering (VideoQA) performance across multimodal video understanding systems. The research emphasizes comparative evaluation of baseline and RAG-enhanced pipelines using different frame- and clip-retrieval strategies, multimodal embedding approaches, and large language model (LLM) inference configurations.
 
-Additional objectives include evaluating temporal understanding, contextual grounding, retrieval effectiveness, and hallucination reduction across multiple VideoQA workflows and public datasets.
+The objectives of this work include analyzing the impact of retrieval granularity, embedding selection, and iterative evidence refinement on temporal reasoning, contextual grounding, and question-answering accuracy across multiple public VideoQA datasets. Additional investigation focuses on the interaction between retrieval architectures and LLM-based reasoning within multimodal video inference workflows.
 
 ## Datasets
 
-Public VideoQA datasets such as MSVD-QA and TGIF-QA will be used to evaluate baseline VideoQA and RAG pipelines. The datasets provide videos, captions, and question-answer annotations for testing multimodal retrieval, temporal reasoning, and question-answering performance across different video types. Standardized preprocessing, frame extraction, clip generation, and metadata organization will be used to support consistent experiments and comparative evaluation.
+Public Video Question Answering (VideoQA) benchmark datasets, including MSVD-QA and TGIF-QA, are used to evaluate baseline and Retrieval-Augmented Generation (RAG)-enhanced video understanding pipelines. These datasets provide annotated video samples, captions, and question-answer pairs spanning diverse visual scenes, actions, temporal relationships, and contextual reasoning tasks.
+
+The selected datasets support comparative evaluation of multimodal retrieval, temporal reasoning, contextual grounding, and large language model (LLM)-based inference across different video domains and question types. Their combination provides a reproducible benchmark environment for investigating retrieval architectures, embedding strategies, and VideoQA performance under varying retrieval and reasoning configurations.
 
 ## System Architecture
 
