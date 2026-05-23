@@ -39,9 +39,11 @@ The selected datasets support comparative evaluation of multimodal retrieval, te
 
 The experimental VideoQA framework integrates multimodal retrieval, embedding generation, vector database indexing, and LLM-based inference to support comparative evaluation of baseline and RAG-enhanced video understanding pipelines.
 
-Raw video inputs are decoded and segmented into frames and short clips for multimodal feature extraction. Visual embeddings, captions, and optional transcript representations are generated using pretrained multimodal models and indexed within a vector database to support similarity-based evidence retrieval during inference.
+Raw video inputs are processed into frames and short clips for multimodal feature extraction. Pretrained multimodal models generate visual embeddings, captions, and optional transcript representations, which are indexed within a vector database to support similarity-based retrieval during inference.
 
-At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. Retrieved evidence is then provided to a LLM to generate contextually informed responses. The architecture supports evaluation across multiple retrieval strategies, embedding configurations, and inference workflows designed to analyze the interaction between multimodal retrieval systems and LLM-based reasoning.
+At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. The retrieved evidence is then provided to a LLM to generate contextually informed responses.
+
+The architecture supports evaluation of multiple retrieval strategies, embedding configurations, and inference workflows, including both baseline and iterative RAG approaches. This design enables comparative analysis of how multimodal retrieval systems influence contextual grounding, temporal reasoning, and VideoQA performance.
 
 ---
 
