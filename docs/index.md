@@ -11,10 +11,7 @@ This project investigates Retrieval-Augmented Generation (RAG) techniques for Vi
 
 The research framework integrates video preprocessing, frame and clip retrieval, multimodal embedding generation, vector database indexing, and LLM-based inference to study how retrieval architectures influence contextual grounding, temporal reasoning, and question-answering performance within VideoQA systems.
 
-The repository provides a reproducible experimental environment for evaluating baseline and RAG-enhanced VideoQA approaches using public datasets, modular notebook-driven workflows, and configurable multimodal AI components designed to support research-oriented experimentation and future IEEE-style publication development.
-
-## Reproducibility and Access
-The notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
+The repository provides a reproducible experimental environment for evaluating baseline and RAG-enhanced VideoQA approaches using public datasets, modular notebook-driven workflows, and configurable multimodal AI components. The project is publicly available through GitHub and supports execution in Google Colab or local Jupyter environments, enabling research-oriented experimentation and future IEEE-style publication development.
 
 ## Motivation and Research Problem
 
