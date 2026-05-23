@@ -50,27 +50,31 @@ At query time, natural-language questions are converted into query embeddings an
 
 ![VideoQA Pipeline](images/overview_pipeline.png)
 
-## Experimental Methodogolgy
+## Experimental Methodology
 
-The project will compare baseline VideoQA methods against RAG approaches using multiple retrieval configurations, embedding models, and evaluation strategies. Experiments will analyze how retrieval quality, context selection, iterative retrieval refinement, and multimodal embeddings affect question-answering accuracy, temporal reasoning performance, and response grounding. Comparative evaluation will include baseline LLM inference without retrieval, single-pass RAG pipelines, and iterative RAG workflows that perform recursive evidence retrieval and reasoning across video frames, clips, captions, and transcript data.
+The experimental framework evaluates baseline Video Question Answering (VideoQA) pipelines alongside Retrieval-Augmented Generation (RAG)-enhanced approaches using multiple retrieval configurations, multimodal embedding strategies, and large language model (LLM) inference workflows. Comparative analysis is performed across frame-level, clip-level, and multimodal evidence representations to investigate their impact on question-answering accuracy, temporal reasoning, and contextual inference performance.
+
+The methodology includes evaluation of baseline LLM inference without external retrieval, single-pass RAG pipelines, and iterative RAG workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Experiments are designed to analyze how retrieval granularity, embedding selection, and iterative inference behavior influence VideoQA performance across multiple benchmark datasets and retrieval architectures.
 
 ## Implementation Framework
 
-The implementation will integrate open-source multimodal models, vector databases, Python-based AI frameworks, and notebook-driven experimentation workflows to support end-to-end VideoQA research and evaluation. Candidate components may include pretrained vision-language embedding models, multimodal LLMs, vector similarity search frameworks, and GPU-accelerated inference libraries operating within Google Colab and local development environments.
+The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible Video Question Answering (VideoQA) experimentation across baseline and Retrieval-Augmented Generation (RAG)-enhanced inference pipelines. The architecture is designed to support modular evaluation of multimodal embeddings, retrieval configurations, vector indexing strategies, and large language model (LLM)-based reasoning workflows within both Google Colab and local development environments.
 
-The project will evaluate how different embedding models, retrieval pipelines, and LLM configurations affect retrieval accuracy, temporal reasoning, and grounded response generation. Supporting tools may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related multimodal processing libraries for frame extraction, embedding generation, indexing, retrieval, and evaluation.
+The framework incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries to support scalable multimodal retrieval and inference experiments. Supporting technologies include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for feature extraction, embedding generation, vector indexing, retrieval, and experimental evaluation.
 
 ## Repository Organization
 
-The repository provides a structured, notebook-driven workflow for VideoQA experimentation, reproducibility, and educational walkthroughs focused on multimodal AI and RAG systems. The project is organized into modular processing stages that guide users through dataset preparation, frame and clip extraction, embedding generation, vector indexing, baseline VideoQA inference, RAG-based retrieval pipelines, iterative retrieval experiments, and comparative performance evaluation.
+The repository is organized as a modular research framework supporting reproducible Video Question Answering (VideoQA) experimentation across baseline and Retrieval-Augmented Generation (RAG)-enhanced inference pipelines. The structure separates dataset preparation, multimodal feature extraction, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization components into independently executable notebook and configuration stages.
 
-The repository structure emphasizes scalable dataset handling, reusable configuration management, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and visualization components. Supporting directories include organized datasets, extracted media assets, metadata files, vector indexes, generated embeddings, experimental outputs, figures, configuration files, and documentation resources designed to support both research-oriented experimentation and tutorial-style learning workflows.
+The repository organization emphasizes scalable dataset management, reusable configuration infrastructure, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and analysis workflows. Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources designed to support extensible multimodal AI research and comparative evaluation.
 
 ## Expected Contributions
 
-The project aims to provide practical insight into multimodal retrieval architectures, VideoQA system behavior, and the effectiveness of RAG techniques for temporal video reasoning. Experimental results are expected to demonstrate how retrieval quality, embedding selection, iterative retrieval refinement, and contextual grounding influence question-answering accuracy across different video domains and question types.
+This work contributes a reproducible experimental framework for investigating Retrieval-Augmented Generation (RAG) architectures within Video Question Answering (VideoQA) systems. The research is designed to provide comparative insight into multimodal retrieval strategies, embedding configurations, iterative evidence refinement, and large language model (LLM)-based reasoning across temporally complex video understanding tasks.
 
-The project will also produce a reproducible, notebook-driven VideoQA research framework that can be extended for future experimentation with multimodal embeddings, vector databases, retrieval strategies, and LLM-based reasoning pipelines. Additional outcomes may include comparative performance benchmarks, retrieval analysis visualizations, and architectural insights into the tradeoffs between baseline VideoQA inference and iterative RAG-based approaches.
+The experimental framework supports systematic evaluation of baseline and RAG-enhanced inference pipelines across multiple benchmark datasets and retrieval configurations. Expected contributions include comparative performance benchmarks, retrieval and inference analysis visualizations, and architectural insights into the interaction between multimodal retrieval systems and LLM-based reasoning within VideoQA environments.
+
+The repository additionally provides an extensible multimodal AI research platform designed to support future experimentation involving vector databases, multimodal embeddings, retrieval architectures, and scalable video inference workflows.
 
 ---
 
