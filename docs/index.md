@@ -38,9 +38,11 @@ The selected datasets support comparative evaluation of multimodal retrieval, te
 
 ## System Architecture
 
-The VideoQA pipeline processes raw videos through a sequence of multimodal analysis stages to support end-to-end retrieval and question-answering experiments. Video files are first decoded and segmented into frames and short clips for downstream processing. Visual embeddings and optional caption or transcript features are then generated using pretrained multimodal models. The resulting embeddings and metadata are stored in a vector database to support similarity-based retrieval during question answering.
+The experimental Video Question Answering (VideoQA) framework integrates multimodal retrieval, embedding generation, vector database indexing, and large language model (LLM)-based inference to support comparative evaluation of baseline and Retrieval-Augmented Generation (RAG)-enhanced video understanding pipelines.
 
-At inference time, user questions are converted into query embeddings and matched against the indexed video content to retrieve relevant frames, clips, captions, or transcript segments. Retrieved context is then provided to a LLM to generate grounded natural-language answers. The pipeline supports comparative evaluation between baseline VideoQA methods and RAG approaches using different retrieval strategies, embedding models, and LLM configurations.
+Raw video inputs are decoded and segmented into frames and short clips for multimodal feature extraction. Visual embeddings, captions, and optional transcript representations are generated using pretrained multimodal models and indexed within a vector database to support similarity-based evidence retrieval during inference.
+
+At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. Retrieved evidence is then provided to a LLM to generate contextually informed responses. The architecture supports evaluation across multiple retrieval strategies, embedding configurations, and inference workflows designed to analyze the interaction between multimodal retrieval systems and LLM-based reasoning.
 
 ---
 
