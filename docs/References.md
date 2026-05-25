@@ -1,4 +1,3 @@
-
 ---
 title: References and Further Reading
 nav_order: 1
