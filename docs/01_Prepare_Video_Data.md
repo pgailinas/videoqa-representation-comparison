@@ -42,5 +42,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [02 Build Video KNowledge Base](02_Build_Video_Knowledge_Base.md)
+➡️ [02 Build Video Knowledge Base](02_Build_Video_Knowledge_Base.md)
 
