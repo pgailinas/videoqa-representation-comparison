@@ -27,27 +27,27 @@ Despite recent advances, major challenges remain involving temporal grounding, r
 
 ## Research Objectives
 
-This project investigates how RAG architectures influence VideoQA performance across multimodal video understanding systems. The research emphasizes evaluation of retrieval-assisted inference workflows using different frame- and clip-selection strategies, embedding methods, and LLM configurations.
+This project investigates how iterative RAG workflows influence VideoQA performance within multimodal video understanding systems. The research emphasizes comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies.
 
-The objectives of this work include measuring how retrieval granularity, embedding selection, and iterative evidence refinement affect temporal reasoning, contextual relevance, retrieval quality, and question-answering accuracy across multiple public VideoQA datasets. Comparative experiments analyze baseline inference without retrieval, single-pass RAG pipelines, and iterative workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations.
+The objectives of this work include measuring how retrieval depth and evidence refinement affect temporal reasoning, retrieval quality, answer accuracy, and execution latency across public VideoQA datasets. Comparative experiments analyze direct inference without retrieval alongside progressively deeper RAG workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations.
 
-Additional objectives include evaluating how retrieval strategies and embedding approaches influence answer accuracy, retrieval precision, semantic relevance, and inference behavior across varying video domains and question types.
+Additional objectives include evaluating latency-versus-performance tradeoffs, retrieval behavior across multiple inference passes, and the point at which additional retrieval refinement produces diminishing returns.
 
 ## Datasets
 
-Public VideoQA benchmark datasets, including MSVD-QA and TGIF-QA, are used to evaluate retrieval-assisted video understanding workflows. These datasets provide annotated video samples, captions, and question-answer pairs spanning diverse visual scenes, actions, temporal relationships, and reasoning tasks.
+Public VideoQA benchmark datasets, including MSVD-QA and TGIF-QA, are used to evaluate baseline and iterative RAG-based video understanding workflows. These datasets provide annotated video samples, captions, and question-answer pairs spanning diverse visual scenes, actions, temporal relationships, and reasoning tasks.
 
-The selected datasets support evaluation across different video domains and question categories while providing a reproducible benchmark environment for analyzing retrieval methods, embedding approaches, and inference performance under varying experimental configurations.
+The selected datasets support reproducible evaluation of retrieval refinement strategies, temporal reasoning performance, answer accuracy, and latency across varying VideoQA question types and inference workflows.
 
 ## System Architecture
 
-The experimental VideoQA framework integrates embedding generation, vector database indexing, evidence retrieval, and LLM-based inference to support evaluation of multiple VideoQA workflows.
+The experimental framework integrates embedding generation, vector database indexing, evidence retrieval, and multimodal LLM inference to support evaluation of baseline and iterative RAG-based VideoQA workflows.
 
-Raw video inputs are processed into frames and short clips for feature extraction. Pretrained multimodal models generate visual embeddings, captions, and optional transcript representations, which are indexed within a vector database to support similarity-based retrieval during inference.
+Raw video inputs are processed into frames and short clips for feature extraction. Pretrained multimodal models generate embeddings, captions, and optional transcript representations, which are indexed within a vector database for similarity-based retrieval during inference.
 
-At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. Retrieved evidence is then provided to a LLM to generate contextually informed responses.
+At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. Retrieved evidence is then provided to a multimodal LLM to generate contextually informed responses.
 
-The framework supports multiple retrieval strategies, embedding approaches, and inference workflows, including both baseline and iterative RAG configurations. This design enables analysis of how retrieved evidence influences contextual understanding, temporal reasoning, and VideoQA performance.
+The framework supports baseline inference without retrieval alongside single-pass, two-pass, and three-pass iterative RAG workflows, enabling analysis of temporal reasoning performance, retrieval refinement behavior, and latency-versus-accuracy tradeoffs.
 
 ---
 
