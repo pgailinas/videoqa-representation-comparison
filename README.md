@@ -1,4 +1,4 @@
-# Iterative Retrieval-Augmented Video Question Answering
+# Iterative RAG VideoQA
 
 This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) through comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies within multimodal video understanding systems.
 
