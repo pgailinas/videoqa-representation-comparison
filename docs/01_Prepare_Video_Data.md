@@ -14,7 +14,6 @@ has_toc: false
 </p>
 
 ---
-**IMPORTANT NOTE: The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.**
 
 ## Purpose
 
@@ -28,7 +27,7 @@ TBD.
 
 - TBD
 
-## Processing Summary
+## Processing Workflow
 
 - TBD
 - TBD 
@@ -38,6 +37,8 @@ TBD.
 - TBD
 - TBD
 - TBD 
+
+---
 
 ## Next Notebook
 
