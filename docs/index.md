@@ -77,6 +77,10 @@ The structure separates dataset preparation, media extraction, embedding generat
 
 Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
 
+## Notebook Design Philosophy
+
+The notebooks are designed to be independently executable and reproducible within Google Colab and local Jupyter environments. Every major code cell should produce visible output confirming successful execution, key runtime information, or generated artifacts.
+
 ## Expected Contributions
 
 This work contributes a reproducible experimental framework for investigating iterative retrieval-assisted inference within VideoQA systems. The research is designed to provide insight into retrieval refinement strategies, temporal reasoning behavior, and latency-versus-performance tradeoffs across baseline and multi-pass RAG workflows.
