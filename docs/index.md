@@ -71,17 +71,19 @@ The framework incorporates pretrained vision-language models, multimodal LLMs, v
 
 ## Repository Organization
 
-The repository is organized as a modular notebook-driven research environment designed to support reproducible VideoQA experimentation and comparative evaluation workflows. The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
+The repository is organized as a modular notebook-driven research environment designed to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The organization emphasizes scalable dataset management, reusable configuration infrastructure, reproducible experiment execution, and clear separation between preprocessing, retrieval, inference, evaluation, and analysis stages. Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
+The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
+
+Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
 
 ## Expected Contributions
 
-This work contributes a reproducible experimental framework for investigating retrieval-assisted inference within VideoQA systems. The research is designed to provide insight into evidence retrieval strategies, embedding approaches, iterative refinement workflows, and their impact on temporally complex video understanding tasks.
+This work contributes a reproducible experimental framework for investigating iterative retrieval-assisted inference within VideoQA systems. The research is designed to provide insight into retrieval refinement strategies, temporal reasoning behavior, and latency-versus-performance tradeoffs across baseline and multi-pass RAG workflows.
 
-The framework supports systematic evaluation across multiple benchmark datasets, retrieval methods, and inference configurations. Expected contributions include comparative performance benchmarks, retrieval and inference analysis visualizations, and architectural insights into how retrieved evidence affects VideoQA behavior and response quality.
+Expected contributions include comparative performance benchmarks, retrieval and inference analysis visualizations, and evaluation of how iterative retrieval depth influences answer quality, retrieval effectiveness, and execution latency within multimodal video understanding systems.
 
-The repository additionally provides an extensible multimodal AI research platform intended to support future experimentation involving vector databases, embedding models, retrieval workflows, and scalable video inference systems.
+The repository additionally provides an extensible notebook-driven research platform intended to support future experimentation involving iterative RAG workflows, vector databases, embedding models, and scalable VideoQA inference systems.
 
 ---
 
