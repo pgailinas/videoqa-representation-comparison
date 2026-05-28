@@ -13,8 +13,6 @@ has_toc: false
   </a>
 </p>
 
----
-
 ## Purpose
 
 TBD.
@@ -37,8 +35,6 @@ TBD.
 - TBD
 - TBD
 - TBD 
-
----
 
 ## Next Notebook
 
