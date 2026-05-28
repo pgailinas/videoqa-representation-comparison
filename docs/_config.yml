@@ -1,5 +1,5 @@
 title: Iterative RAG for VideoQA
-description: TBD
+description: Iterative RAG for VideoQA using multimodal embeddings, vector search, and LLM reasoning.
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0
 
