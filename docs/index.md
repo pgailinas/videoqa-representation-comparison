@@ -57,17 +57,17 @@ The framework supports baseline inference without retrieval alongside single-pas
 
 ## Experimental Methodology
 
-The experimental framework evaluates baseline VideoQA workflows alongside retrieval-assisted approaches using multiple retrieval configurations, embedding strategies, and inference pipelines. Comparative analysis is performed across frame-level, clip-level, and multimodal evidence representations to investigate their impact on answer accuracy, temporal reasoning, contextual relevance, and retrieval effectiveness.
+The experimental framework evaluates baseline VideoQA inference alongside single-pass and iterative RAG workflows using frame-level, clip-level, and multimodal evidence retrieval strategies.
 
-The methodology includes evaluation of baseline multimodal models and inference workflows without external retrieval, as well as single-pass and iterative RAG pipelines incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Representative components may include architectures such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, and related vision-language models integrated within experimental workflows.
+Comparative experiments analyze direct inference without retrieval against progressively deeper retrieval-assisted workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Representative components may include architectures such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, and related vision-language models.
 
-Experiments are designed to analyze how retrieval granularity, embedding selection, vector similarity search strategies, and iterative inference behavior influence VideoQA performance across benchmark datasets. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic similarity measures, contextual relevance, and comparative inference performance across baseline and retrieval-augmented systems.
+Experiments are designed to measure how retrieval depth and iterative refinement influence temporal reasoning, answer accuracy, retrieval quality, and execution latency across benchmark VideoQA datasets. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs across baseline and iterative RAG systems.
 
 ## Implementation Framework
 
-The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible VideoQA experimentation across multiple inference workflows. The framework is designed to support modular evaluation of embedding approaches, retrieval configurations, vector indexing strategies, and inference behavior within both Google Colab and local development environments.
+The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The implementation incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries to support scalable experimentation. Supporting technologies include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for feature extraction, embedding generation, vector indexing, retrieval, and experimental evaluation.
+The framework incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
 ## Repository Organization
 
