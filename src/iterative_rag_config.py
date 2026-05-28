@@ -15,6 +15,26 @@ DATA_DIR = BASE_DIR / "data"
 DATASETS_DIR = DATA_DIR / "datasets"
 METADATA_DIR = DATA_DIR / "metadata"
 
+# ============================================
+# Dataset Configuration
+# ============================================
+
+DATASET_CONFIG = {
+    "MSVD-QA": {
+        "dataset_dir": DATASETS_DIR / "MSVD-QA",
+        "videos_dir": DATASETS_DIR / "MSVD-QA" / "videos",
+        "questions_dir": DATASETS_DIR / "MSVD-QA" / "questions",
+        "metadata_dir": DATASETS_DIR / "MSVD-QA" / "metadata",
+    },
+
+    "TGIF-QA": {
+        "dataset_dir": DATASETS_DIR / "TGIF-QA",
+        "videos_dir": DATASETS_DIR / "TGIF-QA" / "videos",
+        "questions_dir": DATASETS_DIR / "TGIF-QA" / "questions",
+        "metadata_dir": DATASETS_DIR / "TGIF-QA" / "metadata",
+    },
+}
+
 # ============================================================
 # Dataset Selection
 # ============================================================
