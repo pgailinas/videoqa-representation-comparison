@@ -7,8 +7,6 @@ nav_order: 0
 
 ## Project Overview
 
-## Project Overview
-
 This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) through comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies within multimodal video understanding systems.
 
 The framework combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and multimodal large language model (LLM) inference to examine how iterative evidence retrieval influences temporal reasoning, answer quality, retrieval effectiveness, and execution latency across VideoQA tasks.
@@ -98,7 +96,7 @@ Additional papers, datasets, models, and technical resources related to this pro
 **Phil Gailinas**  
 - M.S. Computer Engineering candidate  
 - University of New Mexico
-- Project initiated 05-20-2026
+- Project initiated May 2026
 
 ## License
 
