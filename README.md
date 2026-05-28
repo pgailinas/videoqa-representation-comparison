@@ -31,7 +31,7 @@ Key topics explored include:
 
 The complete step-by-step pipeline, including notebook walkthroughs, workflow explanations, and project documentation, is available here:
 
-👉 https://pgailinas.github.io/video-question-answering/
+👉 https://pgailinas.github.io/iterative-video-rag/
 
 ## 👤 Author
 
