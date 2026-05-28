@@ -51,9 +51,7 @@ The framework supports configurable iterative retrieval workflows for analyzing 
 
 ### Pipeline Flowchart
 
-![VideoQA Pipeline](images/overview_pipeline.png)
-
-<a href="images/overview_pipeline.png">
+<a href="images/overview_pipeline.png" target="_blank">
   <img src="images/overview_pipeline.png" width="800">
 </a>
 
