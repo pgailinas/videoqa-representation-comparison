@@ -53,6 +53,10 @@ The framework supports configurable iterative retrieval workflows for analyzing 
 
 ![VideoQA Pipeline](images/overview_pipeline.png)
 
+<a href="images/overview_pipeline.png">
+  <img src="images/overview_pipeline.png" width="800">
+</a>
+
 ## Experimental Methodology
 
 The experimental framework evaluates baseline VideoQA inference alongside single-pass and iterative RAG workflows using frame-level, clip-level, and multimodal evidence retrieval strategies.
