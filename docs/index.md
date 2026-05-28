@@ -11,7 +11,7 @@ This project investigates iterative Retrieval-Augmented Generation (RAG) workflo
 
 The framework combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and multimodal large language model (LLM) inference to examine how iterative evidence retrieval influences temporal reasoning, answer quality, retrieval effectiveness, and execution latency across VideoQA tasks.
 
-The project emphasizes analysis of retrieval refinement behavior by comparing direct inference without retrieval against progressively deeper retrieval-assisted workflows, including single-pass, two-pass, and three-pass RAG pipelines.
+The project emphasizes comparative evaluation of baseline inference, single-pass retrieval, and iterative multi-pass RAG workflows.
 
 The repository provides a reproducible notebook-driven research environment using public VideoQA datasets, modular AI workflows, and configurable multimodal components suitable for research experimentation and future IEEE-style publication development.
 
@@ -27,7 +27,7 @@ Despite recent advances, major challenges remain involving temporal grounding, r
 
 This project investigates how iterative RAG workflows influence VideoQA performance within multimodal video understanding systems. The research emphasizes comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies.
 
-The objectives of this work include measuring how retrieval depth and evidence refinement affect temporal reasoning, retrieval quality, answer accuracy, and execution latency across public VideoQA datasets. Comparative experiments analyze direct inference without retrieval alongside progressively deeper RAG workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations.
+The objectives of this work include measuring how retrieval depth and evidence refinement affect temporal reasoning, retrieval quality, answer accuracy, and execution latency across public VideoQA datasets. Comparative experiments analyze direct inference without retrieval alongside progressively deeper RAG workflows incorporating recursive evidence refinement across multimodal video representations.
 
 Additional objectives include evaluating latency-versus-performance tradeoffs, retrieval behavior across multiple inference passes, and the point at which additional retrieval refinement produces diminishing returns.
 
@@ -45,7 +45,7 @@ Raw video inputs are processed into frames and short clips for feature extractio
 
 At query time, natural-language questions are converted into query embeddings and matched against indexed video representations to retrieve relevant frames, clips, captions, or transcript segments. Retrieved evidence is then provided to a multimodal LLM to generate contextually informed responses.
 
-The framework supports baseline inference without retrieval alongside single-pass, two-pass, and three-pass iterative RAG workflows, enabling analysis of temporal reasoning performance, retrieval refinement behavior, and latency-versus-accuracy tradeoffs.
+The framework supports configurable iterative retrieval workflows for analyzing temporal reasoning performance, retrieval refinement behavior, and latency-versus-accuracy tradeoffs.
 
 ---
 
@@ -57,7 +57,7 @@ The framework supports baseline inference without retrieval alongside single-pas
 
 The experimental framework evaluates baseline VideoQA inference alongside single-pass and iterative RAG workflows using frame-level, clip-level, and multimodal evidence retrieval strategies.
 
-Comparative experiments analyze direct inference without retrieval against progressively deeper retrieval-assisted workflows incorporating recursive evidence refinement across frames, clips, captions, and transcript representations. Representative components may include architectures such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, and related vision-language models.
+Comparative experiments evaluate baseline inference alongside iterative retrieval refinement workflows using multimodal evidence representations. Representative components may include architectures such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, and related vision-language models.
 
 Experiments are designed to measure how retrieval depth and iterative refinement influence temporal reasoning, answer accuracy, retrieval quality, and execution latency across benchmark VideoQA datasets. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs across baseline and iterative RAG systems.
 
@@ -79,7 +79,7 @@ Supporting directories include benchmark datasets, extracted media assets, metad
 
 This work contributes a reproducible experimental framework for investigating iterative retrieval-assisted inference within VideoQA systems. The research is designed to provide insight into retrieval refinement strategies, temporal reasoning behavior, and latency-versus-performance tradeoffs across baseline and multi-pass RAG workflows.
 
-Expected contributions include comparative performance benchmarks, retrieval and inference analysis visualizations, and evaluation of how iterative retrieval depth influences answer quality, retrieval effectiveness, and execution latency within multimodal video understanding systems.
+Expected contributions include comparative performance benchmarks, retrieval analysis visualizations, and evaluation of how iterative retrieval depth influences VideoQA performance and inference latency.
 
 The repository additionally provides an extensible notebook-driven research platform intended to support future experimentation involving iterative RAG workflows, vector databases, embedding models, and scalable VideoQA inference systems.
 
