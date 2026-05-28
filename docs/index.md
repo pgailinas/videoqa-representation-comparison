@@ -3,7 +3,7 @@ title: Home
 nav_order: 0
 ---
 
-# Iterative Retrieval-Augmented Video Question Answering
+# Iterative RAG VideoQA
 
 ## Project Overview
 
