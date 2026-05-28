@@ -3,23 +3,27 @@ title: Home
 nav_order: 0
 ---
 
-# Video Question Answering Research Framework
+# Iterative Retrieval-Augmented Video Question Answering
 
 ## Project Overview
 
-This project investigates Retrieval-Augmented Generation (RAG) techniques for Video Question Answering (VideoQA) through comparative analysis of retrieval workflows, embedding methods, and large language model (LLM) inference strategies within multimodal video understanding systems.
+## Project Overview
 
-The research framework combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and inference pipelines to examine how external evidence retrieval influences contextual understanding, temporal reasoning, and question-answering performance.
+This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) through comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies within multimodal video understanding systems.
 
-The repository provides a reproducible experimental environment for evaluating retrieval-assisted VideoQA approaches using public datasets, modular notebook-driven workflows, and configurable AI components. The project is publicly available through GitHub and supports execution in Google Colab or local Jupyter environments, enabling research-oriented experimentation and future IEEE-style publication development.
+The framework combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and multimodal large language model (LLM) inference to examine how iterative evidence retrieval influences temporal reasoning, answer quality, retrieval effectiveness, and execution latency across VideoQA tasks.
+
+The project emphasizes analysis of retrieval refinement behavior by comparing direct inference without retrieval against progressively deeper retrieval-assisted workflows, including single-pass, two-pass, and three-pass RAG pipelines.
+
+The repository provides a reproducible notebook-driven research environment using public VideoQA datasets, modular AI workflows, and configurable multimodal components suitable for research experimentation and future IEEE-style publication development.
 
 ## Motivation and Research Problem
 
-The rapid growth of video-based data has created increasing demand for AI systems capable of understanding visual scenes, motion, temporal relationships, and contextual interactions distributed across long video sequences. Unlike static-image understanding, VideoQA requires reasoning across both spatial and temporal information, making it a challenging benchmark for evaluating long-context inference and multimodal AI systems.
+The rapid growth of video-based data has increased demand for AI systems capable of understanding visual scenes, motion, temporal relationships, and contextual interactions across long video sequences. Unlike static-image understanding, VideoQA requires reasoning across both spatial and temporal information, making it a challenging benchmark for multimodal AI systems.
 
-Recent RAG methods have introduced scalable approaches for grounding inference in relevant video evidence through retrieval of frames, clips, captions, transcripts, and embedding representations prior to response generation. These approaches aim to improve contextual accuracy and reduce hallucinations during question answering across complex video sequences.
+Recent RAG methods improve VideoQA by retrieving relevant frames, clips, captions, transcripts, and embedding representations prior to inference. These approaches aim to improve contextual accuracy and reduce hallucinations during question answering.
 
-Despite recent advances, major research challenges remain involving temporal grounding, embedding selection, evidence refinement strategies, and the interaction between retrieval workflows and LLM inference behavior. This project investigates these challenges through systematic evaluation of multiple retrieval and inference configurations across public VideoQA benchmarks.
+Despite recent advances, major challenges remain involving temporal grounding, retrieval refinement, and the interaction between retrieval workflows and LLM inference behavior. This project investigates these challenges through comparative evaluation of baseline, single-pass, and iterative RAG workflows across public VideoQA benchmarks.
 
 ## Research Objectives
 
