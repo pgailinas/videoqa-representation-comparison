@@ -3,7 +3,7 @@ title: Home
 nav_order: 0
 ---
 
-# Iterative RAG VideoQA
+# Iterative RAG for VideoQA
 
 ## Project Overview
 
