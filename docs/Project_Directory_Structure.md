@@ -11,8 +11,6 @@ This project uses a structured directory layout to organize Video Question Answe
 
 The design supports a reproducible research pipeline using Google Colab, GitHub, and modular notebook execution. Each processing stage produces artifacts that are reused by later stages, enabling comparison between baseline VideoQA, retrieval-augmented generation (RAG), and iterative retrieval approaches.
 
----
-
 ## Key Directories
 
 ### notebooks/
@@ -51,8 +49,6 @@ Contains generated artifacts used by retrieval and reasoning pipelines.
 - **embeddings/** — multimodal feature representations
 - **vector_index/** — searchable retrieval indexes
 - **metadata/** — processed knowledge-base metadata
-
----
 
 ## Repository Structure
 
@@ -111,8 +107,6 @@ iterative-video-rag/
         └── metadata/
 ```
 
----
-
 ## Project Constants Declaration
 
 The project uses a shared configuration file located at:
@@ -121,16 +115,13 @@ The project uses a shared configuration file located at:
 
 This file contains centralized constants and shared settings used throughout the notebook pipeline, including dataset locations, knowledge-base paths, generated artifacts, and experiment configuration.
 
----
-
 ## Important Notes
 
 - Original benchmark datasets remain separated from generated knowledge-base artifacts.
 - Large video files and generated embeddings may be stored externally when required due to repository size limits.
 - Notebook stages are designed to be reproducible and independently verifiable.
 
----
-
 ## Summary
 
 This directory structure supports a modular VideoQA research workflow where datasets, retrieval artifacts, model inputs, and evaluation results remain clearly separated. The organization enables reproducible experimentation with baseline models, RAG-enhanced inference, and iterative retrieval strategies.
+
