@@ -107,6 +107,22 @@ iterative-video-rag/
         └── metadata/
 ```
 
+## Google Drive Structure
+
+Due to GitHub file size limitations, all image datasets are stored externally in Google Drive as ZIP files. When needed, notebooks download and extract the required ZIP file into the local Colab runtime.
+
+```text
+iterative-video-qa/
+└── nextqa/
+    ├── nextqa_videos_batch_01.zip
+    ├── nextqa_videos_batch_02.zip
+    ├── nextqa_videos_batch_03.zip
+    ├── nextqa_videos_batch_04.zip
+    ├── nextqa_videos_batch_05.zip
+    ├── nextqa_videos_batch_06.zip
+    └── nextqa_videos_batch_07.zip
+```
+
 ## Project Constants Declaration
 
 The project uses a shared configuration file located at:
