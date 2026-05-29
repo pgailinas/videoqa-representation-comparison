@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [06 Evaluate Model Performance](06_Evaluate_Model_Performance.md)
+➡️ [06 Evaluate and Visualize Results](06_Evaluate_and_Visualize_Results.md)
 
