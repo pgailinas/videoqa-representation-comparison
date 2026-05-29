@@ -112,7 +112,7 @@ iterative-video-rag/
 Due to GitHub file size limitations, all image datasets are stored externally in Google Drive as ZIP files. When needed, notebooks download and extract the required ZIP file into the local Colab runtime.
 
 ```text
-iterative-video-qa/
+iterative-video-rag/
 └── nextqa/
     ├── nextqa_videos_batch_01.zip
     ├── nextqa_videos_batch_02.zip
