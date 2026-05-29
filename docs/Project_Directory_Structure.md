@@ -7,147 +7,110 @@ nav_order: 2
 
 ## Overview
 
-This project uses a structured directory layout to organize datasets, metadata, feature vectors, models, and evaluation outputs. The design supports a fully reproducible pipeline using Google Colab and Google Drive.
+This project uses a structured directory layout to organize Video Question Answering (VideoQA) datasets, metadata, knowledge-base artifacts, retrieval indexes, and experiment workflows.
 
-All processing steps operate on metadata and stored artifacts rather than duplicating image data, ensuring consistency and efficiency.
+The design supports a reproducible research pipeline using Google Colab, GitHub, and modular notebook execution. Each processing stage produces artifacts that are reused by later stages, enabling comparison between baseline VideoQA, retrieval-augmented generation (RAG), and iterative retrieval approaches.
 
 ---
 
 ## Key Directories
 
 ### notebooks/
-Contains all Google Colab notebooks implementing each step of the pipeline, from dataset construction through final evaluation and analysis.
+
+Contains the Google Colab notebooks implementing each stage of the VideoQA experimental workflow.
 
 ### docs/
-Contains the tutorial documentation pages associated with each notebook, forming the structured learning guide.
 
-- **images/** — contains PNG images for inclusion within documentation pages  
+Contains GitHub Pages documentation describing the project architecture, notebook workflows, results, and references.
+
+- **images/** — stores diagrams and documentation images
 
 ### src/
-Contains reusable Python configuration file.
 
-- **project_config.py** — single file for all path and constant declarations  
+Contains reusable project source files.
 
-### metadata/
+- **project_config.py** — centralized configuration file for paths, constants, and shared project settings
 
-This is the **core working directory** of the project. It stores all intermediate and final artifacts.
+### datasets/
 
-- **original/** — raw dataset metadata  
-- **hashes/** — dataset integrity and duplicate tracking  
-- **preprocessed/** — metadata after preprocessing  
-- **splits/** — train/test dataset definitions  
-- **features/** — extracted DIP feature values  
-- **vectors/** — assembled feature vectors (raw and normalized)  
-- **models/** — trained models and scaler  
-- **results/** — evaluation outputs and metrics  
+Contains original benchmark dataset resources.
+
+For NExT-QA:
+
+- **videos/** — original benchmark video files organized by source folders
+- **questions/** — train, validation, and test question-answer splits
+- **metadata/** — dataset mapping files and annotation resources
+
+### knowledge_base/
+
+Contains generated artifacts used by retrieval and reasoning pipelines.
+
+- **frames/** — extracted video frames
+- **clips/** — generated or processed video segments
+- **captions/** — generated textual video descriptions
+- **embeddings/** — multimodal feature representations
+- **vector_index/** — searchable retrieval indexes
+- **metadata/** — processed knowledge-base metadata
 
 ---
 
 ## Repository Structure
 
 ```text
-dip-ai-image-detection/
+iterative-video-rag/
 │
 ├── README.md
 │
 ├── notebooks/
-│   ├── 01_Build_Dataset.ipynb
-│   ├── 02_Preprocess_Images.ipynb
-│   ├── 03_Combine_and_Split.ipynb
-│   ├── 04A_Extract_Gradient_Features.ipynb
-│   ├── 04B_Extract_Spatial_Features.ipynb
-│   ├── 04C_Extract_Frequency_Features.ipynb
-│   ├── 05_Build_Feature_Vectors.ipynb
-│   ├── 06_Normalize_and_Prepare_Inputs.ipynb
-│   ├── 07_Classifier_Selection.ipynb
-│   ├── 08_Train_Two_Classifiers.ipynb
-│   ├── 09_Validate_and_Tune_Two_Models.ipynb
-│   ├── 10_Basic_Testing.ipynb
-│   ├── 11_Basic_Fine-Tuning.ipynb
-│   ├── 12_Evaluate_Two_Models.ipynb
-│   ├── 13_Feature_Level_Analysis.ipynb
-│   └── 14_Source_Pair_Analysis.ipynb
+│   ├── 01_Prepare_Video_Data.ipynb
+│   ├── 02_Build_Video_Knowledge_Base.ipynb
+│   ├── 03_Run_Baseline_VideoQA.ipynb
+│   ├── 04_Run_RAG_VideoQA.ipynb
+│   ├── 05_Run_Iterative_RAG_Experiments.ipynb
+│   └── 06_Evaluate_and_Visualize_Results.ipynb
 │
 ├── docs/
+│   ├── _config.yml
 │   ├── index.md
-│   ├── 1. Dataset Tutorial.md
-│   ├── 2. Model Description Tutorial.md
-│   ├── 3. Model Optimization Tutorial.md
-│   ├── 4. Basic Testing Tutorial.md
-│   ├── 5. Basic Fine-Tuning Tutorial.md
-│   ├── 6. Full Training Tutorial.md
-│   ├── 01_Build_Dataset.md
-│   ├── 02_Preprocess_Images.md
-│   ├── 03_Combine_and_Split.md
-│   ├── 04A_Extract_Gradient_Features.md
-│   ├── 04B_Extract_Spatial_Features.md
-│   ├── 04C_Extract_Frequency_Features.md
-│   ├── 05_Build_Feature_Vectors.md
-│   ├── 06_Normalize_and_Prepare_Inputs.md
-│   ├── 07_Classifier_Selection.md
-│   ├── 08_Train_Two_Classifiers.md
-│   ├── 09_Validate_and_Tune_Two_Models.md
-│   ├── 10_Basic_Testing.md
-│   ├── 11_Basic_Fine-Tuning.md
-│   ├── 12_Evaluate_Two_Models.md
-│   ├── 13_Feature_Level_Analysis.md
-│   ├── 14_Source_Pair_Analysis.md
+│   ├── 01_Prepare_Video_Data.md
+│   ├── 02_Build_Video_Knowledge_Base.md
+│   ├── 03_Run_Baseline_VideoQA.md
+│   ├── 04_Run_RAG_VideoQA.md
+│   ├── 05_Run_Iterative_RAG_Experiments.md
+│   ├── 06_Evaluate_and_Visualize_Results.md
 │   ├── Project_Directory_Structure.md
-│   ├── Thanks_For_Trying_This_Tutorial.md
+│   ├── References.md
+│   ├── Results_and_Insights.md
 │   └── images/
-│       ├── basic-fine-tuning-tutorial-pipeline.png
-│       ├── basic-testing-tutorial-pipeline.png
-│       ├── classifier-comparison.png
-│       ├── dataset-tutorial-pipeline.png
-│       ├── feature-group-vs-full-model.png
-│       ├── full-training-tutorial-pipeline.png
-│       ├── model-description-tutorial-pipeline.png
-│       ├── model-optimization-tutorial-pipeline.png
-│       ├── overview-pipeline.png
-│       ├── roc-curve-comparison.png
-│       ├── single-feature-barchart.png
-│       └── source-pair-roc-curves.png
+│       └── overview_pipeline.png
 │
 ├── src/
-│   ├── project_config.py
-│   └── datasets/
-│       ├── coco_target.py
-│       ├── diffusiondb_target.py
-│       ├── imagenet_target.py
-│       ├── midjourney_target.py
-│       ├── openimages_target.py
-│       └── sdxl_target.py
+│   └── project_config.py
 │
-└── metadata/
-    ├── original/
-    ├── hashes/
-    ├── preprocessed/
-    ├── splits/
-    ├── features/
-    ├── vectors/
-    ├── models/
-    └── results/
+├── datasets/
+│   └── NExT-QA/
+│       ├── videos/
+│       │   ├── 0000/
+│       │   ├── 0001/
+│       │   └── ...
+│       ├── questions/
+│       │   ├── train.csv
+│       │   ├── val.csv
+│       │   └── test.csv
+│       └── metadata/
+│           ├── map_vid_vidorID.json
+│           └── relation_annotation_nextqa.zip
+│
+└── knowledge_base/
+    └── NExT-QA/
+        ├── frames/
+        ├── clips/
+        ├── captions/
+        ├── embeddings/
+        ├── vector_index/
+        └── metadata/
 ```
 
----
-
-## Google Drive Structure
-
-Due to GitHub file size limitations, all image datasets are stored externally in Google Drive as ZIP files. When needed, notebooks download and extract the required ZIP file into the local Colab runtime.
-
-```text
-releases/
-├── raw/
-│   ├── DiffusionDB.zip (3000 images; 1.83 GB)
-│   ├── ImageNet_1K_256.zip (3000 images; 332 MB)
-│   ├── Midjourney.zip (3000 images; 3.79 GB)
-│   ├── MS_COCO_2017.zip (3000 images; 1.47 GB)
-│   ├── OpenImages.zip (3000 images; 22.23 GB)
-│   └── SDXL_Generated_10K.zip (3000 images; 3.71 GB)
-│
-└── preprocessed/
-    └── All_Sources_preprocessed.zip (18,000 images; 678 MB)
-```
 ---
 
 ## Project Constants Declaration
@@ -156,18 +119,18 @@ The project uses a shared configuration file located at:
 
 [Project Constants Declaration](Project_Config.html)
 
-This file contains the centralized constants and shared settings used throughout the notebook pipeline, including dataset identifiers, feature configuration, directory paths, metadata filenames, and public download information.
-
-All notebooks import configuration values directly from this file to maintain consistency and reproducibility across the project.
+This file contains centralized constants and shared settings used throughout the notebook pipeline, including dataset locations, knowledge-base paths, generated artifacts, and experiment configuration.
 
 ---
 
 ## Important Notes
 
-- TBD. 
+- Original benchmark datasets remain separated from generated knowledge-base artifacts.
+- Large video files and generated embeddings may be stored externally when required due to repository size limits.
+- Notebook stages are designed to be reproducible and independently verifiable.
 
 ---
 
 ## Summary
 
-This directory structure supports a modular, reproducible workflow where each stage of the pipeline produces artifacts that are reused in subsequent steps. The separation of datasets, metadata, features, models, and results ensures clarity, scalability, and ease of experimentation.
+This directory structure supports a modular VideoQA research workflow where datasets, retrieval artifacts, model inputs, and evaluation results remain clearly separated. The organization enables reproducible experimentation with baseline models, RAG-enhanced inference, and iterative retrieval strategies.
