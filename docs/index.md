@@ -27,7 +27,7 @@ Despite recent advances, major challenges remain involving temporal grounding, r
 
 This project investigates how iterative RAG workflows influence VideoQA performance within multimodal video understanding systems. The research emphasizes comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies.
 
-The objectives of this work include measuring how retrieval depth and evidence refinement affect temporal reasoning, retrieval quality, answer accuracy, and execution latency across public VideoQA datasets. Comparative experiments analyze direct inference without retrieval alongside progressively deeper RAG workflows incorporating recursive evidence refinement across multimodal video representations.
+The objectives of this work include measuring how retrieval depth and evidence refinement affect temporal reasoning, retrieval quality, answer accuracy, and execution latency using the NExT-QA benchmark dataset. Comparative experiments analyze direct inference without retrieval alongside progressively deeper RAG workflows incorporating recursive evidence refinement across multimodal video representations.
 
 Additional objectives include evaluating latency-versus-performance tradeoffs, retrieval behavior across multiple inference passes, and the point at which additional retrieval refinement produces diminishing returns.
 
@@ -39,7 +39,7 @@ The dataset provides raw video files, question-answer annotations, official trai
 
 The experimental dataset includes:
 
-- NExT-QA video collection containing approximately 5,600 MP4 videos
+- NExT-QA video collection containing 5,440 MP4 videos
 - Training, validation, and test question-answer splits
 - Video identifier mapping metadata
 - Optional relation annotations for advanced reasoning experiments
@@ -74,7 +74,7 @@ The framework supports configurable retrieval strategies, including baseline inf
 
 ## Experimental Methodology
 
-The experimental framework evaluates how retrieval strategies and multimodal knowledge epresentations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, caption-based, and embedding-based video evidence.
+The experimental framework evaluates how retrieval strategies and multimodal knowledge representations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, caption-based, and embedding-based video evidence.
 
 The experiments evaluate three primary workflows:
 
@@ -94,7 +94,7 @@ The objective is not to train a new VideoQA neural network, but to evaluate how 
 
 The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The framework incorporates pretrained vision-language models, multimodal LLMs, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
+The framework incorporates pretrained vision encoders, vision-language models, large language models, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
 | Component | Purpose |
 |---|---|
@@ -110,7 +110,7 @@ The repository is organized as a modular notebook-driven research environment de
 
 The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
 
-Supporting directories include benchmark datasets, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
+Supporting directories include benchmark dataset resources, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
 
 ## Notebook Design Philosophy
 
