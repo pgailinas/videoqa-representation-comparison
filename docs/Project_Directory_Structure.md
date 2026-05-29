@@ -21,13 +21,12 @@ Contains all Google Colab notebooks implementing each step of the pipeline, from
 ### docs/
 Contains the tutorial documentation pages associated with each notebook, forming the structured learning guide.
 
-- **images/** — contains PNG images for inclusion within tutorial documentation pages  
+- **images/** — contains PNG images for inclusion within documentation pages  
 
 ### src/
-Contains reusable Python modules and configuration files.
+Contains reusable Python configuration file.
 
 - **project_config.py** — single file for all path and constant declarations  
-- **datasets/** — contains dataset-specific handlers (one for each source of images)  
 
 ### metadata/
 
@@ -165,11 +164,7 @@ All notebooks import configuration values directly from this file to maintain co
 
 ## Important Notes
 
-- Image datasets are not duplicated; all processing is metadata-driven  
-- Train/test splits are defined via CSV files to prevent data leakage  
-- Feature extraction outputs are stored for reuse across experiments  
-- Models and scalers are saved and reused for evaluation and testing  
-- Results are stored separately for reproducibility and comparison  
+- TBD. 
 
 ---
 
