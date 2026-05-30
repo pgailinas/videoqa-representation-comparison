@@ -121,7 +121,7 @@ iterative-video-rag/
     ├── NExTVideo.z05
     ├── NExTVideo.z06
     ├── NExTVideo.zip
-    └── README.md
+    └── README.txt
 ```
 
 ## Project Constants Declaration
