@@ -113,14 +113,15 @@ Due to GitHub file size limitations, all image datasets are stored externally in
 
 ```text
 iterative-video-rag/
-└── nextqa/
-    ├── nextqa_videos_batch_01.zip
-    ├── nextqa_videos_batch_02.zip
-    ├── nextqa_videos_batch_03.zip
-    ├── nextqa_videos_batch_04.zip
-    ├── nextqa_videos_batch_05.zip
-    ├── nextqa_videos_batch_06.zip
-    └── nextqa_videos_batch_07.zip
+└── NExT-QA/
+    ├── NExTVideo.z01
+    ├── NExTVideo.z02
+    ├── NExTVideo.z03
+    ├── NExTVideo.z04
+    ├── NExTVideo.z05
+    ├── NExTVideo.z06
+    ├── NExTVideo.zip
+    └── README.md
 ```
 
 ## Project Constants Declaration
