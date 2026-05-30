@@ -28,7 +28,7 @@ TBD.
 ## Processing Workflow
 
 - TBD
-- TBD 
+- The NExTVideo dataset is stored as a multi-part archive consisting of seven ZIP files. Collectively, these archives reconstruct the original NExTVideo directory containing 5,440 videos organized across 159 subdirectories. All archive parts must be present before extraction.
 
 ## Notes
 
