@@ -48,7 +48,7 @@ Raw videos are processed into frames, clips, captions, embeddings, and metadata 
 
 ## System Architecture
 
-The experimental framework integrates pretrained multimodal models, vector database indexing, evidence retrieval, and large language model inference to support baseline and iterative RAG-based VideoQA workflows.
+The experimental framework integrates pretrained multimodal models, vector database indexing, evidence retrieval, and LLM inference to support baseline and iterative RAG-based VideoQA workflows.
 
 The system is built around three primary pretrained model components:
 
@@ -84,7 +84,7 @@ The experiments evaluate three primary workflows:
 
 3. **Iterative RAG Inference** — retrieval and reasoning are performed across multiple refinement passes to improve evidence selection and answer quality.
 
-Representative system components may include pretrained vision encoders, vision-language models, large language models, and vector retrieval systems such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, FAISS, and related technologies.
+Representative system components may include pretrained vision encoders, vision-language models, LLMs, and vector retrieval systems such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, FAISS, and related technologies.
 
 Experiments measure how retrieval strategy, evidence quality, and refinement depth affect temporal reasoning, answer accuracy, retrieval performance, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
 
@@ -94,7 +94,7 @@ The objective is not to train a new VideoQA neural network, but to evaluate how 
 
 The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The framework incorporates pretrained vision encoders, vision-language models, large language models, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
+The framework incorporates pretrained vision encoders, vision-language models, LLMs, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
 | Component | Purpose |
 |---|---|
