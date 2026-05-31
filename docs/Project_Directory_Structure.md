@@ -81,7 +81,7 @@ iterative-video-rag/
 │       └── overview_pipeline.png
 │
 ├── src/
-│   └── project_config.py
+│   └── iterative_rag_config.py
 │
 ├── datasets/
 │   └── NExT-QA/
