@@ -12,7 +12,6 @@ BASE_DIR = Path("/content/iterative-video-rag")
 # Main data directories
 # -------------------------------------------------
 DATASETS_DIR = BASE_DIR / "datasets"
-METADATA_DIR = DATA_DIR / "metadata"
 
 # ============================================
 # Dataset Configuration
