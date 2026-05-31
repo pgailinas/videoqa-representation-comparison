@@ -39,12 +39,14 @@ The dataset provides raw video files, question-answer annotations, official trai
 
 The experimental dataset includes:
 
-- NExT-QA video collection containing 5,440 MP4 videos
-- Training, validation, and test question-answer splits
+- NExT-QA video collection containing 5,440 MP4 videos organized within the NExTVideo directory structure
+- Training, validation, and test question-answer splits containing 47,692 benchmark questions
 - Video identifier mapping metadata
 - Optional relation annotations for advanced reasoning experiments
 
 Raw videos are processed into frames, clips, captions, embeddings, and metadata representations during knowledge base construction. These generated artifacts are used by downstream RAG pipelines rather than repeatedly processing the original video files.
+
+Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata resources, reconstructing the multipart video archive, extracting video assets into the project dataset structure, and validating dataset readiness for downstream knowledge base construction and VideoQA experimentation.
 
 ## System Architecture
 
@@ -110,7 +112,7 @@ The repository is organized as a modular notebook-driven research environment de
 
 The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
 
-Supporting directories include benchmark dataset resources, extracted media assets, metadata resources, vector indexes, generated embeddings, experimental outputs, figures, configuration modules, and documentation resources intended to support extensible multimodal AI research workflows.
+Supporting directories include benchmark dataset resources, extracted video assets, question-answer annotations, metadata resources, vector indexes, generated embeddings, experimental outputs, configuration modules, notebooks, and documentation resources intended to support extensible multimodal AI research workflows.
 
 ## Notebook Design Philosophy
 
