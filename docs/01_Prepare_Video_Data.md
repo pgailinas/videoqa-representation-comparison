@@ -42,7 +42,9 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * Reconstructed and extracted NExT-QA video dataset
 * Validated question-answer annotation files
 * Verified metadata resources
-* Dataset statistics and verification summaries
+* Cross-reference validation results
+* Random dataset verification samples
+* Dataset readiness summary
 * Runtime environment configuration information
 
 ## Processing Workflow
@@ -54,16 +56,21 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * Reconstruct the complete NExT-QA video archive
 * Extract and organize video files into the project dataset structure
 * Validate video, annotation, and metadata resources
-* Display dataset statistics and verification summaries
+* Validate cross-references between videos, question-answer files, and metadata mappings
+* Display random dataset verification samples with associated video playback
+* Generate a dataset readiness summary
 
 ## Notes
 
-* This notebook focuses on dataset preparation and validation only.
+* This notebook focuses on dataset preparation, validation, and readiness assessment only.
 * The NExT-QA benchmark serves as the primary VideoQA dataset for this project.
 * Video archives are copied to local Colab storage and extracted locally to improve reliability and avoid Google Drive file-operation limitations.
 * The NExTVideo dataset is distributed as a multipart ZIP archive consisting of seven archive files that reconstruct the complete video collection.
+* Cross-reference validation confirms consistency between video files, question-answer annotations, and metadata mappings.
+* Random sample inspection provides visual verification of dataset integrity prior to downstream experimentation.
 * Frame extraction, clip generation, embedding creation, vector indexing, retrieval, and inference workflows are performed in later notebooks.
 * Video archive reconstruction and extraction may require significant storage space and execution time depending on the runtime environment.
+
 
 ## Next Notebook
 
