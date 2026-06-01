@@ -27,7 +27,7 @@ Contains GitHub Pages documentation describing the project architecture, noteboo
 
 Contains reusable project source files.
 
-- **project_config.py** — centralized configuration file for paths, constants, and shared project settings
+- **iterative_rag_config.py** — centralized configuration file for paths, constants, and shared project settings
 
 ### datasets/
 
@@ -35,6 +35,7 @@ Contains original benchmark dataset resources.
 
 For NExT-QA:
 
+- **archives/** — original benchmark video files in ZIP files
 - **videos/** — original benchmark video files organized by source folders
 - **questions/** — train, validation, and test question-answer splits
 - **metadata/** — dataset mapping files and annotation resources
@@ -85,10 +86,8 @@ iterative-video-rag/
 │
 ├── datasets/
 │   └── NExT-QA/
+│       ├── archives/
 │       ├── videos/
-│       │   ├── 0000/
-│       │   ├── 0001/
-│       │   └── ...
 │       ├── questions/
 │       │   ├── train.csv
 │       │   ├── val.csv
