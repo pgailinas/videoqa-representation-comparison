@@ -15,7 +15,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Augmented Generation (RAG) Video Question Answering (VideoQA) experimentation. The workflow configures the runtime environment, verifies required dataset resources, reconstructs and extracts video archives, organizes dataset files, and validates the dataset structure required for downstream preprocessing, embedding generation, retrieval, and inference workflows.
+This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Augmented Generation (RAG) Video Question Answering (VideoQA) experimentation. The workflow configures the runtime environment, verifies required dataset resources, reconstructs and extracts video archives, organizes dataset files, validates dataset integrity, and confirms consistency between video, question-answer, and metadata resources required for downstream preprocessing, embedding generation, retrieval, and inference workflows.
 
 ## Inputs
 
@@ -33,8 +33,8 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
   * test.csv
 * NExT-QA metadata resources
   * map_vid_vidorID.json
+* User configuration settings
 * Project configuration modules
-* Google Drive access credentials
 
 ## Outputs
 
@@ -64,7 +64,7 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 
 * This notebook focuses on dataset preparation, validation, and readiness assessment only.
 * The NExT-QA benchmark serves as the primary VideoQA dataset for this project.
-* Video archives are copied to local Colab storage and extracted locally to improve reliability and avoid Google Drive file-operation limitations.
+* Video archives are copied to local Colab storage and extracted locally using shared NExT-QA video-cache utilities to improve reliability, performance, and code reuse across notebooks.
 * The NExTVideo dataset is distributed as a multipart ZIP archive consisting of seven archive files that reconstruct the complete video collection.
 * Cross-reference validation confirms consistency between video files, question-answer annotations, and metadata mappings.
 * Random sample inspection provides visual verification of dataset integrity prior to downstream experimentation.
