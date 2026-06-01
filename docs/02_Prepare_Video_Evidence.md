@@ -1,14 +1,14 @@
 ---
-title: 03 Build Video Knowledge Base
-nav_order: 5
+title: 02 Prepare Video Evidence
+nav_order: 4
 has_children: true
 has_toc: false
 ---
-# 03 Build Video Knowledge Base
+# 02 Prepare Video Evidence
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/03_Build_Video_Knowledge_Base.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/02_Prepare_Video_Evidence.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [04 Run Baseline VideoQA](04_Run_Baseline_VideoQA.md)
+➡️ [03 Build Video Knowledge Base](03_Build_Video_Knowledge_Base.md)
 
