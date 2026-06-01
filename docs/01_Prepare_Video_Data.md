@@ -74,5 +74,5 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 
 ## Next Notebook
 
-➡️ [02 Build Video Knowledge Base](02_Build_Video_Knowledge_Base.md)
+➡️ [02 Prepare Video Evidence](02_Prepare_Video_Evidence.md)
 
