@@ -1,22 +1,23 @@
 # ============================================================
 # NExT-QA Video Cache Utilities
 # ============================================================
-"""
-Reusable utilities for restoring the NExT-QA video dataset into
-local runtime storage.
-
-These functions are intentionally limited to the mechanical archive
-workflow used by multiple notebooks:
-
-1. Verify multipart archive files.
-2. Copy archive parts from Google Drive to local storage.
-3. Build a combined ZIP archive from the split ZIP parts.
-4. Extract MP4 videos into the local runtime video cache.
-5. Verify that the local video cache is available.
-
-Dataset validation, QA/metadata cross-reference checks, sample
-inspection, and readiness reporting should remain in the notebooks.
-"""
+#
+# Purpose:
+#     Shared archive reconstruction and video-cache
+#     management functions used by:
+#
+#         01_Prepare_Video_Data
+#         02_Prepare_Video_Evidence
+#         03_Build_Video_Knowledge_Base
+#
+# Notes:
+#     This module intentionally contains only archive,
+#     extraction, and local-cache management logic.
+#
+#     Dataset validation, cross-reference verification,
+#     sample inspection, and readiness reporting remain
+#     in the notebooks.
+# ============================================================
 
 from __future__ import annotations
 
