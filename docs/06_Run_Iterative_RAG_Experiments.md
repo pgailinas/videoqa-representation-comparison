@@ -1,14 +1,14 @@
 ---
-title: 05 Run Iterative RAG Experiments
-nav_order: 7
+title: 06 Run Iterative RAG Experiments
+nav_order: 8
 has_children: true
 has_toc: false
 ---
-# 05 Run Iterative RAG Experiments
+# 06 Run Iterative RAG Experiments
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/05_Run_Iterative_RAG_Experiments.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/06_Run_Iterative_RAG_Experiments.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [06 Evaluate and Visualize Results](06_Evaluate_and_Visualize_Results.md)
+➡️ [07 Evaluate and Visualize Results](07_Evaluate_and_Visualize_Results.md)
 
