@@ -38,7 +38,7 @@ TBD.
 
 ## Next Notebook
 
-➡️ [04 Run RAG VideoQA](04_Run_RAG_VideoQA.md)
+➡️ [07 Evaluate and Visualize Results](07_Evaluate_and_Visualize_Results.md)
 
 
 
