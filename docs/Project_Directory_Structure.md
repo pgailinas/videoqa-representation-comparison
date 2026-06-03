@@ -28,6 +28,7 @@ Contains GitHub Pages documentation describing the project architecture, noteboo
 Contains reusable project source files.
 
 - **iterative_rag_config.py** — centralized configuration file for paths, constants, and shared project settings
+- **nextqa_video_cache.py** — common archive reconstruction and video-cache management functions
 
 ### datasets/
 
