@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [03 Build Video Knowledge Base](03_Build_Video_Knowledge_Base.md)
+➡️ [03 Run Baseline VideoQA](03_Run_Baseline_VideoQA.md)
 
