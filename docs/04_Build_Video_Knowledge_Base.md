@@ -8,7 +8,7 @@ has_toc: false
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/03_Build_Video_Knowledge_Base.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/04_Build_Video_Knowledge_Base.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [03 Run Baseline VideoQA](03_Run_Baseline_VideoQA.md)
+➡️ [05 Run RAG VideoQA](05_Run_RAG_VideoQA.md)
 
