@@ -1,10 +1,10 @@
 ---
-title: 03 Build Video Knowledge Base
-nav_order: 5
+title: 04 Build Video Knowledge Base
+nav_order: 6
 has_children: true
 has_toc: false
 ---
-# 03 Build Video Knowledge Base
+# 04 Build Video Knowledge Base
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
@@ -38,5 +38,5 @@ TBD.
 
 ## Next Notebook
 
-➡️ [04 Run Baseline VideoQA](04_Run_Baseline_VideoQA.md)
+➡️ [03 Run Baseline VideoQA](03_Run_Baseline_VideoQA.md)
 
