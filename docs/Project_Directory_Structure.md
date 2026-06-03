@@ -62,8 +62,8 @@ iterative-video-rag/
 ├── notebooks/
 │   ├── 01_Prepare_Video_Data.ipynb
 │   ├── 02_Prepare_Video_Evidence.ipynb
-│   ├── 03_Build_Video_Knowledge_Base.ipynb
-│   ├── 04_Run_Baseline_VideoQA.ipynb
+│   ├── 03_Run_Baseline_VideoQA.ipynb
+│   ├── 04_Build_Video_Knowledge_Base.ipynb
 │   ├── 05_Run_RAG_VideoQA.ipynb
 │   ├── 06_Run_Iterative_RAG_Experiments.ipynb
 │   └── 07_Evaluate_and_Visualize_Results.ipynb
@@ -73,8 +73,8 @@ iterative-video-rag/
 │   ├── index.md
 │   ├── 01_Prepare_Video_Data.md
 │   ├── 02_Prepare_Video_Evidence.md
-│   ├── 03_Build_Video_Knowledge_Base.md
-│   ├── 04_Run_Baseline_VideoQA.md
+│   ├── 03_Run_Baseline_VideoQA.md
+│   ├── 04_Build_Video_Knowledge_Base.md
 │   ├── 05_Run_RAG_VideoQA.md
 │   ├── 06_Run_Iterative_RAG_Experiments.md
 │   ├── 07_Evaluate_and_Visualize_Results.md
