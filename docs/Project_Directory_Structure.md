@@ -60,21 +60,23 @@ iterative-video-rag/
 │
 ├── notebooks/
 │   ├── 01_Prepare_Video_Data.ipynb
-│   ├── 02_Build_Video_Knowledge_Base.ipynb
-│   ├── 03_Run_Baseline_VideoQA.ipynb
-│   ├── 04_Run_RAG_VideoQA.ipynb
-│   ├── 05_Run_Iterative_RAG_Experiments.ipynb
-│   └── 06_Evaluate_and_Visualize_Results.ipynb
+│   ├── 02_Prepare_Video_Evidence.ipynb
+│   ├── 03_Build_Video_Knowledge_Base.ipynb
+│   ├── 04_Run_Baseline_VideoQA.ipynb
+│   ├── 05_Run_RAG_VideoQA.ipynb
+│   ├── 06_Run_Iterative_RAG_Experiments.ipynb
+│   └── 07_Evaluate_and_Visualize_Results.ipynb
 │
 ├── docs/
 │   ├── _config.yml
 │   ├── index.md
 │   ├── 01_Prepare_Video_Data.md
-│   ├── 02_Build_Video_Knowledge_Base.md
-│   ├── 03_Run_Baseline_VideoQA.md
-│   ├── 04_Run_RAG_VideoQA.md
-│   ├── 05_Run_Iterative_RAG_Experiments.md
-│   ├── 06_Evaluate_and_Visualize_Results.md
+│   ├── 02_Prepare_Video_Evidence.md
+│   ├── 03_Build_Video_Knowledge_Base.md
+│   ├── 04_Run_Baseline_VideoQA.md
+│   ├── 05_Run_RAG_VideoQA.md
+│   ├── 06_Run_Iterative_RAG_Experiments.md
+│   ├── 07_Evaluate_and_Visualize_Results.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
