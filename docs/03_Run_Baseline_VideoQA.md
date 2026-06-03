@@ -38,7 +38,7 @@ TBD.
 
 ## Next Notebook
 
-➡️ [07 Evaluate and Visualize Results](07_Evaluate_and_Visualize_Results.md)
+➡️ [04 Build Video Knowledge Base](04_Build_Video_Knowledge_Base.md)
 
 
 
