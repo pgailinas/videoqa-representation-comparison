@@ -85,8 +85,12 @@ iterative-video-rag/
 │       └── overview_pipeline.png
 │
 ├── src/
-│   ├── nextqa_video_cache.py
-│   └── iterative_rag_config.py
+│   ├── iterative_rag_config.py
+│   ├── evidence_io.py
+│   ├── evidence_validation.py
+│   ├── nextqa_metadata.py
+│   ├── nextqa_videp_cache.py
+│   └── videp_evidence.py
 │
 ├── datasets/
 │   └── NExT-QA/
