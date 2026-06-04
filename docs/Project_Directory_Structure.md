@@ -28,7 +28,11 @@ Contains GitHub Pages documentation describing the project architecture, noteboo
 Contains reusable project source files.
 
 - **iterative_rag_config.py** — centralized configuration file for paths, constants, and shared project settings
+- **evidence_io.py** — save and load evidence metadata and summary files
+- **evidence_validation.py** — validate schema, timestamps, missing videos, duplicate IDs
+- **nextqa_metadata.py** — load train/val/test CSVs, video maps, split labels, QA metadata
 - **nextqa_video_cache.py** — common archive reconstruction and video-cache management functions
+- **video_evidence.py** — generate evidence units, timestamps, frame references, parent/child IDs
 
 ### datasets/
 
