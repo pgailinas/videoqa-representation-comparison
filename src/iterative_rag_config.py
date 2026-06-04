@@ -28,10 +28,23 @@ DATASET_CONFIG = {
 # ============================================================
 # Dataset Selection
 # ============================================================
+DATASET_NAME = "NExT-QA"
 
 # ============================================================
 # Dataset Directories
 # ============================================================
+DATASET_DIR = DATASET_CONFIG[DATASET_NAME]["dataset_dir"]
+VIDEOS_DIR = DATASET_CONFIG[DATASET_NAME]["videos_dir"]
+QUESTIONS_DIR = DATASET_CONFIG[DATASET_NAME]["questions_dir"]
+METADATA_DIR = DATASET_CONFIG[DATASET_NAME]["metadata_dir"]
+
+# ============================================================
+# Project Output Directories
+# ============================================================
+OUTPUTS_DIR = BASE_DIR / "outputs"
+EVIDENCE_DIR = OUTPUTS_DIR / "evidence"
+KNOWLEDGE_BASE_DIR = OUTPUTS_DIR / "knowledge_base"
+EVALUATION_DIR = OUTPUTS_DIR / "evaluation"
 
 # ============================================================
 # Frame / Clip Extraction Settings
