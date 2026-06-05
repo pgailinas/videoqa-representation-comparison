@@ -15,25 +15,38 @@ has_toc: false
 
 ## Purpose
 
-TBD.
+This notebook generates evidence metadata for the NExT-QA VideoQA project. Evidence records identify meaningful regions of the original videos using video identifiers, timestamps, segment boundaries, and related metadata.
+
+The resulting evidence metadata serves as the bridge between the prepared NExT-QA videos from Notebook 01 and the video knowledge base constructed in Notebook 04.
 
 ## Inputs
 
-- TBD
+* Prepared NExT-QA video files from Notebook 01
+* NExT-QA question-answer files
+  * train.csv
+  * val.csv
+  * test.csv
+* NExT-QA metadata resources
+* Project configuration settings
+* Shared video and dataset utility functions
 
 ## Outputs
 
-- TBD
+* Evidence metadata CSV file
+* Video inventory summary
+* Evidence metadata summary report
+* Sample evidence records for verification
 
 ## Processing Workflow
 
-- TBD
-- TBD 
+1. Load project configuration and dataset resources.
+2. Load NExT-QA metadata and video inventory information.
+3. Define the evidence metadata schema and segmentation parameters.
+4. Inspect representative videos and extract video properties.
+5. Generate evidence metadata records for each processed video.
+6. Validate evidence metadata completeness and consistency.
+7. Save evidence metadata and summary files.
 
-## Notes
-
-- TBD
-- TBD
 #### Evidence Metadata Field Definitions
 
 | Field | Description |
