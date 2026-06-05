@@ -34,7 +34,31 @@ TBD.
 
 - TBD
 - TBD
-- TBD 
+#### Evidence Metadata Field Definitions
+
+| Field | Description |
+|---------|-------------|
+| `evidence_id` | Unique identifier assigned to each evidence unit. |
+| `video_id` | NExT-QA video identifier associated with the evidence unit. |
+| `split` | Dataset split associated with the source video or related QA records (`train`, `val`, or `test`). |
+| `source_video_path` | Local path to the source video file used to generate the evidence unit. |
+| `evidence_level` | Hierarchy level of the evidence unit. Level `0` typically represents a parent or top-level segment. |
+| `parent_evidence_id` | Identifier of the parent evidence unit when hierarchical segmentation is used. Empty for top-level evidence units. |
+| `segment_strategy` | Segmentation method used to create the evidence unit, such as fixed-duration, scene-based, or motion-based segmentation. |
+| `start_time_sec` | Segment start time in seconds from the beginning of the source video. |
+| `midpoint_time_sec` | Segment midpoint time in seconds, used as a representative temporal reference. |
+| `end_time_sec` | Segment end time in seconds from the beginning of the source video. |
+| `duration_sec` | Duration of the evidence segment in seconds. |
+| `start_frame_idx` | Frame index corresponding to the segment start time. |
+| `midpoint_frame_idx` | Frame index corresponding to the segment midpoint time. |
+| `end_frame_idx` | Frame index corresponding to the segment end time. |
+| `fps` | Frames per second of the source video. |
+| `frame_count` | Total number of frames in the source video. |
+| `width` | Source video frame width in pixels. |
+| `height` | Source video frame height in pixels. |
+| `motion_score` | Numeric estimate of motion or visual activity within the evidence segment. |
+| `scene_change_score` | Numeric estimate of scene-transition strength associated with the evidence segment. |
+| `created_by_notebook` | Notebook identifier used to record which notebook generated the evidence metadata. |
 
 ## Next Notebook
 
