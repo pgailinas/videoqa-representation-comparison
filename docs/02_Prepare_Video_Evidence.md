@@ -17,8 +17,6 @@ has_toc: false
 
 This notebook generates evidence metadata for the NExT-QA VideoQA project. Evidence records identify meaningful regions of the original videos using video identifiers, timestamps, segment boundaries, and related metadata.
 
-The resulting evidence metadata serves as the bridge between the prepared NExT-QA videos from Notebook 01 and the video knowledge base constructed in Notebook 04.
-
 ## Inputs
 
 * Prepared NExT-QA video files from Notebook 01
