@@ -9,7 +9,7 @@ nav_order: 0
 
 This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and pretrained multimodal foundation models.
 
-Rather than training a new VideoQA model from scratch, the project evaluates how pretrained vision encoders, vision-language captioning models, vector retrieval systems, and large language models can be combined to improve video understanding and temporal reasoning performance.
+Rather than training a new VideoQA model from scratch, the project evaluates how retrieval-augmented evidence selection and iterative evidence refinement influence VideoQA performance when using a fixed multimodal foundation model. Qwen2-VL-7B serves as the common VideoQA foundation model across all experimental workflows, allowing performance differences to be attributed to retrieval and evidence-refinement strategies rather than model architecture.
 
 The framework processes raw videos into sampled frames, generated captions, embedding representations, and searchable vector indexes. Comparative experiments evaluate baseline inference, single-pass RAG, and iterative retrieval refinement workflows to measure the impact of retrieved video evidence on answer quality, reasoning accuracy, and execution latency.
 
@@ -31,6 +31,8 @@ The objectives of this work include measuring how retrieval depth and evidence r
 
 Additional objectives include evaluating latency-versus-performance tradeoffs, retrieval behavior across multiple inference passes, and the point at which additional retrieval refinement produces diminishing returns.
 
+To isolate the impact of retrieval strategies, the same multimodal foundation model is used throughout all experiments. Baseline VideoQA, single-pass RAG, and iterative RAG workflows are evaluated using Qwen2-VL-7B, enabling direct comparison of retrieval-assisted inference methods while controlling for model architecture.
+
 ## Dataset
 
 The primary benchmark dataset used in this project is NExT-QA, a VideoQA dataset designed for causal and temporal reasoning over video content.
@@ -49,6 +51,8 @@ Raw videos are processed into frames, clips, captions, embeddings, and metadata 
 Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata resources, reconstructing the multipart video archive, extracting video assets into the project dataset structure, and validating dataset readiness for downstream knowledge base construction and VideoQA experimentation.
 
 ## System Architecture
+
+The experimental framework is centered on the Qwen2-VL-7B multimodal foundation model. Video evidence generated during preprocessing is organized into searchable evidence representations consisting of sampled frames, clips, metadata, and embedding vectors. During inference, natural-language questions are matched against the evidence repository using configurable retrieval strategies. Retrieved evidence is then supplied to Qwen2-VL-7B for VideoQA reasoning and answer generation.
 
 The experimental framework integrates pretrained multimodal models, vector database indexing, evidence retrieval, and LLM inference to support baseline and iterative RAG-based VideoQA workflows.
 
@@ -86,7 +90,7 @@ The experiments evaluate three primary workflows:
 
 3. **Iterative RAG Inference** — retrieval and reasoning are performed across multiple refinement passes to improve evidence selection and answer quality.
 
-Representative system components may include pretrained vision encoders, vision-language models, LLMs, and vector retrieval systems such as CLIP, BLIP-2, Video-LLaVA, Qwen-VL, FAISS, and related technologies.
+Qwen2-VL-7B serves as the fixed multimodal foundation model for all experiments. Baseline, single-pass RAG, and iterative RAG workflows differ only in the evidence retrieval and refinement process. This design isolates the impact of retrieval strategy while maintaining a consistent VideoQA reasoning model.
 
 Experiments measure how retrieval strategy, evidence quality, and refinement depth affect temporal reasoning, answer accuracy, retrieval performance, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
 
@@ -98,13 +102,13 @@ The implementation framework integrates open-source multimodal models, vector da
 
 The framework incorporates pretrained vision encoders, vision-language models, LLMs, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
-| Component | Purpose |
-|---|---|
-| Vision Encoder | Generate frame and video embeddings |
-| Vision-Language Model | Generate video captions and descriptions |
-| Vector Database | Store searchable video knowledge |
-| Large Language Model | Perform answer reasoning |
-| Evaluation Pipeline | Compare generated answers with benchmark QA labels |
+| Component                    | Purpose                                          |
+| ---------------------------- | ------------------------------------------------ |
+| Evidence Generation Pipeline | Generate frames, clips, metadata, and embeddings |
+| Vector Database              | Store searchable video evidence                  |
+| Qwen2-VL-7B Foundation Model | Perform VideoQA reasoning and answer generation  |
+| Retrieval Engine             | Select relevant evidence for inference           |
+| Evaluation Pipeline          | Compare generated answers with benchmark labels  |
 
 ## Repository Organization
 
@@ -127,6 +131,8 @@ Expected contributions include comparative performance benchmarks, retrieval ana
 The repository additionally provides an extensible notebook-driven research platform intended to support future experimentation involving iterative RAG workflows, vector databases, embedding models, and scalable VideoQA inference systems.
 
 The project emphasizes system-level evaluation of modern foundation models and retrieval architectures rather than supervised training of a new VideoQA model.
+
+A central contribution of this work is the evaluation of iterative evidence refinement while holding the underlying VideoQA foundation model constant. This enables quantitative analysis of how evidence selection strategies influence answer quality, temporal reasoning performance, and retrieval effectiveness independent of model architecture.
 
 ---
 
