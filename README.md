@@ -1,47 +1,66 @@
 # Iterative RAG for VideoQA
 
-This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) through comparative evaluation of baseline inference, single-pass retrieval, and multi-pass retrieval refinement strategies within multimodal video understanding systems.
+This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B multimodal foundation model.
 
-The framework combines video preprocessing, frame and clip extraction, embedding generation, vector database indexing, and multimodal large language model (LLM) inference to examine how iterative evidence retrieval influences temporal reasoning, answer quality, retrieval effectiveness, and execution latency across VideoQA tasks.
+Rather than training a new VideoQA model from scratch, the project evaluates how evidence retrieval and iterative evidence refinement influence VideoQA performance. Qwen2-VL-7B serves as the fixed foundation model across all experiments, allowing performance differences to be attributed to retrieval strategy rather than model architecture.
 
-The repository provides a reproducible, notebook-driven research environment for evaluating baseline and iterative RAG-based VideoQA workflows using public datasets and configurable AI components.
+The experimental framework compares three inference workflows:
 
-Key topics explored include:
+1. **Baseline VideoQA** — Direct VideoQA inference using sampled video evidence.
+2. **Single-Pass RAG VideoQA** — Retrieval of relevant video evidence prior to inference.
+3. **Iterative RAG VideoQA** — Multi-pass retrieval and evidence refinement that revisits relevant portions of source videos to improve evidence selection and answer quality.
+
+The project focuses on:
 
 * Video Question Answering (VideoQA)
 * Retrieval-Augmented Generation (RAG)
-* Iterative retrieval refinement
-* Baseline vs multi-pass RAG workflows
-* Temporal video understanding
-* Multimodal embeddings
+* Iterative evidence refinement
+* Temporal reasoning
+* Evidence-based video retrieval
+* Multimodal foundation models
 * Vector similarity search
-* Frame and clip retrieval
+* Retrieval effectiveness
 * Latency-versus-performance tradeoffs
-* Experimental evaluation and analysis
+
+## Dataset
+
+The primary benchmark dataset is **NExT-QA**, containing:
+
+* 5,440 videos
+* 47,692 question-answer pairs
+* Official training, validation, and test splits
+* Temporal, causal, and descriptive reasoning tasks
+
+## Experimental Hypothesis
+
+The primary research hypothesis is:
+
+> Iterative evidence refinement can improve VideoQA answer accuracy and temporal reasoning performance relative to both direct inference and single-pass retrieval workflows.
 
 ## ⚙️ Execution Notes
 
-* Designed primarily for Google Colab execution
-* Supports local Jupyter-based workflows
-* Notebooks can be viewed directly through GitHub without an account
-* Public dataset download support is integrated into the workflow
-* Modular notebook execution supports independent experimentation stages
+* Designed primarily for Google Colab
+* Supports local Jupyter execution
+* Notebook-driven workflow
+* GPU acceleration used where appropriate
+* Modular execution allows independent experimentation stages
 
 ## 🌐 Documentation
 
-The complete step-by-step pipeline, including notebook walkthroughs, workflow explanations, and project documentation, is available here:
+Complete project documentation, notebook walkthroughs, architecture diagrams, and experimental methodology are available at:
 
-👉 https://pgailinas.github.io/iterative-video-rag/
+https://pgailinas.github.io/iterative-video-rag/
 
 ## 👤 Author
 
 **Phil Gailinas**
 
-* M.S. Computer Engineering candidate
+* M.S. Computer Engineering Candidate
 * University of New Mexico
 
 ## 📄 License
 
 This project is intended for academic and research use.
+
 
 
