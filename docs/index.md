@@ -11,7 +11,7 @@ This project investigates iterative Retrieval-Augmented Generation (RAG) workflo
 
 Rather than training a new VideoQA model from scratch, the project evaluates how retrieval-augmented evidence selection and iterative evidence refinement influence VideoQA performance when using a fixed multimodal foundation model. Qwen2-VL-7B serves as the common VideoQA foundation model across all experimental workflows, allowing performance differences to be attributed to retrieval and evidence-refinement strategies rather than model architecture.
 
-The framework processes raw videos into sampled frames, generated captions, embedding representations, and searchable vector indexes. Comparative experiments evaluate baseline inference, single-pass RAG, and iterative retrieval refinement workflows to measure the impact of retrieved video evidence on answer quality, reasoning accuracy, and execution latency.
+The framework processes raw videos into sampled frames, clips, evidence metadata, embedding representations, and searchable vector indexes. Comparative experiments evaluate baseline inference, single-pass RAG, and iterative retrieval refinement workflows to measure the impact of retrieved video evidence on answer quality, reasoning accuracy, and execution latency.
 
 The repository provides a reproducible notebook-driven research environment using public VideoQA datasets, modular AI workflows, and configurable multimodal components suitable for research experimentation and future IEEE-style publication development.
 
@@ -52,23 +52,19 @@ Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata 
 
 ## System Architecture
 
-The experimental framework is centered on the Qwen2-VL-7B multimodal foundation model. Video evidence generated during preprocessing is organized into searchable evidence representations consisting of sampled frames, clips, metadata, and embedding vectors. During inference, natural-language questions are matched against the evidence repository using configurable retrieval strategies. Retrieved evidence is then supplied to Qwen2-VL-7B for VideoQA reasoning and answer generation.
+The experimental framework is centered on the Qwen2-VL-7B multimodal foundation model. Video evidence generated during preprocessing is organized into searchable evidence representations consisting of sampled frames, clips, metadata records, and derived evidence artifacts. During inference, natural-language questions are matched against the evidence repository using configurable retrieval strategies. Retrieved evidence is then supplied to Qwen2-VL-7B for VideoQA reasoning and answer generation.
 
-The experimental framework integrates pretrained multimodal models, vector database indexing, evidence retrieval, and LLM inference to support baseline and iterative RAG-based VideoQA workflows.
+The system architecture supports three primary inference workflows:
 
-The system is built around three primary pretrained model components:
+1. **Baseline VideoQA** — Direct VideoQA inference using Qwen2-VL-7B and sampled video evidence without retrieval assistance.
 
-1. **Vision Encoder** — generates embedding representations from sampled video frames and clips.
+2. **Single-Pass RAG VideoQA** — Retrieval of relevant video evidence from the evidence repository followed by VideoQA inference using Qwen2-VL-7B.
 
-2. **Vision-Language Model** — generates textual descriptions and captions from visual content.
+3. **Iterative RAG VideoQA** — Multi-pass retrieval and evidence refinement workflows that revisit relevant portions of the source video to improve evidence selection, temporal grounding, and answer quality.
 
-3. **Large Language Model** — performs question answering and reasoning using retrieved video evidence.
+Video preprocessing generates frames, clips, motion and scene metadata, evidence records, and other supporting representations that are stored within a searchable evidence repository. During inference, retrieval strategies identify relevant evidence for a given question and provide this context to Qwen2-VL-7B for reasoning and answer generation.
 
-Raw video inputs are processed into frames and short clips during knowledge base construction. The generated embeddings, captions, and metadata representations are stored within a persistent vector database for similarity-based retrieval.
-
-During inference, natural-language questions are converted into retrieval queries and matched against indexed video representations to identify relevant frames, clips, captions, and contextual evidence. Retrieved information is provided to the reasoning model to generate contextually grounded VideoQA responses.
-
-The framework supports configurable retrieval strategies, including baseline inference, single-pass RAG, and iterative retrieval refinement workflows for analyzing temporal reasoning performance, retrieval effectiveness, and latency-versus-accuracy tradeoffs.
+The architecture is designed to isolate the effects of retrieval and evidence-refinement strategies while maintaining a consistent foundation model across all experiments. This enables direct comparison of baseline inference, single-pass retrieval, and iterative retrieval workflows while controlling for underlying model architecture.
 
 ---
 
