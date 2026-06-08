@@ -33,6 +33,8 @@ Additional objectives include evaluating latency-versus-performance tradeoffs, r
 
 To isolate the impact of retrieval strategies, the same multimodal foundation model is used throughout all experiments. Baseline VideoQA, single-pass RAG, and iterative RAG workflows are evaluated using Qwen2-VL-7B, enabling direct comparison of retrieval-assisted inference methods while controlling for model architecture.
 
+The primary research hypothesis is that iterative evidence refinement can improve VideoQA answer accuracy and temporal reasoning performance relative to both direct inference and single-pass retrieval workflows.
+
 ## Dataset
 
 The primary benchmark dataset used in this project is NExT-QA, a VideoQA dataset designed for causal and temporal reasoning over video content.
@@ -46,7 +48,7 @@ The experimental dataset includes:
 - Video identifier mapping metadata
 - Optional relation annotations for advanced reasoning experiments
 
-Raw videos are processed into frames, clips, captions, embeddings, and metadata representations during knowledge base construction. These generated artifacts are used by downstream RAG pipelines rather than repeatedly processing the original video files.
+Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts are used by downstream RAG pipelines rather than repeatedly processing the original video files.
 
 Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata resources, reconstructing the multipart video archive, extracting video assets into the project dataset structure, and validating dataset readiness for downstream knowledge base construction and VideoQA experimentation.
 
@@ -76,7 +78,7 @@ The architecture is designed to isolate the effects of retrieval and evidence-re
 
 ## Experimental Methodology
 
-The experimental framework evaluates how retrieval strategies and multimodal knowledge representations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, caption-based, and embedding-based video evidence.
+The experimental framework evaluates how retrieval strategies and multimodal knowledge representations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, evidence-based, and embedding-based video representations.
 
 The experiments evaluate three primary workflows:
 
@@ -96,7 +98,7 @@ The objective is not to train a new VideoQA neural network, but to evaluate how 
 
 The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The framework incorporates pretrained vision encoders, vision-language models, LLMs, vector similarity search systems, and GPU-accelerated inference libraries within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
+The framework incorporates the Qwen2-VL-7B multimodal foundation model, vector similarity search systems, GPU-accelerated inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
 | Component                    | Purpose                                          |
 | ---------------------------- | ------------------------------------------------ |
