@@ -48,6 +48,32 @@ The experimental dataset includes:
 - Video identifier mapping metadata
 - Optional relation annotations for advanced reasoning experiments
 
+### NExT-QA Reasoning Categories
+
+NExT-QA is designed to evaluate video understanding beyond simple scene recognition by emphasizing causal and temporal reasoning. Each question belongs to one of three primary reasoning categories:
+
+| Category    | Description                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------- |
+| Causal      | Requires reasoning about why events occur or how actions produce outcomes.                           |
+| Temporal    | Requires understanding event order, temporal relationships, and sequence progression.                |
+| Descriptive | Requires recognition of objects, actions, attributes, locations, or counts visible within the video. |
+
+The dataset further divides these categories into eight question types:
+
+| Type | Description            |
+| ---- | ---------------------- |
+| CH   | Causal – How           |
+| CW   | Causal – Why           |
+| TN   | Temporal – Next        |
+| TP   | Temporal – Previous    |
+| TC   | Temporal – Count       |
+| DL   | Descriptive – Location |
+| DO   | Descriptive – Object   |
+| DC   | Descriptive – Count    |
+
+These reasoning categories provide an important evaluation dimension for this project. Experimental results will be reported not only as overall VideoQA accuracy, but also by reasoning category and question type to evaluate how retrieval and iterative evidence refinement affect different forms of video reasoning.
+
+
 Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts are used by downstream RAG pipelines rather than repeatedly processing the original video files.
 
 Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata resources, reconstructing the multipart video archive, extracting video assets into the project dataset structure, and validating dataset readiness for downstream knowledge base construction and VideoQA experimentation.
@@ -91,6 +117,8 @@ The experiments evaluate three primary workflows:
 Qwen2-VL-7B serves as the fixed multimodal foundation model for all experiments. Baseline, single-pass RAG, and iterative RAG workflows differ only in the evidence retrieval and refinement process. This design isolates the impact of retrieval strategy while maintaining a consistent VideoQA reasoning model.
 
 Experiments measure how retrieval strategy, evidence quality, and refinement depth affect temporal reasoning, answer accuracy, retrieval performance, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
+
+Evaluation results will be analyzed across NExT-QA causal, temporal, and descriptive reasoning categories, as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC).
 
 The objective is not to train a new VideoQA neural network, but to evaluate how modern foundation models and retrieval architectures can be combined to improve video reasoning performance.
 
