@@ -43,10 +43,11 @@ DEFAULT_REQUIRED_EVIDENCE_COLUMNS: Sequence[str] = (
     "start_time_sec",
     "midpoint_time_sec",
     "end_time_sec",
-    "duration_sec",
+    "segment_duration_sec",
     "start_frame_idx",
     "midpoint_frame_idx",
     "end_frame_idx",
+    "representative_frame_index",
     "fps",
     "frame_count",
 )
@@ -67,12 +68,17 @@ DEFAULT_NUMERIC_EVIDENCE_COLUMNS: Sequence[str] = (
     "start_time_sec",
     "midpoint_time_sec",
     "end_time_sec",
-    "duration_sec",
+    "segment_duration_sec",
     "start_frame_idx",
     "midpoint_frame_idx",
     "end_frame_idx",
+    "representative_frame_index",
     "fps",
     "frame_count",
+    "width",
+    "height",
+    "motion_score",
+    "scene_change_score",
 )
 
 
@@ -300,7 +306,7 @@ def validate_evidence_timestamps(
         "start_time_sec",
         "midpoint_time_sec",
         "end_time_sec",
-        "duration_sec",
+        "segment_duration_sec",
     ]
 
     if any(column_name not in evidence_metadata.columns for column_name in required_columns):
@@ -319,7 +325,7 @@ def validate_evidence_timestamps(
         errors="coerce",
     )
     duration = pd.to_numeric(
-        evidence_metadata["duration_sec"],
+        evidence_metadata["segment_duration_sec"],
         errors="coerce",
     )
 
@@ -397,6 +403,7 @@ def validate_evidence_frame_indices(
         "start_frame_idx",
         "midpoint_frame_idx",
         "end_frame_idx",
+        "representative_frame_index",
         "frame_count",
     ]
 
@@ -415,13 +422,22 @@ def validate_evidence_frame_indices(
         evidence_metadata["end_frame_idx"],
         errors="coerce",
     )
+    representative_frame = pd.to_numeric(
+        evidence_metadata["representative_frame_index"],
+        errors="coerce",
+    )
     frame_count = pd.to_numeric(
         evidence_metadata["frame_count"],
         errors="coerce",
     )
 
     negative_frame_count = int(
-        ((start_frame < 0) | (midpoint_frame < 0) | (end_frame < 0)).sum()
+        (
+            (start_frame < 0)
+            | (midpoint_frame < 0)
+            | (end_frame < 0)
+            | (representative_frame < 0)
+        ).sum()
     )
 
     if negative_frame_count > 0:
@@ -446,7 +462,31 @@ def validate_evidence_frame_indices(
             count=invalid_order_count,
         )
 
-    out_of_bounds_count = int((end_frame >= frame_count).sum())
+    invalid_representative_count = int(
+        (
+            (representative_frame < start_frame)
+            | (representative_frame > end_frame)
+        ).sum()
+    )
+
+    if invalid_representative_count > 0:
+        _append_issue(
+            issues=issues,
+            severity="error",
+            check_name="representative_frame_index",
+            message=(
+                "Representative frame index must fall within "
+                "segment frame bounds."
+            ),
+            count=invalid_representative_count,
+        )
+
+    out_of_bounds_count = int(
+        (
+            (end_frame >= frame_count)
+            | (representative_frame >= frame_count)
+        ).sum()
+    )
 
     if out_of_bounds_count > 0:
         _append_issue(
@@ -456,6 +496,68 @@ def validate_evidence_frame_indices(
             message="Evidence end frame index is outside frame_count bounds.",
             count=out_of_bounds_count,
         )
+
+    return issues
+
+
+
+
+# ------------------------------------------------------------
+# Metric Validation
+# ------------------------------------------------------------
+
+def validate_evidence_metric_ranges(
+    evidence_metadata: pd.DataFrame,
+) -> List[Dict[str, object]]:
+    """
+    Validate optional normalized evidence metric ranges.
+
+    Parameters
+    ----------
+    evidence_metadata:
+        Evidence metadata DataFrame to validate.
+
+    Returns
+    -------
+    list of dict
+        Validation issues. Empty list indicates success.
+    """
+
+    issues: List[Dict[str, object]] = []
+
+    metric_columns = [
+        "motion_score",
+        "scene_change_score",
+    ]
+
+    for column_name in metric_columns:
+
+        if column_name not in evidence_metadata.columns:
+            continue
+
+        metric_values = pd.to_numeric(
+            evidence_metadata[column_name],
+            errors="coerce",
+        )
+
+        invalid_count = int(
+            (
+                (metric_values < 0.0)
+                | (metric_values > 1.0)
+            ).sum()
+        )
+
+        if invalid_count > 0:
+            _append_issue(
+                issues=issues,
+                severity="warning",
+                check_name=f"{column_name}_range",
+                message=(
+                    f"{column_name} values should be between "
+                    "0.0 and 1.0."
+                ),
+                count=invalid_count,
+            )
 
     return issues
 
@@ -640,6 +742,7 @@ def validate_evidence_metadata(
     issues.extend(validate_unique_evidence_ids(evidence_metadata))
     issues.extend(validate_evidence_timestamps(evidence_metadata))
     issues.extend(validate_evidence_frame_indices(evidence_metadata))
+    issues.extend(validate_evidence_metric_ranges(evidence_metadata))
     issues.extend(validate_parent_evidence_relationships(evidence_metadata))
     issues.extend(
         validate_evidence_video_paths(
