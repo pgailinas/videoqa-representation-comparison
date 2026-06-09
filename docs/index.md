@@ -37,7 +37,7 @@ The primary research hypothesis is that iterative evidence refinement can improv
 
 ## Dataset
 
-The primary benchmark dataset used in this project is NExT-QA, a VideoQA dataset designed for causal and temporal reasoning over video content.
+The primary benchmark dataset used in this project is NExT-QA, a Video Question Answering (VideoQA) benchmark designed to evaluate causal, temporal, and descriptive reasoning over video content.
 
 The dataset provides raw video files, question-answer annotations, official training, validation, and test splits, and metadata required to associate questions with source videos.
 
@@ -50,28 +50,15 @@ The experimental dataset includes:
 
 ### NExT-QA Reasoning Categories
 
-NExT-QA is designed to evaluate video understanding beyond simple scene recognition by emphasizing causal and temporal reasoning. Each question belongs to one of three primary reasoning categories:
+NExT-QA is designed to evaluate video understanding through three primary reasoning categories:
 
-| Category    | Description                                                                                          |
-| ----------- | ---------------------------------------------------------------------------------------------------- |
-| Causal      | Requires reasoning about why events occur or how actions produce outcomes.                           |
-| Temporal    | Requires understanding event order, temporal relationships, and sequence progression.                |
-| Descriptive | Requires recognition of objects, actions, attributes, locations, or counts visible within the video. |
+| Category | Description |
+|-----------|-------------|
+| Causal | Why events occur and how actions produce outcomes. |
+| Temporal | Event order and temporal relationships. |
+| Descriptive | Objects, actions, attributes, locations, and counts. |
 
-The dataset further divides these categories into eight question types:
-
-| Type | Description            |
-| ---- | ---------------------- |
-| CH   | Causal – How           |
-| CW   | Causal – Why           |
-| TN   | Temporal – Next        |
-| TP   | Temporal – Previous    |
-| TC   | Temporal – Count       |
-| DL   | Descriptive – Location |
-| DO   | Descriptive – Object   |
-| DC   | Descriptive – Count    |
-
-These reasoning categories provide an important evaluation dimension for this project. Experimental results will be reported not only as overall VideoQA accuracy, but also by reasoning category and question type to evaluate how retrieval and iterative evidence refinement affect different forms of video reasoning.
+These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to evaluate how retrieval and iterative evidence refinement affect different forms of video understanding.
 
 Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts serve as the evidence repository used by downstream retrieval and VideoQA workflows, reducing the need to repeatedly process the original video files.
 
