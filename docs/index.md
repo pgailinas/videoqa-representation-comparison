@@ -73,10 +73,7 @@ The dataset further divides these categories into eight question types:
 
 These reasoning categories provide an important evaluation dimension for this project. Experimental results will be reported not only as overall VideoQA accuracy, but also by reasoning category and question type to evaluate how retrieval and iterative evidence refinement affect different forms of video reasoning.
 
-
-Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts are used by downstream RAG pipelines rather than repeatedly processing the original video files.
-
-Notebook 01 prepares the NExT-QA benchmark by verifying annotation and metadata resources, reconstructing the multipart video archive, extracting video assets into the project dataset structure, and validating dataset readiness for downstream knowledge base construction and VideoQA experimentation.
+Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts serve as the evidence repository used by downstream retrieval and VideoQA workflows, reducing the need to repeatedly process the original video files.
 
 ## System Architecture
 
