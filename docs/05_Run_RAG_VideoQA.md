@@ -36,7 +36,3 @@ TBD.
 - TBD
 - TBD 
 
-## Next Notebook
-
-➡️ [06 Run Iterative RAG Experiments](06_Run_Iterative_RAG_Experiments.md)
-
