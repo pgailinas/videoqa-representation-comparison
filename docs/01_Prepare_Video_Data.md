@@ -71,8 +71,3 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * Frame extraction, clip generation, embedding creation, vector indexing, retrieval, and inference workflows are performed in later notebooks.
 * Video archive reconstruction and extraction may require significant storage space and execution time depending on the runtime environment.
 
-
-## Next Notebook
-
-➡️ [02 Prepare Video Evidence](02_Prepare_Video_Evidence.md)
-
