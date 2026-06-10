@@ -36,7 +36,3 @@ TBD.
 - TBD
 - TBD 
 
-## Next Notebook
-
-➡️ [05 Run RAG VideoQA](05_Run_RAG_VideoQA.md)
-
