@@ -36,7 +36,3 @@ TBD.
 - TBD
 - TBD 
 
-## Next Notebook
-
-➡️ [Results and Insights](Results_and_Insights.md)
-
