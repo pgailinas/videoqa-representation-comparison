@@ -1,201 +1,26 @@
 video,question,ground_truth,prediction,evidence_record_count
-4279106208,why did the lady hold onto the child when going down the slide together,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why did the lady hold onto the child when going down the slide together
-assistant
-safety",4
-4970148391,what happens to the water ball after being hit,0,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what happens to the water ball after being hit
-assistant
-it flies",4
-13296054183,how do the man make sure that they do not lose each other when cycling,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how do the man make sure that they do not lose each other when cycling
-assistant
-stay close",2
-3321261856,what did the golden cat do after standing at the side of the wall for a while,3,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what did the golden cat do after standing at the side of the wall for a while
-assistant
-walk away",5
-6018490041,what does the man in brown pants do after bending forward at the start,3,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what does the man in brown pants do after bending forward at the start
-assistant
-stand up",4
-10109097475,what does the man in red do after looking at a distance from the plane at the start,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what does the man in red do after looking at a distance from the plane at the start
-assistant
-run",15
-3321261856,what did the girl do after she pointed,0,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what did the girl do after she pointed
-assistant
-point at cat",5
-7887764754,what is the response of the baby as the dog approaches her at the start,0,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what is the response of the baby as the dog approaches her at the start
-assistant
-fear",6
-8253302563,how many people are involved in the video,3,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how many people are involved in the video
-assistant
-1",7
-6690256857,how did the man shower the dog,0,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how did the man shower the dog
-assistant
-hose",2
-3164519967,how did the baby kept himself warm,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how did the baby kept himself warm
-assistant
-blanket",6
-5133787349,why does the man at the side suddenly enter the stage at the end,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why does the man at the side suddenly enter the stage at the end
-assistant
-to help the man",2
-3046900922,how is the child being held for most parts of the video,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how is the child being held for most parts of the video
-assistant
-by the arms",3
-6291413193,why is there a man standing in the deeper waters,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why is there a man standing in the deeper waters
-assistant
-watching dolphin",11
-12682618843,what does the dog do after letting go of the bone after the middle part of the video,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what does the dog do after letting go of the bone after the middle part of the video
-assistant
-sleep",8
-4151403382,what does the boy in brown bib do after seeing the piano,3,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what does the boy in brown bib do after seeing the piano
-assistant
-play piano",10
-3192668394,why does the woman in blue constantly change her view,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why does the woman in blue constantly change her view
-assistant
-to see the camera",11
-2735019707,why are the different sizes of drums placed together,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why are the different sizes of drums placed together
-assistant
-play music",3
-11966080214,how does the girl interact with the wheel at the end of the video,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how does the girl interact with the wheel at the end of the video
-assistant
-spin it",8
-4984331176,why did the student in yellow go after the lady in black singlet,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why did the student in yellow go after the lady in black singlet
-assistant
-fight for rope",2
-2535384528,why does the man wear glove on one hand,4,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why does the man wear glove on one hand
-assistant
-grip club",2
-6806999702,why was the girl on the floor in the middle of the video,2,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why was the girl on the floor in the middle of the video
-assistant
-pick up ball",15
-6793786769,how is the boy positioned in the video,1,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: how is the boy positioned in the video
-assistant
-laying down",8
-4967810888,why does the woman speaking turn around while talking,0,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: why does the woman speaking turn around while talking
-assistant
-to look at people",10
-5858985747,what does the baby in yellow do after walking close to the sofa at the end,2,"system
-You are a helpful assistant.
-user
-Answer the following video question as concisely as possible.
-
-Question: what does the baby in yellow do after walking close to the sofa at the end
-assistant
-sit down",2
+4279106208,why did the lady hold onto the child when going down the slide together,ensure child s safety,safety,4
+4970148391,what happens to the water ball after being hit,burst,it flies,4
+13296054183,how do the man make sure that they do not lose each other when cycling,keep up with each other pace,stay close,2
+3321261856,what did the golden cat do after standing at the side of the wall for a while,sat down,walk away,5
+6018490041,what does the man in brown pants do after bending forward at the start,look to the right,stand up,4
+10109097475,what does the man in red do after looking at a distance from the plane at the start,moves away,run,15
+3321261856,what did the girl do after she pointed,stomp her foot,point at cat,5
+7887764754,what is the response of the baby as the dog approaches her at the start,feed dog,fear,6
+8253302563,how many people are involved in the video,one,1,7
+6690256857,how did the man shower the dog,use hose,hose,2
+3164519967,how did the baby kept himself warm,wear more clothes,blanket,6
+5133787349,why does the man at the side suddenly enter the stage at the end,men fell down,to help the man,2
+3046900922,how is the child being held for most parts of the video,carried by the man,by the arms,3
+6291413193,why is there a man standing in the deeper waters,to view the dolphine,watching dolphin,11
+12682618843,what does the dog do after letting go of the bone after the middle part of the video,use paw to grab it,sleep,8
+4151403382,what does the boy in brown bib do after seeing the piano,bend down to play,play piano,10
+3192668394,why does the woman in blue constantly change her view,drawing portrait of woman,to see the camera,11
+2735019707,why are the different sizes of drums placed together,make different sounds,play music,3
+11966080214,how does the girl interact with the wheel at the end of the video,turns it round and round,spin it,8
+4984331176,why did the student in yellow go after the lady in black singlet,miss the right time to go,fight for rope,2
+2535384528,why does the man wear glove on one hand,grip golf club,grip club,2
+6806999702,why was the girl on the floor in the middle of the video,she fell,pick up ball,15
+6793786769,how is the boy positioned in the video,lying on his stomach,laying down,8
+4967810888,why does the woman speaking turn around while talking,talking to the crowd,to look at people,10
+5858985747,what does the baby in yellow do after walking close to the sofa at the end,pick up phone,sit down,2
