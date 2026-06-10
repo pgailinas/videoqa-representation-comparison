@@ -101,8 +101,3 @@ The current evidence-generation configuration produces:
 
 These evidence records form the foundation for baseline VideoQA experimentation and future retrieval-augmented workflows.
 
-## Next Notebook
-
-➡️ [03 Run Baseline VideoQA](03_Run_Baseline_VideoQA.md)
-
-
