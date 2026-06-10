@@ -36,7 +36,3 @@ TBD.
 - TBD
 - TBD 
 
-## Next Notebook
-
-➡️ [07 Evaluate and Visualize Results](07_Evaluate_and_Visualize_Results.md)
-
