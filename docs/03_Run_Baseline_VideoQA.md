@@ -15,17 +15,13 @@ has_toc: false
 
 ## Purpose
 
-This notebook establishes baseline Video Question Answering (VideoQA) performance for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The notebook evaluates question-answering performance using prepared video evidence and generates prediction results, inference statistics, and experiment summaries.
+This notebook establishes baseline Video Question Answering (VideoQA) performance for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow loads prepared video resources and evidence metadata, configures baseline inference parameters, executes VideoQA inference on selected evaluation samples, validates generated predictions, and produces baseline experiment reports and performance statistics.
 
 ## Inputs
 
 * Prepared NExT-QA video dataset
 * Evidence metadata generated during video preprocessing
 * NExT-QA question-answer annotation files
-
-  * train.csv
-  * val.csv
-  * test.csv
 * NExT-QA metadata resources
 * Project configuration settings
 * Shared utility modules and helper functions
@@ -44,13 +40,28 @@ This notebook establishes baseline Video Question Answering (VideoQA) performanc
 
 ## Processing Workflow
 
-The notebook begins by configuring the project environment, loading required configuration settings, and restoring the prepared NExT-QA video dataset. NExT-QA question-answer annotations, video inventory information, and evidence metadata are then loaded and validated. Baseline inference parameters are configured, the runtime environment and GPU resources are verified, and the Qwen2-VL-7B multimodal model and processor are initialized. An evaluation dataset is prepared from the selected NExT-QA dataset split, after which VideoQA inference is performed using sampled video evidence supplied directly to the model. Generated predictions, ground-truth answers, evidence usage statistics, and inference timing information are collected and validated before being saved to persistent storage. Finally, summary statistics and experiment reports are generated, and representative prediction samples are displayed for qualitative review and verification.
+* Configure runtime environment and project settings
+* Restore the prepared NExT-QA video dataset
+* Load NExT-QA annotations and video inventory information
+* Load evidence metadata generated during preprocessing
+* Configure baseline inference parameters
+* Verify GPU runtime and model dependencies
+* Load the Qwen2-VL-7B model and processor
+* Prepare the evaluation dataset
+* Execute baseline VideoQA inference using sampled video evidence
+* Validate generated prediction results
+* Save prediction datasets and experiment outputs
+* Generate baseline summary statistics and reports
+* Display representative prediction samples for qualitative review
 
 ## Notes
 
-* Video evidence is sampled directly from source videos during inference.
-* Baseline predictions, timing statistics, and experiment summaries are saved for later analysis.
-* Runtime performance and GPU memory requirements depend on the selected model configuration, evaluation dataset size, and available Colab hardware resources.
+* This notebook establishes baseline VideoQA performance using direct multimodal inference.
+* Video evidence is sampled directly from source videos during inference execution.
+* Prediction results include generated answers, ground-truth answers, evidence statistics, and inference timing information.
+* Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
+* GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
+* Generated prediction datasets and summary reports provide the foundation for subsequent experimental evaluation and analysis.
 
 ## Next Notebook
 
