@@ -63,9 +63,3 @@ This notebook establishes baseline Video Question Answering (VideoQA) performanc
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
 * Generated prediction datasets and summary reports provide the foundation for subsequent experimental evaluation and analysis.
 
-## Next Notebook
-
-➡️ [04 Build Video Knowledge Base](04_Build_Video_Knowledge_Base.md)
-
-
-
