@@ -30,7 +30,9 @@ The notebook provides a common evaluation and reporting framework that enables d
   * rag_summary.csv
   * iterative_rag_summary.csv
 * NExT-QA question annotations
-* Evidence metadata summaries
+* Evidence metadata files
+  * evidence_metadata.csv
+  * evidence_summary.csv
 * Project configuration settings
 * Shared evaluation and visualization utilities
 
