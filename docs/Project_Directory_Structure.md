@@ -70,7 +70,7 @@ iterative-video-rag/
 │   ├── 04_Build_Video_Knowledge_Base.ipynb
 │   ├── 05_Run_RAG_VideoQA.ipynb
 │   ├── 06_Run_Iterative_RAG_Experiments.ipynb
-│   └── 07_Evaluate_and_Visualize_Results.ipynb
+│   └── 07_Generate_Reports.ipynb
 │
 ├── docs/
 │   ├── _config.yml
@@ -81,7 +81,7 @@ iterative-video-rag/
 │   ├── 04_Build_Video_Knowledge_Base.md
 │   ├── 05_Run_RAG_VideoQA.md
 │   ├── 06_Run_Iterative_RAG_Experiments.md
-│   ├── 07_Evaluate_and_Visualize_Results.md
+│   ├── 07_Generate_Reports.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
