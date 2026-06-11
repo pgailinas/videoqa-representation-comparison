@@ -56,27 +56,13 @@ This notebook establishes baseline Video Question Answering (VideoQA) performanc
 
 ## Runtime Requirements
 
-Baseline VideoQA inference was evaluated using Google Colab GPU runtimes.
+Development and testing were performed within the Google Colab environment.
 
-### Recommended GPU
+Standard High-RAM CPU runtimes were used for repository cloning, dataset preparation, archive reconstruction, file transfers, compression and decompression operations, and other preprocessing tasks that did not require GPU acceleration.
 
-* NVIDIA L4 GPU
-  * Successfully executed Qwen2-VL-7B inference
-  * Stable memory utilization
-  * Average runtime approximately 2.2 seconds per sample during baseline testing
+Baseline VideoQA inference was evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during baseline testing.
 
-### Limited-Support GPU
-
-* NVIDIA T4 GPU
-  * Model loading is possible
-  * Inference may encounter CUDA out-of-memory errors
-  * Reliability depends on available Colab memory allocation and runtime configuration
-
-### CPU Execution
-
-* Supported for functional testing
-* Significantly slower than GPU execution
-* Not recommended for large-scale evaluation
+The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model could be loaded successfully, inference frequently encountered CUDA out-of-memory errors.
 
 ## Notes
 
