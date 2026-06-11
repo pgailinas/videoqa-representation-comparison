@@ -139,7 +139,7 @@ The framework incorporates the Qwen2-VL-7B multimodal foundation model, vector s
 
 The repository is organized as a modular notebook-driven research environment designed to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
 
-The structure separates dataset preparation, media extraction, embedding generation, vector indexing, retrieval workflows, inference pipelines, evaluation procedures, and visualization stages into independently executable notebooks and configuration modules.
+The structure separates dataset preparation, media extraction, evidence generation, knowledge base construction, retrieval workflows, inference pipelines, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and configuration modules.
 
 Supporting directories include benchmark dataset resources, extracted video assets, question-answer annotations, metadata resources, vector indexes, generated embeddings, experimental outputs, configuration modules, notebooks, and documentation resources intended to support extensible multimodal AI research workflows.
 
