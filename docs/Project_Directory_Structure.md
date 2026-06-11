@@ -86,8 +86,8 @@ iterative-video-rag/
 │   ├── evidence_io.py
 │   ├── evidence_validation.py
 │   ├── nextqa_metadata.py
-│   ├── nextqa_videp_cache.py
-│   └── videp_evidence.py
+│   ├── nextqa_video_cache.py
+│   └── video_evidence.py
 │
 ├── datasets/
 │   └── NExT-QA/
