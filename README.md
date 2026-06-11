@@ -1,6 +1,6 @@
-# Iterative RAG for VideoQA
+# Investigating Retrieval-Augmented VideoQA
 
-This project investigates iterative Retrieval-Augmented Generation (RAG) workflows for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B multimodal foundation model.
+This project investigates baseline, Retrieval-Augmented Generation (RAG), and iterative RAG workflows for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and pretrained multimodal foundation models.
 
 Rather than training a new VideoQA model from scratch, the project evaluates how evidence retrieval and iterative evidence refinement influence VideoQA performance. Qwen2-VL-7B serves as the fixed foundation model across all experiments, allowing performance differences to be attributed to retrieval strategy rather than model architecture.
 
