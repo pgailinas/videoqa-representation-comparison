@@ -1,0 +1,7 @@
+metric,value
+samples_analyzed,25.0
+total_evidence_records_used,155.0
+average_evidence_records_per_sample,6.2
+minimum_evidence_records_per_sample,2.0
+maximum_evidence_records_per_sample,15.0
+median_evidence_records_per_sample,5.0

@@ -1,0 +1,9 @@
+metric,value
+total_prediction_records,25.0
+unique_videos,24.0
+questions_with_predictions,25.0
+missing_predictions,0.0
+empty_predictions,0.0
+average_question_length_words,11.96
+average_ground_truth_length_words,3.36
+average_prediction_length_words,2.12

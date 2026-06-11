@@ -1,0 +1,7 @@
+metric,value
+elapsed_time_seconds,54.18
+average_time_per_sample_seconds,2.17
+projected_validation_runtime_minutes,180.46
+projected_full_dataset_runtime_hours,28.71
+total_predictions,25.0
+valid_predictions,25.0
