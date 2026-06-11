@@ -114,13 +114,19 @@ iterative-video-rag/
 └── outputs/
     ├── baseline/
     │   └── reports/
-    │       └── baseline_predictions.csv
+    │       ├── baseline_predictions.csv
     │       └── baseline_summary.csv
     ├── evaluation/
     │   └── reports/
-    │       └── evaluation_metrics.csv
-    │       └── evidence_analysis.csv
-    │       └── prediction_analysis.csv
+    │       ├── answer_length_metric.csv
+    │       ├── category_metric.csv
+    │       ├── evaluation_dataset.csv
+    │       ├── evaluation_metrics.csv
+    │       ├── evidence_analysis.csv
+    │       ├── generated_figures.csv
+    │       ├── prediction_analysis.csv
+    │       ├── prediction_verification.csv
+    │       ├── question_type_metrics.csv
     │       └── runtime_analysis.csv
     └── evidence/
         ├── metadata/
