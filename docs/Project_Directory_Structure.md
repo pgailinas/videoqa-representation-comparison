@@ -45,16 +45,9 @@ For NExT-QA:
 - **questions/** — train, validation, and test question-answer splits
 - **metadata/** — dataset mapping files and annotation resources
 
-### knowledge_base/
+### outputs/
 
-Contains generated artifacts used by retrieval and reasoning pipelines.
-
-- **frames/** — extracted video frames
-- **clips/** — generated or processed video segments
-- **captions/** — generated textual video descriptions
-- **embeddings/** — multimodal feature representations
-- **vector_index/** — searchable retrieval indexes
-- **metadata/** — processed knowledge-base metadata
+TBD.
 
 ## Repository Structure
 
@@ -108,14 +101,22 @@ iterative-video-rag/
 │           ├── map_vid_vidorID.json
 │           └── relation_annotation_nextqa.zip
 │
-└── knowledge_base/
-    └── NExT-QA/
-        ├── frames/
-        ├── clips/
-        ├── captions/
-        ├── embeddings/
-        ├── vector_index/
-        └── metadata/
+└── outputs/
+    ├── baseline/
+    │   └── reports/
+    │       └── baseline_predictions.csv
+    │       └── baseline_summary.csv
+    ├── evaluation/
+    │   └── reports/
+    │       └── evaluation_metrics.csv
+    │       └── evidence_analysis.csv
+    │       └── prediction_analysis.csv
+    │       └── runtime_analysis.csv
+    └── evidence/
+        ├── metadata/
+        │   └── evidence_metadata.csv        
+        └── reports/
+           └── evidence_summary.csv
 ```
 
 ## Google Drive Structure
