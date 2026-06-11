@@ -86,6 +86,21 @@ The architecture is designed to isolate the effects of retrieval and evidence-re
   <img src="images/overview_pipeline.png" width="800">
 </a>
 
+### Notebook Workflow
+
+The project is organized into a sequence of notebooks that support reproducible experimentation across baseline, Retrieval-Augmented Generation (RAG), and iterative RAG VideoQA workflows.
+
+| Notebook                         | Purpose                                                                                  |
+| -------------------------------- | ---------------------------------------------------------------------------------------- |
+| 01_Prepare_Video_Data            | Prepare and validate the NExT-QA dataset.                                                |
+| 02_Prepare_Video_Evidence        | Generate evidence metadata and video evidence representations.                           |
+| 03_Run_Baseline_VideoQA          | Perform baseline VideoQA inference using Qwen2-VL-7B.                                    |
+| 04_Build_Video_Knowledge_Base    | Generate embeddings and retrieval indexes for video evidence.                            |
+| 05_Run_RAG_VideoQA               | Perform single-pass Retrieval-Augmented VideoQA inference.                               |
+| 06_Run_Iterative_RAG_Experiments | Execute iterative retrieval and evidence refinement experiments.                         |
+| 07_Generate_Reports              | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports. |
+
+
 ## Experimental Methodology
 
 The experimental framework evaluates how retrieval strategies and multimodal knowledge representations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, evidence-based, and embedding-based video representations.
