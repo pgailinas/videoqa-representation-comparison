@@ -115,7 +115,7 @@ The experiments evaluate three primary workflows:
 
 Qwen2-VL-7B serves as the fixed multimodal foundation model for all experiments. Baseline, single-pass RAG, and iterative RAG workflows differ only in the evidence retrieval and refinement process. This design isolates the impact of retrieval strategy while maintaining a consistent VideoQA reasoning model.
 
-Experiments measure how retrieval strategy, evidence quality, and refinement depth affect temporal reasoning, answer accuracy, retrieval performance, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
+Experiments measure how retrieval strategy, evidence quality, evidence utilization, and refinement depth affect temporal reasoning, answer accuracy, retrieval effectiveness, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
 
 Evaluation results will be analyzed across NExT-QA causal, temporal, and descriptive reasoning categories, as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC).
 
@@ -127,13 +127,13 @@ The implementation framework integrates open-source multimodal models, vector da
 
 The framework incorporates the Qwen2-VL-7B multimodal foundation model, vector similarity search systems, GPU-accelerated inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
 
-| Component                    | Purpose                                          |
-| ---------------------------- | ------------------------------------------------ |
-| Evidence Generation Pipeline | Generate frames, clips, metadata, and embeddings |
-| Vector Database              | Store searchable video evidence                  |
-| Qwen2-VL-7B Foundation Model | Perform VideoQA reasoning and answer generation  |
-| Retrieval Engine             | Select relevant evidence for inference           |
-| Evaluation Pipeline          | Compare generated answers with benchmark labels  |
+| Component                    | Purpose                                                             |
+| ---------------------------- | ------------------------------------------------------------------- |
+| Evidence Generation Pipeline | Generate evidence metadata and video evidence representations       |
+| Knowledge Base Pipeline      | Generate embeddings and retrieval indexes                           |
+| Qwen2-VL-7B Foundation Model | Perform VideoQA reasoning and answer generation                     |
+| Retrieval Engine             | Select relevant evidence for inference                              |
+| Reporting Pipeline           | enerate evaluation metrics, visualizations, and experiment reports  |
 
 ## Repository Organization
 
