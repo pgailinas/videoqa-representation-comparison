@@ -86,11 +86,3 @@ Typical visualizations may include:
 * Dataset and evaluation sample coverage summaries
 * Baseline evaluation summary charts
 
-### Role in the Project Pipeline
-
-This notebook serves as the reporting and analysis stage for the completed baseline VideoQA pipeline:
-
-`01_Prepare_Video_Data → 02_Prepare_Video_Evidence → 03_Run_Baseline_VideoQA → 07_Evaluate_VideoQA_Results`
-
-It consolidates saved outputs from the earlier notebooks and produces the metrics, summaries, and visualizations needed for project documentation, experiment assessment, and presentation of results.
-
