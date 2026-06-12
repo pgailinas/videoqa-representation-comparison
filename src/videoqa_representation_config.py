@@ -6,7 +6,7 @@ from pathlib import Path
 # -------------------------------------------------
 # Base project directory
 # -------------------------------------------------
-BASE_DIR = Path("/content/iterative-video-rag")
+BASE_DIR = Path("/content/videoqa_representation_config")
 
 # -------------------------------------------------
 # Main data directories
