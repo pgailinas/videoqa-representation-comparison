@@ -57,7 +57,7 @@ The project further investigates whether learned latent representations improve 
 
 Complete project documentation, notebook walkthroughs, architecture diagrams, and experimental methodology are available at:
 
-https://pgailinas.github.io/iterative-video-rag/
+https://pgailinas.github.io/videoqa-representation-comparison/
 
 ## 👤 Author
 
