@@ -1,5 +1,5 @@
-title: Iterative RAG for VideoQA
-description: Iterative RAG for VideoQA using multimodal embeddings, vector search, and LLM reasoning.
+title: Comparing Autoencoder-Based and Pretrained Video Representations for VideoQA
+description: Self-supervised video representation learning for VideoQA using autoencoders, pretrained features, and Qwen2-VL-7B.
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0
 
@@ -7,7 +7,7 @@ plugins:
   - jekyll-remote-theme
 
 url: https://pgailinas.github.io
-baseurl: /iterative-video-rag
+baseurl: /videoqa-representation-comparison
 
 toc: false
 
