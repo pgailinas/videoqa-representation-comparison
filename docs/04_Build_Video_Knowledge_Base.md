@@ -1,14 +1,14 @@
 ---
-title: 04 Build Video Knowledge Base
+title: 04 Train Autoencoder Representations
 nav_order: 6
 has_children: true
 has_toc: false
 ---
-# 04 Build Video Knowledge Base
+# 04 Train Autoencoder Representations
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/04_Build_Video_Knowledge_Base.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/04_Train_Autoencoder_Representations.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
