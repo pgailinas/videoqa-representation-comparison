@@ -15,7 +15,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook establishes baseline Video Question Answering (VideoQA) performance for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow loads prepared video resources and evidence metadata, configures baseline inference parameters, executes VideoQA inference on selected evaluation samples, validates generated predictions, and produces baseline experiment reports and performance statistics.
+This notebook establishes baseline Video Question Answering (VideoQA) performance for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The resulting baseline serves as the reference point for subsequent pretrained-representation and autoencoder-representation experiments. The workflow loads prepared video resources and evidence metadata, configures baseline inference parameters, executes VideoQA inference on selected evaluation samples, validates generated predictions, and produces baseline experiment reports and performance statistics.
 
 ## Inputs
 
@@ -71,5 +71,5 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 * Prediction results include generated answers, ground-truth answers, evidence statistics, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
-* Generated prediction datasets and summary reports provide the foundation for subsequent experimental evaluation and analysis.
+* Generated prediction datasets and summary reports provide the baseline reference used for subsequent representation-comparison experiments and downstream evaluation.
 
