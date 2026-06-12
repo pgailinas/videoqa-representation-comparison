@@ -15,9 +15,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook generates evidence metadata for the NExT-QA VideoQA project. Evidence records identify meaningful temporal regions within source videos using timestamps, frame references, segmentation metadata, and video properties.
+This notebook generates evidence metadata for the NExT-QA VideoQA project. Evidence records identify meaningful temporal regions within source videos using timestamps, frame references, segmentation metadata, and video properties. These evidence units provide the structured inputs used throughout the representation-learning and VideoQA evaluation pipeline.
 
-The generated evidence metadata serves as the foundation for downstream VideoQA experimentation, retrieval workflows, and evaluation. Rather than repeatedly processing raw video files, later notebooks reference these evidence records to locate relevant portions of source videos.
+The generated evidence metadata serves as the foundation for downstream representation-learning workflows, VideoQA experimentation, and evaluation. Rather than repeatedly processing raw video files, later notebooks reference these evidence records to generate pretrained video representations, train autoencoder models, and evaluate downstream VideoQA performance.
 
 ## Inputs
 
@@ -48,7 +48,7 @@ The generated evidence metadata serves as the foundation for downstream VideoQA 
 5. Generate fixed-duration evidence segments for each source video.
 6. Create evidence metadata records containing timestamps, frame references, and video properties.
 7. Validate evidence metadata completeness, consistency, and video references.
-8. Save evidence metadata and summary files for downstream workflows.
+8. Save evidence metadata and summary files for downstream representation-learning and VideoQA workflows.
 
 ### Evidence Generation Strategy
 
@@ -99,5 +99,5 @@ The current evidence-generation configuration produces:
 * Fixed-duration evidence segmentation
 * Representative frame references for each evidence segment
 
-These evidence records form the foundation for baseline VideoQA experimentation and future retrieval-augmented workflows.
+These evidence records form the foundation for baseline VideoQA experimentation, pretrained video representation generation, self-supervised autoencoder training, and downstream representation-comparison experiments.
 
