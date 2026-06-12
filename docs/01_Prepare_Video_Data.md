@@ -15,7 +15,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Augmented Generation (RAG) Video Question Answering (VideoQA) experimentation. The workflow configures the runtime environment, verifies required dataset resources, reconstructs and extracts video archives, organizes dataset files, validates dataset integrity, and confirms consistency between video, question-answer, and metadata resources required for downstream preprocessing, embedding generation, retrieval, and inference workflows.
+This notebook prepares the NExT-QA benchmark dataset for Video Question Answering (VideoQA) representation-learning experimentation. The workflow configures the runtime environment, verifies required dataset resources, reconstructs and extracts video archives, organizes dataset files, validates dataset integrity, and confirms consistency between video, question-answer, and metadata resources required for downstream evidence generation, representation learning, and VideoQA evaluation workflows.
 
 ## Inputs
 
@@ -44,7 +44,7 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * Verified metadata resources
 * Cross-reference validation results
 * Random dataset verification samples
-* Dataset readiness summary
+* Dataset readiness summary for evidence generation, representation learning, and VideoQA evaluation
 * Runtime environment configuration information
 
 ## Processing Workflow
@@ -58,7 +58,7 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * Validate video, annotation, and metadata resources
 * Validate cross-references between videos, question-answer files, and metadata mappings
 * Display random dataset verification samples with associated video playback
-* Generate a dataset readiness summary
+* Generate a dataset readiness summary for downstream evidence generation, representation learning, and VideoQA experimentation
 
 ## Notes
 
@@ -68,6 +68,6 @@ This notebook prepares the NExT-QA benchmark dataset for iterative Retrieval-Aug
 * The NExTVideo dataset is distributed as a multipart ZIP archive consisting of seven archive files that reconstruct the complete video collection.
 * Cross-reference validation confirms consistency between video files, question-answer annotations, and metadata mappings.
 * Random sample inspection provides visual verification of dataset integrity prior to downstream experimentation.
-* Frame extraction, clip generation, embedding creation, vector indexing, retrieval, and inference workflows are performed in later notebooks.
+* Evidence generation, representation learning, latent feature extraction, representation comparison, and VideoQA evaluation workflows are performed in later notebooks.
 * Video archive reconstruction and extraction may require significant storage space and execution time depending on the runtime environment.
 
