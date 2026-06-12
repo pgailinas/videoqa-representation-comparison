@@ -3,7 +3,7 @@ title: Home
 nav_order: 0
 ---
 
-# Investigating Retrieval-Augmented VideoQA
+# Comparing Autoencoder-Based and Pretrained Video Representations for VideoQA
 
 ## Project Overview
 
