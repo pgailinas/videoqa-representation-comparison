@@ -1,4 +1,4 @@
-# Investigating Retrieval-Augmented VideoQA
+# Comparing Autoencoder-Based and Pretrained Video Representations for VideoQA
 
 This project investigates baseline, Retrieval-Augmented Generation (RAG), and iterative RAG workflows for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and pretrained multimodal foundation models.
 
