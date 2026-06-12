@@ -1,14 +1,14 @@
 ---
-title: 06 Run Iterative RAG Experiments
+title: 06 Run Representation Comparison
 nav_order: 8
 has_children: true
 has_toc: false
 ---
-# 06 Run Iterative RAG Experiments
+# 06 Run Representation Comparison
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/iterative-video-rag/blob/main/notebooks/06_Run_Iterative_RAG_Experiments.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/06_Run_Representation_Comparison.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
