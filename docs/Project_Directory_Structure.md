@@ -62,7 +62,7 @@ The outputs directory serves as the primary location for generated experiment ar
 ## Repository Structure
 
 ```text
-iterative-video-rag/
+videoqa-representation-comparison/
 │
 ├── README.md
 │
@@ -70,9 +70,9 @@ iterative-video-rag/
 │   ├── 01_Prepare_Video_Data.ipynb
 │   ├── 02_Prepare_Video_Evidence.ipynb
 │   ├── 03_Run_Baseline_VideoQA.ipynb
-│   ├── 04_Build_Video_Knowledge_Base.ipynb
-│   ├── 05_Run_RAG_VideoQA.ipynb
-│   ├── 06_Run_Iterative_RAG_Experiments.ipynb
+│   ├── 04_Train_Autoencoder_Representations.ipynb
+│   ├── 05_Generate_Video_Representations.ipynb
+│   ├── 06_Run_Representation_Comparison.ipynb
 │   └── 07_Evaluate_VideoQA_Results.ipynb
 │
 ├── docs/
@@ -81,9 +81,9 @@ iterative-video-rag/
 │   ├── 01_Prepare_Video_Data.md
 │   ├── 02_Prepare_Video_Evidence.md
 │   ├── 03_Run_Baseline_VideoQA.md
-│   ├── 04_Build_Video_Knowledge_Base.md
-│   ├── 05_Run_RAG_VideoQA.md
-│   ├── 06_Run_Iterative_RAG_Experiments.md
+│   ├── 04_Train_Autoencoder_Representations.md
+│   ├── 05_Generate_Video_Representations.md
+│   ├── 06_Run_Representation_Comparison.md
 │   ├── 07_Evaluate_VideoQA_Results.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
@@ -140,7 +140,7 @@ iterative-video-rag/
 Due to GitHub file size limitations, large video dataset files are stored externally in Google Drive as ZIP files. When needed, notebooks download and extract the required ZIP file into the local Colab runtime.
 
 ```text
-iterative-video-rag/
+videoqa-representation-comparison/
 └── NExT-QA/
     ├── NExTVideo.z01
     ├── NExTVideo.z02
