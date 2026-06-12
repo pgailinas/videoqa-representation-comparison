@@ -11,9 +11,9 @@ This project investigates self-supervised representation learning for Video Ques
 
 Rather than training a new VideoQA model from scratch, the project evaluates how different video representations influence downstream VideoQA performance. The study compares pretrained video representations with latent representations learned through self-supervised autoencoder training while maintaining a fixed VideoQA model across all experiments.
 
-Qwen2-VL-7B serves as the common VideoQA inference model, allowing performance differences to be attributed primarily to the quality of the underlying video representations rather than changes in model architecture.
+Qwen2-VL-7B serves as the common VideoQA inference model, allowing performance differences to be attributed primarily to the quality of the underlying video representations rather than changes in model architecture. The framework processes raw videos into structured evidence segments that are used for representation learning, latent feature extraction, representation comparison, and VideoQA experimentation.
 
-The framework processes raw videos into structured evidence segments that are used for representation learning, feature extraction, evidence retrieval, and VideoQA experimentation. Comparative experiments evaluate baseline inference, pretrained video representations, and autoencoder-based latent representations to measure their impact on answer quality, reasoning performance, representation efficiency, and execution latency.
+Comparative experiments evaluate baseline inference, pretrained video representations, and autoencoder-based latent representations to measure their impact on answer quality, reasoning performance, representation efficiency, and execution latency.
 
 The repository provides a reproducible notebook-driven research environment using public VideoQA datasets, self-supervised learning techniques, modular AI workflows, and configurable multimodal components suitable for research experimentation and future IEEE-style publication development.
 
@@ -31,7 +31,7 @@ This project investigates these questions through comparative evaluation of base
 
 This project investigates how learned video representations influence downstream VideoQA performance within multimodal video understanding systems. The research emphasizes comparative evaluation of baseline video evidence, pretrained video representations, and self-supervised autoencoder-based representations.
 
-The objectives of this work include measuring how representation quality affects temporal reasoning, answer accuracy, evidence selection, representation compactness, and execution latency using the NExT-QA benchmark dataset.
+The objectives of this work include measuring how representation quality affects temporal reasoning, answer accuracy, representation quality, representation compactness, and execution latency using the NExT-QA benchmark dataset.
 
 Additional objectives include evaluating whether latent representations learned through self-supervised training can provide competitive or improved evidence representations when compared with pretrained feature representations.
 
@@ -76,9 +76,9 @@ The system architecture supports three primary experimental workflows:
 
 1. **Baseline VideoQA** — Direct VideoQA inference using Qwen2-VL-7B and sampled video evidence.
 
-2. **Pretrained Representation VideoQA** — Evidence selection using pretrained video representations followed by Qwen2-VL-7B inference.
+2. **Pretrained Representation VideoQA** — Video evidence represented using pretrained video features and evaluated through downstream Qwen2-VL-7B VideoQA inference.
 
-3. **Autoencoder Representation VideoQA** — Evidence selection using latent representations learned through self-supervised autoencoder training followed by Qwen2-VL-7B inference.
+3. **Autoencoder Representation VideoQA** — Video evidence represented using latent features learned through self-supervised autoencoder training and evaluated through downstream Qwen2-VL-7B VideoQA inference.
 
 The autoencoder learns compact latent representations of video evidence without requiring manual labels. The resulting encoder serves as a learned feature extractor whose latent embeddings are evaluated through downstream VideoQA performance.
 
@@ -94,7 +94,7 @@ The architecture is designed to isolate the effects of representation learning w
 
 ### Notebook Workflow
 
-The project is organized into a sequence of notebooks that support reproducible experimentation across baseline, Retrieval-Augmented Generation (RAG), and iterative RAG VideoQA workflows.
+The project is organized into a sequence of notebooks that support reproducible experimentation across baseline, pretrained-representation, and autoencoder-representation VideoQA workflows.
 
 | Notebook                             | Purpose                                                                                  |
 | ------------------------------------ | ---------------------------------------------------------------------------------------- |
@@ -112,7 +112,7 @@ The experimental framework evaluates how different video representations influen
 
 The experiments evaluate three primary workflows:
 
-1. **Baseline VideoQA Inference** — Questions are answered using sampled video evidence and Qwen2-VL-7B without representation-based evidence selection.
+1. **Baseline VideoQA Inference** — Questions are answered using sampled video evidence and Qwen2-VL-7B.
 
 2. **Pretrained Representation VideoQA** — Evidence is represented using pretrained video features and supplied to Qwen2-VL-7B for answer generation.
 
@@ -134,13 +134,13 @@ The framework incorporates the Qwen2-VL-7B multimodal foundation model, autoenco
 
 Supporting technologies may include PyTorch, Hugging Face Transformers, NumPy, Pandas, OpenCV, and related libraries used for representation learning, latent feature extraction, model training, inference, and experimental evaluation.
 
-| Component                        | Purpose                                                      |
-| -------------------------------- | ------------------------------------------------------------ |
-| Evidence Generation Pipeline     | Generate video evidence segments and metadata                |
-| Representation Learning Pipeline | Train autoencoder models and generate latent representations |
-| Pretrained Feature Pipeline      | Generate pretrained video representations                    |
-| Qwen2-VL-7B Foundation Model     | Perform VideoQA reasoning and answer generation              |
-| Evaluation Pipeline              | Generate metrics, visualizations, and experiment reports     |
+| Component                          | Purpose                                                      |
+| ---------------------------------- | ------------------------------------------------------------ |
+| Evidence Generation Pipeline       | Generate video evidence segments and metadata                |
+| Representation Learning Pipeline   | Train autoencoder models and generate latent representations |
+| Pretrained Representation Pipeline | Generate pretrained video representations                    |
+| Qwen2-VL-7B Foundation Model       | Perform VideoQA reasoning and answer generation              |
+| Evaluation Pipeline                | Generate metrics, visualizations, and experiment reports     |
 
 ## Repository Organization
 
@@ -165,6 +165,8 @@ The repository additionally provides an extensible notebook-driven research plat
 The project emphasizes machine-learning evaluation of learned video representations rather than retrieval-system engineering or development of a new VideoQA model.
 
 A central contribution of this work is the evaluation of self-supervised representation learning while holding the underlying VideoQA foundation model constant. This enables quantitative analysis of how representation quality influences answer accuracy, temporal reasoning performance, and evidence utilization independent of downstream model architecture.
+
+An additional contribution is the comparison of learned and pretrained video representations using a common downstream VideoQA task. This provides a practical evaluation of representation quality based on task performance rather than reconstruction quality alone.
 
 ---
 
