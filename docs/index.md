@@ -31,7 +31,7 @@ This project investigates these questions through comparative evaluation of base
 
 This project investigates how learned video representations influence downstream VideoQA performance within multimodal video understanding systems. The research emphasizes comparative evaluation of baseline video evidence, pretrained video representations, and self-supervised autoencoder-based representations.
 
-The objectives of this work include measuring how representation quality affects temporal reasoning, answer accuracy, representation quality, representation compactness, and execution latency using the NExT-QA benchmark dataset.
+The objectives of this work include measuring how representation quality affects temporal reasoning, answer accuracy, representation compactness, and execution latency using the NExT-QA benchmark dataset.
 
 Additional objectives include evaluating whether latent representations learned through self-supervised training can provide competitive or improved evidence representations when compared with pretrained feature representations.
 
@@ -80,7 +80,7 @@ The system architecture supports three primary experimental workflows:
 
 3. **Autoencoder Representation VideoQA** — Video evidence represented using latent features learned through self-supervised autoencoder training and evaluated through downstream Qwen2-VL-7B VideoQA inference.
 
-The autoencoder learns compact latent representations of video evidence without requiring manual labels. The resulting encoder serves as a learned feature extractor whose latent embeddings are evaluated through downstream VideoQA performance.
+The autoencoder learns compact latent representations of video evidence without requiring manual labels. The resulting encoder serves as a learned feature extractor whose latent embeddings are evaluated through downstream VideoQA performance and compared directly with pretrained video representations.
 
 The architecture is designed to isolate the effects of representation learning while maintaining a consistent VideoQA foundation model across all experiments. This enables direct comparison of baseline evidence, pretrained representations, and learned latent representations while controlling for inference model architecture.
 
@@ -102,7 +102,7 @@ The project is organized into a sequence of notebooks that support reproducible 
 | 02_Prepare_Video_Evidence            | Generate evidence metadata and video evidence segments.                                  |
 | 03_Run_Baseline_VideoQA              | Perform baseline VideoQA inference using Qwen2-VL-7B.                                    |
 | 04_Train_Autoencoder_Representations | Train self-supervised autoencoder models and generate latent representations.            |
-| 05_Build_Representation_Indexes      | Generate pretrained and autoencoder-based representation indexes.                        |
+| 05_Generate_Video_Representations      | Generate pretrained and autoencoder-based video representations.                        |
 | 06_Run_Representation_Comparison     | Execute pretrained versus autoencoder representation experiments.                        |
 | 07_Evaluate_VideoQA_Results          | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports. |
 
