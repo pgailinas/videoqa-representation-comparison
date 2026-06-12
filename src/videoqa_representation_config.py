@@ -6,7 +6,7 @@ from pathlib import Path
 # -------------------------------------------------
 # Base project directory
 # -------------------------------------------------
-BASE_DIR = Path("/content/videoqa_representation_config")
+BASE_DIR = Path("/content/videoqa_representation_comparison")
 
 # -------------------------------------------------
 # Main data directories
