@@ -21,9 +21,11 @@ The repository provides a reproducible notebook-driven research environment usin
 
 The rapid growth of video-based data has increased demand for AI systems capable of understanding visual scenes, motion, temporal relationships, and contextual interactions across long video sequences. Unlike static-image understanding, VideoQA requires reasoning across both spatial and temporal information, making it a challenging benchmark for multimodal AI systems.
 
-Recent RAG methods improve VideoQA by retrieving relevant frames, clips, captions, transcripts, and embedding representations prior to inference. These approaches aim to improve contextual accuracy and reduce hallucinations during question answering.
+Recent advances in self-supervised learning have demonstrated that useful visual representations can be learned without manual annotation. Autoencoders and related representation-learning approaches enable models to learn compact latent representations that capture meaningful structure within images and videos while reducing reliance on labeled training data.
 
-Despite recent advances, major challenges remain involving temporal grounding, retrieval refinement, and the interaction between retrieval workflows and LLM inference behavior. This project investigates these challenges through comparative evaluation of baseline, single-pass, and iterative RAG workflows across public VideoQA benchmarks.
+Despite significant progress in representation learning, important questions remain regarding how learned representations influence downstream reasoning tasks such as VideoQA. In particular, it is unclear whether latent representations learned through self-supervised training can provide evidence representations that are competitive with or superior to pretrained video representations.
+
+This project investigates these questions through comparative evaluation of baseline video evidence, pretrained video representations, and autoencoder-based latent representations using the NExT-QA benchmark dataset and a fixed multimodal foundation model.
 
 ## Research Objectives
 
@@ -60,9 +62,9 @@ NExT-QA is designed to evaluate video understanding through three primary reason
 | Temporal | Event order and temporal relationships. |
 | Descriptive | Objects, actions, attributes, locations, and counts. |
 
-These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to evaluate how retrieval and iterative evidence refinement affect different forms of video understanding.
+These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to evaluate how different video representations affect causal, temporal, and descriptive reasoning performance.
 
-Raw videos are processed into frames, clips, evidence metadata, embedding representations, and other derived evidence artifacts during knowledge base construction. These generated artifacts serve as the evidence repository used by downstream retrieval and VideoQA workflows, reducing the need to repeatedly process the original video files.
+Raw videos are processed into structured evidence segments containing temporal metadata and representative frame samples. These evidence units serve as the foundation for representation learning, latent feature extraction, pretrained feature generation, and downstream VideoQA experimentation.
 
 ## System Architecture
 
@@ -104,49 +106,49 @@ The project is organized into a sequence of notebooks that support reproducible 
 | 06_Run_Representation_Comparison     | Execute pretrained versus autoencoder representation experiments.                        |
 | 07_Evaluate_VideoQA_Results          | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports. |
 
-
-
 ## Experimental Methodology
 
-The experimental framework evaluates how retrieval strategies and multimodal knowledge representations influence VideoQA performance. Experiments compare baseline inference against single-pass and iterative Retrieval-Augmented Generation (RAG) workflows using frame-level, clip-level, evidence-based, and embedding-based video representations.
+The experimental framework evaluates how different video representations influence downstream VideoQA performance. Experiments compare baseline video evidence, pretrained video representations, and self-supervised autoencoder-based latent representations using a common VideoQA inference model.
 
 The experiments evaluate three primary workflows:
 
-1. **Baseline VideoQA Inference** — questions are answered using pretrained reasoning models without retrieval assistance.
+1. **Baseline VideoQA Inference** — Questions are answered using sampled video evidence and Qwen2-VL-7B without representation-based evidence selection.
 
-2. **Single-Pass RAG Inference** — relevant video evidence is retrieved from the knowledge base and provided as additional context during answer generation.
+2. **Pretrained Representation VideoQA** — Evidence is represented using pretrained video features and supplied to Qwen2-VL-7B for answer generation.
 
-3. **Iterative RAG Inference** — retrieval and reasoning are performed across multiple refinement passes to improve evidence selection and answer quality.
+3. **Autoencoder Representation VideoQA** — Evidence is represented using latent embeddings learned through self-supervised autoencoder training and supplied to Qwen2-VL-7B for answer generation.
 
-Qwen2-VL-7B serves as the fixed multimodal foundation model for all experiments. Baseline, single-pass RAG, and iterative RAG workflows differ only in the evidence retrieval and refinement process. This design isolates the impact of retrieval strategy while maintaining a consistent VideoQA reasoning model.
+Qwen2-VL-7B serves as the fixed multimodal foundation model throughout all experiments. The primary experimental variable is the video representation used to support inference. This design isolates the effects of representation quality while maintaining a consistent VideoQA reasoning model.
 
-Experiments measure how retrieval strategy, evidence quality, evidence utilization, and refinement depth affect temporal reasoning, answer accuracy, retrieval effectiveness, and execution efficiency. Evaluation metrics may include answer accuracy, retrieval precision and recall, semantic relevance, execution time, and latency-versus-performance tradeoffs.
+Experiments measure how representation learning influences answer accuracy, temporal reasoning performance, evidence utilization, representation compactness, and execution efficiency. Evaluation metrics include VideoQA answer quality, representation-learning metrics, runtime measurements, and comparative analysis across reasoning categories.
 
-Evaluation results will be analyzed across NExT-QA causal, temporal, and descriptive reasoning categories, as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC).
+Evaluation results are analyzed across NExT-QA causal, temporal, and descriptive reasoning categories as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC).
 
-The objective is not to train a new VideoQA neural network, but to evaluate how modern foundation models and retrieval architectures can be combined to improve video reasoning performance.
+The objective is not to train a new VideoQA model, but to evaluate how learned video representations influence downstream multimodal reasoning performance.
 
 ## Implementation Framework
 
-The implementation framework integrates open-source multimodal models, vector databases, and Python-based AI frameworks to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
+The implementation framework integrates self-supervised learning models, multimodal foundation models, and Python-based machine learning frameworks to support reproducible experimentation across representation-learning workflows.
 
-The framework incorporates the Qwen2-VL-7B multimodal foundation model, vector similarity search systems, GPU-accelerated inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments. Supporting technologies may include PyTorch, Hugging Face Transformers, LangChain, FAISS, ChromaDB, OpenCV, and related libraries used for embedding generation, vector indexing, retrieval, inference, and experimental evaluation.
+The framework incorporates the Qwen2-VL-7B multimodal foundation model, autoencoder architectures, pretrained feature extraction models, GPU-accelerated training and inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments.
 
-| Component                    | Purpose                                                              |
-| ---------------------------- | -------------------------------------------------------------------- |
-| Evidence Generation Pipeline | Generate evidence metadata and video evidence representations        |
-| Knowledge Base Pipeline      | Generate embeddings and retrieval indexes                            |
-| Qwen2-VL-7B Foundation Model | Perform VideoQA reasoning and answer generation                      |
-| Retrieval Engine             | Select relevant evidence for inference                               |
-| Reporting Pipeline           | Generate evaluation metrics, visualizations, and experiment reports  |
+Supporting technologies may include PyTorch, Hugging Face Transformers, NumPy, Pandas, OpenCV, and related libraries used for representation learning, latent feature extraction, model training, inference, and experimental evaluation.
+
+| Component                        | Purpose                                                      |
+| -------------------------------- | ------------------------------------------------------------ |
+| Evidence Generation Pipeline     | Generate video evidence segments and metadata                |
+| Representation Learning Pipeline | Train autoencoder models and generate latent representations |
+| Pretrained Feature Pipeline      | Generate pretrained video representations                    |
+| Qwen2-VL-7B Foundation Model     | Perform VideoQA reasoning and answer generation              |
+| Evaluation Pipeline              | Generate metrics, visualizations, and experiment reports     |
 
 ## Repository Organization
 
-The repository is organized as a modular notebook-driven research environment designed to support reproducible experimentation across baseline and iterative RAG-based VideoQA workflows.
+The repository is organized as a modular notebook-driven research environment designed to support reproducible experimentation across representation-learning and VideoQA workflows.
 
-The structure separates dataset preparation, media extraction, evidence generation, knowledge base construction, retrieval workflows, inference pipelines, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and configuration modules.
+The structure separates dataset preparation, evidence generation, representation learning, feature extraction, VideoQA inference, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and configuration modules.
 
-Supporting directories include benchmark dataset resources, extracted video assets, question-answer annotations, metadata resources, vector indexes, generated embeddings, experimental outputs, configuration modules, notebooks, and documentation resources intended to support extensible multimodal AI research workflows.
+Supporting directories include benchmark dataset resources, extracted video assets, question-answer annotations, metadata resources, learned representations, pretrained features, experimental outputs, configuration modules, notebooks, and documentation resources intended to support extensible machine-learning research workflows.
 
 ## Notebook Design Philosophy
 
