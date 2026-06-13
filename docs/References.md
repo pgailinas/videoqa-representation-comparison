@@ -5,14 +5,6 @@ has_children: true
 has_toc: false
 ---
 
----
-
-title: References
-nav_order: 1
-has_children: true
-has_toc: false
---------------
-
 # References
 
 ## VideoQA and Multimodal AI
