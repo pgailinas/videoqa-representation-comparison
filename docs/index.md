@@ -118,45 +118,6 @@ The project is organized into a sequence of notebooks that support reproducible 
 | 06_Run_Representation_VideoQA           | Execute VideoQA experiments using pretrained and autoencoder-based video representations. |
 | 07_Evaluate_VideoQA_Results             | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports.  |
 
-### Experimental Pipelines
-
-The project evaluates three VideoQA workflows using a common VideoQA foundation model and evaluation framework. Each workflow follows a distinct notebook execution path while maintaining a consistent downstream evaluation process.
-
-#### Direct VideoQA Baseline
-
-This workflow performs direct VideoQA inference using sampled video evidence and Qwen2-VL-7B.
-
-```text
-01_Prepare_Video_Data
-→ 02_Prepare_Video_Evidence
-→ 03_Run_Baseline_VideoQA
-→ 07_Evaluate_VideoQA_Results
-```
-
-#### Pretrained Representation VideoQA
-
-This workflow generates pretrained video representations and evaluates their effectiveness for downstream VideoQA inference using Qwen2-VL-7B.
-
-```text
-* 01_Prepare_Video_Data
-→ 02_Prepare_Video_Evidence
-→ 04_Generate_Pretrained_Representations
-→ 06_Run_Representation_VideoQA
-→ 07_Evaluate_VideoQA_Results
-```
-
-#### Autoencoder Representation VideoQA
-
-This workflow learns latent video representations through self-supervised autoencoder training and evaluates their effectiveness for downstream VideoQA inference using Qwen2-VL-7B.
-
-```text
-01_Prepare_Video_Data
-→ 02_Prepare_Video_Evidence
-→ 05_Generate_Autoencoder_Representations
-→ 06_Run_Representation_VideoQA
-→ 07_Evaluate_VideoQA_Results
-```
-
 ## Experimental Methodology
 
 The experimental framework evaluates how different video representations influence downstream VideoQA performance. Experiments compare baseline video evidence, pretrained video representations, and self-supervised autoencoder-based latent representations using a common VideoQA inference model.
