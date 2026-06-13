@@ -113,7 +113,7 @@ The project is organized into a sequence of notebooks that support reproducible 
 | 01_Prepare_Video_Data                   | Prepare and validate the NExT-QA dataset.                                                 |
 | 02_Prepare_Video_Evidence               | Generate evidence metadata and video evidence segments.                                   |
 | 03_Run_Baseline_VideoQA                 | Perform baseline VideoQA inference using Qwen2-VL-7B.                                     |
-| 04_Generate_Pretrained_Representations  | Generate pretrained video representations and organize latent representations.            |
+| 04_Generate_Pretrained_Representations  | Generate pretrained video representations from video evidence segments.                   |
 | 05_Generate_Autoencoder_Representations | Train self-supervised autoencoder models and generate latent representations.             |
 | 06_Run_Representation_VideoQA           | Execute VideoQA experiments using pretrained and autoencoder-based video representations. |
 | 07_Evaluate_VideoQA_Results             | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports.  |
