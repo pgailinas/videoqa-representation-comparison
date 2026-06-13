@@ -138,7 +138,7 @@ This workflow performs direct VideoQA inference using sampled video evidence and
 This workflow generates pretrained video representations and evaluates their effectiveness for downstream VideoQA inference using Qwen2-VL-7B.
 
 ```text
-01_Prepare_Video_Data
+* 01_Prepare_Video_Data
 → 02_Prepare_Video_Evidence
 → 04_Generate_Pretrained_Representations
 → 06_Run_Representation_VideoQA
