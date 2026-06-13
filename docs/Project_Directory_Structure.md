@@ -71,9 +71,9 @@ videoqa-representation-comparison/
 │   ├── 01_Prepare_Video_Data.ipynb
 │   ├── 02_Prepare_Video_Evidence.ipynb
 │   ├── 03_Run_Baseline_VideoQA.ipynb
-│   ├── 04_Train_Autoencoder_Representations.ipynb
-│   ├── 05_Generate_Video_Representations.ipynb
-│   ├── 06_Run_Representation_Comparison.ipynb
+│   ├── 04_Generate_Pretrained_Representations.ipynb
+│   ├── 05_Generate_Autoencoder_Representations.ipynb
+│   ├── 06_Run_Representation_VideoQA.ipynb
 │   └── 07_Evaluate_VideoQA_Results.ipynb
 │
 ├── docs/
@@ -82,9 +82,9 @@ videoqa-representation-comparison/
 │   ├── 01_Prepare_Video_Data.md
 │   ├── 02_Prepare_Video_Evidence.md
 │   ├── 03_Run_Baseline_VideoQA.md
-│   ├── 04_Train_Autoencoder_Representations.md
-│   ├── 05_Generate_Video_Representations.md
-│   ├── 06_Run_Representation_Comparison.md
+│   ├── 04_Generate_Pretrained_Representations.md
+│   ├── 05_Generate_Autoencoder_Representations.md
+│   ├── 06_Run_Representation_VideoQA.md
 │   ├── 07_Evaluate_VideoQA_Results.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
