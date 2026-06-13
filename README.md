@@ -6,11 +6,19 @@ Rather than training a VideoQA model from scratch, the project explores how diff
 
 Qwen2-VL-7B serves as the common VideoQA inference model, allowing performance differences to be attributed primarily to the quality of the underlying video representations rather than changes in model architecture.
 
+## Research Objective
+
+The objective of this project is to investigate whether compact latent video representations learned through self-supervised autoencoder training can preserve sufficient semantic and temporal information to support downstream VideoQA tasks. Performance is compared against both direct video inference and pretrained video representations using a common VideoQA model and evaluation framework.
+
+## Experimental Framework
+
 The experimental framework compares three VideoQA workflows:
 
-1. **Baseline VideoQA** — Direct VideoQA inference using sampled video evidence and Qwen2-VL-7B.
-2. **Pretrained Representation VideoQA** — Evidence selection using pretrained video representations followed by Qwen2-VL-7B inference.
-3. **Autoencoder Representation VideoQA** — Evidence selection using latent representations learned through self-supervised autoencoder training followed by Qwen2-VL-7B inference.
+1. **Direct VideoQA Baseline** — Direct VideoQA inference using sampled video evidence and Qwen2-VL-7B.
+
+2. **Pretrained Representation VideoQA** — Video representations generated using a pretrained representation model and supplied to Qwen2-VL-7B for VideoQA inference.
+
+3. **Autoencoder Representation VideoQA** — Video representations generated through self-supervised autoencoder training and supplied to Qwen2-VL-7B for VideoQA inference.
 
 The project focuses on:
 
@@ -19,11 +27,11 @@ The project focuses on:
 * Autoencoders
 * Representation Learning
 * Latent Feature Extraction
-* Video Embeddings
+* Latent Space Analysis
 * Temporal Reasoning
-* Evidence-Based Video Retrieval
 * Multimodal Foundation Models
 * Downstream Task Evaluation
+* Experimental Performance Comparison
 
 ## Dataset
 
@@ -34,15 +42,15 @@ The primary benchmark dataset is **NExT-QA**, containing:
 * Official training, validation, and test splits
 * Temporal, causal, and descriptive reasoning tasks
 
-Video evidence is segmented into structured evidence units that serve as inputs for representation learning, retrieval, and VideoQA experimentation.
+Video evidence is segmented into structured evidence units that serve as inputs for representation learning, latent feature generation, and VideoQA experimentation.
 
 ## Experimental Hypothesis
 
 The primary research hypothesis is:
 
-> Self-supervised video representations learned through autoencoder training can provide evidence representations that are competitive with or superior to pretrained video representations for downstream VideoQA tasks.
+> Self-supervised video representations learned through autoencoder training can provide compact latent representations that are competitive with or superior to pretrained video representations for downstream VideoQA tasks.
 
-The project further investigates whether learned latent representations improve evidence selection and ultimately influence VideoQA answer quality when compared with pretrained representations and direct baseline inference.
+The project further investigates whether learned latent representations preserve semantic and temporal information sufficiently to support effective VideoQA reasoning when compared with pretrained representations and direct baseline inference.
 
 ## ⚙️ Execution Notes
 
