@@ -21,9 +21,8 @@ The generated evidence metadata serves as the foundation for downstream represen
 
 ## Inputs
 
-* Prepared NExT-QA video files from Notebook 01
+* Prepared NExT-QA video files
 * NExT-QA question-answer annotation files
-
   * train.csv
   * val.csv
   * test.csv
