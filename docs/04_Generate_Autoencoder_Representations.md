@@ -1,14 +1,14 @@
 ---
-title: 05 Generate Autoencoder Representations
-nav_order: 7
+title: 04 Generate Autoencoder Representations
+nav_order: 6
 has_children: true
 has_toc: false
 ---
-# 05 Generate Autoencoder Representations
+# 04 Generate Autoencoder Representations
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/05_Generate_Autoencoder_Representations.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/04_Generate_Autoencoder_Representations.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
