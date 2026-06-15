@@ -73,7 +73,8 @@ videoqa-representation-comparison/
 │   ├── 03_Generate_Pretrained_Representations.ipynb
 │   ├── 04_Generate_Autoencoder_Representations.ipynb
 │   ├── 05_Run_Representation_VideoQA.ipynb
-│   └── 06_Evaluate_VideoQA_Results.ipynb
+│   ├── 06_Run_Final_Full_Experiments.ipynb
+│   └── 07_Evaluate_VideoQA_Results.ipynb
 │
 ├── docs/
 │   ├── _config.yml
@@ -83,7 +84,8 @@ videoqa-representation-comparison/
 │   ├── 03_Generate_Pretrained_Representations.md
 │   ├── 04_Generate_Autoencoder_Representations.md
 │   ├── 05_Run_Representation_VideoQA.md
-│   ├── 06_Evaluate_VideoQA_Results.md
+│   ├── 06_Run_Final_Full_Experiments.md
+│   ├── 07_Evaluate_VideoQA_Results.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
