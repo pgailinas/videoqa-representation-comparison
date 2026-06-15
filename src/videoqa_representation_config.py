@@ -29,6 +29,7 @@ DATASET_CONFIG = {
 # Dataset Selection
 # ============================================================
 DATASET_NAME = "NExT-QA"
+EXPECTED_VIDEO_COUNT = 5440
 
 # ============================================================
 # Dataset Directories
@@ -39,6 +40,16 @@ QUESTIONS_DIR = DATASET_CONFIG[DATASET_NAME]["questions_dir"]
 METADATA_DIR = DATASET_CONFIG[DATASET_NAME]["metadata_dir"]
 
 # ============================================================
+# Archive Configuration
+# ============================================================
+ARCHIVES_DIR = DATASET_DIR / "archives"
+NEXTQA_COMBINED_ARCHIVE_NAME = "NExTVideo_combined.zip"
+NEXTQA_COMBINED_ARCHIVE_PATH = (
+    ARCHIVES_DIR /
+    NEXTQA_COMBINED_ARCHIVE_NAME
+)
+
+# ============================================================
 # Project Output Directories
 # ============================================================
 OUTPUTS_DIR = BASE_DIR / "outputs"
@@ -47,25 +58,62 @@ KNOWLEDGE_BASE_DIR = OUTPUTS_DIR / "knowledge_base"
 EVALUATION_DIR = OUTPUTS_DIR / "evaluation"
 
 # ============================================================
-# Frame / Clip Extraction Settings
+# Evidence Generation Settings
 # ============================================================
+DEFAULT_SEGMENT_DURATION_SEC = 6.0
+MIN_SEGMENT_DURATION_SEC = 4.0
+MAX_SEGMENT_DURATION_SEC = 8.0
+DEFAULT_SEGMENT_STRATEGY = "fixed_duration"
+ENABLE_MOTION_SCORING = False
+ENABLE_SCENE_CHANGE_SCORING = False
 
 # ============================================================
-# Embedding Model Configuration
+# Development Experiment Settings
 # ============================================================
+DEVELOPMENT_SUBSET_SIZE = 25
+EVALUATION_SPLIT = "val"
+RANDOM_SEED = 42
 
 # ============================================================
-# Vector Database Configuration
+# Baseline VideoQA Settings
 # ============================================================
+MAX_EVIDENCE_PER_VIDEO = 5
+MAX_FRAMES_PER_QUESTION = 8
+MAX_NEW_TOKENS = 64
+TEMPERATURE = 0.0
+DO_SAMPLE = False
 
 # ============================================================
-# RAG Workflow Configuration
+# Runtime Settings
 # ============================================================
+REQUIRE_L4_GPU = True
 
 # ============================================================
-# Evaluation Settings
+# Common Output Files
 # ============================================================
 
-# ============================================================
-# Runtime / Debug Settings
-# ============================================================
+EVIDENCE_METADATA_CSV = (
+    EVIDENCE_DIR /
+    "metadata" /
+    "evidence_metadata.csv"
+)
+
+EVIDENCE_SUMMARY_CSV = (
+    EVIDENCE_DIR /
+    "reports" /
+    "evidence_summary.csv"
+)
+
+BASELINE_DIR = OUTPUTS_DIR / "baseline"
+
+BASELINE_PREDICTIONS_CSV = (
+    BASELINE_DIR /
+    "baseline_predictions.csv"
+)
+
+BASELINE_SUMMARY_CSV = (
+    BASELINE_DIR /
+    "baseline_summary.csv"
+)
+
+
