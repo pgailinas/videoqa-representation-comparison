@@ -15,7 +15,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook establishes baseline Video Question Answering (VideoQA) performance for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The resulting baseline serves as the reference point for subsequent pretrained-representation and autoencoder-representation experiments. The workflow loads prepared video resources and evidence metadata, configures baseline inference parameters, executes VideoQA inference on selected evaluation samples, validates generated predictions, and produces baseline experiment reports and performance statistics.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow is used to validate the baseline inference pipeline, evaluate parameter settings, and establish a reference configuration for subsequent pretrained-representation and autoencoder-representation experiments.
+
+Development-subset experiments enable rapid iteration and parameter optimization while minimizing computational cost. Optimized configurations identified during these experiments are later applied to full-dataset execution within the final experiment workflow.
 
 ## Inputs
 
@@ -29,13 +31,13 @@ This notebook establishes baseline Video Question Answering (VideoQA) performanc
 
 ## Outputs
 
-* Baseline VideoQA prediction dataset
+* Development-subset baseline prediction dataset
 * Predicted answers
 * Ground-truth answers
 * Question and video metadata
 * Evidence usage statistics
 * Inference timing metrics
-* Baseline experiment summary report
+* Development-subset experiment summary report
 * Sample prediction results for verification
 
 ## Processing Workflow
@@ -47,8 +49,8 @@ This notebook establishes baseline Video Question Answering (VideoQA) performanc
 * Configure baseline inference parameters
 * Verify GPU runtime and model dependencies
 * Load the Qwen2-VL-7B model and processor
-* Prepare the evaluation dataset
-* Execute baseline VideoQA inference using sampled video evidence
+* Prepare the development evaluation subset
+* Execute development-subset baseline VideoQA inference using sampled video evidence
 * Validate generated prediction results
 * Save prediction datasets and experiment outputs
 * Generate baseline summary statistics and reports
@@ -72,4 +74,6 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
 * Generated prediction datasets and summary reports provide the baseline reference used for subsequent representation-comparison experiments and downstream evaluation.
+* This notebook is intended for development-subset experimentation, workflow validation, and parameter optimization rather than full-dataset execution.
+
 
