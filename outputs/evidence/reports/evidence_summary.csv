@@ -2,7 +2,7 @@ metric,value
 evidence_record_count,38834
 unique_video_count,5440
 average_evidence_per_video,7.14
-average_segment_duration_sec,
+average_segment_duration_sec,6.115
 segment_strategy,fixed_duration
 default_segment_duration_sec,6.0
 validation_passed,True
