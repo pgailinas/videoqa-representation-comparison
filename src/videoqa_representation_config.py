@@ -54,8 +54,31 @@ NEXTQA_COMBINED_ARCHIVE_PATH = (
 # ============================================================
 OUTPUTS_DIR = BASE_DIR / "outputs"
 EVIDENCE_DIR = OUTPUTS_DIR / "evidence"
-KNOWLEDGE_BASE_DIR = OUTPUTS_DIR / "knowledge_base"
+EVIDENCE_METADATA_DIR = EVIDENCE_DIR / "metadata"
+EVIDENCE_REPORTS_DIR = EVIDENCE_DIR / "reports"
+BASELINE_DIR = OUTPUTS_DIR / "baseline"
+REPRESENTATIONS_DIR = OUTPUTS_DIR / "representations"
+FINAL_EXPERIMENTS_DIR = OUTPUTS_DIR / "final"
 EVALUATION_DIR = OUTPUTS_DIR / "evaluation"
+
+# ============================================================
+# Common Output Files
+# ============================================================
+EVIDENCE_METADATA_CSV = (
+    EVIDENCE_METADATA_DIR / "evidence_metadata.csv"
+)
+EVIDENCE_VALIDATION_CSV = (
+    EVIDENCE_REPORTS_DIR / "evidence_validation.csv"
+)
+EVIDENCE_SUMMARY_CSV = (
+    EVIDENCE_REPORTS_DIR / "evidence_summary.csv"
+)
+BASELINE_PREDICTIONS_CSV = (
+    BASELINE_DIR / "baseline_predictions.csv"
+)
+BASELINE_SUMMARY_CSV = (
+    BASELINE_DIR / "baseline_summary.csv"
+)
 
 # ============================================================
 # Evidence Generation Settings
@@ -87,33 +110,5 @@ DO_SAMPLE = False
 # Runtime Settings
 # ============================================================
 REQUIRE_L4_GPU = True
-
-# ============================================================
-# Common Output Files
-# ============================================================
-
-EVIDENCE_METADATA_CSV = (
-    EVIDENCE_DIR /
-    "metadata" /
-    "evidence_metadata.csv"
-)
-
-EVIDENCE_SUMMARY_CSV = (
-    EVIDENCE_DIR /
-    "reports" /
-    "evidence_summary.csv"
-)
-
-BASELINE_DIR = OUTPUTS_DIR / "baseline"
-
-BASELINE_PREDICTIONS_CSV = (
-    BASELINE_DIR /
-    "baseline_predictions.csv"
-)
-
-BASELINE_SUMMARY_CSV = (
-    BASELINE_DIR /
-    "baseline_summary.csv"
-)
 
 
