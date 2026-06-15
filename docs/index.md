@@ -108,18 +108,25 @@ The architecture is designed to isolate the effects of representation learning w
 
 The project is organized into a sequence of notebooks that support reproducible experimentation across baseline, pretrained-representation, and autoencoder-representation VideoQA workflows.
 
-| Notebook                                | Purpose                                                                                   |
-| --------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 01_Prepare_Video_Evidence               | Generate evidence metadata and video evidence segments.                                   |
-| 02_Run_Baseline_VideoQA                 | Perform baseline VideoQA inference using Qwen2-VL-7B.                                     |
-| 03_Generate_Pretrained_Representations  | Generate pretrained video representations from video evidence segments.                   |
-| 04_Generate_Autoencoder_Representations | Train self-supervised autoencoder models and generate latent representations.             |
-| 05_Run_Representation_VideoQA           | Execute VideoQA experiments using pretrained and autoencoder-based video representations. |
-| 06_Evaluate_VideoQA_Results             | Generate evaluation metrics, analysis summaries, visualizations, and experiment reports.  |
+| Notebook                                | Purpose                                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------- |
+| 01_Prepare_Video_Evidence               | Generate evidence metadata and video evidence segments.                         |
+| 02_Run_Baseline_VideoQA                 | Execute development-subset baseline VideoQA experiments and optimize inference  |
+|                                         |      parameters.                                                                |
+| 03_Generate_Pretrained_Representations  | Generate pretrained video representations from video evidence segments.         |
+| 04_Generate_Autoencoder_Representations | Train self-supervised autoencoder models and generate latent representations.   |
+| 05_Run_Representation_VideoQA           | Execute development-subset representation VideoQA experiments and optimize      |
+|                                         |      representation parameters.                                                 |
+| 06_Run_Final_Full_Experiments           | Execute full-dataset baseline, pretrained-representation, and autoencoder       |
+|                                         |     representation experiments.                                                 |
+| 07_Evaluate_VideoQA_Results             | Generate evaluation metrics, analysis summaries, visualizations, and experiment |
+|                                         |     reports.                                                                    |
 
 ## Experimental Methodology
 
-The experimental framework evaluates how different video representations influence downstream VideoQA performance. Experiments compare baseline video evidence, pretrained video representations, and self-supervised autoencoder-based latent representations using a common VideoQA inference model.
+The experimental framework evaluates how different video representations influence downstream VideoQA performance. To manage computational cost while maintaining experimental rigor, the project uses a two-stage evaluation methodology. Development-subset experiments are first used for parameter optimization, workflow validation, and representation tuning. Optimized configurations are then applied to full-dataset experiments for final comparative evaluation.
+
+Experiments compare baseline video evidence, pretrained video representations, and self-supervised autoencoder-based latent representations using a common VideoQA inference model.
 
 The experiments evaluate three primary workflows:
 
@@ -128,6 +135,8 @@ The experiments evaluate three primary workflows:
 2. **Pretrained Representation VideoQA** — Evidence is represented using pretrained video features and supplied to Qwen2-VL-7B for answer generation.
 
 3. **Autoencoder Representation VideoQA** — Evidence is represented using latent embeddings learned through self-supervised autoencoder training and supplied to Qwen2-VL-7B for answer generation.
+
+Development-subset experiments are conducted using a small portion of the dataset to evaluate parameter settings, representation-learning configurations, and inference workflows. Once parameter optimization is complete, final baseline, pretrained-representation, and autoencoder-representation experiments are executed using the full evaluation dataset. This separation reduces computational cost while ensuring that final results are generated using a consistent optimized configuration.
 
 Qwen2-VL-7B serves as the fixed multimodal foundation model throughout all experiments. The primary experimental variable is the video representation used to support inference. This design isolates the effects of representation quality while maintaining a consistent VideoQA reasoning model.
 
@@ -163,7 +172,7 @@ Supporting directories include benchmark dataset resources, extracted video asse
 
 ## Notebook Design Philosophy
 
-The notebooks are designed to be independently executable and reproducible within Google Colab and local Jupyter environments. Every major code cell should produce visible output confirming successful execution, key runtime information, or generated artifacts.
+The notebooks are designed to be independently executable and reproducible within Google Colab and local Jupyter environments. Development notebooks support rapid experimentation and parameter optimization using dataset subsets, while final experiment notebooks execute full-dataset evaluations using optimized configurations. Every major code cell should produce visible output confirming successful execution, key runtime information, or generated artifacts.
 
 ## Expected Contributions
 
