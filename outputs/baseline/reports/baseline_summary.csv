@@ -7,7 +7,7 @@ error_predictions,0.0
 video_read_errors,0.0
 unique_videos,24.0
 average_evidence_records_per_sample,6.2
-elapsed_time_seconds,54.18
-average_time_per_sample_seconds,2.17
-projected_validation_runtime_minutes,180.46
-projected_full_dataset_runtime_hours,28.71
+elapsed_time_seconds,62.27
+average_time_per_sample_seconds,2.49
+projected_validation_runtime_minutes,207.39
+projected_full_dataset_runtime_hours,33.0
