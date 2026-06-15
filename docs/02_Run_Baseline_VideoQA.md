@@ -62,13 +62,13 @@ Development and testing were performed within the Google Colab environment.
 
 Standard High-RAM CPU runtimes were used for repository cloning, dataset preparation, archive reconstruction, file transfers, compression and decompression operations, and other preprocessing tasks that did not require GPU acceleration.
 
-Baseline VideoQA inference was evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during baseline testing.
+Baseline VideoQA development-subset experiments were evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during testing.
 
 The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model could be loaded successfully, inference frequently encountered CUDA out-of-memory errors.
 
 ## Notes
 
-* This notebook establishes baseline VideoQA performance using direct multimodal inference.
+* This notebook performs development-subset baseline VideoQA experiments using direct multimodal inference.
 * Video evidence is sampled directly from source videos during inference execution.
 * Prediction results include generated answers, ground-truth answers, evidence statistics, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
