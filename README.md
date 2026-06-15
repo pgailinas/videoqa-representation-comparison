@@ -12,7 +12,7 @@ The objective of this project is to investigate whether compact latent video rep
 
 ## Experimental Framework
 
-The experimental framework compares three VideoQA workflows:
+The experimental framework compares three VideoQA workflows using a two-stage evaluation process. Development subset experiments are used for parameter optimization and workflow validation. Optimized configurations are then applied to full-dataset experiments for final performance evaluation and comparison.
 
 1. **Direct VideoQA Baseline** — Direct VideoQA inference using sampled video evidence and Qwen2-VL-7B.
 
@@ -44,6 +44,8 @@ The primary benchmark dataset is **NExT-QA**, containing:
 
 Video evidence is segmented into structured evidence units that serve as inputs for representation learning, latent feature generation, and VideoQA experimentation.
 
+Development subset experiments are used during parameter optimization to reduce computational cost. Final experimental results are generated using full-dataset execution with optimized configurations.
+
 ## Experimental Hypothesis
 
 The primary research hypothesis is:
@@ -57,6 +59,8 @@ The project further investigates whether learned latent representations preserve
 * Designed primarily for Google Colab
 * Supports local Jupyter execution
 * Notebook-driven workflow
+* Development subset experiments support parameter optimization
+* Full-dataset experiments use frozen optimized configurations
 * GPU acceleration used where appropriate
 * Modular execution allows independent experimentation stages
 * Reproducible evaluation framework for representation comparison
