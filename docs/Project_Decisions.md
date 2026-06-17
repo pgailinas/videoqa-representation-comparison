@@ -27,7 +27,7 @@ The project was created to support ECE-551 (Problems in Machine Learning) at the
 
 ---
 
-### May 2026 — Adopt NExT-QA as the Primary Benchmark Dataset
+### Adopt NExT-QA as the Primary Benchmark Dataset
 
 #### Decision
 
@@ -39,7 +39,7 @@ NExT-QA provides a widely used benchmark containing video-question-answer pairs 
 
 ---
 
-### May 2026 — Use Qwen2-VL-7B as the Common VideoQA Foundation Model
+### Use Qwen2-VL-7B as the Common VideoQA Foundation Model
 
 #### Decision
 
@@ -51,7 +51,7 @@ Using a single multimodal foundation model across all experiments allows perform
 
 ---
 
-### May 2026 — Maintain a Fixed Downstream VideoQA Model
+### Maintain a Fixed Downstream VideoQA Model
 
 #### Decision
 
@@ -63,9 +63,9 @@ The objective of the project is to evaluate the impact of different video repres
 
 ---
 
-## Architecture Development
+## Architecture Development (June 2026)
 
-### June 2026 — Separate Video Preparation and Evidence Generation
+### Separate Video Preparation and Evidence Generation
 
 #### Decision
 
@@ -77,7 +77,7 @@ Separating preprocessing from downstream experimentation improves modularity, re
 
 ---
 
-### June 2026 — Standardize on Evidence Segments Rather Than Full Videos
+### Standardize on Evidence Segments Rather Than Full Videos
 
 #### Decision
 
@@ -89,7 +89,7 @@ Processing videos as evidence segments improves scalability, enables consistent 
 
 ---
 
-### June 2026 — Adopt Evidence Metadata as the Central Intermediate Representation
+### Adopt Evidence Metadata as the Central Intermediate Representation
 
 #### Decision
 
@@ -101,7 +101,7 @@ Evidence metadata provides a reusable abstraction between raw video assets and d
 
 ---
 
-### June 2026 — Adopt Combined Archive Distribution Strategy
+### Adopt Combined Archive Distribution Strategy
 
 #### Decision
 
@@ -113,9 +113,9 @@ A single archive simplifies dataset management, reduces setup complexity, elimin
 
 ---
 
-## Project Redesign
+## Project Redesign (June 2026)
 
-### June 2026 (06/11) — Transition from Retrieval-Augmented Generation to Representation Learning
+### Transition from Retrieval-Augmented Generation to Representation Learning (06/11)
 
 #### Decision
 
@@ -127,7 +127,7 @@ The revised direction increases emphasis on machine-learning concepts and self-s
 
 ---
 
-### June 2026 (06/11) — Introduce Autoencoder-Based Representation Learning
+### Introduce Autoencoder-Based Representation Learning (06/11)
 
 #### Decision
 
@@ -139,7 +139,7 @@ Autoencoders provide a mechanism for learning compact latent video representatio
 
 ---
 
-### June 2026 — Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
+### Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
 
 #### Decision
 
@@ -155,7 +155,7 @@ Maintaining all three workflows enables direct comparison between raw video evid
 
 ---
 
-### June 2026 — Evaluate Representation Quality Through Downstream VideoQA Performance
+### Evaluate Representation Quality Through Downstream VideoQA Performance
 
 #### Decision
 
@@ -167,9 +167,9 @@ While representation quality can be measured through reconstruction metrics, emb
 
 ---
 
-## Experimental Methodology
+## Experimental Methodology (June 2026)
 
-### June 2026 — Make Motion Score Generation Optional
+### Make Motion Score Generation Optional
 
 #### Decision
 
@@ -181,7 +181,7 @@ Motion analysis substantially increased processing time and resource consumption
 
 ---
 
-### June 2026 — Adopt Development-Subset Optimization Prior to Full-Dataset Execution
+### Adopt Development-Subset Optimization Prior to Full-Dataset Execution
 
 #### Decision
 
@@ -193,7 +193,7 @@ Development-subset experiments reduce computational cost during workflow validat
 
 ---
 
-### June 2026 — Separate Development Experiments from Final Full-Dataset Experiments
+### Separate Development Experiments from Final Full-Dataset Experiments
 
 #### Decision
 
