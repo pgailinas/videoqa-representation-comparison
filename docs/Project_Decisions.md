@@ -23,7 +23,7 @@ Established a research project and GitHub repository to investigate Video Questi
 
 The project was created to support ECE-551 (Problems in Machine Learning) at the University of New Mexico and to provide a structured environment for exploring machine-learning approaches to video understanding, multimodal reasoning, and experimental evaluation. The repository serves as the authoritative source for project documentation, implementation, results, and research artifacts.
 
-### 2) Adopt NExT-QA as the Primary Benchmark Dataset
+### 2. Adopt NExT-QA as the Primary Benchmark Dataset
 
 #### Decision
 
@@ -33,9 +33,7 @@ Selected the NExT-QA benchmark dataset as the foundation for all VideoQA experim
 
 NExT-QA provides a widely used benchmark containing video-question-answer pairs designed to evaluate causal, temporal, and descriptive reasoning. The dataset offers sufficient scale and diversity to support representation-learning experiments and downstream VideoQA evaluation.
 
----
-
-### Use Qwen2-VL-7B as the Common VideoQA Foundation Model
+### 3. Use Qwen2-VL-7B as the Common VideoQA Foundation Model
 
 #### Decision
 
@@ -45,9 +43,7 @@ Selected Qwen2-VL-7B as the downstream VideoQA inference model for all experimen
 
 Using a single multimodal foundation model across all experiments allows performance differences to be attributed primarily to the quality of video representations rather than differences in VideoQA model architecture.
 
----
-
-### Maintain a Fixed Downstream VideoQA Model
+### 4. Maintain a Fixed Downstream VideoQA Model
 
 #### Decision
 
@@ -57,11 +53,9 @@ Maintained a single downstream VideoQA inference model across all experimental w
 
 The objective of the project is to evaluate the impact of different video representations rather than compare VideoQA model architectures. Keeping the downstream inference model fixed isolates the effects of representation quality and enables direct comparison between baseline video evidence, pretrained representations, and autoencoder-based latent representations.
 
----
-
 ## Architecture Development (June 2026)
 
-### Separate Video Preparation and Evidence Generation
+### 1. Separate Video Preparation and Evidence Generation
 
 #### Decision
 
@@ -71,9 +65,7 @@ Established a dedicated preprocessing workflow responsible for generating struct
 
 Separating preprocessing from downstream experimentation improves modularity, reduces redundant processing, and allows generated evidence resources to be reused across multiple experimental workflows.
 
----
-
-### Standardize on Evidence Segments Rather Than Full Videos
+### 2. Standardize on Evidence Segments Rather Than Full Videos
 
 #### Decision
 
@@ -83,9 +75,7 @@ Established structured video evidence segments as the primary unit of processing
 
 Processing videos as evidence segments improves scalability, enables consistent metadata generation, supports representation learning workflows, and provides a common input format for baseline inference, pretrained representations, and autoencoder-based representations.
 
----
-
-### Adopt Evidence Metadata as the Central Intermediate Representation
+### 3. Adopt Evidence Metadata as the Central Intermediate Representation
 
 #### Decision
 
@@ -95,9 +85,7 @@ Standardized on evidence metadata and structured video evidence records as the p
 
 Evidence metadata provides a reusable abstraction between raw video assets and downstream experiments. This approach supports baseline VideoQA, pretrained representation generation, autoencoder training, and final evaluation using a common evidence framework.
 
----
-
-### Adopt Combined Archive Distribution Strategy
+### 4. Adopt Combined Archive Distribution Strategy
 
 #### Decision
 
@@ -107,11 +95,9 @@ Replaced multipart video archive management with a single combined dataset archi
 
 A single archive simplifies dataset management, reduces setup complexity, eliminates archive reconstruction steps, and improves reproducibility within Google Colab environments.
 
----
-
 ## Project Redesign (June 2026)
 
-### Transition from Retrieval-Augmented Generation to Representation Learning (06/11)
+### 1. Transition from Retrieval-Augmented Generation to Representation Learning (06/11)
 
 #### Decision
 
@@ -121,9 +107,7 @@ Refocused the project from Retrieval-Augmented Generation (RAG)-based VideoQA wo
 
 The revised direction increases emphasis on machine-learning concepts and self-supervised learning while providing a stronger alignment with course objectives centered on machine learning methodology and representation learning.
 
----
-
-### Introduce Autoencoder-Based Representation Learning (06/11)
+### 2. Introduce Autoencoder-Based Representation Learning (06/11)
 
 #### Decision
 
@@ -133,9 +117,7 @@ Added self-supervised autoencoder training as a primary experimental workflow.
 
 Autoencoders provide a mechanism for learning compact latent video representations without requiring additional labels. These learned representations can be evaluated through downstream VideoQA performance and compared directly against pretrained representations.
 
----
-
-### Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
+### 3. Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
 
 #### Decision
 
@@ -149,9 +131,7 @@ Organized the project around three comparative experimental workflows:
 
 Maintaining all three workflows enables direct comparison between raw video evidence, pretrained feature representations, and learned latent representations while using a common evaluation framework.
 
----
-
-### Evaluate Representation Quality Through Downstream VideoQA Performance
+### 4. Evaluate Representation Quality Through Downstream VideoQA Performance
 
 #### Decision
 
@@ -161,11 +141,9 @@ Selected downstream VideoQA performance as the primary method for evaluating lea
 
 While representation quality can be measured through reconstruction metrics, embedding statistics, or compression characteristics, downstream task performance provides a practical assessment of whether a representation preserves information useful for multimodal reasoning and question answering.
 
----
-
 ## Experimental Methodology (June 2026)
 
-### Make Motion Score Generation Optional
+### 1. Make Motion Score Generation Optional
 
 #### Decision
 
@@ -175,9 +153,7 @@ Removed motion score computation from the standard evidence-generation workflow 
 
 Motion analysis substantially increased processing time and resource consumption while providing limited immediate value for baseline experimentation. Retaining the capability as an optional feature preserves future research flexibility.
 
----
-
-### Adopt Development-Subset Optimization Prior to Full-Dataset Execution
+### 2. Adopt Development-Subset Optimization Prior to Full-Dataset Execution
 
 #### Decision
 
@@ -187,9 +163,7 @@ Introduced a two-stage experimental methodology consisting of development-subset
 
 Development-subset experiments reduce computational cost during workflow validation and parameter optimization while ensuring final results are generated using consistent, frozen configurations.
 
----
-
-### Separate Development Experiments from Final Full-Dataset Experiments
+### 3. Separate Development Experiments from Final Full-Dataset Experiments
 
 #### Decision
 
