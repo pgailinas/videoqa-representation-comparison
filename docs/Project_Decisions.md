@@ -17,11 +17,11 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ### 1) Initiate VideoQA Research Project (05/20)
 
-### Decision
+**Decision**
 
 Established a research project and GitHub repository to investigate Video Question Answering (VideoQA) using multimodal foundation models, public benchmark datasets, and reproducible notebook-driven experimentation.
 
-### Rationale
+**Rationale**
 
 The project was created to support ECE-551 (Problems in Machine Learning) at the University of New Mexico and to provide a structured environment for exploring machine-learning approaches to video understanding, multimodal reasoning, and experimental evaluation. The repository serves as the authoritative source for project documentation, implementation, results, and research artifacts.
 
