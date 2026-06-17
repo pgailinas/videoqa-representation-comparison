@@ -11,6 +11,8 @@ This document records significant project decisions, implementation direction ch
 
 Dates are provided when known or when a decision corresponds to a significant project milestone. For some decisions, only the approximate development period is recorded.
 
+---
+
 ## Project Formation (May 2026)
 
 ### 1. Initiate VideoQA Research Project (05/20)
@@ -53,6 +55,8 @@ Maintained a single downstream VideoQA inference model across all experimental w
 
 The objective of the project is to evaluate the impact of different video representations rather than compare VideoQA model architectures. Keeping the downstream inference model fixed isolates the effects of representation quality and enables direct comparison between baseline video evidence, pretrained representations, and autoencoder-based latent representations.
 
+---
+
 ## Architecture Development (June 2026)
 
 ### 1. Separate Video Preparation and Evidence Generation
@@ -94,6 +98,8 @@ Replaced multipart video archive management with a single combined dataset archi
 ### Rationale
 
 A single archive simplifies dataset management, reduces setup complexity, eliminates archive reconstruction steps, and improves reproducibility within Google Colab environments.
+
+---
 
 ## Project Redesign (June 2026)
 
@@ -140,6 +146,8 @@ Selected downstream VideoQA performance as the primary method for evaluating lea
 ### Rationale
 
 While representation quality can be measured through reconstruction metrics, embedding statistics, or compression characteristics, downstream task performance provides a practical assessment of whether a representation preserves information useful for multimodal reasoning and question answering.
+
+---
 
 ## Experimental Methodology (June 2026)
 
