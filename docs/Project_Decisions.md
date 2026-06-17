@@ -14,7 +14,7 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ## Project Formation
 
-### May 2026 — Adopt NExT-QA as the Primary Benchmark Dataset
+### May 2026 (05/30) — Adopt NExT-QA as the Primary Benchmark Dataset
 
 #### Decision
 
