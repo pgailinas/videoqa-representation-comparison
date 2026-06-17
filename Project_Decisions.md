@@ -1,36 +1,30 @@
 # Project Decisions
 
-## 2026-06-11 — Transition from RAG to Representation Comparison
+This document records significant project decisions, implementation direction changes, and architectural milestones.
 
-### Decision
-
-Refocused the project from RAG-based VideoQA experiments to a comparison of pretrained and autoencoder-based video representations.
-
-### Rationale
-
-The instructor recommended increasing the machine learning emphasis of the project. Autoencoder-based representation learning provides a stronger ML component and enables comparison between learned and pretrained video features.
+Only major decisions that materially affect project design, workflow, methodology, or outcomes should be recorded.
 
 ---
 
-## 2026-06-13 — Motion Score Computation Made Optional
+## YYYY-MM-DD — Decision Title
 
 ### Decision
 
-Motion score generation was removed from the standard evidence-generation workflow and retained as an optional feature.
+Description of the decision.
 
 ### Rationale
 
-Motion analysis significantly increased processing time while providing limited value for the baseline workflow. The capability remains available for future experimentation.
+Explanation of why the decision was made.
 
 ---
 
-## 2026-06-15 — Adopt Combined Dataset Archive
+## YYYY-MM-DD — Decision Title
 
 ### Decision
 
-Replaced multipart ZIP distribution with a single NExTVideo_combined.zip archive.
+Description of the decision.
 
 ### Rationale
 
-Simplifies dataset management, reduces setup complexity, and avoids repeated archive reconstruction steps.
+Explanation of why the decision was made.
 
