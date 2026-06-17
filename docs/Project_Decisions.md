@@ -35,21 +35,21 @@ NExT-QA provides a widely used benchmark containing video-question-answer pairs 
 
 ### 3. Use Qwen2-VL-7B as the Common VideoQA Foundation Model
 
-#### Decision
+### Decision
 
 Selected Qwen2-VL-7B as the downstream VideoQA inference model for all experimental workflows.
 
-#### Rationale
+### Rationale
 
 Using a single multimodal foundation model across all experiments allows performance differences to be attributed primarily to the quality of video representations rather than differences in VideoQA model architecture.
 
 ### 4. Maintain a Fixed Downstream VideoQA Model
 
-#### Decision
+### Decision
 
 Maintained a single downstream VideoQA inference model across all experimental workflows.
 
-#### Rationale
+### Rationale
 
 The objective of the project is to evaluate the impact of different video representations rather than compare VideoQA model architectures. Keeping the downstream inference model fixed isolates the effects of representation quality and enables direct comparison between baseline video evidence, pretrained representations, and autoencoder-based latent representations.
 
@@ -57,41 +57,41 @@ The objective of the project is to evaluate the impact of different video repres
 
 ### 1. Separate Video Preparation and Evidence Generation
 
-#### Decision
+### Decision
 
 Established a dedicated preprocessing workflow responsible for generating structured video evidence resources prior to VideoQA experimentation.
 
-#### Rationale
+### Rationale
 
 Separating preprocessing from downstream experimentation improves modularity, reduces redundant processing, and allows generated evidence resources to be reused across multiple experimental workflows.
 
 ### 2. Standardize on Evidence Segments Rather Than Full Videos
 
-#### Decision
+### Decision
 
 Established structured video evidence segments as the primary unit of processing throughout the experimental pipeline.
 
-#### Rationale
+### Rationale
 
 Processing videos as evidence segments improves scalability, enables consistent metadata generation, supports representation learning workflows, and provides a common input format for baseline inference, pretrained representations, and autoencoder-based representations.
 
 ### 3. Adopt Evidence Metadata as the Central Intermediate Representation
 
-#### Decision
+### Decision
 
 Standardized on evidence metadata and structured video evidence records as the primary intermediate data representation used throughout the project.
 
-#### Rationale
+### Rationale
 
 Evidence metadata provides a reusable abstraction between raw video assets and downstream experiments. This approach supports baseline VideoQA, pretrained representation generation, autoencoder training, and final evaluation using a common evidence framework.
 
 ### 4. Adopt Combined Archive Distribution Strategy
 
-#### Decision
+### Decision
 
 Replaced multipart video archive management with a single combined dataset archive.
 
-#### Rationale
+### Rationale
 
 A single archive simplifies dataset management, reduces setup complexity, eliminates archive reconstruction steps, and improves reproducibility within Google Colab environments.
 
@@ -99,27 +99,27 @@ A single archive simplifies dataset management, reduces setup complexity, elimin
 
 ### 1. Transition from Retrieval-Augmented Generation to Representation Learning (06/11)
 
-#### Decision
+### Decision
 
 Refocused the project from Retrieval-Augmented Generation (RAG)-based VideoQA workflows to a comparative study of pretrained and autoencoder-based video representations.
 
-#### Rationale
+### Rationale
 
 The revised direction increases emphasis on machine-learning concepts and self-supervised learning while providing a stronger alignment with course objectives centered on machine learning methodology and representation learning.
 
 ### 2. Introduce Autoencoder-Based Representation Learning (06/11)
 
-#### Decision
+### Decision
 
 Added self-supervised autoencoder training as a primary experimental workflow.
 
-#### Rationale
+### Rationale
 
 Autoencoders provide a mechanism for learning compact latent video representations without requiring additional labels. These learned representations can be evaluated through downstream VideoQA performance and compared directly against pretrained representations.
 
 ### 3. Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
 
-#### Decision
+### Decision
 
 Organized the project around three comparative experimental workflows:
 
@@ -127,17 +127,17 @@ Organized the project around three comparative experimental workflows:
 2. Pretrained Representation VideoQA
 3. Autoencoder Representation VideoQA
 
-#### Rationale
+### Rationale
 
 Maintaining all three workflows enables direct comparison between raw video evidence, pretrained feature representations, and learned latent representations while using a common evaluation framework.
 
 ### 4. Evaluate Representation Quality Through Downstream VideoQA Performance
 
-#### Decision
+### Decision
 
 Selected downstream VideoQA performance as the primary method for evaluating learned and pretrained video representations.
 
-#### Rationale
+### Rationale
 
 While representation quality can be measured through reconstruction metrics, embedding statistics, or compression characteristics, downstream task performance provides a practical assessment of whether a representation preserves information useful for multimodal reasoning and question answering.
 
@@ -145,31 +145,31 @@ While representation quality can be measured through reconstruction metrics, emb
 
 ### 1. Make Motion Score Generation Optional
 
-#### Decision
+### Decision
 
 Removed motion score computation from the standard evidence-generation workflow while retaining support for future experimentation.
 
-#### Rationale
+### Rationale
 
 Motion analysis substantially increased processing time and resource consumption while providing limited immediate value for baseline experimentation. Retaining the capability as an optional feature preserves future research flexibility.
 
 ### 2. Adopt Development-Subset Optimization Prior to Full-Dataset Execution
 
-#### Decision
+### Decision
 
 Introduced a two-stage experimental methodology consisting of development-subset experimentation followed by full-dataset execution using optimized configurations.
 
-#### Rationale
+### Rationale
 
 Development-subset experiments reduce computational cost during workflow validation and parameter optimization while ensuring final results are generated using consistent, frozen configurations.
 
 ### 3. Separate Development Experiments from Final Full-Dataset Experiments
 
-#### Decision
+### Decision
 
 Created dedicated workflows for development experimentation and final full-dataset execution.
 
-#### Rationale
+### Rationale
 
 Separating exploratory experimentation from final evaluation improves reproducibility, reduces accidental configuration drift, and ensures that final results are generated using validated experimental settings.
 
