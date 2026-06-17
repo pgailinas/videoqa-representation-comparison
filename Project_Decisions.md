@@ -1,3 +1,9 @@
+---
+title: Project Decisions
+nav_order: 3
+has_children: true
+has_toc: false
+---
 # Project Decisions
 
 This document records significant project decisions, implementation direction changes, and architectural milestones for the VideoQA representation-learning project.
