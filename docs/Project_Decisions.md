@@ -4,6 +4,7 @@ nav_order: 11
 has_children: true
 has_toc: false
 ---
+
 # Project Decisions
 
 This document records significant project decisions, implementation direction changes, and architectural milestones for the VideoQA representation-learning project. Only major decisions that materially affect project design, workflow, methodology, or outcomes are recorded.
@@ -14,7 +15,7 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ## Project Formation
 
-### May 2026 — Initiate VideoQA Research Project
+### May 2026 (05/20) — Initiate VideoQA Research Project
 
 #### Decision
 
@@ -24,11 +25,9 @@ Established a research project and GitHub repository to investigate Video Questi
 
 The project was created to support ECE-551 (Problems in Machine Learning) at the University of New Mexico and to provide a structured environment for exploring machine-learning approaches to video understanding, multimodal reasoning, and experimental evaluation. The repository serves as the authoritative source for project documentation, implementation, results, and research artifacts.
 
-**Project Start Date:** May 20, 2026
-
 ---
 
-### May 2026 (05/30) — Adopt NExT-QA as the Primary Benchmark Dataset
+### May 2026 — Adopt NExT-QA as the Primary Benchmark Dataset
 
 #### Decision
 
