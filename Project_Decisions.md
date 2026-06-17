@@ -4,6 +4,8 @@ This document records significant project decisions, implementation direction ch
 
 Only major decisions that materially affect project design, workflow, methodology, or outcomes are recorded.
 
+Dates marked "XX" are approximate and will be refined from Git commit history when possible.
+
 ---
 
 ## 2026-05-XX — Adopt NExT-QA as the Primary Benchmark Dataset
