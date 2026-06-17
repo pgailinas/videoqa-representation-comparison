@@ -13,9 +13,9 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ---
 
-## Project Formation
+## Project Formation (May 2026)
 
-### May 2026 (05/20) — Initiate VideoQA Research Project
+### Initiate VideoQA Research Project (05/20)
 
 #### Decision
 
