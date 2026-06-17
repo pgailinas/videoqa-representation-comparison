@@ -12,15 +12,10 @@ This document records significant project decisions, implementation direction ch
 Dates are provided when known or when a decision corresponds to a significant project milestone. For some decisions, only the approximate development period is recorded.
 
 ## Project Formation (May 2026)
-
 ### 1. Initiate VideoQA Research Project (05/20)
-
 ### Decision
-
 Established a research project and GitHub repository to investigate Video Question Answering (VideoQA) using multimodal foundation models, public benchmark datasets, and reproducible notebook-driven experimentation.
-
 ### Rationale
-
 The project was created to support ECE-551 (Problems in Machine Learning) at the University of New Mexico and to provide a structured environment for exploring machine-learning approaches to video understanding, multimodal reasoning, and experimental evaluation. The repository serves as the authoritative source for project documentation, implementation, results, and research artifacts.
 
 ### 2. Adopt NExT-QA as the Primary Benchmark Dataset
