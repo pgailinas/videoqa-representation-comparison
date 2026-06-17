@@ -15,7 +15,7 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ## Project Formation (May 2026)
 
-### 1. Initiate VideoQA Research Project (05/20)
+### (1) Initiate VideoQA Research Project (05/20)
 
 ### Decision
 
@@ -25,7 +25,7 @@ Established a research project and GitHub repository to investigate Video Questi
 
 The project was created to support ECE-551 (Problems in Machine Learning) at the University of New Mexico and to provide a structured environment for exploring machine-learning approaches to video understanding, multimodal reasoning, and experimental evaluation. The repository serves as the authoritative source for project documentation, implementation, results, and research artifacts.
 
-### 2. Adopt NExT-QA as the Primary Benchmark Dataset
+### 2) Adopt NExT-QA as the Primary Benchmark Dataset
 
 ### Decision
 
