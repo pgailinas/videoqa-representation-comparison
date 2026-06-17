@@ -6,17 +6,15 @@ has_toc: false
 ---
 # Project Decisions
 
-This document records significant project decisions, implementation direction changes, and architectural milestones for the VideoQA representation-learning project.
+This document records significant project decisions, implementation direction changes, and architectural milestones for the VideoQA representation-learning project. Only major decisions that materially affect project design, workflow, methodology, or outcomes are recorded.
 
-Only major decisions that materially affect project design, workflow, methodology, or outcomes are recorded.
-
-Dates marked "XX" are approximate and will be refined from Git commit history when possible.
+Dates are provided when known or when a decision corresponds to a significant project milestone. For some decisions, only the approximate development period is recorded.
 
 ---
 
 ## Project Formation
 
-### 2026-05-XX — Adopt NExT-QA as the Primary Benchmark Dataset
+### May 2026 — Adopt NExT-QA as the Primary Benchmark Dataset
 
 #### Decision
 
@@ -28,7 +26,7 @@ NExT-QA provides a widely used benchmark containing video-question-answer pairs 
 
 ---
 
-### 2026-05-XX — Use Qwen2-VL-7B as the Common VideoQA Foundation Model
+### May 2026 — Use Qwen2-VL-7B as the Common VideoQA Foundation Model
 
 #### Decision
 
@@ -40,7 +38,7 @@ Using a single multimodal foundation model across all experiments allows perform
 
 ---
 
-### 2026-05-XX — Maintain a Fixed Downstream VideoQA Model
+### May 2026 — Maintain a Fixed Downstream VideoQA Model
 
 #### Decision
 
@@ -54,7 +52,7 @@ The objective of the project is to evaluate the impact of different video repres
 
 ## Architecture Development
 
-### 2026-06-XX — Separate Video Preparation and Evidence Generation
+### June 2026 — Separate Video Preparation and Evidence Generation
 
 #### Decision
 
@@ -66,7 +64,7 @@ Separating preprocessing from downstream experimentation improves modularity, re
 
 ---
 
-### 2026-06-XX — Standardize on Evidence Segments Rather Than Full Videos
+### June 2026 — Standardize on Evidence Segments Rather Than Full Videos
 
 #### Decision
 
@@ -78,7 +76,7 @@ Processing videos as evidence segments improves scalability, enables consistent 
 
 ---
 
-### 2026-06-XX — Adopt Evidence Metadata as the Central Intermediate Representation
+### June 2026 — Adopt Evidence Metadata as the Central Intermediate Representation
 
 #### Decision
 
@@ -90,7 +88,7 @@ Evidence metadata provides a reusable abstraction between raw video assets and d
 
 ---
 
-### 2026-06-XX — Adopt Combined Archive Distribution Strategy
+### June 2026 — Adopt Combined Archive Distribution Strategy
 
 #### Decision
 
@@ -104,7 +102,7 @@ A single archive simplifies dataset management, reduces setup complexity, elimin
 
 ## Project Redesign
 
-### 2026-06-11 — Transition from Retrieval-Augmented Generation to Representation Learning
+### June 2026 (06/11) — Transition from Retrieval-Augmented Generation to Representation Learning
 
 #### Decision
 
@@ -116,7 +114,7 @@ The revised direction increases emphasis on machine-learning concepts and self-s
 
 ---
 
-### 2026-06-11 — Introduce Autoencoder-Based Representation Learning
+### June 2026 (06/11) — Introduce Autoencoder-Based Representation Learning
 
 #### Decision
 
@@ -128,7 +126,7 @@ Autoencoders provide a mechanism for learning compact latent video representatio
 
 ---
 
-### 2026-06-11 — Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
+### June 2026 — Retain Baseline, Pretrained, and Autoencoder Experimental Pipelines
 
 #### Decision
 
@@ -144,7 +142,7 @@ Maintaining all three workflows enables direct comparison between raw video evid
 
 ---
 
-### 2026-06-XX — Evaluate Representation Quality Through Downstream VideoQA Performance
+### June 2026 — Evaluate Representation Quality Through Downstream VideoQA Performance
 
 #### Decision
 
@@ -158,7 +156,7 @@ While representation quality can be measured through reconstruction metrics, emb
 
 ## Experimental Methodology
 
-### 2026-06-13 — Make Motion Score Generation Optional
+### June 2026 — Make Motion Score Generation Optional
 
 #### Decision
 
@@ -170,7 +168,7 @@ Motion analysis substantially increased processing time and resource consumption
 
 ---
 
-### 2026-06-XX — Adopt Development-Subset Optimization Prior to Full-Dataset Execution
+### June 2026 — Adopt Development-Subset Optimization Prior to Full-Dataset Execution
 
 #### Decision
 
@@ -182,7 +180,7 @@ Development-subset experiments reduce computational cost during workflow validat
 
 ---
 
-### 2026-06-XX — Separate Development Experiments from Final Full-Dataset Experiments
+### June 2026 — Separate Development Experiments from Final Full-Dataset Experiments
 
 #### Decision
 
