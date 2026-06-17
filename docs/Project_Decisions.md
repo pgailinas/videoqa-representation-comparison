@@ -38,6 +38,18 @@ Using a single multimodal foundation model across all experiments allows perform
 
 ---
 
+## 2026-05-XX — Maintain a Fixed Downstream VideoQA Model
+
+### Decision
+
+Maintained a single downstream VideoQA inference model across all experimental workflows.
+
+### Rationale
+
+The objective of the project is to evaluate the impact of different video representations rather than compare VideoQA model architectures. Keeping the downstream inference model fixed isolates the effects of representation quality and enables direct comparison between baseline video evidence, pretrained representations, and autoencoder-based latent representations.
+
+---
+
 ## 2026-05-XX — Adopt a Notebook-Driven Experimental Framework
 
 ### Decision
@@ -71,6 +83,18 @@ Standardized on evidence metadata and structured video evidence records as the p
 ### Rationale
 
 Evidence metadata provides a reusable abstraction between raw video assets and downstream experiments. This approach supports baseline VideoQA, pretrained representation generation, autoencoder training, and final evaluation using a common evidence framework.
+
+---
+
+## 2026-06-XX — Standardize on Evidence Segments Rather Than Full Videos
+
+### Decision
+
+Established structured video evidence segments as the primary unit of processing throughout the experimental pipeline.
+
+### Rationale
+
+Processing videos as evidence segments improves scalability, enables consistent metadata generation, supports representation learning workflows, and provides a common input format for baseline inference, pretrained representations, and autoencoder-based representations.
 
 ---
 
@@ -123,6 +147,18 @@ Organized the project around three comparative experimental workflows:
 ### Rationale
 
 Maintaining all three workflows enables direct comparison between raw video evidence, pretrained feature representations, and learned latent representations while using a common evaluation framework.
+
+---
+
+## 2026-06-XX — Evaluate Representation Quality Through Downstream VideoQA Performance
+
+### Decision
+
+Selected downstream VideoQA performance as the primary method for evaluating learned and pretrained video representations.
+
+### Rationale
+
+While representation quality can be measured through reconstruction metrics, embedding statistics, or compression characteristics, downstream task performance provides a practical assessment of whether a representation preserves information useful for multimodal reasoning and question answering.
 
 ---
 
