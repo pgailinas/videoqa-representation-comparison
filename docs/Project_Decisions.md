@@ -14,13 +14,15 @@ Dates marked "XX" are approximate and will be refined from Git commit history wh
 
 ---
 
-## 2026-05-XX — Adopt NExT-QA as the Primary Benchmark Dataset
+## Project Formation
 
-### Decision
+### 2026-05-XX — Adopt NExT-QA as the Primary Benchmark Dataset
+
+#### Decision
 
 Selected the NExT-QA benchmark dataset as the foundation for all VideoQA experiments.
 
-### Rationale
+#### Rationale
 
 NExT-QA provides a widely used benchmark containing video-question-answer pairs designed to evaluate causal, temporal, and descriptive reasoning. The dataset offers sufficient scale and diversity to support representation-learning experiments and downstream VideoQA evaluation.
 
