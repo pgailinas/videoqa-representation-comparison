@@ -70,22 +70,22 @@ videoqa-representation-comparison/
 ├── notebooks/
 │   ├── 01_Prepare_Video_Evidence.ipynb
 │   ├── 02_Run_Baseline_VideoQA.ipynb
-│   ├── 03_Generate_Pretrained_Representations.ipynb
-│   ├── 04_Generate_Autoencoder_Representations.ipynb
-│   ├── 05_Run_Representation_VideoQA.ipynb
-│   ├── 06_Run_Final_Full_Experiments.ipynb
-│   └── 07_Evaluate_VideoQA_Results.ipynb
+│   ├── 03_Train_Autoencoder.ipynb
+│   ├── 04_Generate_Reconstructed_Videos.ipynb
+│   ├── 05_Run_Autoencoder_VideoQA.ipynb
+│   ├── 06_Evaluate_Development_Results.ipynb
+│   └── 07_Run_Final_Full_Experiment.ipynb
 │
 ├── docs/
 │   ├── _config.yml
 │   ├── index.md
 │   ├── 01_Prepare_Video_Evidence.md
 │   ├── 02_Run_Baseline_VideoQA.md
-│   ├── 03_Generate_Pretrained_Representations.md
-│   ├── 04_Generate_Autoencoder_Representations.md
-│   ├── 05_Run_Representation_VideoQA.md
-│   ├── 06_Run_Final_Full_Experiments.md
-│   ├── 07_Evaluate_VideoQA_Results.md
+│   ├── 03_Train_Autoencoder.md
+│   ├── 04_Generate_Reconstructed_Videos.md
+│   ├── 05_Run_Autoencoder_VideoQA.md
+│   ├── 06_Evaluate_Development_Results.md
+│   ├── 07_Run_Final_Full_Experiment.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
