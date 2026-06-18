@@ -124,21 +124,20 @@ Qwen2-VL-7B serves as the fixed VideoQA inference model throughout all experimen
 
 ### Notebook Workflow
 
-The project is organized into a sequence of notebooks that support reproducible experimentation across baseline, pretrained-representation, and autoencoder-representation VideoQA workflows.
+The project is organized as a sequence of notebooks that support reproducible experimentation in self-supervised autoencoder learning and downstream Video Question Answering (VideoQA). The workflow includes development-subset experimentation for parameter selection followed by full-dataset experiments using optimized configurations.
 
-| Notebook                                | Purpose                                                                         |
-| --------------------------------------- | ------------------------------------------------------------------------------- |
-| 01_Prepare_Video_Evidence               | Generate evidence metadata and video evidence segments.                         |
-| 02_Run_Baseline_VideoQA                 | Execute development-subset baseline VideoQA experiments and optimize inference  |
-|                                         |      parameters.                                                                |
-| 03_Generate_Pretrained_Representations  | Generate pretrained video representations from video evidence segments.         |
-| 04_Generate_Autoencoder_Representations | Train self-supervised autoencoder models and generate latent representations.   |
-| 05_Run_Representation_VideoQA           | Execute development-subset representation VideoQA experiments and optimize      |
-|                                         |      representation parameters.                                                 |
-| 06_Run_Final_Full_Experiments           | Execute full-dataset baseline, pretrained-representation, and autoencoder       |
-|                                         |     representation experiments.                                                 |
-| 07_Evaluate_VideoQA_Results             | Generate evaluation metrics, analysis summaries, visualizations, and experiment |
-|                                         |     reports.                                                                    |
+| Notebook                             | Purpose                                                                                                                               |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **01_Prepare_Video_Evidence**        | Generate evidence metadata, video segments, and supporting resources required for autoencoder training and VideoQA experimentation.   |
+| **02_Run_Baseline_VideoQA**          | Execute development-subset baseline VideoQA experiments using original video evidence and Qwen2-VL-7B.                                |
+| **03_Train_Autoencoder**             | Train self-supervised autoencoder models using unlabeled video evidence and learn compact latent representations.                     |
+| **04_Generate_Reconstructed_Videos** | Generate reconstructed video segments and measure reconstruction quality and compression characteristics.                             |
+| **05_Run_Autoencoder_VideoQA**       | Execute development-subset VideoQA experiments using autoencoder-reconstructed video evidence and Qwen2-VL-7B.                        |
+| **06_Evaluate_Development_Results**  | Generate evaluation metrics, compression analysis, runtime analysis, visualizations, and development-subset comparison reports.       |
+| **07_Run_Final_Full_Experiment**     | Train and evaluate the selected autoencoder configuration using the complete NExT-QA dataset and generate final experimental results. |
+
+The notebook workflow follows a two-stage experimental methodology. Development-subset experiments are used to evaluate autoencoder architectures, compression settings, reconstruction quality, and VideoQA performance. After parameter selection, a final full-dataset experiment is performed to generate the project's primary results and conclusions.
+
 
 ## Experimental Methodology
 
