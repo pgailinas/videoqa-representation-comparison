@@ -96,21 +96,23 @@ Raw videos are processed into structured evidence segments containing temporal m
 
 ## System Architecture
 
-The experimental framework is centered on the Qwen2-VL-7B multimodal foundation model and a representation-learning pipeline built upon NExT-QA video evidence segments.
+The experimental framework combines self-supervised autoencoder learning with multimodal Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B foundation model.
 
-Video preprocessing generates structured evidence records consisting of temporal video segments, frame samples, metadata, and supporting evidence artifacts. These evidence units serve as inputs to both pretrained representation models and self-supervised autoencoder training workflows.
+Video preprocessing generates structured evidence records consisting of temporal video segments, frame samples, and associated metadata. These evidence segments serve as the foundation for both baseline VideoQA experiments and self-supervised autoencoder training.
 
-The system architecture supports three primary experimental workflows:
+The system architecture supports two primary experimental workflows:
 
-1. **Baseline VideoQA** — Direct VideoQA inference using Qwen2-VL-7B and sampled video evidence.
+1. **Baseline VideoQA** — Direct VideoQA inference using original video evidence and Qwen2-VL-7B.
 
-2. **Pretrained Representation VideoQA** — Video evidence represented using pretrained video features and evaluated through downstream Qwen2-VL-7B VideoQA inference.
+2. **Autoencoder-Based VideoQA** — Self-supervised autoencoder training using unlabeled video evidence, generation of reconstructed video segments, and downstream VideoQA inference using Qwen2-VL-7B.
 
-3. **Autoencoder Representation VideoQA** — Video evidence represented using latent features learned through self-supervised autoencoder training and evaluated through downstream Qwen2-VL-7B VideoQA inference.
+During the self-supervised learning phase, the autoencoder is trained using only video evidence. Questions, answer choices, and ground-truth labels are not used during representation learning. The autoencoder learns compact latent representations by encoding and reconstructing video segments, encouraging the model to capture meaningful semantic and temporal information while reducing data dimensionality.
 
-The autoencoder learns compact latent representations of video segments without requiring manual labels. These latent representations serve as compressed feature vectors intended to preserve semantic and temporal information while reducing dimensionality. The resulting encoder serves as a learned feature extractor whose latent embeddings are evaluated through downstream VideoQA performance and compared directly with pretrained video representations.
+The learned representations are subsequently evaluated by reconstructing video evidence and providing the reconstructed videos to Qwen2-VL-7B for VideoQA inference. Performance is compared against a baseline workflow that uses the original video evidence directly. This design enables assessment of how much information is preserved by the learned representations and how representation compression affects downstream reasoning performance.
 
-The architecture is designed to isolate the effects of representation learning while maintaining a consistent VideoQA foundation model across all experiments. This enables direct comparison of baseline evidence, pretrained representations, and learned latent representations while controlling for inference model architecture.
+The experimental workflow is divided into two stages. Development experiments are first performed using a small subset of videos to evaluate model configurations, compression settings, and reconstruction quality. Once parameters have been selected, a final full-dataset experiment is executed using the complete NExT-QA video collection.
+
+Qwen2-VL-7B serves as the fixed VideoQA inference model throughout all experiments. By holding the downstream reasoning model constant and varying only the representation-learning stage, the architecture isolates the effects of self-supervised autoencoder learning on VideoQA performance, reasoning quality, compression efficiency, and computational requirements.
 
 ---
 
