@@ -31,23 +31,13 @@ This project investigates that question by training autoencoders using unlabeled
 
 ## Research Objectives
 
-This project investigates whether self-supervised autoencoder learning can produce compact video representations that preserve the information required for downstream Video Question Answering (VideoQA). The research focuses on learning video representations from unlabeled video data and evaluating their effectiveness through VideoQA performance on the NExT-QA benchmark dataset.
+The objectives of this project are:
 
-The primary objectives of this work are:
-
-1. Train self-supervised autoencoder models using unlabeled NExT-QA video data and learn compact latent video representations without the use of questions, answer choices, or ground-truth labels.
-
-2. Evaluate the ability of reconstructed video evidence generated from learned representations to support downstream VideoQA reasoning using a fixed multimodal foundation model.
-
-3. Measure the relationship between representation compression and VideoQA performance, including the effects of reconstruction quality, latent dimensionality, and compression ratio.
-
-4. Compare autoencoder-based VideoQA performance against a baseline VideoQA workflow using original video evidence.
-
-5. Analyze how learned representations affect causal, temporal, and descriptive reasoning performance within the NExT-QA benchmark.
-
-To isolate the effects of representation learning, the same multimodal foundation model, Qwen2-VL-7B, is used throughout all VideoQA experiments. This design ensures that observed performance differences can be attributed primarily to the quality of the learned representations rather than changes in downstream model architecture.
-
-The primary research hypothesis is that self-supervised autoencoder learning can produce compact video representations that preserve sufficient semantic and temporal information to support accurate VideoQA reasoning while reducing the amount of information required to represent the original video content.
+1. Learn compact video representations using self-supervised autoencoder training.
+2. Evaluate reconstructed-video performance on downstream VideoQA tasks.
+3. Measure the relationship between compression, reconstruction quality, and VideoQA accuracy.
+4. Compare autoencoder-based VideoQA against a baseline workflow using original video evidence.
+5. Analyze reasoning performance across NExT-QA categories.
 
 ## Research Questions
 
@@ -161,25 +151,9 @@ Evaluation results are analyzed across the NExT-QA causal, temporal, and descrip
 
 The objective of this work is not to develop a new VideoQA model, but rather to investigate whether self-supervised autoencoder learning can produce compact video representations that support effective downstream multimodal reasoning.
 
-## Repository Organization
-
-The repository is organized as a modular, notebook-driven research environment designed to support reproducible experimentation in self-supervised autoencoder learning and Video Question Answering (VideoQA).
-
-The project structure separates dataset preparation, video evidence generation, autoencoder training, video reconstruction, VideoQA inference, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and supporting configuration modules. This organization enables development-subset experimentation, full-dataset evaluation, and iterative refinement of model architectures and experimental parameters.
-
-Supporting directories include benchmark dataset resources, video assets, question-answer annotations, metadata resources, trained autoencoder models, reconstructed video outputs, experimental results, configuration modules, notebooks, and documentation resources. These components are organized to support reproducible machine-learning experimentation while maintaining a clear separation between data preparation, model training, inference, evaluation, and reporting activities.
-
-The repository is designed to facilitate academic research, experimental reproducibility, and future extensions involving self-supervised learning, video representation learning, multimodal foundation models, and VideoQA systems.
-
 ## Notebook Design Philosophy
 
-The notebooks are designed to be independently executable, reproducible, and suitable for both Google Colab and local Jupyter environments. Each notebook performs a well-defined stage of the experimental workflow and can be executed as a standalone component while maintaining compatibility with the complete end-to-end pipeline.
-
-The project follows a two-stage experimental methodology. Development notebooks support rapid experimentation, parameter tuning, architecture evaluation, and workflow validation using a small subset of the NExT-QA dataset. Once an effective configuration has been identified, the final experiment notebook applies the selected parameters to the complete dataset to generate the project's primary results.
-
-To improve transparency and reproducibility, every major notebook step produces visible output that confirms successful execution, reports key runtime information, validates intermediate results, or displays generated artifacts. This design enables users to verify workflow progress, identify potential issues quickly, and understand how data and models evolve throughout the experimental process.
-
-The notebooks emphasize modularity, incremental validation, and clear documentation to support academic research, reproducibility, and future extension of the framework.
+The notebooks are designed to be independently executable, reproducible, and suitable for both Google Colab and local Jupyter environments. Development notebooks support rapid experimentation using a small dataset subset, while the final experiment notebook executes full-dataset evaluation using the selected configuration. Each notebook produces visible outputs that validate execution progress and generated artifacts.
 
 ## Expected Contributions
 
