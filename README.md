@@ -1,4 +1,4 @@
-# Comparing Pretrained and Autoencoder-Based Representations for VideoQA
+# Investigating Self-Supervised Autoencoder Learning for VideoQA
 
 This project investigates self-supervised representation learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B multimodal foundation model.
 
