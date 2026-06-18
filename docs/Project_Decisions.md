@@ -121,12 +121,6 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** The baseline workflow provides a consistent reference point for evaluating the effects of representation learning, reconstruction quality, and information compression. Comparing reconstructed video evidence against original video evidence enables direct assessment of information preservation and downstream reasoning performance.
 
-### 4) Adopt a Development-Subset and Final-Experiment Workflow Structure (06/18)
-
-**Decision:** Formalized the separation between development-subset experimentation and final full-dataset experimentation within the notebook workflow and project architecture.
-
-**Rationale:** Development-subset experiments provide an efficient mechanism for workflow validation and parameter optimization. A dedicated final experiment ensures that the project's primary results are generated using the complete benchmark dataset and a validated configuration.
-
 ---
 
 ## Experimental Methodology (June 2026)
