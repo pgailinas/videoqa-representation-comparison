@@ -101,6 +101,34 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ---
 
+## Project Refinement (June 2026)
+
+### 1) Transition from Representation Comparison to Autoencoder-Centered Research (06/18)
+
+**Decision:** Refined the project scope from comparison of pretrained and autoencoder-based video representations to a focused investigation of self-supervised autoencoder learning for Video Question Answering (VideoQA).
+
+**Rationale:** While representation comparison provided a useful experimental framework, the revised direction places greater emphasis on machine-learning methodology, self-supervised learning, representation learning, and downstream task evaluation. The new scope more closely aligns with the project's primary research objective of determining whether compact representations learned from unlabeled video data preserve sufficient information for VideoQA reasoning.
+
+### 2) Remove Pretrained Representation Workflow from the Experimental Pipeline (06/18)
+
+**Decision:** Removed the pretrained-representation experimental branch from the project architecture and notebook workflow.
+
+**Rationale:** Eliminating the pretrained-representation workflow simplifies the experimental design and allows the project to focus on the relationship between self-supervised representation learning, video reconstruction, compression, and downstream VideoQA performance.
+
+### 3) Retain Baseline VideoQA as the Control Condition (06/18)
+
+**Decision:** Retained the baseline VideoQA workflow using original video evidence while establishing autoencoder-based VideoQA as the primary experimental workflow.
+
+**Rationale:** The baseline workflow provides a consistent reference point for evaluating the effects of representation learning, reconstruction quality, and information compression. Comparing reconstructed video evidence against original video evidence enables direct assessment of information preservation and downstream reasoning performance.
+
+### 4) Adopt a Development-Subset and Final-Experiment Workflow Structure (06/18)
+
+**Decision:** Formalized the separation between development-subset experimentation and final full-dataset experimentation within the notebook workflow and project architecture.
+
+**Rationale:** Development-subset experiments provide an efficient mechanism for workflow validation and parameter optimization. A dedicated final experiment ensures that the project's primary results are generated using the complete benchmark dataset and a validated configuration.
+
+---
+
 ## Experimental Methodology (June 2026)
 
 ### 1) Make Motion Score Generation Optional
