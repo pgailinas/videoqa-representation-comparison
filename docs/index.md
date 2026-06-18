@@ -11,13 +11,9 @@ This project investigates self-supervised autoencoder learning for Video Questio
 
 The central objective is to determine whether video representations learned through self-supervised training on unlabeled video data preserve sufficient semantic and temporal information to support downstream VideoQA tasks. Rather than training a new VideoQA model from scratch, the project focuses on learning compact video representations and evaluating their effectiveness using a fixed VideoQA inference model.
 
-Video evidence generated from the NExT-QA dataset is used to train an autoencoder without access to questions, answer choices, or ground-truth labels. The autoencoder learns compressed latent representations by reconstructing video segments from encoded feature vectors, enabling representation learning through self-supervision rather than manual annotation.
+The study compares a baseline VideoQA workflow using original video evidence with an autoencoder-based workflow using reconstructed video evidence. By holding the VideoQA model constant and varying only the representation-learning stage, the project evaluates how representation compression affects downstream reasoning performance.
 
-To evaluate representation quality, reconstructed video segments are provided to Qwen2-VL-7B together with NExT-QA questions and answer choices. VideoQA performance is then compared against a baseline workflow that performs direct inference on the original video evidence. This approach enables assessment of how well learned representations preserve information required for temporal, causal, and descriptive reasoning.
-
-The experimental methodology uses a two-stage process. Development-subset experiments are first conducted using a small collection of videos to evaluate model configurations, compression settings, and reconstruction quality. After parameter selection, a final experiment is performed using the complete NExT-QA dataset to generate full-scale results and performance analysis.
-
-The repository provides a reproducible notebook-driven research environment for investigating self-supervised representation learning, video compression, multimodal reasoning, and downstream VideoQA performance. The framework is designed to support academic research, experimental evaluation, and future IEEE-style publication development.
+Experiments are conducted using a two-stage methodology consisting of development-subset experimentation followed by full-dataset evaluation. The repository provides a reproducible notebook-driven research environment for investigating self-supervised representation learning, video compression, multimodal reasoning, and downstream VideoQA performance.
 
 ## Motivation and Research Problem
 
