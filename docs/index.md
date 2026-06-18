@@ -53,40 +53,46 @@ The primary research hypothesis is that self-supervised autoencoder learning can
 
 This project investigates the following research questions:
 
-1. Can self-supervised autoencoder training learn compact latent video representations that preserve information relevant to VideoQA?
+1. Can self-supervised autoencoder training learn compact video representations from unlabeled video data while preserving information relevant to Video Question Answering (VideoQA)?
 
-2. How do autoencoder-based latent representations compare with pretrained video representations on downstream VideoQA tasks?
+2. How does VideoQA performance change when reconstructed video evidence generated from learned autoencoder representations is used instead of original video evidence?
 
-3. What impact does representation learning have on temporal, causal, and descriptive reasoning performance?
+3. What relationship exists between representation compression, reconstruction quality, and downstream VideoQA performance?
 
-4. Can compressed latent representations reduce storage and computational requirements while maintaining acceptable VideoQA accuracy?
+4. How do learned autoencoder representations affect causal, temporal, and descriptive reasoning performance within the NExT-QA benchmark dataset?
+
+5. Can self-supervised autoencoder representations reduce storage and computational requirements while maintaining acceptable VideoQA accuracy?
+
+6. To what extent does information loss introduced by video compression impact downstream multimodal reasoning performance?
 
 ## Dataset
 
-The primary benchmark dataset used in this project is NExT-QA, a Video Question Answering (VideoQA) benchmark designed to evaluate causal, temporal, and descriptive reasoning over video content.
+The primary benchmark dataset used in this project is NExT-QA, a Video Question Answering (VideoQA) dataset designed to evaluate visual understanding and reasoning across real-world video content. NExT-QA contains questions that require models to reason about actions, events, temporal relationships, and contextual interactions occurring within video sequences.
 
-The dataset provides raw video files, question-answer annotations, official training, validation, and test splits, and metadata required to associate questions with source videos.
+The dataset provides raw video files, question-answer annotations, official training, validation, and test splits, and supporting metadata that associates questions with their corresponding source videos.
 
 The experimental dataset includes:
 
-- NExT-QA video collection containing 5,440 MP4 videos organized within the NExTVideo directory structure
-- Training, validation, and test question-answer splits containing 47,692 benchmark questions
-- Video identifier mapping metadata
-- Optional relation annotations for advanced reasoning experiments
+* NExT-QA video collection containing 5,440 MP4 videos organized within the NExTVideo directory structure
+* Training, validation, and test question-answer splits containing 47,692 benchmark questions
+* Video identifier mapping metadata
+* Question categories and reasoning annotations
+
+Within this project, the NExT-QA videos serve two distinct purposes. During self-supervised learning, the videos are used without questions, answer choices, or ground-truth labels to train autoencoder models and learn compact video representations. During evaluation, the NExT-QA questions and answers are used to measure how well the learned representations support downstream VideoQA reasoning.
 
 ### NExT-QA Reasoning Categories
 
 NExT-QA is designed to evaluate video understanding through three primary reasoning categories:
 
-| Category | Description |
-|-----------|-------------|
-| Causal | Why events occur and how actions produce outcomes. |
-| Temporal | Event order and temporal relationships. |
+| Category    | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| Causal      | Why events occur and how actions produce outcomes.   |
+| Temporal    | Event order and temporal relationships.              |
 | Descriptive | Objects, actions, attributes, locations, and counts. |
 
-These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to evaluate how different video representations affect causal, temporal, and descriptive reasoning performance.
+These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to determine how well information learned through self-supervised autoencoder training supports causal, temporal, and descriptive reasoning tasks.
 
-Raw videos are processed into structured evidence segments containing temporal metadata and representative frame samples. These evidence units serve as the foundation for representation learning, latent feature extraction, pretrained feature generation, and downstream VideoQA experimentation.
+Raw videos are processed into structured evidence segments containing temporal metadata, video segment boundaries, and representative frame information. These evidence segments serve as the foundation for autoencoder training, video reconstruction, compression analysis, and downstream VideoQA experimentation.
 
 ## System Architecture
 
