@@ -3,19 +3,21 @@ title: Home
 nav_order: 0
 ---
 
-# Investigating Self-Supervised Autoencoder Representations for VideoQA
+# Investigating Self-Supervised Autoencoder Learning for VideoQA
 
 ## Project Overview
 
-This project investigates self-supervised representation learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B multimodal foundation model.
+This project investigates self-supervised autoencoder learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B multimodal foundation model.
 
-Rather than training a new VideoQA model from scratch, the project evaluates how different video representations influence downstream VideoQA performance. The study compares pretrained video representations with latent representations learned through self-supervised autoencoder training while maintaining a fixed VideoQA model across all experiments.
+The central objective is to determine whether video representations learned through self-supervised training on unlabeled video data preserve sufficient semantic and temporal information to support downstream VideoQA tasks. Rather than training a new VideoQA model from scratch, the project focuses on learning compact video representations and evaluating their effectiveness using a fixed VideoQA inference model.
 
-Qwen2-VL-7B serves as the common VideoQA inference model, allowing performance differences to be attributed primarily to the quality of the underlying video representations rather than changes in model architecture. The framework processes raw videos into structured evidence segments that are used for representation learning, latent feature extraction, representation comparison, and VideoQA experimentation.
+Video evidence generated from the NExT-QA dataset is used to train an autoencoder without access to questions, answer choices, or ground-truth labels. The autoencoder learns compressed latent representations by reconstructing video segments from encoded feature vectors, enabling representation learning through self-supervision rather than manual annotation.
 
-Comparative experiments evaluate baseline inference, pretrained video representations, and autoencoder-based latent representations to measure their impact on answer quality, reasoning performance, representation efficiency, and execution latency.
+To evaluate representation quality, reconstructed video segments are provided to Qwen2-VL-7B together with NExT-QA questions and answer choices. VideoQA performance is then compared against a baseline workflow that performs direct inference on the original video evidence. This approach enables assessment of how well learned representations preserve information required for temporal, causal, and descriptive reasoning.
 
-The repository provides a reproducible notebook-driven research environment using public VideoQA datasets, self-supervised learning techniques, modular AI workflows, and configurable multimodal components suitable for research experimentation and future IEEE-style publication development.
+The experimental methodology uses a two-stage process. Development-subset experiments are first conducted using a small collection of videos to evaluate model configurations, compression settings, and reconstruction quality. After parameter selection, a final experiment is performed using the complete NExT-QA dataset to generate full-scale results and performance analysis.
+
+The repository provides a reproducible notebook-driven research environment for investigating self-supervised representation learning, video compression, multimodal reasoning, and downstream VideoQA performance. The framework is designed to support academic research, experimental evaluation, and future IEEE-style publication development.
 
 ## Motivation and Research Problem
 
