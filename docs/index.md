@@ -3,7 +3,7 @@ title: Home
 nav_order: 0
 ---
 
-# Comparing Autoencoder-Based and Pretrained Video Representations for VideoQA
+# Comparing Pretrained and Autoencoder-Based Video Representations for VideoQA
 
 ## Project Overview
 
