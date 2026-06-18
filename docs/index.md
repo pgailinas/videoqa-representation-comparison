@@ -161,26 +161,6 @@ Evaluation results are analyzed across the NExT-QA causal, temporal, and descrip
 
 The objective of this work is not to develop a new VideoQA model, but rather to investigate whether self-supervised autoencoder learning can produce compact video representations that support effective downstream multimodal reasoning.
 
-## Implementation Framework
-
-The implementation framework integrates self-supervised autoencoder learning, multimodal Video Question Answering (VideoQA), and Python-based machine learning technologies to support reproducible experimentation and evaluation.
-
-The framework incorporates the Qwen2-VL-7B multimodal foundation model, autoencoder architectures for self-supervised representation learning, GPU-accelerated training and inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments.
-
-Autoencoder training is performed using unlabeled video evidence generated from the NExT-QA dataset. The learned representations are evaluated through downstream VideoQA performance using reconstructed video evidence and a fixed multimodal reasoning model. This design enables investigation of representation quality while maintaining a consistent VideoQA inference framework.
-
-Supporting technologies include PyTorch, Hugging Face Transformers, NumPy, Pandas, OpenCV, and related libraries used for video processing, autoencoder training, model inference, experimental evaluation, data analysis, and visualization.
-
-| Component                     | Purpose                                                                                    |
-| ----------------------------- | ------------------------------------------------------------------------------------------ |
-| Evidence Generation Pipeline  | Generate video evidence segments and supporting metadata                                   |
-| Autoencoder Learning Pipeline | Train self-supervised autoencoder models and learn compact video representations           |
-| Video Reconstruction Pipeline | Generate reconstructed video evidence and measure compression characteristics              |
-| Qwen2-VL-7B Foundation Model  | Perform VideoQA reasoning and answer generation                                            |
-| Evaluation Pipeline           | Generate performance metrics, visualizations, compression analysis, and experiment reports |
-
-The implementation framework is designed to support both development-subset experimentation and full-dataset evaluation while maintaining reproducibility, modularity, and extensibility for future research in self-supervised learning and VideoQA.
-
 ## Repository Organization
 
 The repository is organized as a modular, notebook-driven research environment designed to support reproducible experimentation in self-supervised autoencoder learning and Video Question Answering (VideoQA).
