@@ -141,69 +141,79 @@ The notebook workflow follows a two-stage experimental methodology. Development-
 
 ## Experimental Methodology
 
-The experimental framework evaluates how different video representations influence downstream VideoQA performance. To manage computational cost while maintaining experimental rigor, the project uses a two-stage evaluation methodology. Development-subset experiments are first used for parameter optimization, workflow validation, and representation tuning. Optimized configurations are then applied to full-dataset experiments for final comparative evaluation.
+The experimental framework investigates whether self-supervised autoencoder learning can produce compact video representations that preserve the information required for downstream Video Question Answering (VideoQA). To balance computational efficiency with experimental rigor, the project employs a two-stage methodology consisting of development-subset experimentation followed by full-dataset evaluation.
 
-Experiments compare baseline video evidence, pretrained video representations, and self-supervised autoencoder-based latent representations using a common VideoQA inference model.
+During the development phase, a small subset of NExT-QA videos is used to evaluate autoencoder architectures, latent dimensionality, compression settings, reconstruction quality, and VideoQA performance. This phase enables rapid experimentation, workflow validation, and parameter optimization while minimizing computational cost.
 
-The experiments evaluate three primary workflows:
+The experimental framework evaluates two primary workflows:
 
-1. **Baseline VideoQA Inference** — Questions are answered using sampled video evidence and Qwen2-VL-7B.
+1. **Baseline VideoQA** — Questions are answered using original video evidence and the Qwen2-VL-7B multimodal foundation model.
 
-2. **Pretrained Representation VideoQA** — Evidence is represented using pretrained video features and supplied to Qwen2-VL-7B for answer generation.
+2. **Autoencoder-Based VideoQA** — An autoencoder is trained using unlabeled video evidence, reconstructed video segments are generated from learned representations, and VideoQA inference is performed using Qwen2-VL-7B.
 
-3. **Autoencoder Representation VideoQA** — Evidence is represented using latent embeddings learned through self-supervised autoencoder training and supplied to Qwen2-VL-7B for answer generation.
+Following development-subset experimentation, the selected autoencoder configuration is trained and evaluated using the complete NExT-QA dataset. This final experiment generates the project's primary performance results and enables assessment of how well the learned representations generalize across the full benchmark.
 
-Development-subset experiments are conducted using a small portion of the dataset to evaluate parameter settings, representation-learning configurations, and inference workflows. Once parameter optimization is complete, final baseline, pretrained-representation, and autoencoder-representation experiments are executed using the full evaluation dataset. This separation reduces computational cost while ensuring that final results are generated using a consistent optimized configuration.
+Qwen2-VL-7B serves as the fixed VideoQA inference model throughout all experiments. By maintaining a consistent downstream reasoning model, the study isolates the effects of representation learning and compression while minimizing the influence of changes in model architecture.
 
-Qwen2-VL-7B serves as the fixed multimodal foundation model throughout all experiments. The primary experimental variable is the video representation used to support inference. This design isolates the effects of representation quality while maintaining a consistent VideoQA reasoning model.
+Experimental measurements include reconstruction quality, latent dimensionality, compression ratio, VideoQA answer quality, runtime performance, and storage efficiency. Baseline and autoencoder-based workflows are compared to evaluate the extent to which learned representations preserve semantic and temporal information required for accurate VideoQA reasoning.
 
-Potential representation-learning metrics include reconstruction error, latent dimensionality, compression ratio, and downstream VideoQA performance. Evaluation metrics include VideoQA answer quality, representation-learning metrics, runtime measurements, and comparative analysis across reasoning categories.
+Evaluation results are analyzed across the NExT-QA causal, temporal, and descriptive reasoning categories, as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC). This analysis provides insight into how representation learning affects different forms of video understanding and reasoning.
 
-Evaluation results are analyzed across NExT-QA causal, temporal, and descriptive reasoning categories as well as the dataset's individual question types (CH, CW, TN, TP, TC, DL, DO, and DC).
-
-The objective is not to train a new VideoQA model, but to evaluate how learned video representations influence downstream multimodal reasoning performance.
+The objective of this work is not to develop a new VideoQA model, but rather to investigate whether self-supervised autoencoder learning can produce compact video representations that support effective downstream multimodal reasoning.
 
 ## Implementation Framework
 
-The implementation framework integrates self-supervised learning models, multimodal foundation models, and Python-based machine learning frameworks to support reproducible experimentation across representation-learning workflows.
+The implementation framework integrates self-supervised autoencoder learning, multimodal Video Question Answering (VideoQA), and Python-based machine learning technologies to support reproducible experimentation and evaluation.
 
-The framework incorporates the Qwen2-VL-7B multimodal foundation model, autoencoder architectures, pretrained feature extraction models, GPU-accelerated training and inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments.
+The framework incorporates the Qwen2-VL-7B multimodal foundation model, autoencoder architectures for self-supervised representation learning, GPU-accelerated training and inference libraries, and supporting video-processing frameworks within Google Colab and local Jupyter environments.
 
-Supporting technologies may include PyTorch, Hugging Face Transformers, NumPy, Pandas, OpenCV, and related libraries used for representation learning, latent feature extraction, model training, inference, and experimental evaluation.
+Autoencoder training is performed using unlabeled video evidence generated from the NExT-QA dataset. The learned representations are evaluated through downstream VideoQA performance using reconstructed video evidence and a fixed multimodal reasoning model. This design enables investigation of representation quality while maintaining a consistent VideoQA inference framework.
 
-| Component                          | Purpose                                                      |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Evidence Generation Pipeline       | Generate video evidence segments and metadata                |
-| Representation Learning Pipeline   | Train autoencoder models and generate latent representations |
-| Pretrained Representation Pipeline | Generate pretrained video representations                    |
-| Qwen2-VL-7B Foundation Model       | Perform VideoQA reasoning and answer generation              |
-| Evaluation Pipeline                | Generate metrics, visualizations, and experiment reports     |
+Supporting technologies include PyTorch, Hugging Face Transformers, NumPy, Pandas, OpenCV, and related libraries used for video processing, autoencoder training, model inference, experimental evaluation, data analysis, and visualization.
+
+| Component                     | Purpose                                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------------------ |
+| Evidence Generation Pipeline  | Generate video evidence segments and supporting metadata                                   |
+| Autoencoder Learning Pipeline | Train self-supervised autoencoder models and learn compact video representations           |
+| Video Reconstruction Pipeline | Generate reconstructed video evidence and measure compression characteristics              |
+| Qwen2-VL-7B Foundation Model  | Perform VideoQA reasoning and answer generation                                            |
+| Evaluation Pipeline           | Generate performance metrics, visualizations, compression analysis, and experiment reports |
+
+The implementation framework is designed to support both development-subset experimentation and full-dataset evaluation while maintaining reproducibility, modularity, and extensibility for future research in self-supervised learning and VideoQA.
 
 ## Repository Organization
 
-The repository is organized as a modular notebook-driven research environment designed to support reproducible experimentation across representation-learning and VideoQA workflows.
+The repository is organized as a modular, notebook-driven research environment designed to support reproducible experimentation in self-supervised autoencoder learning and Video Question Answering (VideoQA).
 
-The structure separates dataset preparation, evidence generation, representation learning, feature extraction, VideoQA inference, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and configuration modules.
+The project structure separates dataset preparation, video evidence generation, autoencoder training, video reconstruction, VideoQA inference, evaluation procedures, reporting workflows, and visualization stages into independently executable notebooks and supporting configuration modules. This organization enables development-subset experimentation, full-dataset evaluation, and iterative refinement of model architectures and experimental parameters.
 
-Supporting directories include benchmark dataset resources, extracted video assets, question-answer annotations, metadata resources, learned representations, pretrained features, experimental outputs, configuration modules, notebooks, and documentation resources intended to support extensible machine-learning research workflows.
+Supporting directories include benchmark dataset resources, video assets, question-answer annotations, metadata resources, trained autoencoder models, reconstructed video outputs, experimental results, configuration modules, notebooks, and documentation resources. These components are organized to support reproducible machine-learning experimentation while maintaining a clear separation between data preparation, model training, inference, evaluation, and reporting activities.
+
+The repository is designed to facilitate academic research, experimental reproducibility, and future extensions involving self-supervised learning, video representation learning, multimodal foundation models, and VideoQA systems.
 
 ## Notebook Design Philosophy
 
-The notebooks are designed to be independently executable and reproducible within Google Colab and local Jupyter environments. Development notebooks support rapid experimentation and parameter optimization using dataset subsets, while final experiment notebooks execute full-dataset evaluations using optimized configurations. Every major code cell should produce visible output confirming successful execution, key runtime information, or generated artifacts.
+The notebooks are designed to be independently executable, reproducible, and suitable for both Google Colab and local Jupyter environments. Each notebook performs a well-defined stage of the experimental workflow and can be executed as a standalone component while maintaining compatibility with the complete end-to-end pipeline.
+
+The project follows a two-stage experimental methodology. Development notebooks support rapid experimentation, parameter tuning, architecture evaluation, and workflow validation using a small subset of the NExT-QA dataset. Once an effective configuration has been identified, the final experiment notebook applies the selected parameters to the complete dataset to generate the project's primary results.
+
+To improve transparency and reproducibility, every major notebook step produces visible output that confirms successful execution, reports key runtime information, validates intermediate results, or displays generated artifacts. This design enables users to verify workflow progress, identify potential issues quickly, and understand how data and models evolve throughout the experimental process.
+
+The notebooks emphasize modularity, incremental validation, and clear documentation to support academic research, reproducibility, and future extension of the framework.
 
 ## Expected Contributions
 
-This work contributes a reproducible experimental framework for investigating self-supervised representation learning within VideoQA systems. The research is designed to provide insight into latent representation learning, feature extraction, representation quality, and downstream VideoQA performance.
+This work contributes a reproducible experimental framework for investigating self-supervised autoencoder learning within Video Question Answering (VideoQA) systems. The research is intended to provide insight into how compact video representations learned from unlabeled data affect downstream reasoning performance, reconstruction quality, compression efficiency, and VideoQA accuracy.
 
-Expected contributions include comparative performance benchmarks, representation analysis visualizations, and evaluation of how learned latent representations influence VideoQA answer quality and reasoning performance when compared with pretrained video representations.
+A primary contribution of this work is the evaluation of self-supervised video representation learning while maintaining a fixed VideoQA inference model. By holding the downstream reasoning architecture constant and varying only the representation-learning stage, the project enables direct analysis of how learned representations influence VideoQA performance.
 
-The repository additionally provides an extensible notebook-driven research platform intended to support future experimentation involving autoencoders, self-supervised learning, representation learning, multimodal foundation models, and VideoQA inference systems.
+Expected contributions include performance benchmarks comparing baseline VideoQA inference using original video evidence with VideoQA inference using autoencoder-reconstructed video evidence. These results will provide quantitative measures of how representation compression affects answer quality, temporal reasoning, causal reasoning, descriptive reasoning, runtime performance, and storage requirements.
 
-The project emphasizes machine-learning evaluation of learned video representations rather than retrieval-system engineering or development of a new VideoQA model.
+The project also contributes analysis of the relationship between representation quality and downstream task performance. Reconstruction quality, latent dimensionality, compression ratio, and VideoQA metrics will be examined to better understand how information preservation influences multimodal reasoning capabilities.
 
-A central contribution of this work is the evaluation of self-supervised representation learning while holding the underlying VideoQA foundation model constant. This enables quantitative analysis of how representation quality influences answer accuracy, temporal reasoning performance, representation compactness, and execution efficiency independent of downstream model architecture.
+In addition to the experimental results, the repository provides a reproducible notebook-driven research platform that supports future investigation of self-supervised learning, autoencoder architectures, video representation learning, multimodal foundation models, and VideoQA systems.
 
-An additional contribution is the comparison of learned and pretrained video representations using a common downstream VideoQA task. This provides a practical evaluation of representation quality based on task performance rather than reconstruction quality alone.
+The project emphasizes machine-learning evaluation of learned video representations rather than development of a new VideoQA model. The central research question is whether self-supervised autoencoder learning can produce compact video representations that preserve sufficient semantic and temporal information to support effective downstream VideoQA reasoning.
 
 ---
 
