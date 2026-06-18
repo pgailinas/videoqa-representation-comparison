@@ -3,7 +3,7 @@ title: Home
 nav_order: 0
 ---
 
-# Comparing Pretrained and Autoencoder-Based Representations for VideoQA
+# Investigating Self-Supervised Autoencoder Representations for VideoQA
 
 ## Project Overview
 
