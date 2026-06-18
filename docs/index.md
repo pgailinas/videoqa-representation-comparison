@@ -161,8 +161,6 @@ The project also contributes analysis of the relationship between representation
 
 In addition to the experimental results, the repository provides a reproducible notebook-driven research platform that supports future investigation of self-supervised learning, autoencoder architectures, video representation learning, multimodal foundation models, and VideoQA systems.
 
-The project emphasizes machine-learning evaluation of learned video representations rather than development of a new VideoQA model. The central research question is whether self-supervised autoencoder learning can produce compact video representations that preserve sufficient semantic and temporal information to support effective downstream VideoQA reasoning.
-
 ---
 
 ## References and Further Reading
