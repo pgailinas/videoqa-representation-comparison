@@ -46,8 +46,6 @@ has_toc: false
 
 ## Autoencoders
 
-* <a href="https://www.youtube.com/watch?v=Dp6iICL2dVI" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners – Paper explained and animated!</a>
-
 * <a href="https://www.youtube.com/watch?v=-EBqzYIJRaQ" target="_blank" rel="noopener noreferrer">Masked Autoencoders (MAE) Paper Explained</a>
 
 ### Video Representation Learning
