@@ -1,5 +1,5 @@
-title: Comparing Autoencoder-Based and Pretrained Video Representations for VideoQA
-description: Self-supervised video representation learning for VideoQA using autoencoders, pretrained features, and Qwen2-VL-7B.
+title: Investigating Self-Supervised Autoencoder Learning for VideoQA
+description: Self-supervised autoencoder learning for Video Question Answering (VideoQA).
 
 remote_theme: just-the-docs/just-the-docs@v0.12.0
 
