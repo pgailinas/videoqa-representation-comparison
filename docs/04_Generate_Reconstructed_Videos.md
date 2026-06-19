@@ -1,7 +1,6 @@
 ---
 title: 04 Generate Reconstructed Videos
-nav_order: 6
-has_children: true
+nav_order: 5
 has_toc: false
 ---
 # 04 Generate Reconstructed Videos
