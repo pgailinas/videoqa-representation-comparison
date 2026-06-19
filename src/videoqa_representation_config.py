@@ -57,7 +57,6 @@ EVIDENCE_DIR = OUTPUTS_DIR / "evidence"
 EVIDENCE_METADATA_DIR = EVIDENCE_DIR / "metadata"
 EVIDENCE_REPORTS_DIR = EVIDENCE_DIR / "reports"
 BASELINE_DIR = OUTPUTS_DIR / "baseline"
-BASELINE_REPORTS_DIR = BASELINE_DIR / "reports"
 REPRESENTATIONS_DIR = OUTPUTS_DIR / "representations"
 FINAL_EXPERIMENTS_DIR = OUTPUTS_DIR / "final"
 EVALUATION_DIR = OUTPUTS_DIR / "evaluation"
@@ -75,10 +74,10 @@ EVIDENCE_SUMMARY_CSV = (
     EVIDENCE_REPORTS_DIR / "evidence_summary.csv"
 )
 BASELINE_PREDICTIONS_CSV = (
-    BASELINE_REPORTS_DIR / "baseline_predictions.csv"
+    BASELINE_DIR / "baseline_predictions.csv"
 )
 BASELINE_SUMMARY_CSV = (
-    BASELINE_REPORTS_DIR / "baseline_summary.csv"
+    BASELINE_DIR / "baseline_summary.csv"
 )
 
 # ============================================================
