@@ -114,9 +114,8 @@ videoqa-representation-comparison/
 │
 └── outputs/
     ├── baseline/
-    │   └── reports/
-    │       ├── baseline_predictions.csv
-    │       └── baseline_summary.csv
+    │   ├── baseline_predictions.csv
+    │   └── baseline_summary.csv
     ├── evaluation/
     │   └── reports/
     │       ├── answer_length_metric.csv
