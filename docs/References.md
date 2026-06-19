@@ -19,14 +19,6 @@ has_toc: false
 
 * <a href="https://arxiv.org/abs/2409.12191" target="_blank" rel="noopener noreferrer">Qwen2-VL Technical Report (2024)</a>
 
-## Video Representation Learning
-
-* <a href="https://arxiv.org/abs/2008.03800" target="_blank" rel="noopener noreferrer">A Survey on Deep Learning for Video Representation Learning (2020)</a>
-
-* <a href="https://arxiv.org/abs/2001.07416" target="_blank" rel="noopener noreferrer">Self-Supervised Learning of Video Representations (2020)</a>
-
-* <a href="https://arxiv.org/abs/1906.02634" target="_blank" rel="noopener noreferrer">Video Autoencoders for Learning Compact Video Representations (2019)</a>
-
 ## Autoencoder-Based Video Representations
 
 * <a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Naiman_LV-MAE_Learning_Long_Video_Representations_through_Masked-Embedding_Autoencoders_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer">LV-MAE: Learning Long Video Representations through Masked-Embedding Autoencoders (ICCV 2025)</a>
