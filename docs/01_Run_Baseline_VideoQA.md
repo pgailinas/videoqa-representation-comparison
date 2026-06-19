@@ -1,7 +1,6 @@
 ---
 title: 01 Run Baseline VideoQA
-nav_order: 3
-has_children: true
+nav_order: 2
 has_toc: false
 ---
 # 01 Run Baseline VideoQA
