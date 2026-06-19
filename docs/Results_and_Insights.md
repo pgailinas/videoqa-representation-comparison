@@ -1,7 +1,6 @@
 ---
 title: Results and Insights
-nav_order: 10
-has_children: true
+nav_order: 9
 has_toc: false
 ---
 # Results and Insights
