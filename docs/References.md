@@ -26,11 +26,6 @@ has_toc: false
 
 * <a href="https://arxiv.org/pdf/2111.06377.pdf" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners (CVPR 2022)</a>
 
-* YouTube: <a href="https://www.youtube.com/watch?v=Dp6iICL2dVI" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners – Paper explained and animated!</a>
-
-
-
-
 * <a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Naiman_LV-MAE_Learning_Long_Video_Representations_through_Masked-Embedding_Autoencoders_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer">LV-MAE: Learning Long Video Representations through Masked-Embedding Autoencoders (ICCV 2025)</a>
 
 * <a href="https://www.robots.ox.ac.uk/~vgg/publications/2025/Bagad25b/bagad25b.pdf" target="_blank" rel="noopener noreferrer">Chirality in Action: Time-Aware Video Representation Learning with an Autoencoder Latent Space (2025)</a>
