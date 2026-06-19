@@ -1,7 +1,6 @@
 ---
 title: 03 Train Autoencoder
-nav_order: 5
-has_children: true
+nav_order: 4
 has_toc: false
 ---
 # 03 Train Autoencoder
