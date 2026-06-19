@@ -6,6 +6,8 @@ has_toc: false
 
 # References and Learning Resources
 
+---
+
 ## Technical Papers
 
 ### Video Question Answering Datasets
