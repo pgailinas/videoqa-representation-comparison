@@ -42,11 +42,11 @@ has_toc: false
 
 ## Learning Resources
 
-### Autoencoders
+## Autoencoders
 
-* YouTube: Introduction to Autoencoders
-* YouTube: Variational Autoencoders Explained
-* YouTube: Masked Autoencoders (MAE)
+* <a href="https://www.youtube.com/watch?v=Dp6iICL2dVI" target="_blank" rel="noopener noreferrer">Autoencoders Explained</a>
+
+* <a href="https://www.youtube.com/watch?v=-EBqzYIJRaQ" target="_blank" rel="noopener noreferrer">Variational Autoencoders (VAEs) Explained</a>
 
 ### Video Representation Learning
 
