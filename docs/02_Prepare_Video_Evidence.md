@@ -1,7 +1,6 @@
 ---
 title: 02 Prepare Video Evidence
-nav_order: 4
-has_children: true
+nav_order: 3
 has_toc: false
 ---
 # 02 Prepare Video Evidence
