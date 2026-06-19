@@ -20,8 +20,7 @@ Development-subset experiments enable rapid iteration and parameter optimization
 
 ## Inputs
 
-* Prepared NExT-QA video dataset
-* Evidence metadata generated during video preprocessing
+* NExT-QA video dataset
 * NExT-QA question-answer annotation files
 * NExT-QA metadata resources
 * Project configuration settings
@@ -30,29 +29,30 @@ Development-subset experiments enable rapid iteration and parameter optimization
 
 ## Outputs
 
-* Development-subset baseline prediction dataset
+### Generated Files
+
+* outputs/baseline/baseline_predictions.csv
+* outputs/baseline/baseline_summary.csv
+
+### Generated Results
+
 * Predicted answers
 * Ground-truth answers
 * Question and video metadata
-* Evidence usage statistics
 * Inference timing metrics
-* Development-subset baseline prediction dataset
-* Baseline VideoQA performance metrics
 * Sample prediction results for verification
 
 ## Processing Workflow
 
-* Configure runtime environment and project settings
-* Restore the prepared NExT-QA video dataset
+* Initialize the notebook environment and restore the NExT-QA dataset
 * Load NExT-QA annotations and video inventory information
-* Load evidence metadata generated during preprocessing
 * Configure baseline inference parameters
 * Verify GPU runtime and model dependencies
 * Load the Qwen2-VL-7B model and processor
-* Prepare the development evaluation subset
-* Execute development-subset baseline VideoQA inference using sampled video evidence
+* Prepare the development evaluation dataset
+* Execute development-subset baseline VideoQA inference using sampled video frames
 * Validate generated prediction results
-* Save prediction datasets and experiment outputs
+* Save baseline prediction results
 * Generate baseline summary statistics and reports
 * Display representative prediction samples for qualitative review
 
@@ -69,8 +69,8 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 ## Notes
 
 * This notebook performs development-subset baseline VideoQA experiments using direct multimodal inference.
-* Video evidence is sampled directly from source videos during inference execution.
-* Prediction results include generated answers, ground-truth answers, evidence statistics, and inference timing information.
+* Representative video frames are sampled directly from source videos during inference execution.
+* Prediction results include generated answers, ground-truth answers, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
 * Generated prediction datasets and summary reports provide the baseline performance reference used to evaluate the effects of self-supervised autoencoder learning, video reconstruction, and representation compression.
