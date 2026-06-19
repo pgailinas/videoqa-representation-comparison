@@ -15,7 +15,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow is used to validate the baseline inference pipeline, evaluate parameter settings, and establish a reference configuration for subsequent pretrained-representation and autoencoder-representation experiments.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow is used to validate the baseline inference pipeline, evaluate parameter settings, and establish a reference baseline for subsequent autoencoder-based VideoQA experiments.
 
 Development-subset experiments enable rapid iteration and parameter optimization while minimizing computational cost. Optimized configurations identified during these experiments are later applied to full-dataset execution within the final experiment workflow.
 
@@ -37,7 +37,8 @@ Development-subset experiments enable rapid iteration and parameter optimization
 * Question and video metadata
 * Evidence usage statistics
 * Inference timing metrics
-* Development-subset experiment summary report
+* Development-subset baseline prediction dataset
+* Baseline VideoQA performance metrics
 * Sample prediction results for verification
 
 ## Processing Workflow
@@ -73,7 +74,7 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 * Prediction results include generated answers, ground-truth answers, evidence statistics, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
-* Generated prediction datasets and summary reports provide the baseline reference used for subsequent representation-comparison experiments and downstream evaluation.
+* Generated prediction datasets and summary reports provide the baseline performance reference used to evaluate the effects of self-supervised autoencoder learning, video reconstruction, and representation compression.
 * This notebook is intended for development-subset experimentation, workflow validation, and parameter optimization rather than full-dataset execution.
 
 
