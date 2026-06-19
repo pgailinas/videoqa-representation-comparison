@@ -1,7 +1,6 @@
 ---
 title: 06 Evaluate Development Results
-nav_order: 8
-has_children: true
+nav_order: 7
 has_toc: false
 ---
 # 06 Evaluate Development Results
