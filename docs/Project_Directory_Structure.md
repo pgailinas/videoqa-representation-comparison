@@ -68,8 +68,8 @@ videoqa-representation-comparison/
 ├── README.md
 │
 ├── notebooks/
-│   ├── 01_Prepare_Video_Evidence.ipynb
-│   ├── 02_Run_Baseline_VideoQA.ipynb
+│   ├── 01_Run_Baseline_VideoQA.ipynb
+│   ├── 02_Prepare_Video_Evidence.ipynb
 │   ├── 03_Train_Autoencoder.ipynb
 │   ├── 04_Generate_Reconstructed_Videos.ipynb
 │   ├── 05_Run_Autoencoder_VideoQA.ipynb
@@ -79,8 +79,8 @@ videoqa-representation-comparison/
 ├── docs/
 │   ├── _config.yml
 │   ├── index.md
-│   ├── 01_Prepare_Video_Evidence.md
-│   ├── 02_Run_Baseline_VideoQA.md
+│   ├── 01_Run_Baseline_VideoQA.md
+│   ├── 02_Prepare_Video_Evidence.md
 │   ├── 03_Train_Autoencoder.md
 │   ├── 04_Generate_Reconstructed_Videos.md
 │   ├── 05_Run_Autoencoder_VideoQA.md
