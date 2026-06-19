@@ -4,7 +4,7 @@ nav_order: 10
 has_toc: false
 ---
 
-# References
+# References (Technical Papers)
 
 ## Video Question Answering Datasets
 
@@ -34,7 +34,7 @@ has_toc: false
 
 * <a href="https://aclanthology.org/2025.naacl-long.82.pdf" target="_blank" rel="noopener noreferrer">ReasVQA: Advancing VideoQA with Imperfect Reasoning Process (NAACL 2025)</a>
 
-# Learning Resources
+# Learning Resources (Videos)
 
 ## Autoencoders
 
