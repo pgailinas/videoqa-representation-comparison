@@ -1,7 +1,6 @@
 ---
 title: 07 Run Final Full Experiment
-nav_order: 9
-has_children: true
+nav_order: 8
 has_toc: false
 ---
 # 07 Run Final Full Experiment
