@@ -34,3 +34,21 @@ has_toc: false
 
 * <a href="https://aclanthology.org/2025.naacl-long.82.pdf" target="_blank" rel="noopener noreferrer">ReasVQA: Advancing VideoQA with Imperfect Reasoning Process (NAACL 2025)</a>
 
+# Learning Resources
+
+## Autoencoders
+
+* YouTube: Introduction to Autoencoders
+* YouTube: Variational Autoencoders Explained
+* YouTube: Masked Autoencoders (MAE)
+
+## Video Representation Learning
+
+* YouTube: Self-Supervised Learning for Computer Vision
+* YouTube: VideoMAE Overview
+
+## Vision-Language Models
+
+* YouTube: Multimodal AI Systems
+* YouTube: Qwen2-VL Overview
+
