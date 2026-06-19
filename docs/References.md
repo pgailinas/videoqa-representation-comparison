@@ -26,7 +26,7 @@ has_toc: false
 
 * <a href="https://arxiv.org/pdf/2111.06377.pdf" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners (CVPR 2022)</a>
 
-YouTube Video: <a href="https://www.youtube.com/watch?v=Dp6iICL2dVI" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners – Paper explained and animated!</a>
+* YouTube: <a href="https://www.youtube.com/watch?v=Dp6iICL2dVI" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners – Paper explained and animated!</a>
 
 
 
