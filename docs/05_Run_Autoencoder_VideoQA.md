@@ -1,7 +1,6 @@
 ---
 title: 05 Run Autoencoder VideoQA
-nav_order: 7
-has_children: true
+nav_order: 6
 has_toc: false
 ---
 # 05 Run Autoencoder VideoQA
