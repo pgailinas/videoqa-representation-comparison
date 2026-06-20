@@ -1,26 +1,26 @@
-video,question,ground_truth,prediction
-4279106208,why did the lady hold onto the child when going down the slide together,ensure child s safety,safety
-4970148391,what happens to the water ball after being hit,burst,it flies
-13296054183,how do the man make sure that they do not lose each other when cycling,keep up with each other pace,stay close
-3321261856,what did the golden cat do after standing at the side of the wall for a while,sat down,walk away
-6018490041,what does the man in brown pants do after bending forward at the start,look to the right,stand up
-10109097475,what does the man in red do after looking at a distance from the plane at the start,moves away,run
-3321261856,what did the girl do after she pointed,stomp her foot,point at cat
-7887764754,what is the response of the baby as the dog approaches her at the start,feed dog,fear
-8253302563,how many people are involved in the video,one,1
-6690256857,how did the man shower the dog,use hose,hose
-3164519967,how did the baby kept himself warm,wear more clothes,blanket
-5133787349,why does the man at the side suddenly enter the stage at the end,men fell down,to help the man
-3046900922,how is the child being held for most parts of the video,carried by the man,by the arms
-6291413193,why is there a man standing in the deeper waters,to view the dolphine,watching dolphin
-12682618843,what does the dog do after letting go of the bone after the middle part of the video,use paw to grab it,sleep
-4151403382,what does the boy in brown bib do after seeing the piano,bend down to play,play piano
-3192668394,why does the woman in blue constantly change her view,drawing portrait of woman,to see the camera
-2735019707,why are the different sizes of drums placed together,make different sounds,play music
-11966080214,how does the girl interact with the wheel at the end of the video,turns it round and round,spin it
-4984331176,why did the student in yellow go after the lady in black singlet,miss the right time to go,fight for rope
-2535384528,why does the man wear glove on one hand,grip golf club,grip club
-6806999702,why was the girl on the floor in the middle of the video,she fell,pick up ball
-6793786769,how is the boy positioned in the video,lying on his stomach,laying down
-4967810888,why does the woman speaking turn around while talking,talking to the crowd,to look at people
-5858985747,what does the baby in yellow do after walking close to the sofa at the end,pick up phone,sit down
+video,question,ground_truth,prediction,answer_mode,ground_truth_choice,predicted_choice,choice_correct
+4279106208,why did the lady hold onto the child when going down the slide together,ensure child s safety,2,multiple_choice,1,2,False
+4970148391,what happens to the water ball after being hit,burst,0,multiple_choice,0,0,True
+13296054183,how do the man make sure that they do not lose each other when cycling,keep up with each other pace,4,multiple_choice,4,4,True
+3321261856,what did the golden cat do after standing at the side of the wall for a while,sat down,3,multiple_choice,3,3,True
+6018490041,what does the man in brown pants do after bending forward at the start,look to the right,2,multiple_choice,3,2,False
+10109097475,what does the man in red do after looking at a distance from the plane at the start,moves away,2,multiple_choice,4,2,False
+3321261856,what did the girl do after she pointed,stomp her foot,4,multiple_choice,0,4,False
+7887764754,what is the response of the baby as the dog approaches her at the start,feed dog,0,multiple_choice,0,0,True
+8253302563,how many people are involved in the video,one,3,multiple_choice,3,3,True
+6690256857,how did the man shower the dog,use hose,0,multiple_choice,0,0,True
+3164519967,how did the baby kept himself warm,wear more clothes,2,multiple_choice,1,2,False
+5133787349,why does the man at the side suddenly enter the stage at the end,men fell down,1,multiple_choice,1,1,True
+3046900922,how is the child being held for most parts of the video,carried by the man,1,multiple_choice,1,1,True
+6291413193,why is there a man standing in the deeper waters,to view the dolphine,4,multiple_choice,4,4,True
+12682618843,what does the dog do after letting go of the bone after the middle part of the video,use paw to grab it,1,multiple_choice,1,1,True
+4151403382,what does the boy in brown bib do after seeing the piano,bend down to play,3,multiple_choice,3,3,True
+3192668394,why does the woman in blue constantly change her view,drawing portrait of woman,2,multiple_choice,4,2,False
+2735019707,why are the different sizes of drums placed together,make different sounds,4,multiple_choice,4,4,True
+11966080214,how does the girl interact with the wheel at the end of the video,turns it round and round,4,multiple_choice,4,4,True
+4984331176,why did the student in yellow go after the lady in black singlet,miss the right time to go,1,multiple_choice,4,1,False
+2535384528,why does the man wear glove on one hand,grip golf club,4,multiple_choice,4,4,True
+6806999702,why was the girl on the floor in the middle of the video,she fell,2,multiple_choice,2,2,True
+6793786769,how is the boy positioned in the video,lying on his stomach,3,multiple_choice,1,3,False
+4967810888,why does the woman speaking turn around while talking,talking to the crowd,0,multiple_choice,0,0,True
+5858985747,what does the baby in yellow do after walking close to the sofa at the end,pick up phone,1,multiple_choice,2,1,False
