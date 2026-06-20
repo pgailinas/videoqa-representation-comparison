@@ -6,7 +6,7 @@ empty_predictions,0.0
 error_predictions,0.0
 video_read_errors,0.0
 unique_videos,24.0
-elapsed_time_seconds,291.19
-average_time_per_sample_seconds,11.65
-projected_validation_runtime_minutes,969.87
-projected_full_dataset_runtime_hours,154.31
+elapsed_time_seconds,62.07
+average_time_per_sample_seconds,2.48
+projected_validation_runtime_minutes,206.74
+projected_full_dataset_runtime_hours,32.89
