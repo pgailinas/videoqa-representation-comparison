@@ -143,3 +143,9 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** -- Separating exploratory experimentation from final evaluation improves reproducibility, reduces accidental configuration drift, and ensures that final results are generated using validated experimental settings.
 
+### 4) Standardize on Multiple-Choice Evaluation for NExT-QA (06/19)
+
+**Decision:** -- Adopted NExT-QA multiple-choice evaluation as the sole evaluation methodology for all VideoQA experiments.
+
+**Rationale:** -- NExT-QA is a multiple-choice benchmark dataset. Restricting evaluation to answer-choice prediction provides a consistent and objective accuracy metric while isolating the effects of video representation learning, reconstruction quality, and compression. This approach eliminates variability introduced by open-ended language generation and ensures direct comparison between baseline and autoencoder-based VideoQA workflows.
+
