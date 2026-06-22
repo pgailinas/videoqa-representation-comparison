@@ -1,13 +1,13 @@
 ---
-title: 05 Run Autoencoder VideoQA
-nav_order: 6
+title: 04 Run Autoencoder VideoQA
+nav_order: 5
 has_toc: false
 ---
-# 05 Run Autoencoder VideoQA
+# 04 Run Autoencoder VideoQA
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/05_Run_Autoencoder_VideoQA.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/04_Run_Autoencoder_VideoQA.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
