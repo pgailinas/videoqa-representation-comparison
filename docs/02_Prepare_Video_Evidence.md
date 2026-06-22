@@ -62,31 +62,32 @@ The current implementation uses fixed-duration segments with representative midp
 
 #### Evidence Metadata Field Definitions
 
-| Field                        | Description                                                                                                        |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `evidence_id`                | Unique identifier assigned to each evidence unit.                                                                  |
-| `video_id`                   | NExT-QA video identifier associated with the evidence unit.                                                        |
-| `split`                      | Dataset split associated with the source video (`train`, `val`, or `test`).                                        |
-| `video_path`                 | Local path to the source video file used to generate the evidence unit.                                            |
-| `segment_index`              | Sequential segment number within the source video.                                                                 |
-| `evidence_level`             | Hierarchy level of the evidence unit. Level `0` represents top-level evidence segments.                            |
-| `parent_evidence_id`         | Identifier of the parent evidence unit when hierarchical segmentation is used. Empty for top-level evidence units. |
-| `segment_strategy`           | Segmentation method used to generate the evidence unit.                                                            |
-| `start_time_sec`             | Segment start time in seconds from the beginning of the source video.                                              |
-| `midpoint_time_sec`          | Segment midpoint time in seconds.                                                                                  |
-| `end_time_sec`               | Segment end time in seconds from the beginning of the source video.                                                |
-| `segment_duration_sec`       | Duration of the evidence segment in seconds.                                                                       |
-| `start_frame_idx`            | Frame index corresponding to the segment start time.                                                               |
-| `midpoint_frame_idx`         | Frame index corresponding to the segment midpoint time.                                                            |
-| `end_frame_idx`              | Frame index corresponding to the segment end time.                                                                 |
-| `representative_frame_index` | Frame index selected as the representative frame for the segment.                                                  |
-| `fps`                        | Frames per second of the source video.                                                                             |
-| `frame_count`                | Total number of frames in the source video.                                                                        |
-| `width`                      | Source video frame width in pixels.                                                                                |
-| `height`                     | Source video frame height in pixels.                                                                               |
-| `motion_score`               | Optional estimate of visual motion within the segment. Currently disabled by default for performance reasons.      |
-| `scene_change_score`         | Optional estimate of scene-transition strength within the segment.                                                 |
-| `created_by_notebook`        | Notebook identifier used to generate the evidence metadata.                                                        |
+| Field                        | Description                                                                                                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `evidence_id`                | Unique identifier assigned to each evidence segment.                                                                                                                                  |
+| `video_id`                   | NExT-QA video identifier associated with the evidence segment.                                                                                                                        |
+| `split`                      | Dataset split associated with the source video (`train`, `val`, or `test`).                                                                                                           |
+| `video_path`                 | Local path to the source video file used to generate the evidence segment.                                                                                                            |
+| `segment_index`              | Sequential segment number within the source video.                                                                                                                                    |
+| `evidence_level`             | Hierarchy level of the evidence segment. Level `0` represents top-level evidence segments.                                                                                            |
+| `parent_evidence_id`         | Identifier of the parent evidence segment when hierarchical segmentation is used. Empty for top-level segments.                                                                       |
+| `segment_strategy`           | Segmentation strategy used to generate the evidence segment (for example, fixed-duration or future enhanced segmentation methods).                                                    |
+| `start_time_sec`             | Segment start time in seconds from the beginning of the source video.                                                                                                                 |
+| `midpoint_time_sec`          | Segment midpoint time in seconds.                                                                                                                                                     |
+| `end_time_sec`               | Segment end time in seconds from the beginning of the source video.                                                                                                                   |
+| `segment_duration_sec`       | Duration of the evidence segment in seconds.                                                                                                                                          |
+| `start_frame_idx`            | Frame index corresponding to the segment start time.                                                                                                                                  |
+| `midpoint_frame_idx`         | Frame index corresponding to the segment midpoint time.                                                                                                                               |
+| `end_frame_idx`              | Frame index corresponding to the segment end time.                                                                                                                                    |
+| `representative_frame_index` | Frame selected to represent the segment. Currently the midpoint frame; future experiments may evaluate alternative selection strategies.                                              |
+| `fps`                        | Frames per second of the source video.                                                                                                                                                |
+| `frame_count`                | Total number of frames in the source video.                                                                                                                                           |
+| `width`                      | Source video frame width in pixels.                                                                                                                                                   |
+| `height`                     | Source video frame height in pixels.                                                                                                                                                  |
+| `motion_score`               | Quantitative estimate of visual motion within the segment. Currently disabled by default for performance reasons but available for future evidence-ranking and filtering experiments. |
+| `scene_change_score`         | Estimate of scene-transition strength within the segment. Intended to support future scene-aware segmentation, ranking, and filtering experiments.                                    |
+| `created_by_notebook`        | Notebook identifier used to generate the evidence metadata.                                                                                                                           |
+                                                     |
 
 
 | Evidence Parameter     | Description                                                              | Standard Evidence                 | Possible Enhancements                                                     |
