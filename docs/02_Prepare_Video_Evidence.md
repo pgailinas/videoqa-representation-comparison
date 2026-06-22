@@ -88,6 +88,22 @@ The current implementation uses fixed-duration segments with representative midp
 | `scene_change_score`         | Optional estimate of scene-transition strength within the segment.                                                 |
 | `created_by_notebook`        | Notebook identifier used to generate the evidence metadata.                                                        |
 
+
+| Evidence Parameter     | Description                                                              | Standard Evidence                 | Possible Enhancements                                                     |
+| ---------------------- | ------------------------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------- |
+| Segment Duration       | Length of each video evidence segment used for training and evaluation.  | Fixed 6-second segments           | Shorter segments, longer segments, adaptive segment duration              |
+| Segment Overlap        | Degree to which adjacent evidence segments share video content.          | No overlap                        | 25% overlap, 50% overlap, adaptive overlap                                |
+| Segment Selection      | Method used to determine which video segments are retained as evidence.  | All generated segments retained   | Top-N segment selection, score-based selection, threshold-based selection |
+| Motion Analysis        | Measurement of visual motion occurring within video segments.            | Disabled                          | Motion scoring, motion-based ranking, motion-based filtering              |
+| Scene Change Detection | Identification of transitions between distinct scenes or events.         | Disabled                          | Scene-boundary segmentation, scene-aware segment generation               |
+| Representative Frame   | Method used to select a frame that summarizes a video segment.           | Midpoint frame                    | Highest-motion frame, key frame, scene-representative frame               |
+| Evidence Ranking       | Process for assigning relative importance scores to evidence segments.   | No ranking applied                | Motion-based ranking, scene-based ranking, combined quality scoring       |
+| Evidence Filtering     | Removal of segments considered uninformative, redundant, or low quality. | No filtering applied              | Low-motion filtering, duplicate filtering, quality-based filtering        |
+| Metadata Features      | Information recorded and stored for each evidence segment.               | Basic temporal and video metadata | Additional motion metrics, scene metrics, ranking scores, quality metrics |
+
+
+
+
 ### Dataset Statistics
 
 The current evidence-generation configuration produces:
