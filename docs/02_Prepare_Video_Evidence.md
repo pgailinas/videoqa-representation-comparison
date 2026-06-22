@@ -20,7 +20,16 @@ The generated evidence metadata serves as the foundation for downstream autoenco
 
 ## Inputs
 
-* Prepared NExT-QA video files
+* Preferred NExT-QA combined video archive
+  * releases/NExTVideo_combined.zip
+* Legacy NExT-QA multipart archive files (fallback only)
+  * releases/NExTVideo.z01
+  * releases/NExTVideo.z02
+  * releases/NExTVideo.z03
+  * releases/NExTVideo.z04
+  * releases/NExTVideo.z05
+  * releases/NExTVideo.z06
+  * releases/NExTVideo.zip
 * NExT-QA question-answer annotation files
   * train.csv
   * val.csv
@@ -31,6 +40,7 @@ The generated evidence metadata serves as the foundation for downstream autoenco
 
 ## Outputs
 
+* Restored local NExT-QA video cache
 * Evidence metadata CSV file
 * Evidence summary report
 * Video inventory summary
@@ -39,14 +49,14 @@ The generated evidence metadata serves as the foundation for downstream autoenco
 
 ## Processing Workflow
 
-1. Load project configuration, dataset resources, and metadata.
-2. Build a video inventory and verify source video accessibility.
+1. Initialize the project environment and restore or verify the local NExT-QA video cache.
+2. Load NExT-QA metadata and build the video inventory.
 3. Define the evidence metadata schema and segmentation parameters.
 4. Inspect representative videos and extract video properties.
-5. Generate fixed-duration evidence segments for each source video.
-6. Create evidence metadata records containing timestamps, frame references, and video properties.
-7. Validate evidence metadata completeness, consistency, and video references.
-8. Save evidence metadata and summary files for downstream autoencoder-training and VideoQA workflows.
+5. Generate evidence metadata records for all processed videos.
+6. Validate evidence metadata completeness and consistency.
+7. Save evidence metadata and summary files.
+8. Display sample evidence records and notebook summary information.
 
 ### Evidence Generation Strategy
 
@@ -86,9 +96,11 @@ The current implementation uses fixed-duration segments with representative midp
 | `height`                     | Source video frame height in pixels.                                                                                                                                                  |
 | `motion_score`               | Quantitative estimate of visual motion within the segment. Currently disabled by default for performance reasons but available for future evidence-ranking and filtering experiments. |
 | `scene_change_score`         | Estimate of scene-transition strength within the segment. Intended to support future scene-aware segmentation, ranking, and filtering experiments.                                    |
-| `created_by_notebook`        | Notebook identifier used to generate the evidence metadata.                                                                                                                           |
                                                      |
 
+### Standard and Enhanced Evidence Parameters
+
+The current notebook implementation establishes the project's Standard Evidence baseline. Future experiments will evaluate Enhanced Evidence generation strategies by modifying one or more evidence-generation parameters. The following table summarizes the current baseline configuration and potential enhancement approaches.
 
 | Evidence Parameter     | Description                                                              | Standard Evidence                 | Possible Enhancements                                                     |
 | ---------------------- | ------------------------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------- |
@@ -102,17 +114,15 @@ The current implementation uses fixed-duration segments with representative midp
 | Evidence Filtering     | Removal of segments considered uninformative, redundant, or low quality. | No filtering applied              | Low-motion filtering, duplicate filtering, quality-based filtering        |
 | Metadata Features      | Information recorded and stored for each evidence segment.               | Basic temporal and video metadata | Additional motion metrics, scene metrics, ranking scores, quality metrics |
 
-
-
-
 ### Dataset Statistics
 
 The current evidence-generation configuration produces:
 
 * 5,440 source videos
 * 38,834 evidence records
-* Fixed-duration evidence segmentation
-* Representative frame references for each evidence segment
+* Fixed-duration segmentation using 6-second evidence segments
+* Representative midpoint frame for each evidence segment
+* No motion scoring or scene-change scoring in the Standard Evidence baseline
 
 These evidence records form the foundation for baseline VideoQA experimentation, self-supervised autoencoder training, reconstructed video generation, and downstream VideoQA evaluation.
 
