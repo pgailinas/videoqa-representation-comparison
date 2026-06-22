@@ -93,6 +93,8 @@ DEFAULT_EVIDENCE_LEVEL = 0
 ENABLE_MOTION_SCORING = False
 ENABLE_SCENE_CHANGE_SCORING = False
 DEFAULT_SCENE_CHANGE_SCORE = 0.0
+DEFAULT_SEGMENT_STRIDE_SEC = 6.0
+DEFAULT_MIN_SEGMENT_DURATION_SEC = 1.0
 
 # ============================================================
 # Development Experiment Settings
@@ -109,10 +111,5 @@ MAX_FRAMES_PER_QUESTION = 8
 MAX_NEW_TOKENS = 64
 TEMPERATURE = 0.0
 DO_SAMPLE = False
-
-# ============================================================
-# Runtime Settings
-# ============================================================
-REQUIRE_L4_GPU = True
 
 

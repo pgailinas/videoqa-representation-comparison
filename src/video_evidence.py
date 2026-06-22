@@ -3,24 +3,29 @@
 # ============================================================
 #
 # Purpose:
-#     Shared video evidence-unit generation functions used by:
+#     Shared video evidence generation and metadata utilities used by:
 #
 #         02_Prepare_Video_Evidence
-#         03_Build_Video_Knowledge_Base
-#         05_Run_RAG_VideoQA
-#         06_Run_Iterative_RAG_Experiments
-#         08_Interactive_Demo
+#         03_Train_Autoencoder
+#         07_Run_Final_Full_Experiment
 #
 # Notes:
-#     This module intentionally contains reusable video evidence
-#     segmentation and evidence-record construction logic.
+#     This module contains reusable functions for:
 #
-#     This module does not create embeddings, captions, vector indexes,
-#     or model predictions. Those belong to downstream notebooks and
-#     modules.
+#         • Video property inspection
+#         • Evidence segmentation
+#         • Evidence metadata generation
+#         • Evidence summary generation
 #
-#     This module stores lightweight evidence metadata that points back
-#     to original video files rather than duplicating video content.
+#     Project-wide evidence configuration values are defined in:
+#
+#         videoqa_representation_config.py
+#
+#     This module consumes those configuration values and provides
+#     reusable implementation functions used throughout the project.
+#
+#     This module stores lightweight evidence metadata that references
+#     original video files rather than duplicating video content.
 # ============================================================
 
 from __future__ import annotations
@@ -32,16 +37,7 @@ from typing import Dict, Iterable, List, Optional
 
 import pandas as pd
 
-
-# ------------------------------------------------------------
-# Default Evidence Configuration
-# ------------------------------------------------------------
-
-DEFAULT_SEGMENT_DURATION_SEC = 8.0
-DEFAULT_SEGMENT_STRIDE_SEC = 8.0
-DEFAULT_MIN_SEGMENT_DURATION_SEC = 1.0
-DEFAULT_EVIDENCE_LEVEL = "segment"
-DEFAULT_SEGMENT_STRATEGY = "fixed_window"
+from src.videoqa_representation_config import *
 
 DEFAULT_VIDEO_PROPERTY_COLUMNS = (
     "video_id",
