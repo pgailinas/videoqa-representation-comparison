@@ -1,13 +1,13 @@
 ---
-title: 01 Run Baseline VideoQA
+title: 01 Run Qwen2VL Baseline
 nav_order: 2
 has_toc: false
 ---
-# 01 Run Baseline VideoQA
+# 01 Run Qwen2VL Baseline
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/01_Run_Baseline_VideoQA.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/01_Run_Qwen2VL_Baseline.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
