@@ -68,22 +68,28 @@ videoqa-representation-comparison/
 ├── README.md
 │
 ├── notebooks/
-│   ├── 01_Run_Baseline_VideoQA.ipynb
-│   ├── 02_Prepare_Video_Evidence.ipynb
-│   ├── 03_Train_Autoencoder.ipynb
-│   ├── 04_Run_Autoencoder_VideoQA.ipynb
-│   ├── 05_Evaluate_Development_Results.ipynb
-│   └── 06_Run_Final_Full_Experiment.ipynb
+│   ├── 01_Run_Qwen2VL_Baseline.ipynb
+│   ├── 02_Prepare_Autoencoder_Training_Data.ipynb
+│   ├── 03_Train_Video_Autoencoder.ipynb
+│   ├── 04_Generate_Autoencoder_Video_Representations.ipynb
+│   ├── 05_Generate_CLIP_Text_Representations.ipynb
+│   ├── 06_Generate_CLIP_Video_Representations.ipynb
+│   ├── 07_Run_Representation_VideoQA.ipynb
+│   ├── 08_Evaluate_Development_Results.ipynb
+│   └── 09_Run_Final_Full_Experiment.ipynb
 │
 ├── docs/
 │   ├── _config.yml
 │   ├── index.md
-│   ├── 01_Run_Baseline_VideoQA.md
-│   ├── 02_Prepare_Video_Evidence.md
-│   ├── 03_Train_Autoencoder.md
-│   ├── 04_Run_Autoencoder_VideoQA.md
-│   ├── 05_Evaluate_Development_Results.md
-│   ├── 06_Run_Final_Full_Experiment.md
+│   ├── 01_Run_Qwen2VL_Baseline.md
+│   ├── 02_Prepare_Autoencoder_Training_Data.md
+│   ├── 03_Train_Video_Autoencoder.md
+│   ├── 04_Generate_Autoencoder_Video_Representations.md
+│   ├── 05_Generate_CLIP_Text_Representations.md
+│   ├── 06_Generate_CLIP_Video_Representations.md
+│   ├── 07_Run_Representation_VideoQA.md
+│   ├── 08_Evaluate_Development_Results.md
+│   ├── 09_Run_Final_Full_Experiment.md
 │   ├── Project_Directory_Structure.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
