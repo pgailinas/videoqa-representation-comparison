@@ -55,16 +55,16 @@ DEFAULT_VIDEO_PROPERTY_COLUMNS = (
 # ------------------------------------------------------------
 
 @dataclass(frozen=True)
-class EvidenceSegmentationParameters:
-    """Configuration values for evidence-unit segmentation."""
+class VideoSegmentationParameters:
+    """Configuration values for video segment generation."""
 
     segment_duration_sec: float = DEFAULT_SEGMENT_DURATION_SEC
     segment_stride_sec: float = DEFAULT_SEGMENT_STRIDE_SEC
     min_segment_duration_sec: float = DEFAULT_MIN_SEGMENT_DURATION_SEC
     segment_strategy: str = DEFAULT_SEGMENT_STRATEGY
-    evidence_level: str = DEFAULT_EVIDENCE_LEVEL
-    include_parent_evidence: bool = False
-    parent_segment_duration_sec: Optional[float] = None
+    segment_level: int = DEFAULT_SEGMENT_LEVEL
+    include_hierarchical_segments: bool = ENABLE_HIERARCHICAL_SEGMENTS
+    parent_segment_duration_sec: Optional[float] = PARENT_SEGMENT_DURATION_SEC
 
 
 # ------------------------------------------------------------
@@ -335,7 +335,7 @@ def generate_fixed_window_segments(
 
 def generate_evidence_records_for_video(
     video_properties: Dict[str, object],
-    parameters: EvidenceSegmentationParameters,
+    parameters: VideoSegmentationParameters,
     split: Optional[str] = None,
 ) -> List[Dict[str, object]]:
     """
@@ -457,7 +457,7 @@ def generate_evidence_metadata(
         Evidence metadata table.
     """
 
-    parameters = parameters or EvidenceSegmentationParameters()
+    parameters = parameters or VideoSegmentationParameters()
     split_lookup = split_lookup or {}
 
     for column_name in DEFAULT_VIDEO_PROPERTY_COLUMNS:
