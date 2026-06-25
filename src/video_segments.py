@@ -1,5 +1,5 @@
 # ============================================================
-# Video Evidence Generation Utilities
+# Video Segment Generation Utilities
 # ============================================================
 #
 # Purpose:
