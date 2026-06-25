@@ -120,20 +120,6 @@ The notebook workflow supports three experimental pipelines:
 
 Development-subset experiments are used for workflow validation and parameter selection. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
-## Experimental Methodology
-
-The experimental methodology compares three complementary approaches to multiple-choice Video Question Answering (VideoQA) using a common benchmark dataset and consistent evaluation procedures.
-
-The **Baseline Pipeline** establishes a performance reference by executing Qwen2-VL-7B directly on the original NExT-QA videos. This provides the benchmark against which all representation-based approaches are evaluated.
-
-The **Representation-Based Pipelines** replace direct video inference with compact feature representations. One pipeline uses pretrained CLIP video representations, while the other uses latent video representations learned through self-supervised autoencoder training. Both pipelines use identical CLIP text representations for the VideoQA questions and answer choices together with the same downstream multiple-choice classifier.
-
-Development-subset experiments are used to validate the experimental workflow, evaluate alternative model configurations, and optimize selected parameters. Once the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
-
-Performance is evaluated using multiple-choice VideoQA accuracy together with reasoning-category analysis, runtime measurements, and comparative performance statistics. Results from the baseline, pretrained representation, and learned representation pipelines are analyzed under identical evaluation procedures to isolate the impact of the video representation on downstream VideoQA performance.
-
-The objective of this study is not to develop a new VideoQA model, but rather to investigate whether compact learned video representations can provide an effective alternative to pretrained representations for downstream VideoQA tasks.
-
 ## Expected Contributions
 
 This project contributes a reproducible experimental framework for investigating representation learning within multiple-choice Video Question Answering (VideoQA) systems. By combining baseline foundation-model inference with pretrained and self-supervised representation-based approaches, the project provides a controlled methodology for evaluating how different video representations influence downstream VideoQA performance.
