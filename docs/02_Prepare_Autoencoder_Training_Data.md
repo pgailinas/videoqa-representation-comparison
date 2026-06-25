@@ -45,7 +45,7 @@ The generated metadata defines the video segments used during representation lea
 * Training data summary report
 * Video inventory summary
 * Metadata validation report
-* Sample evidence records for verification
+* Sample training metadata records for verification
 
 ## Processing Workflow
 
@@ -60,7 +60,7 @@ The generated metadata defines the video segments used during representation lea
 
 ### Video Segmentation Strategy
 
-Videos are segmented using a fixed-duration strategy. Each evidence record represents a contiguous temporal region within a source video and contains:
+Videos are segmented using a fixed-duration strategy. Each training metadata record represents a contiguous temporal region within a source video and contains:
 
 * Segment timestamps
 * Segment frame boundaries
@@ -100,23 +100,23 @@ The current implementation uses fixed-duration segments with representative midp
 
 ### Standard and Enhanced Training Data Parameters
 
-The current notebook implementation establishes the project's Standard Training Data baseline. Future experiments will evaluate Enhanced Training Data generation strategies by modifying one or more evidence-generation parameters. The following table summarizes the current baseline configuration and potential enhancement approaches.
+The current notebook implementation establishes the project's Standard Training Data baseline. Future experiments will evaluate Enhanced Training Data generation strategies by modifying one or more video segmentation parameters. The following table summarizes the current baseline configuration and potential enhancement approaches.
 
-| Evidence Parameter     | Description                                                              | Standard Evidence                 | Possible Enhancements                                                     |
-| ---------------------- | ------------------------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------- |
-| Segment Duration       | Length of each video evidence segment used for training and evaluation.  | Fixed 6-second segments           | Shorter segments, longer segments, adaptive segment duration              |
-| Segment Overlap        | Degree to which adjacent evidence segments share video content.          | No overlap                        | 25% overlap, 50% overlap, adaptive overlap                                |
-| Segment Selection      | Method used to determine which video segments are retained as evidence.  | All generated segments retained   | Top-N segment selection, score-based selection, threshold-based selection |
-| Motion Analysis        | Measurement of visual motion occurring within video segments.            | Disabled                          | Motion scoring, motion-based ranking, motion-based filtering              |
-| Scene Change Detection | Identification of transitions between distinct scenes or events.         | Disabled                          | Scene-boundary segmentation, scene-aware segment generation               |
-| Representative Frame   | Method used to select a frame that summarizes a video segment.           | Midpoint frame                    | Highest-motion frame, key frame, scene-representative frame               |
-| Evidence Ranking       | Process for assigning relative importance scores to evidence segments.   | No ranking applied                | Motion-based ranking, scene-based ranking, combined quality scoring       |
-| Evidence Filtering     | Removal of segments considered uninformative, redundant, or low quality. | No filtering applied              | Low-motion filtering, duplicate filtering, quality-based filtering        |
-| Metadata Features      | Information recorded and stored for each evidence segment.               | Basic temporal and video metadata | Additional motion metrics, scene metrics, ranking scores, quality metrics |
+| Training Data Parameter | Description                                                                    | Standard Training Data            | Possible Enhancements                                                     |
+| ----------------------- | ------------------------------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------- |
+| Segment Duration        | Length of each video segment used for autoencoder training and evaluation.      | Fixed 6-second segments           | Shorter segments, longer segments, adaptive segment duration              |
+| Segment Overlap         | Degree to which adjacent video segments share temporal content.                 | No overlap                        | 25% overlap, 50% overlap, adaptive overlap                                |
+| Segment Selection       | Method used to determine which generated video segments are retained.           | All generated segments retained   | Top-N segment selection, score-based selection, threshold-based selection |
+| Motion Analysis         | Measurement of visual motion occurring within video segments.                   | Disabled                          | Motion scoring, motion-based ranking, motion-based filtering              |
+| Scene Change Detection  | Identification of transitions between distinct scenes or events.                | Disabled                          | Scene-boundary segmentation, scene-aware segment generation               |
+| Representative Frame    | Method used to select a frame representing each video segment.                  | Midpoint frame                    | Highest-motion frame, key frame, scene-representative frame               |
+| Segment Ranking         | Process for assigning relative importance scores to generated video segments.   | No ranking applied                | Motion-based ranking, scene-based ranking, combined quality scoring       |
+| Segment Filtering       | Removal of video segments considered uninformative, redundant, or low quality.  | No filtering applied              | Low-motion filtering, duplicate filtering, quality-based filtering        |
+| Metadata Features       | Information recorded and stored for each generated video segment.               | Basic temporal and video metadata | Additional motion metrics, scene metrics, ranking scores, quality metrics |
 
 ### Dataset Statistics
 
-The current evidence-generation configuration produces:
+The current video segmentation configuration produces:
 
 * 5,440 source videos
 * 38,834 evidence records
