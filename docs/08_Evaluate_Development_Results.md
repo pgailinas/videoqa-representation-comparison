@@ -84,7 +84,7 @@ The evaluation framework is designed to support consistent comparison across bas
 | Category                    | Description                                                              |
 | --------------------------- | ------------------------------------------------------------------------ |
 | Prediction Verification     | Validation of prediction completeness, quality, and coverage.            |
-| Performance Metrics         | Exact-match, partial-match, and category-level evaluation metrics.       |
+| Performance Metrics         | Multiple-choice accuracy, category accuracy, and question-type accuracy. |
 | Runtime Analysis            | Execution time, throughput, and projected runtime estimates.             |
 | Answer Analysis             | Ground-truth versus prediction comparisons and answer-length statistics. |
 | Visualization and Reporting | Figures, tables, reports, and experiment summaries.                      |
