@@ -13,7 +13,7 @@ The project compares three complementary approaches to VideoQA. The first establ
 
 To enable a controlled comparison, both representation-based approaches use a common set of CLIP text representations for the questions and answer choices together with the same downstream VideoQA classifier. This experimental design isolates the impact of the video representation while minimizing differences introduced by the inference architecture.
 
-Experiments are conducted using a two-stage methodology consisting of development-subset experimentation followed by full-dataset evaluation. The repository provides a reproducible notebook-driven research environment for investigating representation learning, multimodal reasoning, and downstream VideoQA performance.
+Experiments are conducted using a two-stage methodology consisting of development-subset experimentation followed by full-dataset evaluation. The repository provides a reproducible notebook-driven research environment for investigating representation learning, multimodal reasoning, and VideoQA performance.
 
 ## Motivation and Research Problem
 
@@ -21,15 +21,15 @@ Video Question Answering (VideoQA) requires models to understand both the visual
 
 Recent advances in foundation models have demonstrated impressive VideoQA performance by processing video and text directly. At the same time, self-supervised learning has shown that compact feature representations can be learned from large collections of unlabeled data without requiring manual annotation. These learned representations have proven effective across a wide range of computer vision tasks, suggesting that they may also provide useful information for downstream VideoQA.
 
-This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with representations learned through self-supervised autoencoder training while using a common set of text representations and a shared downstream classifier.
+This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with representations learned through self-supervised autoencoder training while using a common set of text representations and a shared classifier.
 
-By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences downstream VideoQA performance across temporal, causal, and descriptive reasoning tasks.
+By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences VideoQA performance across temporal, causal, and descriptive reasoning tasks.
 
 ## Research Questions
 
 This project investigates the following research questions:
 
-1. Can self-supervised autoencoder training learn compact video representations that preserve the semantic and temporal information required for downstream VideoQA?
+1. Can self-supervised autoencoder training learn compact video representations that preserve the semantic and temporal information required for VideoQA?
 
 2. How does VideoQA performance using learned autoencoder video representations compare with pretrained CLIP video representations under a common evaluation framework?
 
