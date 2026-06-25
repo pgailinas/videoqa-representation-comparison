@@ -127,6 +127,11 @@ videoqa-representation-comparison/
     │   ├── baseline_predictions.csv
     │   └── baseline_summary.csv
     │
+    ├── autoencoder/
+    │   ├── models/
+    │   ├── reconstructions/
+    │   └── reports/
+    │
     ├── evaluation/
     │   └── reports/
     │       ├── answer_length_metric.csv
