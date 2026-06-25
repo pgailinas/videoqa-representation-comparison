@@ -26,9 +26,11 @@ The notebook provides a common evaluation framework that enables direct comparis
 ## Inputs
 
 * VideoQA prediction results
-  * `outputs/baseline/baseline_predictions.csv`
+  * outputs/baseline/baseline_predictions.csv
+  * outputs/representation/representation_predictions.csv
 * Experiment summary results
-  * `outputs/baseline/baseline_summary.csv`
+  * outputs/baseline/baseline_summary.csv
+  * outputs/representation/representation_summary.csv
 * Runtime statistics
 * NExT-QA validation annotations
 * Project configuration settings
@@ -69,10 +71,13 @@ The evaluation framework is designed to support consistent comparison across bas
 
 ### Supported Experimental Workflows
 
-| Workflow                  | Description                                                                                                  |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Direct VideoQA Baseline   | Direct VideoQA inference using sampled video evidence and Qwen2-VL-7B.                                       |
-| Autoencoder-Based VideoQA | VideoQA experiments using latent video representations learned through self-supervised autoencoder training. |
+| Workflow                   | Description                                                          |
+| -------------------------- | -------------------------------------------------------------------- |
+| Qwne2-VL Baseline          | Direct VideoQA inference using the original NExT-QA videos.          |
+| CLIP Representation        | Representation-based VideoQA using pretrained CLIP video and text    |
+|                            |    representations.                                                  |
+| Autoencoder Representation | Representation-based VideoQA using self-supervised autoencoder video |
+|                            |    representations and CLIP text representations.                    |
 
 ### Evaluation Categories
 
