@@ -14,9 +14,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook generates evidence metadata for the NExT-QA VideoQA project. Evidence records identify meaningful temporal regions within source videos using timestamps, frame references, segmentation metadata, and video properties. These evidence units provide the structured inputs used throughout the representation-learning and VideoQA evaluation pipeline.
+This notebook prepares the training data required for self-supervised autoencoder learning using the NExT-QA video dataset. Source videos are segmented into standardized temporal units, and metadata describing each segment is generated to support reproducible autoencoder training.
 
-The generated evidence metadata serves as the foundation for downstream autoencoder training, VideoQA experimentation, and evaluation. Rather than repeatedly processing raw video files, later notebooks reference these evidence records to train autoencoder models, generate reconstructed video evidence, and evaluate downstream VideoQA performance.
+The generated metadata defines the video segments used during representation learning and provides a consistent preprocessing framework for later notebooks. Standardized segment definitions enable learned video representations to be compared fairly with CLIP-based representations during downstream VideoQA evaluation.
 
 ## Inputs
 
@@ -41,24 +41,24 @@ The generated evidence metadata serves as the foundation for downstream autoenco
 ## Outputs
 
 * Restored local NExT-QA video cache
-* Evidence metadata CSV file
-* Evidence summary report
+* Autoencoder training metadata
+* Training data summary report
 * Video inventory summary
-* Evidence validation report
+* Metadata validation report
 * Sample evidence records for verification
 
 ## Processing Workflow
 
 1. Initialize the project environment and restore or verify the local NExT-QA video cache.
 2. Load NExT-QA metadata and build the video inventory.
-3. Define the evidence metadata schema and segmentation parameters.
+3. Define the autoencoder training metadata schema and segmentation parameters.
 4. Inspect representative videos and extract video properties.
-5. Generate evidence metadata records for all processed videos.
-6. Validate evidence metadata completeness and consistency.
-7. Save evidence metadata and summary files.
+5. Generate training metadata records for all processed videos.
+6. Validate training metadata completeness and consistency.
+7. Save training metadata and summary files.
 8. Display sample evidence records and notebook summary information.
 
-### Evidence Generation Strategy
+### Video Segmentation Strategy
 
 Videos are segmented using a fixed-duration strategy. Each evidence record represents a contiguous temporal region within a source video and contains:
 
@@ -98,9 +98,9 @@ The current implementation uses fixed-duration segments with representative midp
 | `scene_change_score`         | Estimate of scene-transition strength within the segment. Intended to support future scene-aware segmentation, ranking, and filtering experiments.                                    |
                                                      |
 
-### Standard and Enhanced Evidence Parameters
+### Standard and Enhanced Training Data Parameters
 
-The current notebook implementation establishes the project's Standard Evidence baseline. Future experiments will evaluate Enhanced Evidence generation strategies by modifying one or more evidence-generation parameters. The following table summarizes the current baseline configuration and potential enhancement approaches.
+The current notebook implementation establishes the project's Standard Training Data baseline. Future experiments will evaluate Enhanced Training Data generation strategies by modifying one or more evidence-generation parameters. The following table summarizes the current baseline configuration and potential enhancement approaches.
 
 | Evidence Parameter     | Description                                                              | Standard Evidence                 | Possible Enhancements                                                     |
 | ---------------------- | ------------------------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------- |
@@ -124,5 +124,5 @@ The current evidence-generation configuration produces:
 * Representative midpoint frame for each evidence segment
 * No motion scoring or scene-change scoring in the Standard Evidence baseline
 
-These evidence records form the foundation for baseline VideoQA experimentation, self-supervised autoencoder training, reconstructed video generation, and downstream VideoQA evaluation.
+These generated segment records define the standardized training data used for self-supervised autoencoder learning. The resulting metadata enables reproducible representation learning and provides a consistent preprocessing foundation for downstream VideoQA evaluation and comparison with CLIP-based representations.
 
