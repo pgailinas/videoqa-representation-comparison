@@ -25,17 +25,6 @@ This project investigates whether learned video representations can support Vide
 
 By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences downstream VideoQA performance across temporal, causal, and descriptive reasoning tasks.
 
-## Research Objectives
-
-The objectives of this project are:
-
-1. Establish a baseline multiple-choice VideoQA benchmark using the Qwen2-VL-7B multimodal foundation model.
-2. Learn compact video representations through self-supervised autoencoder training using unlabeled NExT-QA videos.
-3. Generate pretrained CLIP video and text representations for comparison with learned representations.
-4. Compare pretrained and learned video representations using a common downstream VideoQA classification framework.
-5. Evaluate representation quality through downstream VideoQA performance across the NExT-QA reasoning categories.
-6. Develop a reproducible notebook-based experimental framework for investigating video representation learning and VideoQA.
-
 ## Research Questions
 
 This project investigates the following research questions:
