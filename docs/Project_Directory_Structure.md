@@ -7,7 +7,7 @@ nav_order: 1
 
 ## Overview
 
-This project uses a structured directory layout to organize Video Question Answering (VideoQA) datasets, metadata, learned representations, experimental artifacts, and evaluation workflows.
+This project uses a structured directory layout to organize Video Question Answering (VideoQA) datasets, preprocessing metadata, learned video representations, trained models, experimental artifacts, and evaluation workflows.
 
 The design supports a reproducible research pipeline using Google Colab, GitHub, and modular notebook execution. Each notebook produces reusable artifacts that support comparison of three VideoQA approaches:
 
@@ -178,13 +178,19 @@ This file contains centralized constants and shared settings used throughout the
 
 ## Important Notes
 
-- Original benchmark datasets remain separated from generated representation-learning artifacts and experiment outputs.
-- Large video files, learned representations, and generated features may be stored externally when required due to repository size limits.
+- Original benchmark datasets remain separate from generated preprocessing metadata, learned representations, trained models, and evaluation artifacts.
+- Large video files, trained models, and generated representation files may be stored externally when required due to repository size limitations.
 - Notebook stages are designed to be reproducible and independently verifiable.
 
 ## Summary
 
-This directory structure supports a modular VideoQA research workflow where datasets, learned representations, model inputs, and evaluation results remain clearly separated. The organization enables reproducible experimentation with baseline VideoQA inference, pretrained video representations, and self-supervised autoencoder-based representation learning.
+This directory structure supports a modular VideoQA research workflow in which benchmark datasets, preprocessing metadata, learned video representations, trained models, and evaluation results remain clearly separated.
 
-The structure is designed to support comparative representation-learning experiments while maintaining a consistent downstream VideoQA evaluation framework using Qwen2-VL-7B.
+The organization enables reproducible comparison of three complementary VideoQA approaches:
+
+- Qwen2-VL baseline inference
+- CLIP-based pretrained video representations
+- Self-supervised autoencoder video representations
+
+Each pipeline produces standardized outputs that are evaluated using a common downstream VideoQA framework, enabling fair comparison of representation-learning approaches.
 
