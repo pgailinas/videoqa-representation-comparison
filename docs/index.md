@@ -94,7 +94,7 @@ The project is organized as nine modular notebooks supporting the three experime
 | **01_Run_Qwen2VL_Baseline** | Execute baseline multiple-choice VideoQA experiments using the original NExT-QA videos and Qwen2-VL-7B. |
 | **02_Prepare_Autoencoder_Training_Data** | Prepare training datasets and supporting metadata required for self-supervised autoencoder learning. |
 | **03_Train_Video_Autoencoder** | Train self-supervised video autoencoder models using unlabeled NExT-QA videos. |
-| **04_Generate_Autoencoder_Video_Representations** | Generate compact latent video representations using the trained autoencoder encoder. |
+| **04_Generate_Autoencoder_Video_Representations** | Generate compact latent video representations using the trained autoencoder. |
 | **05_Generate_CLIP_Text_Representations** | Generate CLIP text representations for VideoQA questions and answer choices. |
 | **06_Generate_CLIP_Video_Representations** | Generate pretrained CLIP video representations from the NExT-QA videos. |
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either pretrained CLIP or learned autoencoder video representations together with shared CLIP text representations. |
