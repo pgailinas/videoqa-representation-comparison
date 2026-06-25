@@ -105,6 +105,5 @@ Typical visualizations include:
 
 This notebook does not require access to raw video files and does not perform VideoQA inference. Evaluation is performed using saved experiment outputs and NExT-QA reference annotations.
 
-Current evaluation metrics are based on exact-match and substring-based comparisons. Future work may incorporate semantic similarity metrics to better evaluate semantically equivalent answers expressed using different wording.
-
+Current evaluation metrics focus on multiple-choice prediction accuracy together with category-level performance, question-type analysis, runtime statistics, and experiment summaries. The evaluation framework is designed to support consistent comparison across all VideoQA pipelines implemented in this project.
 
