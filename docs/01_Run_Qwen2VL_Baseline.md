@@ -75,7 +75,6 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 * Prediction results include generated answers, ground-truth answers, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
-* Generated prediction datasets and summary reports provide the baseline performance reference used to evaluate the effects of self-supervised autoencoder learning, video reconstruction, and representation compression.
+* Generated prediction datasets and summary reports provide the baseline performance reference used to compare direct Qwen2-VL inference with CLIP-based and self-supervised autoencoder representation-learning pipelines.
 * This notebook is intended for development-subset experimentation, workflow validation, and parameter optimization rather than full-dataset execution.
-
 
