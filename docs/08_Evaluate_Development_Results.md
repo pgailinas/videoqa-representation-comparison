@@ -27,14 +27,10 @@ The notebook provides a common evaluation framework that enables direct comparis
 
 * VideoQA prediction results
   * `outputs/baseline/baseline_predictions.csv`
-
 * Experiment summary results
   * `outputs/baseline/baseline_summary.csv`
-
 * Runtime statistics
-
 * NExT-QA validation annotations
-
 * Project configuration settings
 
 ## Outputs
