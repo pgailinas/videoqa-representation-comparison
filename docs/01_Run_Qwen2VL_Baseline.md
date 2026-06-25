@@ -14,9 +14,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The workflow is used to validate the baseline inference pipeline, evaluate parameter settings, and establish a reference baseline for subsequent autoencoder-based VideoQA experiments.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The resulting prediction and performance metrics establish the baseline reference against which the CLIP-based and self-supervised autoencoder representation pipelines are compared.
 
-Development-subset experiments enable rapid iteration and parameter optimization while minimizing computational cost. Optimized configurations identified during these experiments are later applied to full-dataset execution within the final experiment workflow.
+Development-subset experiments enable rapid iteration and parameter optimization while minimizing computational cost. The validated inference configuration serves as the baseline for comparison with the representation-based VideoQA pipelines before full-dataset experimentation.
 
 ## Inputs
 
@@ -30,6 +30,8 @@ Development-subset experiments enable rapid iteration and parameter optimization
 ## Outputs
 
 ### Generated Files
+
+These outputs provide the baseline performance reference used throughout the remainder of the project.
 
 * outputs/baseline/baseline_predictions.csv
 * outputs/baseline/baseline_summary.csv
