@@ -3,28 +3,25 @@
 # ============================================================
 #
 # Purpose:
-#     Shared video evidence generation and metadata utilities used by:
+#     Shared video segment generation and training metadata utilities used by:
 #
-#         02_Prepare_Video_Evidence
-#         03_Train_Autoencoder
-#         07_Run_Final_Full_Experiment
+#         02_Prepare_Autoencoder_Training_Data
+#         03_Train_Video_Autoencoder
+#         04_Generate_Autoencoder_Video_Representations
 #
 # Notes:
 #     This module contains reusable functions for:
 #
 #         • Video property inspection
-#         • Evidence segmentation
-#         • Evidence metadata generation
-#         • Evidence summary generation
+#         • Fixed-duration video segmentation
+#         • Training metadata generation
+#         • Training metadata summary generation
 #
-#     Project-wide evidence configuration values are defined in:
+#     Project-wide video segmentation configuration values are defined in:
 #
 #         videoqa_representation_config.py
 #
-#     This module consumes those configuration values and provides
-#     reusable implementation functions used throughout the project.
-#
-#     This module stores lightweight evidence metadata that references
+#     This module stores lightweight training metadata that references
 #     original video files rather than duplicating video content.
 # ============================================================
 
@@ -33,7 +30,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, List, Optional
 
 import pandas as pd
 
@@ -104,23 +101,23 @@ def _time_to_frame_index(time_sec: float, fps: float) -> int:
     return max(0, int(round(time_sec * fps)))
 
 
-def _format_evidence_id(
+def _format_segment_id(
     video_id: str,
     segment_index: int,
-    prefix: str = "EV",
+    prefix: str = "SEG",
 ) -> str:
-    """Create a deterministic evidence identifier."""
+    """Create a deterministic segment identifier."""
 
     safe_video_id = str(video_id).replace("/", "_").replace(" ", "_")
     return f"{prefix}_{safe_video_id}_{segment_index:05d}"
 
 
-def _format_parent_evidence_id(
+def _format_parent_segment_id(
     video_id: str,
     parent_index: int,
-    prefix: str = "PEV",
+    prefix: str = "PSEG",
 ) -> str:
-    """Create a deterministic parent evidence identifier."""
+    """Create a deterministic parent segment identifier."""
 
     safe_video_id = str(video_id).replace("/", "_").replace(" ", "_")
     return f"{prefix}_{safe_video_id}_{parent_index:05d}"
@@ -133,26 +130,7 @@ def _format_parent_evidence_id(
 def inspect_video_properties(
     video_path: str | Path,
 ) -> Dict[str, object]:
-    """
-    Inspect basic properties of a single video file.
-
-    Parameters
-    ----------
-    video_path:
-        Path to a local video file.
-
-    Returns
-    -------
-    dict
-        Video properties including duration, frame rate, frame count,
-        width, and height.
-
-    Notes
-    -----
-    OpenCV is imported inside this function so the module can still be
-    imported in lightweight environments where video inspection is not
-    required.
-    """
+    """Inspect basic properties of a single video file."""
 
     video_path = _as_path(video_path)
 
@@ -193,31 +171,7 @@ def build_video_property_table(
     max_videos: Optional[int] = None,
     verbose: bool = True,
 ) -> pd.DataFrame:
-    """
-    Build a table of video properties for a video inventory.
-
-    Parameters
-    ----------
-    video_inventory:
-        DataFrame containing local video paths.
-
-    video_path_column:
-        Column containing video file paths.
-
-    video_id_column:
-        Column containing video identifiers.
-
-    max_videos:
-        Optional maximum number of videos to inspect.
-
-    verbose:
-        Whether to print progress information.
-
-    Returns
-    -------
-    pandas.DataFrame
-        Video property table suitable for evidence generation.
-    """
+    """Build a table of video properties for a video inventory."""
 
     if video_path_column not in video_inventory.columns:
         raise ValueError(
@@ -243,7 +197,6 @@ def build_video_property_table(
     )
 
     for row_index, row in rows.iterrows():
-
         video_id = str(row[video_id_column])
         video_path = row[video_path_column]
 
@@ -262,7 +215,7 @@ def build_video_property_table(
 
 
 # ------------------------------------------------------------
-# Evidence Segment Generation
+# Video Segment Generation
 # ------------------------------------------------------------
 
 def generate_fixed_window_segments(
@@ -271,29 +224,7 @@ def generate_fixed_window_segments(
     segment_stride_sec: float = DEFAULT_SEGMENT_STRIDE_SEC,
     min_segment_duration_sec: float = DEFAULT_MIN_SEGMENT_DURATION_SEC,
 ) -> List[Dict[str, float]]:
-    """
-    Generate fixed-window segment boundaries for a video duration.
-
-    Parameters
-    ----------
-    duration_sec:
-        Total video duration in seconds.
-
-    segment_duration_sec:
-        Target evidence segment duration in seconds.
-
-    segment_stride_sec:
-        Step size between segment starts in seconds.
-
-    min_segment_duration_sec:
-        Minimum duration required for the final segment.
-
-    Returns
-    -------
-    list of dict
-        Segment timing dictionaries containing start, midpoint, end, and
-        duration values.
-    """
+    """Generate fixed-window segment boundaries for a video duration."""
 
     duration_sec = max(0.0, float(duration_sec))
     segment_duration_sec = max(0.001, float(segment_duration_sec))
@@ -307,7 +238,6 @@ def generate_fixed_window_segments(
     start_time_sec = 0.0
 
     while start_time_sec < duration_sec:
-
         end_time_sec = min(start_time_sec + segment_duration_sec, duration_sec)
         segment_duration = end_time_sec - start_time_sec
 
@@ -321,7 +251,7 @@ def generate_fixed_window_segments(
                 "start_time_sec": round(start_time_sec, 4),
                 "midpoint_time_sec": round(midpoint_time_sec, 4),
                 "end_time_sec": round(end_time_sec, 4),
-                "duration_sec": round(segment_duration, 4),
+                "segment_duration_sec": round(segment_duration, 4),
             }
         )
 
@@ -333,31 +263,12 @@ def generate_fixed_window_segments(
     return segments
 
 
-def generate_evidence_records_for_video(
+def generate_training_metadata_for_video(
     video_properties: Dict[str, object],
     parameters: VideoSegmentationParameters,
     split: Optional[str] = None,
 ) -> List[Dict[str, object]]:
-    """
-    Generate evidence metadata records for a single video.
-
-    Parameters
-    ----------
-    video_properties:
-        Dictionary containing video_id, video_path, duration, fps, frame
-        count, width, and height values.
-
-    parameters:
-        Evidence segmentation configuration.
-
-    split:
-        Optional dataset split label associated with the video.
-
-    Returns
-    -------
-    list of dict
-        Evidence metadata records for the video.
-    """
+    """Generate training metadata records for a single video."""
 
     video_id = str(video_properties.get("video_id", ""))
 
@@ -376,11 +287,9 @@ def generate_evidence_records_for_video(
     )
 
     records: List[Dict[str, object]] = []
-
     parent_duration = parameters.parent_segment_duration_sec
 
     for segment_index, segment in enumerate(segments):
-
         start_time = segment["start_time_sec"]
         midpoint_time = segment["midpoint_time_sec"]
         end_time = segment["end_time_sec"]
@@ -392,35 +301,38 @@ def generate_evidence_records_for_video(
             _time_to_frame_index(end_time, fps),
         )
 
-        parent_evidence_id = None
+        parent_segment_id = None
 
-        if parameters.include_parent_evidence and parent_duration:
+        if parameters.include_hierarchical_segments and parent_duration:
             parent_index = int(math.floor(start_time / parent_duration))
-            parent_evidence_id = _format_parent_evidence_id(
+            parent_segment_id = _format_parent_segment_id(
                 video_id=video_id,
                 parent_index=parent_index,
             )
 
         record = {
-            "evidence_id": _format_evidence_id(video_id, segment_index),
+            "segment_id": _format_segment_id(video_id, segment_index),
             "video_id": video_id,
             "split": split,
             "video_path": video_properties.get("video_path"),
-            "evidence_level": parameters.evidence_level,
-            "segment_strategy": parameters.segment_strategy,
             "segment_index": segment_index,
-            "parent_evidence_id": parent_evidence_id,
+            "segment_level": parameters.segment_level,
+            "parent_segment_id": parent_segment_id,
+            "segment_strategy": parameters.segment_strategy,
             "start_time_sec": start_time,
             "midpoint_time_sec": midpoint_time,
             "end_time_sec": end_time,
-            "duration_sec": segment["duration_sec"],
+            "segment_duration_sec": segment["segment_duration_sec"],
             "start_frame_idx": start_frame_idx,
             "midpoint_frame_idx": midpoint_frame_idx,
             "end_frame_idx": end_frame_idx,
+            "representative_frame_index": midpoint_frame_idx,
             "fps": fps,
             "frame_count": frame_count,
             "width": int(_safe_float(video_properties.get("width"))),
             "height": int(_safe_float(video_properties.get("height"))),
+            "motion_score": 0.0,
+            "scene_change_score": DEFAULT_SCENE_CHANGE_SCORE,
         }
 
         records.append(record)
@@ -428,34 +340,13 @@ def generate_evidence_records_for_video(
     return records
 
 
-def generate_evidence_metadata(
+def generate_training_metadata(
     video_property_table: pd.DataFrame,
-    parameters: Optional[EvidenceSegmentationParameters] = None,
+    parameters: Optional[VideoSegmentationParameters] = None,
     split_lookup: Optional[Dict[str, str]] = None,
     verbose: bool = True,
 ) -> pd.DataFrame:
-    """
-    Generate evidence metadata records for a table of videos.
-
-    Parameters
-    ----------
-    video_property_table:
-        DataFrame containing video properties.
-
-    parameters:
-        Optional evidence segmentation parameters.
-
-    split_lookup:
-        Optional mapping from video_id to dataset split label.
-
-    verbose:
-        Whether to print generation progress and summary information.
-
-    Returns
-    -------
-    pandas.DataFrame
-        Evidence metadata table.
-    """
+    """Generate training metadata records for a table of videos."""
 
     parameters = parameters or VideoSegmentationParameters()
     split_lookup = split_lookup or {}
@@ -470,18 +361,17 @@ def generate_evidence_metadata(
     total_count = len(video_property_table)
 
     _print_if_verbose(
-        f"Generating evidence metadata for {total_count} videos...",
+        f"Generating training metadata for {total_count} videos...",
         verbose,
     )
 
     for row_index, row in video_property_table.reset_index(drop=True).iterrows():
-
         video_properties = row.to_dict()
         video_id = str(video_properties["video_id"])
         split = split_lookup.get(video_id)
 
         records.extend(
-            generate_evidence_records_for_video(
+            generate_training_metadata_for_video(
                 video_properties=video_properties,
                 parameters=parameters,
                 split=split,
@@ -491,82 +381,53 @@ def generate_evidence_metadata(
         if verbose and ((row_index + 1) % 100 == 0 or row_index + 1 == total_count):
             print(f"  Processed {row_index + 1:>6} / {total_count:<6} videos")
 
-    evidence_metadata = pd.DataFrame.from_records(records)
+    training_metadata = pd.DataFrame.from_records(records)
 
     if verbose:
-        print("Evidence metadata generation complete.")
-        print(f"Evidence records generated: {len(evidence_metadata)}")
+        print("Training metadata generation complete.")
+        print(f"Segment records generated: {len(training_metadata)}")
 
-    return evidence_metadata
+    return training_metadata
 
 
 # ------------------------------------------------------------
-# Evidence Summaries
+# Training Metadata Summaries
 # ------------------------------------------------------------
 
-def summarize_evidence_metadata(
-    evidence_metadata: pd.DataFrame,
+def summarize_training_metadata(
+    training_metadata: pd.DataFrame,
 ) -> Dict[str, object]:
-    """
-    Summarize generated evidence metadata.
+    """Summarize generated training metadata."""
 
-    Parameters
-    ----------
-    evidence_metadata:
-        Evidence metadata DataFrame.
-
-    Returns
-    -------
-    dict
-        Evidence summary statistics.
-    """
-
-    if evidence_metadata.empty:
+    if training_metadata.empty:
         return {
-            "evidence_count": 0,
+            "segment_count": 0,
             "video_count": 0,
             "total_duration_sec": 0.0,
         }
 
-    required_columns = ["video_id", "duration_sec"]
+    required_columns = ["video_id", "segment_duration_sec"]
 
     for column_name in required_columns:
-        if column_name not in evidence_metadata.columns:
+        if column_name not in training_metadata.columns:
             raise ValueError(
-                f"Evidence metadata must contain column: {column_name}"
+                f"Training metadata must contain column: {column_name}"
             )
 
     return {
-        "evidence_count": int(len(evidence_metadata)),
-        "video_count": int(evidence_metadata["video_id"].nunique()),
-        "total_duration_sec": float(evidence_metadata["duration_sec"].sum()),
-        "mean_duration_sec": float(evidence_metadata["duration_sec"].mean()),
-        "min_duration_sec": float(evidence_metadata["duration_sec"].min()),
-        "max_duration_sec": float(evidence_metadata["duration_sec"].max()),
+        "segment_count": int(len(training_metadata)),
+        "video_count": int(training_metadata["video_id"].nunique()),
+        "total_duration_sec": float(training_metadata["segment_duration_sec"].sum()),
+        "mean_duration_sec": float(training_metadata["segment_duration_sec"].mean()),
+        "min_duration_sec": float(training_metadata["segment_duration_sec"].min()),
+        "max_duration_sec": float(training_metadata["segment_duration_sec"].max()),
     }
 
 
 def build_video_to_split_lookup(
     annotations: pd.DataFrame,
 ) -> Dict[str, str]:
-    """
-    Build a video_id to split lookup table from annotation records.
-
-    Parameters
-    ----------
-    annotations:
-        Annotation DataFrame containing ``video_id`` and ``split``.
-
-    Returns
-    -------
-    dict
-        Mapping from video_id to split label.
-
-    Notes
-    -----
-    If a video appears in more than one split, the first observed split is
-    retained. Cross-split validation should be handled separately.
-    """
+    """Build a video_id to split lookup table from annotation records."""
 
     if "video_id" not in annotations.columns:
         raise ValueError("Annotations DataFrame must contain a video_id column.")
@@ -575,7 +436,6 @@ def build_video_to_split_lookup(
         raise ValueError("Annotations DataFrame must contain a split column.")
 
     unique_pairs = annotations[["video_id", "split"]].drop_duplicates()
-
     lookup: Dict[str, str] = {}
 
     for _, row in unique_pairs.iterrows():
