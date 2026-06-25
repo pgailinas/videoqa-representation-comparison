@@ -93,7 +93,7 @@ RANDOM_SEED = 42
 # ============================================================
 # Baseline VideoQA Settings
 # ============================================================
-MAX_EVIDENCE_PER_VIDEO = 5
+MAX_SEGMENTS_PER_VIDEO = 5
 MAX_FRAMES_PER_QUESTION = 8
 MAX_NEW_TOKENS = 64
 TEMPERATURE = 0.0
@@ -117,7 +117,4 @@ AUTOENCODER_DIR = OUTPUTS_DIR / "autoencoder"
 AUTOENCODER_MODELS_DIR = (AUTOENCODER_DIR / "models")
 AUTOENCODER_RECONSTRUCTIONS_DIR = (AUTOENCODER_DIR / "reconstructions")
 AUTOENCODER_REPORTS_DIR = (AUTOENCODER_DIR / "reports")
-
-
-
 
