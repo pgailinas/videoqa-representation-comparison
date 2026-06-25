@@ -27,7 +27,6 @@
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -35,6 +34,7 @@ from typing import Dict, List, Optional
 import pandas as pd
 
 from src.videoqa_representation_config import *
+
 
 DEFAULT_VIDEO_PROPERTY_COLUMNS = (
     "video_id",
@@ -44,6 +44,32 @@ DEFAULT_VIDEO_PROPERTY_COLUMNS = (
     "frame_count",
     "width",
     "height",
+)
+
+
+DEFAULT_TRAINING_METADATA_COLUMNS = (
+    "segment_id",
+    "video_id",
+    "split",
+    "video_path",
+    "segment_index",
+    "segment_level",
+    "parent_segment_id",
+    "segment_strategy",
+    "start_time_sec",
+    "midpoint_time_sec",
+    "end_time_sec",
+    "segment_duration_sec",
+    "start_frame_idx",
+    "midpoint_frame_idx",
+    "end_frame_idx",
+    "representative_frame_index",
+    "fps",
+    "frame_count",
+    "width",
+    "height",
+    "motion_score",
+    "scene_change_score",
 )
 
 
@@ -62,6 +88,8 @@ class VideoSegmentationParameters:
     segment_level: int = DEFAULT_SEGMENT_LEVEL
     include_hierarchical_segments: bool = ENABLE_HIERARCHICAL_SEGMENTS
     parent_segment_duration_sec: Optional[float] = PARENT_SEGMENT_DURATION_SEC
+    motion_score: float = 0.0
+    scene_change_score: float = DEFAULT_SCENE_CHANGE_SCORE
 
 
 # ------------------------------------------------------------
@@ -130,7 +158,26 @@ def _format_parent_segment_id(
 def inspect_video_properties(
     video_path: str | Path,
 ) -> Dict[str, object]:
-    """Inspect basic properties of a single video file."""
+    """
+    Inspect basic properties of a single video file.
+
+    Parameters
+    ----------
+    video_path:
+        Path to a local video file.
+
+    Returns
+    -------
+    dict
+        Video properties including duration, frame rate, frame count,
+        width, and height.
+
+    Notes
+    -----
+    OpenCV is imported inside this function so the module can still be
+    imported in lightweight environments where video inspection is not
+    required.
+    """
 
     video_path = _as_path(video_path)
 
@@ -171,7 +218,31 @@ def build_video_property_table(
     max_videos: Optional[int] = None,
     verbose: bool = True,
 ) -> pd.DataFrame:
-    """Build a table of video properties for a video inventory."""
+    """
+    Build a table of video properties for a video inventory.
+
+    Parameters
+    ----------
+    video_inventory:
+        DataFrame containing local video paths.
+
+    video_path_column:
+        Column containing video file paths.
+
+    video_id_column:
+        Column containing video identifiers.
+
+    max_videos:
+        Optional maximum number of videos to inspect.
+
+    verbose:
+        Whether to print progress information.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Video property table suitable for segment generation.
+    """
 
     if video_path_column not in video_inventory.columns:
         raise ValueError(
@@ -197,14 +268,33 @@ def build_video_property_table(
     )
 
     for row_index, row in rows.iterrows():
+
         video_id = str(row[video_id_column])
         video_path = row[video_path_column]
 
-        properties = inspect_video_properties(video_path)
-        properties["video_id"] = video_id
-        records.append(properties)
+        try:
+            properties = inspect_video_properties(video_path)
+            properties["video_id"] = video_id
+            records.append(properties)
 
-        if verbose and ((row_index + 1) % 100 == 0 or row_index + 1 == total_count):
+        except Exception as error:  # pylint: disable=broad-exception-caught
+            records.append(
+                {
+                    "video_id": video_id,
+                    "video_path": str(video_path),
+                    "duration_sec": 0.0,
+                    "fps": 0.0,
+                    "frame_count": 0,
+                    "width": 0,
+                    "height": 0,
+                    "inspection_error": str(error),
+                }
+            )
+
+        if verbose and (
+            (row_index + 1) % 100 == 0
+            or row_index + 1 == total_count
+        ):
             print(f"  Inspected {row_index + 1:>6} / {total_count:<6} videos")
 
     property_table = pd.DataFrame.from_records(records)
@@ -224,7 +314,29 @@ def generate_fixed_window_segments(
     segment_stride_sec: float = DEFAULT_SEGMENT_STRIDE_SEC,
     min_segment_duration_sec: float = DEFAULT_MIN_SEGMENT_DURATION_SEC,
 ) -> List[Dict[str, float]]:
-    """Generate fixed-window segment boundaries for a video duration."""
+    """
+    Generate fixed-window segment boundaries for a video duration.
+
+    Parameters
+    ----------
+    duration_sec:
+        Total video duration in seconds.
+
+    segment_duration_sec:
+        Target segment duration in seconds.
+
+    segment_stride_sec:
+        Step size between segment starts in seconds.
+
+    min_segment_duration_sec:
+        Minimum duration required for the final segment.
+
+    Returns
+    -------
+    list of dict
+        Segment timing dictionaries containing start, midpoint, end, and
+        segment duration values.
+    """
 
     duration_sec = max(0.0, float(duration_sec))
     segment_duration_sec = max(0.001, float(segment_duration_sec))
@@ -238,6 +350,7 @@ def generate_fixed_window_segments(
     start_time_sec = 0.0
 
     while start_time_sec < duration_sec:
+
         end_time_sec = min(start_time_sec + segment_duration_sec, duration_sec)
         segment_duration = end_time_sec - start_time_sec
 
@@ -268,7 +381,26 @@ def generate_training_metadata_for_video(
     parameters: VideoSegmentationParameters,
     split: Optional[str] = None,
 ) -> List[Dict[str, object]]:
-    """Generate training metadata records for a single video."""
+    """
+    Generate training metadata records for a single video.
+
+    Parameters
+    ----------
+    video_properties:
+        Dictionary containing video_id, video_path, duration, fps, frame
+        count, width, and height values.
+
+    parameters:
+        Video segmentation configuration.
+
+    split:
+        Optional dataset split label associated with the video.
+
+    Returns
+    -------
+    list of dict
+        Training metadata records for the video.
+    """
 
     video_id = str(video_properties.get("video_id", ""))
 
@@ -279,6 +411,9 @@ def generate_training_metadata_for_video(
     fps = _safe_float(video_properties.get("fps"))
     frame_count = int(_safe_float(video_properties.get("frame_count")))
 
+    if duration_sec <= 0 or fps <= 0 or frame_count <= 0:
+        return []
+
     segments = generate_fixed_window_segments(
         duration_sec=duration_sec,
         segment_duration_sec=parameters.segment_duration_sec,
@@ -287,9 +422,11 @@ def generate_training_metadata_for_video(
     )
 
     records: List[Dict[str, object]] = []
+
     parent_duration = parameters.parent_segment_duration_sec
 
     for segment_index, segment in enumerate(segments):
+
         start_time = segment["start_time_sec"]
         midpoint_time = segment["midpoint_time_sec"]
         end_time = segment["end_time_sec"]
@@ -304,7 +441,7 @@ def generate_training_metadata_for_video(
         parent_segment_id = None
 
         if parameters.include_hierarchical_segments and parent_duration:
-            parent_index = int(math.floor(start_time / parent_duration))
+            parent_index = int(start_time // parent_duration)
             parent_segment_id = _format_parent_segment_id(
                 video_id=video_id,
                 parent_index=parent_index,
@@ -331,8 +468,8 @@ def generate_training_metadata_for_video(
             "frame_count": frame_count,
             "width": int(_safe_float(video_properties.get("width"))),
             "height": int(_safe_float(video_properties.get("height"))),
-            "motion_score": 0.0,
-            "scene_change_score": DEFAULT_SCENE_CHANGE_SCORE,
+            "motion_score": parameters.motion_score,
+            "scene_change_score": parameters.scene_change_score,
         }
 
         records.append(record)
@@ -346,7 +483,28 @@ def generate_training_metadata(
     split_lookup: Optional[Dict[str, str]] = None,
     verbose: bool = True,
 ) -> pd.DataFrame:
-    """Generate training metadata records for a table of videos."""
+    """
+    Generate training metadata records for a table of videos.
+
+    Parameters
+    ----------
+    video_property_table:
+        DataFrame containing video properties.
+
+    parameters:
+        Optional video segmentation parameters.
+
+    split_lookup:
+        Optional mapping from video_id to dataset split label.
+
+    verbose:
+        Whether to print generation progress and summary information.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Training metadata table.
+    """
 
     parameters = parameters or VideoSegmentationParameters()
     split_lookup = split_lookup or {}
@@ -366,9 +524,10 @@ def generate_training_metadata(
     )
 
     for row_index, row in video_property_table.reset_index(drop=True).iterrows():
+
         video_properties = row.to_dict()
         video_id = str(video_properties["video_id"])
-        split = split_lookup.get(video_id)
+        split = split_lookup.get(video_id, "")
 
         records.extend(
             generate_training_metadata_for_video(
@@ -378,10 +537,16 @@ def generate_training_metadata(
             )
         )
 
-        if verbose and ((row_index + 1) % 100 == 0 or row_index + 1 == total_count):
+        if verbose and (
+            (row_index + 1) % 100 == 0
+            or row_index + 1 == total_count
+        ):
             print(f"  Processed {row_index + 1:>6} / {total_count:<6} videos")
 
-    training_metadata = pd.DataFrame.from_records(records)
+    training_metadata = pd.DataFrame.from_records(
+        records,
+        columns=DEFAULT_TRAINING_METADATA_COLUMNS,
+    )
 
     if verbose:
         print("Training metadata generation complete.")
@@ -397,7 +562,19 @@ def generate_training_metadata(
 def summarize_training_metadata(
     training_metadata: pd.DataFrame,
 ) -> Dict[str, object]:
-    """Summarize generated training metadata."""
+    """
+    Summarize generated training metadata.
+
+    Parameters
+    ----------
+    training_metadata:
+        Training metadata DataFrame.
+
+    Returns
+    -------
+    dict
+        Training metadata summary statistics.
+    """
 
     if training_metadata.empty:
         return {
@@ -427,7 +604,24 @@ def summarize_training_metadata(
 def build_video_to_split_lookup(
     annotations: pd.DataFrame,
 ) -> Dict[str, str]:
-    """Build a video_id to split lookup table from annotation records."""
+    """
+    Build a video_id to split lookup table from annotation records.
+
+    Parameters
+    ----------
+    annotations:
+        Annotation DataFrame containing ``video_id`` and ``split``.
+
+    Returns
+    -------
+    dict
+        Mapping from video_id to split label.
+
+    Notes
+    -----
+    If a video appears in more than one split, the first observed split is
+    retained. Cross-split validation should be handled separately.
+    """
 
     if "video_id" not in annotations.columns:
         raise ValueError("Annotations DataFrame must contain a video_id column.")
@@ -436,6 +630,7 @@ def build_video_to_split_lookup(
         raise ValueError("Annotations DataFrame must contain a split column.")
 
     unique_pairs = annotations[["video_id", "split"]].drop_duplicates()
+
     lookup: Dict[str, str] = {}
 
     for _, row in unique_pairs.iterrows():
