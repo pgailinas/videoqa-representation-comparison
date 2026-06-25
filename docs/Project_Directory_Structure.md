@@ -126,6 +126,7 @@ videoqa-representation-comparison/
     ├── baseline/
     │   ├── baseline_predictions.csv
     │   └── baseline_summary.csv
+    │
     ├── evaluation/
     │   └── reports/
     │       ├── answer_length_metric.csv
@@ -138,11 +139,14 @@ videoqa-representation-comparison/
     │       ├── prediction_verification.csv
     │       ├── question_type_metrics.csv
     │       └── runtime_analysis.csv
-    ├── evidence/
+    │
+    ├── training/
     │   ├── metadata/
-    │   │   └── evidence_metadata.csv        
+    │   │   └── training_metadata.csv        
     │   └── reports/
-    │      └── evidence_summary.csv
+    │      └── training_data_summary.csv
+    │      └── training_metadata_validation.csv
+    │
     └── representations/
         ├── autoencoder/
         ├── clip/
