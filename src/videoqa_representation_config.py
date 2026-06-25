@@ -118,3 +118,48 @@ AUTOENCODER_MODELS_DIR = (AUTOENCODER_DIR / "models")
 AUTOENCODER_RECONSTRUCTIONS_DIR = (AUTOENCODER_DIR / "reconstructions")
 AUTOENCODER_REPORTS_DIR = (AUTOENCODER_DIR / "reports")
 
+# ============================================================
+# Representation Output Directories
+# ============================================================
+AUTOENCODER_REPRESENTATIONS_DIR = (
+    REPRESENTATIONS_DIR / "autoencoder"
+)
+
+CLIP_REPRESENTATIONS_DIR = (
+    REPRESENTATIONS_DIR / "clip"
+)
+
+CLIP_TEXT_REPRESENTATIONS_DIR = (
+    CLIP_REPRESENTATIONS_DIR / "text"
+)
+
+CLIP_VIDEO_REPRESENTATIONS_DIR = (
+    CLIP_REPRESENTATIONS_DIR / "video"
+)
+
+# ============================================================
+# Representation Output Files
+# ============================================================
+AUTOENCODER_REPRESENTATIONS_CSV = (
+    AUTOENCODER_REPRESENTATIONS_DIR /
+    "autoencoder_representations.csv"
+)
+
+AUTOENCODER_REPRESENTATION_SUMMARY_CSV = (
+    AUTOENCODER_REPRESENTATIONS_DIR /
+    "representation_summary.csv"
+)
+
+CLIP_TEXT_REPRESENTATIONS_CSV = (
+    CLIP_TEXT_REPRESENTATIONS_DIR /
+    "clip_text_representations.csv"
+)
+
+CLIP_VIDEO_REPRESENTATIONS_CSV = (
+    CLIP_VIDEO_REPRESENTATIONS_DIR /
+    "clip_video_representations.csv"
+)
+
+
+
+
