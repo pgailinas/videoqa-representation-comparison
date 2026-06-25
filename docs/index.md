@@ -37,22 +37,13 @@ This project investigates the following research questions:
 
 4. Which NExT-QA reasoning categories (causal, temporal, and descriptive) are most affected by the choice of video representation?
 
-5. Does self-supervised representation learning provide a practical alternative to pretrained video representations for downstream VideoQA tasks?
-
-6. What insights can be gained from comparing foundation-model inference with representation-based VideoQA using identical evaluation procedures?
+5. What insights can be gained from comparing foundation-model inference with representation-based VideoQA using identical evaluation procedures?
 
 ## Dataset
 
 The primary benchmark dataset used in this project is **NExT-QA**, a Video Question Answering (VideoQA) benchmark designed to evaluate visual understanding and reasoning across real-world video content. The dataset contains questions that require models to reason about actions, events, temporal relationships, and contextual interactions occurring within video sequences.
 
-The dataset provides raw video files, multiple-choice question-answer annotations, official training, validation, and test splits, together with supporting metadata linking each question to its corresponding source video.
-
-The experimental dataset includes:
-
-* NExT-QA video collection containing 5,440 MP4 videos organized within the NExTVideo directory structure
-* Training, validation, and test question-answer splits containing 47,692 benchmark questions
-* Video identifier mapping metadata
-* Question categories and reasoning annotations
+The NExT-QA benchmark contains 5,440 videos, 47,692 multiple-choice question-answer pairs, official training/validation/test splits, and supporting metadata linking questions to their corresponding videos.
 
 Within this project, the NExT-QA videos serve three complementary purposes:
 
@@ -86,8 +77,6 @@ The **Autoencoder Representation Pipeline** trains a self-supervised video autoe
 
 By using identical text representations, classification methods, and evaluation procedures for both representation-based pipelines, the experimental framework isolates the impact of the video representation itself. This controlled design enables direct comparison between pretrained and learned representations while providing a consistent baseline through Qwen2-VL-7B.
 
-The modular notebook workflow allows each stage of the experimental pipeline to be executed, validated, and extended independently while supporting reproducible experimentation using both development subsets and the complete NExT-QA dataset.
-
 ---
 
 ### Pipeline Flowchart
@@ -98,7 +87,7 @@ The modular notebook workflow allows each stage of the experimental pipeline to 
 
 ### Notebook Workflow
 
-The project is organized as a collection of modular notebooks that support reproducible experimentation in representation learning and downstream multiple-choice Video Question Answering (VideoQA). The workflow consists of three complementary experimental pipelines together with shared evaluation and reporting notebooks.
+The project is organized as nine modular notebooks supporting the three experimental pipelines.
 
 | Notebook | Purpose |
 |----------|---------|
@@ -116,15 +105,11 @@ Development-subset experiments are used for workflow validation and parameter se
 
 ## Expected Contributions
 
-This project contributes a reproducible experimental framework for investigating representation learning within multiple-choice Video Question Answering (VideoQA) systems. By combining baseline foundation-model inference with pretrained and self-supervised representation-based approaches, the project provides a controlled methodology for evaluating how different video representations influence downstream VideoQA performance.
+This project contributes a reproducible framework for comparing pretrained and learned video representations for downstream multiple-choice VideoQA.
 
-A primary contribution of this work is the direct comparison of pretrained CLIP video representations and self-supervised autoencoder representations under a common experimental framework. By maintaining consistent text representations, classification methods, and evaluation procedures, the study isolates the effect of the video representation itself and enables meaningful comparison between learned and pretrained approaches.
+The experimental framework enables direct comparison by holding the text representations, classifier, and evaluation methodology constant while varying only the video representation.
 
-The project also contributes a modular notebook-based workflow that supports reproducible machine learning experimentation. The workflow separates baseline evaluation, representation generation, autoencoder training, downstream inference, and performance analysis into well-defined stages that can be executed, validated, and extended independently.
-
-Experimental results are expected to provide insight into the effectiveness of self-supervised representation learning for VideoQA, the relative strengths of pretrained and learned video representations, and the impact of representation choice across the NExT-QA reasoning categories.
-
-In addition to the experimental findings, the repository provides a documented research platform that can serve as a foundation for future investigations involving representation learning, multimodal foundation models, self-supervised learning, and Video Question Answering.
+The resulting notebook workflow provides a modular research platform that can be extended to investigate additional representation-learning methods, multimodal foundation models, and VideoQA benchmarks.
 
 ---
 
