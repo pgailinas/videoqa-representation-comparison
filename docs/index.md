@@ -134,18 +134,6 @@ Performance is evaluated using multiple-choice VideoQA accuracy together with re
 
 The objective of this study is not to develop a new VideoQA model, but rather to investigate whether compact learned video representations can provide an effective alternative to pretrained representations for downstream VideoQA tasks.
 
-## Notebook Design Philosophy
-
-The project is organized as a collection of modular notebooks, each with a well-defined responsibility within the overall experimental framework. This design promotes reproducibility, simplifies validation, and allows individual stages of the workflow to be developed, tested, and executed independently.
-
-Each notebook performs a specific task, such as baseline inference, representation generation, autoencoder training, evaluation, or experimental reporting. Standardized inputs and outputs enable the notebooks to operate together as complete experimental pipelines while remaining sufficiently independent to support incremental development and future extensions.
-
-Development notebooks are designed to execute on small subsets of the NExT-QA dataset, enabling rapid experimentation, parameter tuning, and workflow verification. Once an experimental configuration has been validated, the same workflow is applied to the complete dataset to generate the project's primary evaluation results.
-
-The notebooks are compatible with both Google Colab and local Jupyter environments. Common functionality is implemented in reusable Python modules, while each notebook focuses on the experimental steps and outputs relevant to its specific role.
-
-This modular design supports reproducible machine learning research while also providing a structured workflow that can be extended to investigate additional representation-learning methods, multimodal models, or VideoQA evaluation strategies.
-
 ## Expected Contributions
 
 This project contributes a reproducible experimental framework for investigating representation learning within multiple-choice Video Question Answering (VideoQA) systems. By combining baseline foundation-model inference with pretrained and self-supervised representation-based approaches, the project provides a controlled methodology for evaluating how different video representations influence downstream VideoQA performance.
