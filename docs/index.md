@@ -17,23 +17,24 @@ Experiments are conducted using a two-stage methodology consisting of developmen
 
 ## Motivation and Research Problem
 
-The rapid growth of video-based data has created increasing demand for artificial intelligence systems capable of understanding visual content, motion, temporal relationships, and contextual interactions within complex video sequences. Unlike static-image analysis, Video Question Answering (VideoQA) requires reasoning across both spatial and temporal dimensions, making it a challenging benchmark for multimodal machine learning systems.
+Video Question Answering (VideoQA) requires models to understand both the visual content of individual frames and the temporal relationships that occur throughout a video. Unlike static-image recognition, VideoQA demands reasoning about actions, events, object interactions, and causal relationships, making it a challenging benchmark for multimodal machine learning systems.
 
-Recent advances in self-supervised learning have demonstrated that useful visual representations can be learned directly from unlabeled data. Autoencoders provide a particularly attractive approach because they learn compact latent representations by reconstructing input data rather than relying on manually annotated labels. This capability has the potential to reduce dependence on costly labeled datasets while still capturing meaningful semantic and temporal information.
+Recent advances in foundation models have demonstrated impressive VideoQA performance by processing video and text directly. At the same time, self-supervised learning has shown that compact feature representations can be learned from large collections of unlabeled data without requiring manual annotation. These learned representations have proven effective across a wide range of computer vision tasks, suggesting that they may also provide useful information for downstream VideoQA.
 
-Although self-supervised representation learning has achieved promising results across many computer vision tasks, an important question remains: do the learned representations preserve the information required for downstream reasoning tasks such as VideoQA? In particular, it is unclear how much video information can be compressed into latent representations before performance on temporal, causal, and descriptive reasoning tasks begins to degrade.
+This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with representations learned through self-supervised autoencoder training while using a common set of text representations and a shared downstream classifier.
 
-This project investigates that question by training autoencoders using unlabeled videos from the NExT-QA dataset and evaluating the resulting representations through downstream VideoQA performance. Baseline VideoQA performance using original video evidence is compared with multiple autoencoder-based workflows using reconstructed video evidence generated from different evidence preparation strategies. By holding the VideoQA model constant and varying evidence generation and representation-learning stages, the study seeks to determine whether self-supervised autoencoder learning can produce compact video representations that preserve sufficient information for accurate VideoQA reasoning.
+By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences downstream VideoQA performance across temporal, causal, and descriptive reasoning tasks.
 
 ## Research Objectives
 
 The objectives of this project are:
 
-1. Learn compact video representations using self-supervised autoencoder training.
-2. Investigate how evidence preparation strategies influence learned representations.
-3. Evaluate reconstructed-video performance on downstream VideoQA tasks.
-4. Measure the relationship between compression, reconstruction quality, and VideoQA accuracy.
-5. Compare baseline, standard-evidence, and enhanced-evidence workflows.
+1. Establish a baseline multiple-choice VideoQA benchmark using the Qwen2-VL-7B multimodal foundation model.
+2. Learn compact video representations through self-supervised autoencoder training using unlabeled NExT-QA videos.
+3. Generate pretrained CLIP video and text representations for comparison with learned representations.
+4. Compare pretrained and learned video representations using a common downstream VideoQA classification framework.
+5. Evaluate representation quality through downstream VideoQA performance across the NExT-QA reasoning categories.
+6. Develop a reproducible notebook-based experimental framework for investigating video representation learning and VideoQA.
 
 ## Research Questions
 
