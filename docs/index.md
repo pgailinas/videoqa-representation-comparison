@@ -40,23 +40,23 @@ The objectives of this project are:
 
 This project investigates the following research questions:
 
-1. Can self-supervised autoencoder training learn compact video representations from unlabeled video data while preserving information relevant to Video Question Answering (VideoQA)?
+1. Can self-supervised autoencoder training learn compact video representations that preserve the semantic and temporal information required for downstream VideoQA?
 
-2. How does VideoQA performance change when reconstructed video evidence generated from learned autoencoder representations is used instead of original video evidence?
+2. How does VideoQA performance using learned autoencoder video representations compare with pretrained CLIP video representations under a common evaluation framework?
 
-3. What relationship exists between representation compression, reconstruction quality, and downstream VideoQA performance?
+3. How closely do representation-based VideoQA approaches perform relative to the baseline Qwen2-VL system operating directly on the original videos?
 
-4. How do different evidence preparation strategies affect learned representations and downstream VideoQA performance?
+4. Which NExT-QA reasoning categories (causal, temporal, and descriptive) are most affected by the choice of video representation?
 
-5. What relationship exists between evidence generation, reconstruction quality, and VideoQA accuracy?
+5. Does self-supervised representation learning provide a practical alternative to pretrained video representations for downstream VideoQA tasks?
 
-6. To what extent can evidence enhancement techniques improve downstream VideoQA performance compared to standard evidence generation methods?
+6. What insights can be gained from comparing foundation-model inference with representation-based VideoQA using identical evaluation procedures?
 
 ## Dataset
 
-The primary benchmark dataset used in this project is NExT-QA, a Video Question Answering (VideoQA) dataset designed to evaluate visual understanding and reasoning across real-world video content. NExT-QA contains questions that require models to reason about actions, events, temporal relationships, and contextual interactions occurring within video sequences.
+The primary benchmark dataset used in this project is **NExT-QA**, a Video Question Answering (VideoQA) benchmark designed to evaluate visual understanding and reasoning across real-world video content. The dataset contains questions that require models to reason about actions, events, temporal relationships, and contextual interactions occurring within video sequences.
 
-The dataset provides raw video files, question-answer annotations, official training, validation, and test splits, and supporting metadata that associates questions with their corresponding source videos.
+The dataset provides raw video files, multiple-choice question-answer annotations, official training, validation, and test splits, together with supporting metadata linking each question to its corresponding source video.
 
 The experimental dataset includes:
 
@@ -65,39 +65,39 @@ The experimental dataset includes:
 * Video identifier mapping metadata
 * Question categories and reasoning annotations
 
-Within this project, the NExT-QA videos serve two distinct purposes. During self-supervised learning, the videos are used without questions, answer choices, or ground-truth labels to train autoencoder models and learn compact video representations. During evaluation, the NExT-QA questions and answers are used to measure how well the learned representations support downstream VideoQA reasoning.
+Within this project, the NExT-QA videos serve three complementary purposes:
+
+* **Baseline VideoQA** — Original videos are processed directly by Qwen2-VL-7B to establish baseline performance.
+* **Representation Learning** — Unlabeled videos are used to train self-supervised autoencoder models and to generate pretrained CLIP video representations.
+* **Evaluation** — The benchmark questions and answer choices are encoded as CLIP text representations and combined with the video representations to evaluate downstream multiple-choice VideoQA performance.
+
+Development-subset experiments are used during parameter optimization to reduce computational cost. Final experimental results are generated using the complete NExT-QA dataset using the selected experimental configuration.
 
 ### NExT-QA Reasoning Categories
 
 NExT-QA is designed to evaluate video understanding through three primary reasoning categories:
 
-| Category    | Description                                          |
-| ----------- | ---------------------------------------------------- |
-| Causal      | Why events occur and how actions produce outcomes.   |
-| Temporal    | Event order and temporal relationships.              |
-| Descriptive | Objects, actions, attributes, locations, and counts. |
+| Category | Description |
+|----------|-------------|
+| **Causal** | Why events occur and how actions produce outcomes. |
+| **Temporal** | Event order and temporal relationships. |
+| **Descriptive** | Objects, actions, attributes, locations, and counts. |
 
-These reasoning categories provide an important evaluation dimension for this project. Experimental results will be analyzed both overall and by reasoning category to determine how well information learned through self-supervised autoencoder training supports causal, temporal, and descriptive reasoning tasks.
-
-Raw videos are processed into structured evidence segments containing temporal metadata, video segment boundaries, and representative frame information. These evidence segments serve as the foundation for autoencoder training, video reconstruction, compression analysis, and downstream VideoQA experimentation.
+Evaluation results are reported both overall and by reasoning category to provide insight into how different video representations support temporal, causal, and descriptive reasoning tasks.
 
 ## System Architecture
 
-The experimental framework combines self-supervised autoencoder learning with multimodal Video Question Answering (VideoQA) using the NExT-QA benchmark dataset and the Qwen2-VL-7B foundation model.
+The experimental framework is organized around three complementary VideoQA pipelines that evaluate different approaches to generating video representations while maintaining a consistent downstream evaluation methodology.
 
-Video preprocessing generates structured evidence records consisting of temporal video segments, frame samples, and associated metadata. These evidence segments serve as the foundation for both baseline VideoQA experiments and self-supervised autoencoder training.
+The **Baseline Pipeline** establishes a performance reference by processing the original NExT-QA videos directly with the Qwen2-VL-7B multimodal foundation model. This pipeline provides the benchmark against which all representation-based approaches are compared.
 
-The system architecture supports a baseline VideoQA workflow together with multiple autoencoder-based workflows.
+The **Pretrained Representation Pipeline** generates CLIP video representations from the NExT-QA videos together with CLIP text representations for the corresponding questions and answer choices. These shared representations are evaluated using a common downstream multiple-choice VideoQA classifier.
 
-The baseline workflow performs VideoQA inference directly on original NExT-QA video evidence using Qwen2-VL-7B.
+The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, then uses the trained encoder to generate compact latent video representations. As with the pretrained pipeline, CLIP text representations and the same downstream classifier are used to evaluate VideoQA performance.
 
-The autoencoder workflows generate video evidence segments using alternative evidence preparation strategies, train self-supervised autoencoders, reconstruct video segments, and evaluate reconstructed-video performance using Qwen2-VL-7B.
+By using identical text representations, classification methods, and evaluation procedures for both representation-based pipelines, the experimental framework isolates the impact of the video representation itself. This controlled design enables direct comparison between pretrained and learned representations while providing a consistent baseline through Qwen2-VL-7B.
 
-During the self-supervised learning phase, the autoencoder is trained using only video evidence. Questions, answer choices, and ground-truth labels are not used during representation learning. The autoencoder learns compact latent representations by encoding and reconstructing video segments, encouraging the model to capture meaningful semantic and temporal information while reducing data dimensionality.
-
-The learned representations are evaluated by reconstructing video evidence and providing the reconstructed videos to Qwen2-VL-7B for VideoQA inference. Performance is compared against a baseline workflow that uses the original video evidence directly. This design enables assessment of how much information is preserved by the learned representations and how representation compression affects downstream reasoning performance.
-
-Qwen2-VL-7B serves as the fixed VideoQA inference model throughout all experiments. By holding the downstream reasoning model constant and varying only the representation-learning stage, the architecture isolates the effects of self-supervised autoencoder learning on VideoQA performance, reasoning quality, compression efficiency, and computational requirements.
+The modular notebook workflow allows each stage of the experimental pipeline to be executed, validated, and extended independently while supporting reproducible experimentation using both development subsets and the complete NExT-QA dataset.
 
 ---
 
@@ -109,19 +109,27 @@ Qwen2-VL-7B serves as the fixed VideoQA inference model throughout all experimen
 
 ### Notebook Workflow
 
-The project is organized as a sequence of notebooks that support reproducible experimentation in self-supervised autoencoder learning and downstream Video Question Answering (VideoQA). The workflow includes development-subset experimentation for parameter selection followed by full-dataset experiments using optimized configurations.
+The project is organized as a collection of modular notebooks that support reproducible experimentation in representation learning and downstream multiple-choice Video Question Answering (VideoQA). The workflow consists of three complementary experimental pipelines together with shared evaluation and reporting notebooks.
 
-| Notebook                             | Purpose                                                                                                                               |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **01_Run_Baseline_VideoQA**          | Execute development-subset baseline VideoQA experiments using original video evidence and Qwen2-VL-7B.                                |
-| **02_Prepare_Video_Evidence**        | Generate evidence metadata, video segments, and supporting resources required for autoencoder training and VideoQA experimentation.   |
-| **03_Train_Autoencoder**             | Train self-supervised autoencoder models using unlabeled video evidence and learn compact latent representations.                     |
-| **04_Run_Autoencoder_VideoQA**       | Execute development-subset VideoQA experiments using autoencoder-reconstructed video evidence and Qwen2-VL-7B.                        |
-| **05_Evaluate_Development_Results**  | Generate evaluation metrics, compression analysis, runtime analysis, visualizations, and development-subset comparison reports.       |
-| **06_Run_Final_Full_Experiment**     | Train and evaluate the selected autoencoder configuration using the complete NExT-QA dataset and generate final experimental results. |
+| Notebook | Purpose |
+|----------|---------|
+| **01_Run_Qwen2VL_Baseline** | Execute baseline multiple-choice VideoQA experiments using the original NExT-QA videos and Qwen2-VL-7B. |
+| **02_Prepare_Autoencoder_Training_Data** | Prepare training datasets and supporting metadata required for self-supervised autoencoder learning. |
+| **03_Train_Video_Autoencoder** | Train self-supervised video autoencoder models using unlabeled NExT-QA videos. |
+| **04_Generate_Autoencoder_Video_Representations** | Generate compact latent video representations using the trained autoencoder encoder. |
+| **05_Generate_CLIP_Text_Representations** | Generate CLIP text representations for VideoQA questions and answer choices. |
+| **06_Generate_CLIP_Video_Representations** | Generate pretrained CLIP video representations from the NExT-QA videos. |
+| **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either pretrained CLIP or learned autoencoder video representations together with shared CLIP text representations. |
+| **08_Evaluate_Development_Results** | Generate evaluation metrics, reasoning-category analysis, runtime statistics, visualizations, and comparison reports for development-subset experiments. |
+| **09_Run_Final_Comparison_Experiment** | Execute the complete experimental workflow using the selected configuration and generate the project's final comparative results. |
 
-The notebook workflow follows a two-stage experimental methodology. Development-subset experiments are used to evaluate autoencoder architectures, compression settings, reconstruction quality, and VideoQA performance. After parameter selection, a final full-dataset experiment is performed to generate the project's primary results and conclusions.
+The notebook workflow supports three experimental pipelines:
 
+- **Pipeline A — Baseline VideoQA:** Establishes baseline performance using Qwen2-VL-7B and the original NExT-QA videos.
+- **Pipeline B — Pretrained Representation VideoQA:** Evaluates pretrained CLIP video representations using shared CLIP text representations and a common downstream classifier.
+- **Pipeline C — Autoencoder Representation VideoQA:** Evaluates learned autoencoder video representations using the same text representations, classifier, and evaluation methodology.
+
+Development-subset experiments are used for workflow validation and parameter selection. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
 ## Experimental Methodology
 
