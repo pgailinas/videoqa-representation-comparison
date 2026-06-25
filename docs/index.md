@@ -112,12 +112,6 @@ The project is organized as a collection of modular notebooks that support repro
 | **08_Evaluate_Development_Results** | Generate evaluation metrics, reasoning-category analysis, runtime statistics, visualizations, and comparison reports for development-subset experiments. |
 | **09_Run_Final_Comparison_Experiment** | Execute the complete experimental workflow using the selected configuration and generate the project's final comparative results. |
 
-The notebook workflow supports three experimental pipelines:
-
-- **Pipeline A — Baseline VideoQA:** Establishes baseline performance using Qwen2-VL-7B and the original NExT-QA videos.
-- **Pipeline B — Pretrained Representation VideoQA:** Evaluates pretrained CLIP video representations using shared CLIP text representations and a common downstream classifier.
-- **Pipeline C — Autoencoder Representation VideoQA:** Evaluates learned autoencoder video representations using the same text representations, classifier, and evaluation methodology.
-
 Development-subset experiments are used for workflow validation and parameter selection. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
 ## Expected Contributions
