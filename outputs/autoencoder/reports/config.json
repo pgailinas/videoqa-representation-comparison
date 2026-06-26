@@ -1,0 +1,13 @@
+{
+  "experiment_name": "development_video_segments_autoencoder",
+  "evaluation_split": "val",
+  "development_subset_size": 25,
+  "random_seed": 42,
+  "frame_size": 128,
+  "frames_per_segment": 8,
+  "batch_size": 8,
+  "epochs": 3,
+  "latent_dim": 256,
+  "learning_rate": 0.001,
+  "reconstruction_sample_count": 10
+}

@@ -1,0 +1,9 @@
+metric,value
+reconstructed_segment_count,10.0
+reconstructed_frame_count,80.0
+average_mse,0.023462
+average_mae,0.111433
+average_psnr,16.493966
+latent_dim,256.0
+frame_size,128.0
+frames_per_segment,8.0
