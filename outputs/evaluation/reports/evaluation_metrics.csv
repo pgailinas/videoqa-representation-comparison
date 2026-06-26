@@ -1,8 +1,0 @@
-metric,value
-total_evaluation_records,25.0
-valid_predictions,25.0
-exact_matches,0.0
-partial_matches,2.0
-exact_match_accuracy,0.0
-partial_match_accuracy,0.08
-valid_prediction_rate,1.0
