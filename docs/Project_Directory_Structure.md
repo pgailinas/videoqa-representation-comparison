@@ -131,6 +131,12 @@ videoqa-representation-comparison/
     │   ├── models/
     │   ├── reconstructions/
     │   └── reports/
+    │       ├── config.json
+    │       ├── frame_metrics.csv
+    │       ├── reconstruction_metrics.csv
+    │       ├── reconstruction_smaples.csv
+    │       ├── summary.csv
+    │       └── training_history.csv
     │
     ├── evaluation/
     │   └── reports/
