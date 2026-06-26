@@ -47,6 +47,11 @@ NEXTQA_COMBINED_ARCHIVE_NAME = "NExTVideo_combined.zip"
 NEXTQA_COMBINED_ARCHIVE_PATH = (ARCHIVES_DIR / NEXTQA_COMBINED_ARCHIVE_NAME)
 
 # ============================================================
+# Google Drive Output Directory# ============================================================
+GOOGLE_DRIVE_ROOT = Path("/content/drive/MyDrive/VideoQA_Project")
+EXPERIMENTS_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "experiments"
+
+# ============================================================
 # Project Output Directories
 # ============================================================
 OUTPUTS_DIR = BASE_DIR / "outputs"
