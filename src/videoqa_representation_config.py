@@ -160,6 +160,45 @@ CLIP_VIDEO_REPRESENTATIONS_CSV = (
     "clip_video_representations.csv"
 )
 
+# ============================================================
+# Training Metadata Schema
+# ============================================================
+
+TRAINING_SCHEMA = {
+    "segment_id": "str",
+    "video_id": "str",
+    "split": "str",
+    "video_path": "str",
+    "segment_index": "int",
+
+    "segment_level": "int",
+    "parent_segment_id": "str",
+    "segment_strategy": "str",
+
+    "start_time_sec": "float",
+    "midpoint_time_sec": "float",
+    "end_time_sec": "float",
+
+    "segment_duration_sec": "float",
+
+    "start_frame_idx": "int",
+    "midpoint_frame_idx": "int",
+    "end_frame_idx": "int",
+
+    "representative_frame_index": "int",
+
+    "fps": "float",
+    "frame_count": "int",
+    "width": "int",
+    "height": "int",
+
+    "motion_score": "float",
+    "scene_change_score": "float",
+}
+
+# Single source of truth
+TRAINING_COLUMNS = list(TRAINING_SCHEMA.keys())
+
 
 
 
