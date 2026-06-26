@@ -1,7 +1,0 @@
-metric,value
-average_ground_truth_word_count,3.36
-median_ground_truth_word_count,3.0
-average_prediction_word_count,2.12
-median_prediction_word_count,2.0
-minimum_prediction_word_count,1.0
-maximum_prediction_word_count,4.0
