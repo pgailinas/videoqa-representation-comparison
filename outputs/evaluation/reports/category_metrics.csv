@@ -1,4 +1,0 @@
-reasoning_category,total_records,valid_predictions,exact_matches,partial_matches,exact_match_accuracy,partial_match_accuracy,valid_prediction_rate
-Causal,13,13,0,2,0.0,0.15384615384615385,1.0
-Descriptive,2,2,0,0,0.0,0.0,1.0
-Temporal,10,10,0,0,0.0,0.0,1.0
