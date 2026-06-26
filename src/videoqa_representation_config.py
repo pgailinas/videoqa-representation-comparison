@@ -199,6 +199,49 @@ TRAINING_SCHEMA = {
 # Single source of truth
 TRAINING_COLUMNS = list(TRAINING_SCHEMA.keys())
 
+REQUIRED_TRAINING_COLUMNS = [
+    "segment_id",
+    "video_id",
+    "split",
+    "video_path",
+
+    "start_time_sec",
+    "midpoint_time_sec",
+    "end_time_sec",
+
+    "segment_duration_sec",
+
+    "start_frame_idx",
+    "midpoint_frame_idx",
+    "end_frame_idx",
+
+    "representative_frame_index",
+]
+
+UNIQUE_TRAINING_COLUMNS = [
+    "segment_id",
+]
+
+RETRIEVAL_REFERENCE_COLUMNS = [
+    "segment_id",
+    "video_id",
+    "video_path",
+
+    "start_time_sec",
+    "midpoint_time_sec",
+    "end_time_sec",
+
+    "start_frame_idx",
+    "midpoint_frame_idx",
+    "end_frame_idx",
+
+    "representative_frame_index",
+
+    "motion_score",
+]
+
+
+
 
 
 
