@@ -4,44 +4,80 @@ import torch.nn as nn
 
 class ConvAutoencoder(nn.Module):
     """
-    THIS IS THE REAL MODEL USED IN TRAINING.
+    HYBRID MODEL USED IN NOTEBOOK 03:
 
-    Despite the name, it is NOT convolutional.
-    It is a fully connected autoencoder operating on flattened frames.
+    Conv Encoder
+    ↓
+    Flatten
+    ↓
+    Linear bottleneck (to_latent)
+    ↓
+    Linear expansion (from_latent)
+    ↓
+    Conv Decoder
     """
 
-    def __init__(self, input_dim=32768, latent_dim=256):
+    def __init__(self, latent_dim=256):
         super().__init__()
 
         # --------------------------------------------------------
-        # Encoder (MLP)
+        # Convolutional encoder (feature extraction)
         # --------------------------------------------------------
-        self.to_latent = nn.Sequential(
-            nn.Linear(input_dim, 1024),
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 32, 4, stride=2, padding=1),
             nn.ReLU(),
-            nn.Linear(1024, latent_dim)
+
+            nn.Conv2d(32, 64, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.Conv2d(64, 128, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.Conv2d(128, 256, 4, stride=2, padding=1),
+            nn.ReLU(),
         )
 
         # --------------------------------------------------------
-        # Decoder (MLP)
+        # Bottleneck projection (MLP)
         # --------------------------------------------------------
-        self.from_latent = nn.Sequential(
-            nn.Linear(latent_dim, 1024),
+        self.to_latent = nn.Linear(256 * 2 * 2, latent_dim)
+        self.from_latent = nn.Linear(latent_dim, 256 * 2 * 2)
+
+        # --------------------------------------------------------
+        # Decoder (mirror conv)
+        # --------------------------------------------------------
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(256, 128, 4, stride=2, padding=1),
             nn.ReLU(),
-            nn.Linear(1024, input_dim)
+
+            nn.ConvTranspose2d(128, 64, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.ConvTranspose2d(64, 32, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.ConvTranspose2d(32, 3, 4, stride=2, padding=1),
+            nn.Sigmoid(),
         )
-
-    def encode(self, x):
-        x = x.view(x.size(0), -1)
-        return self.to_latent(x)
-
-    def decode(self, z):
-        return self.from_latent(z)
 
     def forward(self, x):
-        x = x.view(x.size(0), -1)
+        # encoder conv
+        x = self.encoder(x)
+
+        # flatten
+        b = x.shape[0]
+        x = x.view(b, -1)
+
+        # latent bottleneck
         z = self.to_latent(x)
-        out = self.from_latent(z)
+        x = self.from_latent(z)
+
+        # reshape back to conv feature map
+        x = x.view(b, 256, 2, 2)
+
+        # decode
+        out = self.decoder(x)
+
         return out, z
 
   
