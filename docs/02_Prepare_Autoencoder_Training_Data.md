@@ -16,9 +16,9 @@ has_toc: false
 
 This notebook prepares the training data required for self-supervised autoencoder learning using the NExT-QA video dataset.
 
-Source videos are segmented into standardized temporal units, and metadata describing each segment is generated. These training segments provide a consistent dataset representation for downstream representation learning in the autoencoder pipeline.
+Source videos are segmented into standardized temporal units, and metadata describing each segment is generated. These training segments provide a consistent dataset representation for reproducible self-supervised learning experiments.
 
-The resulting training metadata defines fixed video segment units used for self-supervised learning and ensures reproducible preprocessing across experiments.
+The resulting training metadata defines fixed video segment units and ensures reproducible preprocessing across experiments.
 
 ## Inputs
 
@@ -35,7 +35,7 @@ The resulting training metadata defines fixed video segment units used for self-
 ## Outputs
 
 * Local NExT-QA video cache (restored or verified)
-* Autoencoder training metadata (segment-level dataset)
+* Segment-level training metadata dataset
 * Training metadata summary report
 * Video inventory summary
 * Metadata validation report
@@ -43,7 +43,7 @@ The resulting training metadata defines fixed video segment units used for self-
 
 ## Processing Workflow
 
-1. Initialize the project environment and restore or verify the local NExT-QA video cache
+1. Initialize the project environment and verify the local NExT-QA video cache
 2. Load NExT-QA metadata and construct the video inventory
 3. Define segmentation parameters for training metadata generation
 4. Inspect representative videos and extract video properties
@@ -67,7 +67,7 @@ Each segment includes:
 * Video properties (fps, resolution, frame count)
 * Optional motion and scene-change metrics (disabled by default)
 
-This segmentation strategy provides a consistent and reproducible unit of video data for representation learning in the autoencoder pipeline.
+These training segments provide a consistent and reproducible unit of video data for downstream learning tasks.
 
 ### Training Metadata Field Definitions
 
@@ -122,5 +122,5 @@ The current segmentation configuration produces:
 * One representative midpoint frame per segment
 * Motion and scene scoring disabled in baseline configuration
 
-These training segments define the structured dataset used for self-supervised autoencoder training and provide a consistent foundation for downstream representation learning.
+These training segments define the structured dataset used for consistent and reproducible experimental workflows.
 
