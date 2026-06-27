@@ -9,9 +9,9 @@ The project compares three complementary approaches:
 
 -   **Baseline VideoQA** using Qwen2-VL and the original videos.
 -   **Representation-Based VideoQA** using pretrained CLIP video
-    representations.
+    embeddings.
 -   **Representation-Based VideoQA** using self-supervised autoencoder
-    video representations.
+    latent representations.
 
 Both representation-based approaches use common CLIP text
 representations and the same downstream classifier, allowing differences
@@ -73,10 +73,11 @@ The primary research hypothesis is:
 > representations that preserve sufficient semantic and temporal
 > information to support effective downstream VideoQA.
 
-The project further investigates whether learned autoencoder
-representations can achieve competitive performance when compared with
+The project further investigates whether learned autoencoder representations can provide meaningful latent structure for downstream VideoQA evaluation when compared with
 pretrained CLIP video representations under a common evaluation
 framework.
+
+learned autoencoder representations can provide meaningful latent structure for downstream VideoQA evaluation
 
 ## ⚙️ Execution Notes
 
