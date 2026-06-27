@@ -5,38 +5,54 @@
 import torch
 import torch.nn as nn
 
+
 class ConvAutoencoder(nn.Module):
     """
-    NOTE:
-    This matches the ORIGINAL training architecture used in Notebook 03.
-    It is NOT a convolutional autoencoder.
-    It is a fully connected latent projection model.
+    Exact architecture matching Notebook 03 training script.
+    Conv encoder + Conv decoder using Sequential blocks.
+    Returns (reconstruction, latent).
     """
 
-    def __init__(self, input_dim=1024, latent_dim=256):
+    def __init__(self):
         super().__init__()
 
-        # ----------------------------
-        # Encoder: flatten -> latent
-        # ----------------------------
-        self.to_latent = nn.Linear(input_dim, latent_dim)
+        # --------------------------------------------------------
+        # Encoder
+        # --------------------------------------------------------
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 32, 4, stride=2, padding=1),   # 32 x 16 x 16
+            nn.ReLU(),
 
-        # ----------------------------
-        # Decoder: latent -> reconstruct
-        # ----------------------------
-        self.from_latent = nn.Linear(latent_dim, input_dim)
+            nn.Conv2d(32, 64, 4, stride=2, padding=1),  # 64 x 8 x 8
+            nn.ReLU(),
 
-    def encode(self, x):
-        x = x.view(x.size(0), -1)
-        return self.to_latent(x)
+            nn.Conv2d(64, 128, 4, stride=2, padding=1), # 128 x 4 x 4
+            nn.ReLU(),
 
-    def decode(self, z):
-        return self.from_latent(z)
+            nn.Conv2d(128, 256, 4, stride=2, padding=1), # 256 x 2 x 2
+            nn.ReLU(),
+        )
+
+        # --------------------------------------------------------
+        # Decoder
+        # --------------------------------------------------------
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(256, 128, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.ConvTranspose2d(128, 64, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.ConvTranspose2d(64, 32, 4, stride=2, padding=1),
+            nn.ReLU(),
+
+            nn.ConvTranspose2d(32, 3, 4, stride=2, padding=1),
+            nn.Sigmoid(),
+        )
 
     def forward(self, x):
-        x = x.view(x.size(0), -1)
-        z = self.to_latent(x)
-        out = self.from_latent(z)
-        return out
+        latent = self.encoder(x)
+        reconstructed = self.decoder(latent)
+        return reconstructed, latent
 
   
