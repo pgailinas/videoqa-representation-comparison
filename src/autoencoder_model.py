@@ -70,14 +70,14 @@ class ConvAutoencoder(nn.Module):
 
         # latent bottleneck
         z = self.to_latent(x)
+
+        # reconstruction path
         x = self.from_latent(z)
 
-        # reshape back to conv feature map
-        x = x.view(b, 256, 2, 2)
+        # DON'T assume spatial shape; use encoder output shape
+        x = x.view_as(self.encoder_output_shape)
 
-        # decode
-        out = self.decoder(x)
+        x = self.decoder(x)
 
-        return out, z
+        return x, z
 
-  
