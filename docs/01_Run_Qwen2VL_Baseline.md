@@ -40,9 +40,9 @@ These outputs provide the baseline performance reference used throughout the rem
 
 * Predicted answers
 * Ground-truth answers
-* Question and video metadata
-* Inference timing metrics
-* Sample prediction results for verification
+* Video-question pairs used for evaluation
+* Inference timing metrics per sample
+* Sample prediction outputs for qualitative review
 
 ## Processing Workflow
 
@@ -52,7 +52,7 @@ These outputs provide the baseline performance reference used throughout the rem
 * Verify GPU runtime and model dependencies
 * Load the Qwen2-VL-7B model and processor
 * Prepare the development evaluation dataset
-* Execute development-subset baseline VideoQA inference using sampled video frames
+* Execute development-subset baseline VideoQA inference using Qwen2-VL-7B with sampled video frames and structured prompting
 * Validate generated prediction results
 * Save baseline prediction results
 * Generate baseline summary statistics and reports
@@ -62,7 +62,7 @@ These outputs provide the baseline performance reference used throughout the rem
 
 Development and testing were performed within the Google Colab environment.
 
-Standard High-RAM CPU runtimes were used for repository cloning, dataset preparation, archive reconstruction, file transfers, compression and decompression operations, and other preprocessing tasks that did not require GPU acceleration.
+Standard CPU runtime environments are used for dataset preparation, repository setup, and file operations. GPU acceleration (NVIDIA L4 preferred) is required for Qwen2-VL-7B inference.
 
 Baseline VideoQA development-subset experiments were evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during testing.
 
@@ -76,5 +76,5 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
 * Generated prediction datasets and summary reports provide the baseline performance reference used to compare direct Qwen2-VL inference with CLIP-based and self-supervised autoencoder representation-learning pipelines.
-* This notebook is intended for development-subset experimentation, workflow validation, and parameter optimization rather than full-dataset execution.
+* This notebook is intended for development-subset VideoQA inference using direct Qwen2-VL-7B evaluation. It is used for baseline performance measurement, workflow validation, and generation of reference predictions for downstream representation-learning comparisons.
 
