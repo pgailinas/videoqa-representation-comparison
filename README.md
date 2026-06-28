@@ -30,9 +30,9 @@ and evaluation framework.
 
 The experimental framework consists of three pipelines:
 
--   Baseline Qwen2-VL VideoQA
--   CLIP Representation-Based VideoQA
--   Autoencoder Representation-Based VideoQA
+- Baseline VideoQA using Qwen2-VL
+- Representation-Based VideoQA using pretrained CLIP video representations
+- Representation-Based VideoQA using self-supervised autoencoder latent representations
 
 Development-subset experiments are used for parameter optimization
 before full-dataset evaluation. The representation-based pipelines share
@@ -60,10 +60,7 @@ The primary benchmark dataset is **NExT-QA**, containing:
 -   Official training, validation, and test splits
 -   Temporal, causal, and descriptive reasoning tasks
 
-The videos are used for baseline inference, pretrained representation
-generation, and self-supervised autoencoder training. The benchmark
-questions and answer choices are encoded as CLIP text representations
-for downstream evaluation.
+The videos are used for baseline VideoQA inference, pretrained CLIP video representation generation, self-supervised autoencoder training, and autoencoder latent representation generation. NExT-QA questions and answer choices are encoded as common CLIP text representations for downstream representation-based VideoQA evaluation.
 
 ## Experimental Hypothesis
 
@@ -77,13 +74,12 @@ The project further investigates whether learned autoencoder representations can
 pretrained CLIP video representations under a common evaluation
 framework.
 
-learned autoencoder representations can provide meaningful latent structure for downstream VideoQA evaluation
-
 ## ⚙️ Execution Notes
 
 -   Designed primarily for Google Colab
 -   Supports local Jupyter execution
 -   Notebook-driven workflow
+- Experiment artifacts stored by experiment name in Google Drive
 -   Development and full-dataset execution modes
 -   GPU acceleration where appropriate
 -   Modular and reproducible experimental framework
