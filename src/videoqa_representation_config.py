@@ -255,6 +255,45 @@ GROUND_TRUTH_ANSWER_COLUMN = "answer"
 QUESTION_COLUMN = "question"
 VIDEO_ID_COLUMN = "video"
 
+# ============================================================
+# Autoencoder Experiment Output Directories
+# ============================================================
+
+AUTOENCODER_EXPERIMENT_DIR = (
+    EXPERIMENTS_DRIVE_DIR / EXPERIMENT_NAME
+)
+
+AUTOENCODER_TRAINING_DIR = (
+    AUTOENCODER_EXPERIMENT_DIR / "training"
+)
+
+AUTOENCODER_TRAINING_METADATA_DIR = (
+    AUTOENCODER_TRAINING_DIR / "metadata"
+)
+
+AUTOENCODER_REPRESENTATIONS_DRIVE_DIR = (
+    AUTOENCODER_EXPERIMENT_DIR / "autoencoder" / "representations"
+)
+
+# ============================================================
+# Autoencoder Experiment Output Files
+# ============================================================
+
+AUTOENCODER_TRAINING_METADATA_CSV = (
+    AUTOENCODER_TRAINING_METADATA_DIR /
+    "training_metadata.csv"
+)
+
+AUTOENCODER_SEGMENT_REPRESENTATIONS_CSV = (
+    AUTOENCODER_REPRESENTATIONS_DRIVE_DIR /
+    "autoencoder_segment_representations.csv"
+)
+
+AUTOENCODER_VIDEO_REPRESENTATIONS_CSV = (
+    AUTOENCODER_REPRESENTATIONS_DRIVE_DIR /
+    "autoencoder_video_representations.csv"
+)
+
 
 
 
