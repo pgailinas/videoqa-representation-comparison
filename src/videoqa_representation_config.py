@@ -245,7 +245,15 @@ RETRIEVAL_REFERENCE_COLUMNS = [
     "motion_score",
 ]
 
+# ============================================================
+# VideoQA Evaluation Settings
+# ============================================================
 
+ANSWER_MODE = "multiple_choice"
+CHOICE_COLUMNS = ["a0", "a1", "a2", "a3", "a4"]
+GROUND_TRUTH_ANSWER_COLUMN = "answer"
+QUESTION_COLUMN = "question"
+VIDEO_ID_COLUMN = "video"
 
 
 
