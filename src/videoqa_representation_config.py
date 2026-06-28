@@ -119,12 +119,29 @@ AUTOENCODER_LEARNING_RATE = 1e-3
 AUTOENCODER_RECONSTRUCTION_SAMPLE_COUNT = 10
 
 # ============================================================
-# Autoencoder Output Directories
+# Local Experiment Output Directories
 # ============================================================
-AUTOENCODER_DIR = OUTPUTS_DIR / "autoencoder"
-AUTOENCODER_MODELS_DIR = (AUTOENCODER_DIR / "models")
-AUTOENCODER_RECONSTRUCTIONS_DIR = (AUTOENCODER_DIR / "reconstructions")
-AUTOENCODER_REPORTS_DIR = (AUTOENCODER_DIR / "reports")
+LOCAL_EXPERIMENT_DIR = OUTPUTS_DIR / EXPERIMENT_NAME
+
+AUTOENCODER_DIR = LOCAL_EXPERIMENT_DIR / "autoencoder"
+AUTOENCODER_MODELS_DIR = AUTOENCODER_DIR / "models"
+AUTOENCODER_RECONSTRUCTIONS_DIR = AUTOENCODER_DIR / "reconstructions"
+AUTOENCODER_REPORTS_DIR = AUTOENCODER_DIR / "reports"
+AUTOENCODER_LOCAL_REPRESENTATIONS_DIR = AUTOENCODER_DIR / "representations"
+
+# ============================================================
+# Local Autoencoder Representation Output Files
+# ============================================================
+
+AUTOENCODER_LOCAL_SEGMENT_REPRESENTATIONS_CSV = (
+    AUTOENCODER_LOCAL_REPRESENTATIONS_DIR /
+    "autoencoder_segment_representations.csv"
+)
+
+AUTOENCODER_LOCAL_VIDEO_REPRESENTATIONS_CSV = (
+    AUTOENCODER_LOCAL_REPRESENTATIONS_DIR /
+    "autoencoder_video_representations.csv"
+)
 
 # ============================================================
 # Representation Output Directories
