@@ -40,6 +40,8 @@ class ConvAutoencoder(nn.Module):
         # Decoder (ConvTranspose stack)
         # --------------------------------------------------------
         self.decoder = nn.Sequential(
+            nn.ReLU(),
+
             nn.ConvTranspose2d(128, 64, 4, stride=2, padding=1),  # decoder.1
             nn.ReLU(),
 
