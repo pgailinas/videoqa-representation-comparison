@@ -73,7 +73,7 @@ The **Baseline Pipeline** establishes a performance reference by processing the 
 
 The **Pretrained Representation Pipeline** generates CLIP video embeddings from the NExT-QA videos together with CLIP text embeddings for the corresponding questions and answer choices. These shared representations are evaluated using a common downstream multiple-choice VideoQA classifier.
 
-The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, then uses the trained encoder to generate compact latent video representations. As with the pretrained pipeline, CLIP text representations and the same downstream classifier are used to evaluate VideoQA performance.
+The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, generates segment-level and video-level latent representations, and prepares evaluation representation datasets for downstream VideoQA classification. As with the pretrained pipeline, CLIP text representations and the same downstream classifier are used to evaluate VideoQA performance.
 
 By using identical text representations, classification methods, and evaluation procedures for both representation-based pipelines, the experimental framework isolates the impact of the video representation itself. This controlled design enables direct comparison between pretrained and learned representations while providing a consistent baseline through Qwen2-VL-7B.
 
@@ -94,7 +94,7 @@ The project is organized as nine modular notebooks supporting the three experime
 | **01_Run_Qwen2VL_Baseline** | Execute baseline multiple-choice VideoQA experiments using the original NExT-QA videos and Qwen2-VL-7B. |
 | **02_Prepare_Autoencoder_Training_Data** | Prepare training datasets and supporting metadata required for self-supervised autoencoder learning. |
 | **03_Train_Video_Autoencoder** | Train self-supervised video autoencoder models using unlabeled NExT-QA videos. |
-| **04_Generate_Autoencoder_Video_Representations** | Generate compact latent video representations using the trained autoencoder. |
+| **04_Generate_Autoencoder_Video_Representations** | Prepare the development evaluation representation dataset by loading, validating, and packaging the latent representation artifacts. |
 | **05_Generate_CLIP_Text_Representations** | Generate CLIP text representations for VideoQA questions and answer choices. |
 | **06_Generate_CLIP_Video_Representations** | Generate pretrained CLIP video embeddings from the NExT-QA videos. |
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either pretrained CLIP or learned autoencoder latent representations together with shared CLIP text representations. |
@@ -105,7 +105,7 @@ Development-subset experiments are used for workflow validation and parameter se
 
 ## Expected Contributions
 
-This project contributes a reproducible framework for comparing pretrained and learned video representations for downstream multiple-choice VideoQA.
+This project contributes a reproducible framework for comparing pretrained and learned video representations using a reproducible notebook-driven workflow that separates representation learning, representation preparation, and downstream VideoQA evaluation.
 
 The experimental framework enables direct comparison by holding the text representations, classifier, and evaluation methodology constant while varying only the video representation.
 
