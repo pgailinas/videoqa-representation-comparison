@@ -3,6 +3,9 @@
 # ============================================
 from pathlib import Path
 
+# EXTREMELY IMPORTANT
+EXPERIMENT_NAME = "ae_seg6s_stride4_dev25"
+
 # -------------------------------------------------
 # Base project directory
 # -------------------------------------------------
