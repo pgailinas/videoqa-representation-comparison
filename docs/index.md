@@ -9,7 +9,7 @@ nav_order: 0
 
 This project investigates self-supervised autoencoder learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset, pretrained CLIP representations, and the Qwen2-VL-7B multimodal foundation model.
 
-The project compares three complementary approaches to VideoQA. The first establishes a baseline using Qwen2-VL and the original NExT-QA videos. The second evaluates pretrained CLIP video embeddings, while the third investigates whether compact video representations learned through self-supervised autoencoder training can provide comparable downstream VideoQA performance.
+The project compares three complementary approaches to VideoQA. The first establishes a baseline using Qwen2-VL and the original NExT-QA videos. The second evaluates pretrained CLIP video embeddings together with shared CLIP text embeddings, while the third investigates whether compact video representations learned through self-supervised autoencoder training can provide comparable downstream VideoQA performance.
 
 To enable a controlled comparison, both representation-based approaches use a common set of CLIP text embeddings for the questions and answer choices together with the same downstream VideoQA classifier. This experimental design isolates the impact of the video representation while minimizing differences introduced by the inference architecture.
 
@@ -49,7 +49,7 @@ Within this project, the NExT-QA videos serve three complementary purposes:
 
 * **Baseline VideoQA** — Original videos are processed directly by Qwen2-VL-7B to establish baseline performance.
 * **Representation Learning** — Unlabeled videos are used to train self-supervised autoencoder models and to generate pretrained CLIP video embeddings.
-* **Evaluation** — The benchmark questions and answer choices are encoded as CLIP text embeddings and combined with the video representations to evaluate downstream multiple-choice VideoQA performance.
+* **Evaluation** — The benchmark questions and answer choices are encoded once as a reusable shared CLIP text embedding dataset and combined with the video representations to evaluate downstream multiple-choice VideoQA performance.
 
 Development-subset experiments are used during parameter optimization to reduce computational cost. Final experimental results are generated using the complete NExT-QA dataset using the selected experimental configuration.
 
@@ -71,9 +71,9 @@ The experimental framework is organized around three complementary VideoQA pipel
 
 The **Baseline Pipeline** establishes a performance reference by processing the original NExT-QA videos directly with the Qwen2-VL-7B multimodal foundation model. This pipeline provides the benchmark against which all representation-based approaches are compared.
 
-The **Pretrained Representation Pipeline** generates CLIP video embeddings from the NExT-QA videos together with CLIP text embeddings for the corresponding questions and answer choices. These shared representations are evaluated using a common downstream multiple-choice VideoQA classifier.
+The **Pretrained Representation Pipeline** uses reusable CLIP text embeddings together with reusable pretrained CLIP video embeddings. These shared representations are evaluated using a common downstream multiple-choice VideoQA classifier.
 
-The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, generates segment-level and video-level latent representations, and prepares evaluation representation datasets for downstream VideoQA classification. As with the pretrained pipeline, CLIP text representations and the same downstream classifier are used to evaluate VideoQA performance.
+The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, generates segment-level and video-level latent representations, and prepares evaluation representation datasets for downstream VideoQA classification. As with the pretrained pipeline, the reusable shared CLIP text embedding dataset and the same downstream classifier are used to evaluate VideoQA performance.
 
 By using identical text representations, classification methods, and evaluation procedures for both representation-based pipelines, the experimental framework isolates the impact of the video representation itself. This controlled design enables direct comparison between pretrained and learned representations while providing a consistent baseline through Qwen2-VL-7B.
 
