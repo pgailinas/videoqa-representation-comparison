@@ -315,6 +315,43 @@ AUTOENCODER_VIDEO_REPRESENTATIONS_CSV = (
     "autoencoder_video_representations.csv"
 )
 
+# ============================================================
+# CLIP Text Representation Settings
+# ============================================================
+
+CLIP_TEXT_MODEL_NAME = "openai/clip-vit-base-patch32"
+CLIP_TEXT_BATCH_SIZE = 32
+CLIP_TEXT_REPRESENTATION_SCOPE = "questions_and_answer_choices"
+
+TEXT_INPUT_TYPES = [
+    "question",
+    "answer_choice",
+]
+
+# ============================================================
+# CLIP Text Experiment Output Directories
+# ============================================================
+
+CLIP_TEXT_REPRESENTATIONS_DRIVE_DIR = (
+    EXPERIMENTS_DRIVE_DIR
+    / EXPERIMENT_NAME
+    / "clip"
+    / "text"
+)
+
+# ============================================================
+# CLIP Text Experiment Output Files
+# ============================================================
+
+CLIP_TEXT_REPRESENTATIONS_DRIVE_CSV = (
+    CLIP_TEXT_REPRESENTATIONS_DRIVE_DIR /
+    "clip_text_representations.csv"
+)
+
+CLIP_TEXT_SUMMARY_DRIVE_CSV = (
+    CLIP_TEXT_REPRESENTATIONS_DRIVE_DIR /
+    "clip_text_representation_summary.csv"
+)
 
 
 
