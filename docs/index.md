@@ -95,11 +95,11 @@ The project is organized as nine modular notebooks supporting the three experime
 | **02_Prepare_Autoencoder_Training_Data** | Prepare training datasets and supporting metadata required for self-supervised autoencoder learning. |
 | **03_Train_Video_Autoencoder** | Train self-supervised video autoencoder models using unlabeled NExT-QA videos. |
 | **04_Generate_Autoencoder_Video_Representations** | Prepare the development evaluation representation dataset by loading, validating, and packaging the latent representation artifacts. |
-| **05_Generate_CLIP_Text_Representations** | Generate CLIP text representations for VideoQA questions and answer choices. |
-| **06_Generate_CLIP_Video_Representations** | Generate pretrained CLIP video embeddings from the NExT-QA videos. |
+| **05_Generate_CLIP_Text_Representations** | Generate a reusable shared CLIP text embedding dataset for VideoQA questions and answer choices. |
+| **06_Generate_CLIP_Video_Representations** | Generate a reusable pretrained CLIP video embedding dataset from the NExT-QA videos. |
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either pretrained CLIP or learned autoencoder latent representations together with shared CLIP text representations. |
-| **08_Evaluate_Development_Results** | Generate evaluation metrics, reasoning-category analysis, runtime statistics, visualizations, and comparison reports for development-subset experiments. |
-| **09_Run_Final_Comparison_Experiment** | Execute the complete experimental workflow using the selected configuration and generate the project's final comparative results. |
+| **08_Evaluate_Development_Results** | Compare development results from the Qwen2-VL baseline, pretrained CLIP representations, and autoencoder experiments using common evaluation metrics, visualizations, and performance analysis. |
+| **09_Run_Final_Comparison_Experiment** | Execute the selected best-performing representation configuration on the complete NExT-QA dataset and generate the project's final evaluation results. |
 
 Development-subset experiments are used for workflow validation and parameter selection. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
