@@ -329,18 +329,23 @@ TEXT_INPUT_TYPES = [
 ]
 
 # ============================================================
-# CLIP Text Experiment Output Directories
+# Shared CLIP Text Output Directories
 # ============================================================
 
+SHARED_REPRESENTATIONS_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "representations"
+)
+
+CLIP_SHARED_REPRESENTATIONS_DRIVE_DIR = (
+    SHARED_REPRESENTATIONS_DRIVE_DIR / "clip"
+)
+
 CLIP_TEXT_REPRESENTATIONS_DRIVE_DIR = (
-    EXPERIMENTS_DRIVE_DIR
-    / EXPERIMENT_NAME
-    / "clip"
-    / "text"
+    CLIP_SHARED_REPRESENTATIONS_DRIVE_DIR / "text"
 )
 
 # ============================================================
-# CLIP Text Experiment Output Files
+# Shared CLIP Text Output Files
 # ============================================================
 
 CLIP_TEXT_REPRESENTATIONS_DRIVE_CSV = (
@@ -352,6 +357,4 @@ CLIP_TEXT_SUMMARY_DRIVE_CSV = (
     CLIP_TEXT_REPRESENTATIONS_DRIVE_DIR /
     "clip_text_representation_summary.csv"
 )
-
-
 
