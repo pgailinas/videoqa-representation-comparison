@@ -101,13 +101,13 @@ The project is organized as nine modular notebooks supporting the three experime
 | **08_Evaluate_Development_Results** | Compare development results from the Qwen2-VL baseline, pretrained CLIP representations, and autoencoder experiments using common evaluation metrics, visualizations, and performance analysis. |
 | **09_Run_Final_Comparison_Experiment** | Execute the selected best-performing representation configuration on the complete NExT-QA dataset and generate the project's final evaluation results. |
 
-Development-subset experiments are used for workflow validation and parameter selection. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
+Development-subset experiments are used to compare baseline, pretrained, and autoencoder representation methods and to select the best-performing configuration before full-dataset evaluation. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
 ## Expected Contributions
 
 This project contributes a reproducible framework for comparing pretrained and learned video representations using a reproducible notebook-driven workflow that separates representation learning, representation preparation, and downstream VideoQA evaluation.
 
-The experimental framework enables direct comparison by holding the text representations, classifier, and evaluation methodology constant while varying only the video representation.
+The experimental framework enables direct comparison by holding the reusable CLIP text embedding dataset, classifier, and evaluation methodology constant while varying only the video representation.
 
 The resulting notebook workflow provides a modular research platform that can be extended to investigate additional representation-learning methods, multimodal foundation models, and VideoQA benchmarks.
 
