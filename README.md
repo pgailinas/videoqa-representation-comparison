@@ -19,9 +19,10 @@ Both representation-based approaches use a shared CLIP text embedding dataset, t
 
 The objective of this project is to compare pretrained and
 self-supervised video representations for downstream multiple-choice
-VideoQA. Learned autoencoder representations are evaluated against
-pretrained CLIP video representations using a common text representation
-and evaluation framework.
+VideoQA. Learned autoencoder video representations are evaluated
+against pretrained CLIP video representations using a shared CLIP text
+embedding dataset, a common downstream classifier, and an identical
+evaluation framework.
 
 ## Experimental Framework
 
@@ -31,9 +32,9 @@ The experimental framework consists of three complementary pipelines:
 - Representation-Based VideoQA using pretrained CLIP video and shared CLIP text embeddings
 - Representation-Based VideoQA using self-supervised autoencoder video embeddings and shared CLIP text embeddings
 
-Development-subset experiments are used for parameter optimization before full-dataset evaluation. The representation-based pipelines share identical text representations, classifier, and evaluation methodology, isolating the impact of the video representation.
+Development-mode execution is used to validate notebook functionality and tune experiment parameters before full-dataset evaluation. The representation-based pipelines share identical text representations, classifier, and evaluation methodology, isolating the impact of the video representation.
 
-Pretrained CLIP text and video embeddings are generated once as reusable shared datasets and are reused across all downstream representation-based experiments.
+Shared CLIP text and pretrained CLIP video embeddings are generated once and stored as reusable shared artifacts. These artifacts are reused across all downstream representation-based VideoQA experiments, while autoencoder-generated video representations remain experiment-specific.
 
 The project focuses on:
 
@@ -73,11 +74,12 @@ framework.
 - Designed primarily for Google Colab
 - Supports local Jupyter execution
 - Notebook-driven workflow
-- Shared CLIP embedding datasets stored independently of experiments
+- Shared CLIP text and pretrained CLIP video embedding datasets generated once and stored independently of experiments
 - Experiment-specific autoencoder artifacts stored by experiment name
 - Development and full-dataset execution modes
 - GPU acceleration where appropriate
 - Modular and reproducible experimental framework
+- Local-first artifact generation with optional promotion to shared Google Drive storage
 
 ## 🌐 Documentation
 
