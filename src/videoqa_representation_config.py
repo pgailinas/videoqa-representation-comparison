@@ -358,3 +358,28 @@ CLIP_TEXT_SUMMARY_DRIVE_CSV = (
     "clip_text_representation_summary.csv"
 )
 
+# ============================================================
+# Local Shared CLIP Text Output Directories
+# ============================================================
+
+CLIP_TEXT_LOCAL_OUTPUT_DIR = (
+    OUTPUTS_DIR / "representations" / "clip" / "text"
+)
+
+# ============================================================
+# Local Shared CLIP Text Output Files
+# ============================================================
+
+CLIP_TEXT_REPRESENTATIONS_LOCAL_CSV = (
+    CLIP_TEXT_LOCAL_OUTPUT_DIR /
+    "clip_text_representations.csv"
+)
+
+CLIP_TEXT_SUMMARY_LOCAL_CSV = (
+    CLIP_TEXT_LOCAL_OUTPUT_DIR /
+    "clip_text_representation_summary.csv"
+)
+
+
+
+
