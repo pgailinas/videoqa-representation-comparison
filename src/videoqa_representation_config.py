@@ -472,15 +472,15 @@ CLIP_VIDEOQA_SUMMARY_CSV = (
 )
 
 # ============================================================
-# Representation-Based VideoQA Google Drive Output Directories
+# Shared VideoQA Output Directories
 # ============================================================
 
-REPRESENTATION_VIDEOQA_DRIVE_DIR = (
-    GOOGLE_DRIVE_ROOT / "outputs" / "representation_videoqa"
+VIDEOQA_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "videoqa"
 )
 
 CLIP_VIDEOQA_DRIVE_DIR = (
-    REPRESENTATION_VIDEOQA_DRIVE_DIR / "clip_video"
+    VIDEOQA_DRIVE_DIR / "clip_video"
 )
 
 # ============================================================
