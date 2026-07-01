@@ -380,6 +380,58 @@ CLIP_TEXT_SUMMARY_LOCAL_CSV = (
     "clip_text_representation_summary.csv"
 )
 
+# ============================================================
+# CLIP Video Representation Settings
+# ============================================================
+CLIP_VIDEO_MODEL_NAME = "openai/clip-vit-base-patch32"
+CLIP_VIDEO_BATCH_SIZE = 16
+CLIP_VIDEO_SAMPLE_FRAMES = 8
+CLIP_VIDEO_FRAME_POOLING = "mean"
+CLIP_VIDEO_REPRESENTATION_SCOPE = "videos"
+
+# ============================================================
+# Shared CLIP Video Output Directories
+# ============================================================
+CLIP_VIDEO_REPRESENTATIONS_DRIVE_DIR = (
+    CLIP_SHARED_REPRESENTATIONS_DRIVE_DIR / "video"
+)
+
+# ============================================================
+# Shared CLIP Video Output Files
+# ============================================================
+CLIP_VIDEO_REPRESENTATIONS_DRIVE_CSV = (
+    CLIP_VIDEO_REPRESENTATIONS_DRIVE_DIR /
+    "clip_video_representations.csv"
+)
+CLIP_VIDEO_SUMMARY_DRIVE_CSV = (
+    CLIP_VIDEO_REPRESENTATIONS_DRIVE_DIR /
+    "clip_video_representation_summary.csv"
+)
+
+# ============================================================
+# Local Shared CLIP Video Output Directories
+# ============================================================
+CLIP_VIDEO_LOCAL_OUTPUT_DIR = (
+    OUTPUTS_DIR / "representations" / "clip" / "video"
+)
+
+# ============================================================
+# Local Shared CLIP Video Output Files
+# ============================================================
+CLIP_VIDEO_REPRESENTATIONS_LOCAL_CSV = (
+    CLIP_VIDEO_LOCAL_OUTPUT_DIR /
+    "clip_video_representations.csv"
+)
+CLIP_VIDEO_SUMMARY_LOCAL_CSV = (
+    CLIP_VIDEO_LOCAL_OUTPUT_DIR /
+    "clip_video_representation_summary.csv"
+)
+
+
+
+
+
+
 
 
 
