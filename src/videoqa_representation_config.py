@@ -383,11 +383,15 @@ CLIP_TEXT_SUMMARY_LOCAL_CSV = (
 # ============================================================
 # CLIP Video Representation Settings
 # ============================================================
+
 CLIP_VIDEO_MODEL_NAME = "openai/clip-vit-base-patch32"
-CLIP_VIDEO_BATCH_SIZE = 16
-CLIP_VIDEO_SAMPLE_FRAMES = 8
-CLIP_VIDEO_FRAME_POOLING = "mean"
-CLIP_VIDEO_REPRESENTATION_SCOPE = "videos"
+CLIP_VIDEO_REPRESENTATION_SCOPE = "referenced_videos"
+CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
+
+CLIP_VIDEO_FRAMES_PER_VIDEO = 8
+CLIP_VIDEO_FRAME_BATCH_SIZE = 16
+CLIP_VIDEO_POOLING_METHOD = "mean"
+CLIP_VIDEO_FILE_EXTENSIONS = [".mp4", ".avi", ".mov", ".mkv"]
 
 # ============================================================
 # Shared CLIP Video Output Directories
