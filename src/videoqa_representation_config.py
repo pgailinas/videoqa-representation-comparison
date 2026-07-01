@@ -544,6 +544,16 @@ EVALUATION_REPORT_SUMMARY_CSV = (
     "evaluation_summary.csv"
 )
 
+# ============================================================
+# Evaluation Google Drive Output Directories
+# ============================================================
 
+EVALUATION_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "evaluation"
+)
+
+EVALUATION_OUTPUT_DRIVE_DIR = (
+    EVALUATION_DRIVE_DIR / EVALUATION_SOURCE_NAME
+)
 
 
