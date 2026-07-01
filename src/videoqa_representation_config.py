@@ -472,14 +472,6 @@ CLIP_VIDEOQA_SUMMARY_CSV = (
 )
 
 # ============================================================
-# Evaluation Input Files
-# ============================================================
-
-EVALUATION_PREDICTIONS_CSV = CLIP_VIDEOQA_PREDICTIONS_CSV
-EVALUATION_VALIDATION_CSV = CLIP_VIDEOQA_VALIDATION_CSV
-EVALUATION_SUMMARY_CSV = CLIP_VIDEOQA_SUMMARY_CSV
-
-# ============================================================
 # Development Evaluation Input Selection
 # ============================================================
 
