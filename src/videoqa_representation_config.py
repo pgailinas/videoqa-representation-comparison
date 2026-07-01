@@ -74,6 +74,7 @@ TRAINING_METADATA_CSV = (TRAINING_METADATA_DIR / "training_metadata.csv")
 TRAINING_VALIDATION_CSV = (TRAINING_REPORTS_DIR / "training_metadata_validation.csv")
 TRAINING_SUMMARY_CSV = (TRAINING_REPORTS_DIR / "training_data_summary.csv")
 BASELINE_PREDICTIONS_CSV = (BASELINE_DIR / "baseline_predictions.csv")
+BASELINE_VALIDATION_CSV = (BASELINE_DIR / "baseline_validation.csv")
 BASELINE_SUMMARY_CSV = (BASELINE_DIR / "baseline_summary.csv")
 
 # ============================================================
@@ -479,8 +480,31 @@ VIDEOQA_DRIVE_DIR = (
     GOOGLE_DRIVE_ROOT / "videoqa"
 )
 
+BASELINE_VIDEOQA_DRIVE_DIR = (
+    VIDEOQA_DRIVE_DIR / "baseline"
+)
+
 CLIP_VIDEOQA_DRIVE_DIR = (
     VIDEOQA_DRIVE_DIR / "clip_video"
+)
+
+# ============================================================
+# Baseline VideoQA Google Drive Output Files
+# ============================================================
+
+BASELINE_PREDICTIONS_DRIVE_CSV = (
+    BASELINE_VIDEOQA_DRIVE_DIR /
+    "baseline_predictions.csv"
+)
+
+BASELINE_VALIDATION_DRIVE_CSV = (
+    BASELINE_VIDEOQA_DRIVE_DIR /
+    "baseline_validation.csv"
+)
+
+BASELINE_SUMMARY_DRIVE_CSV = (
+    BASELINE_VIDEOQA_DRIVE_DIR /
+    "baseline_summary.csv"
 )
 
 # ============================================================
