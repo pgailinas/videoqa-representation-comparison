@@ -26,11 +26,11 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** -- NExT-QA provides a widely used benchmark containing video-question-answer pairs designed to evaluate causal, temporal, and descriptive reasoning. The dataset offers sufficient scale and diversity to support representation-learning experiments and downstream VideoQA evaluation.
 
-### 3) Use Qwen2-VL-7B as the Common VideoQA Foundation Model
+### 3) Use Qwen2-VL-7B as the Baseline VideoQA Model
 
-**Decision:** -- Selected Qwen2-VL-7B as the downstream VideoQA inference model for all experimental workflows.
+**Decision:** Selected Qwen2-VL-7B as the baseline VideoQA model for evaluating original NExT-QA video evidence.
 
-**Rationale:** -- Using a single multimodal foundation model across all experiments allows performance differences to be attributed primarily to the quality of video representations rather than differences in VideoQA model architecture.
+**Rationale:** The baseline workflow provides a strong multimodal reference for comparison with representation-based VideoQA pipelines. Using a single baseline model enables downstream evaluation of whether pretrained CLIP representations and self-supervised autoencoder representations preserve information useful for VideoQA reasoning.
 
 ### 4) Maintain a Fixed Downstream VideoQA Model
 
@@ -48,11 +48,11 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** -- Separating preprocessing from downstream experimentation improves modularity, reduces redundant processing, and allows generated evidence resources to be reused across multiple experimental workflows.
 
-### 2) Standardize on Evidence Segments Rather Than Full Videos
+### 2) Standardize on Evidence Segments for Autoencoder Training
 
-**Decision:** -- Established structured video evidence segments as the primary unit of processing throughout the experimental pipeline.
+**Decision:** Established structured video evidence segments as the primary unit of processing for self-supervised autoencoder training while retaining complete videos for baseline VideoQA and pretrained CLIP representation generation.
 
-**Rationale:** -- Processing videos as evidence segments improves scalability, enables consistent metadata generation, supports representation learning workflows, and provides a common input format for baseline inference, pretrained representations, and autoencoder-based representations.
+**Rationale:** Evidence segments improve the efficiency and scalability of self-supervised representation learning by allowing the autoencoder to learn from shorter temporal sequences. Baseline VideoQA and pretrained CLIP representations continue to operate on complete NExT-QA videos, ensuring each experimental pipeline uses the most appropriate representation source.
 
 ### 3) Adopt Evidence Metadata as the Central Intermediate Representation
 
@@ -102,23 +102,11 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 ## Project Refinement (June 2026)
 
-### 1) Transition from Representation Comparison to Autoencoder-Centered Research (06/18)
+### 1) Retain Baseline VideoQA as the Control Condition (06/18)
 
-**Decision:** Refined the project scope from comparison of pretrained and autoencoder-based video representations to a focused investigation of self-supervised autoencoder learning for Video Question Answering (VideoQA).
+**Decision:** Retained the baseline VideoQA workflow using original NExT-QA videos as the control condition for all representation-learning experiments.
 
-**Rationale:** While representation comparison provided a useful experimental framework, the revised direction places greater emphasis on machine-learning methodology, self-supervised learning, representation learning, and downstream task evaluation. The new scope more closely aligns with the project's primary research objective of determining whether compact representations learned from unlabeled video data preserve sufficient information for VideoQA reasoning.
-
-### 2) Remove Pretrained Representation Workflow from the Experimental Pipeline (06/18)
-
-**Decision:** Removed the pretrained-representation experimental branch from the project architecture and notebook workflow.
-
-**Rationale:** Eliminating the pretrained-representation workflow simplifies the experimental design and allows the project to focus on the relationship between self-supervised representation learning, video reconstruction, compression, and downstream VideoQA performance.
-
-### 3) Retain Baseline VideoQA as the Control Condition (06/18)
-
-**Decision:** Retained the baseline VideoQA workflow using original video evidence while establishing autoencoder-based VideoQA as the primary experimental workflow.
-
-**Rationale:** The baseline workflow provides a consistent reference point for evaluating the effects of representation learning, reconstruction quality, and information compression. Comparing reconstructed video evidence against original video evidence enables direct assessment of information preservation and downstream reasoning performance.
+**Rationale:** The baseline workflow provides a consistent reference for evaluating both pretrained CLIP representations and self-supervised autoencoder representations. Comparing downstream VideoQA performance against the baseline isolates the effects of representation learning while maintaining a common evaluation methodology across all experimental pipelines.
 
 ---
 
