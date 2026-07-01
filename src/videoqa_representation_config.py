@@ -479,7 +479,58 @@ EVALUATION_PREDICTIONS_CSV = CLIP_VIDEOQA_PREDICTIONS_CSV
 EVALUATION_VALIDATION_CSV = CLIP_VIDEOQA_VALIDATION_CSV
 EVALUATION_SUMMARY_CSV = CLIP_VIDEOQA_SUMMARY_CSV
 
+# ============================================================
+# Development Evaluation Input Selection
+# ============================================================
 
+EVALUATION_SOURCE_NAME = "clip_video"
+
+EVALUATION_PREDICTIONS_CSV = CLIP_VIDEOQA_PREDICTIONS_CSV
+EVALUATION_VALIDATION_CSV = CLIP_VIDEOQA_VALIDATION_CSV
+EVALUATION_SUMMARY_CSV = CLIP_VIDEOQA_SUMMARY_CSV
+
+EVALUATION_PREDICTIONS_DRIVE_CSV = (
+    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
+    "representation_videoqa_predictions.csv"
+)
+
+EVALUATION_VALIDATION_DRIVE_CSV = (
+    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
+    "representation_videoqa_validation.csv"
+)
+
+EVALUATION_SUMMARY_DRIVE_CSV = (
+    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
+    "representation_videoqa_summary.csv"
+)
+
+# ============================================================
+# Development Evaluation Output Files
+# ============================================================
+
+EVALUATION_OUTPUT_DIR = (
+    EVALUATION_DIR / EVALUATION_SOURCE_NAME
+)
+
+EVALUATION_DATASET_CSV = (
+    EVALUATION_OUTPUT_DIR /
+    "evaluation_dataset.csv"
+)
+
+EVALUATION_METRICS_CSV = (
+    EVALUATION_OUTPUT_DIR /
+    "evaluation_metrics.csv"
+)
+
+EVALUATION_DETAILS_CSV = (
+    EVALUATION_OUTPUT_DIR /
+    "evaluation_details.csv"
+)
+
+EVALUATION_REPORT_SUMMARY_CSV = (
+    EVALUATION_OUTPUT_DIR /
+    "evaluation_summary.csv"
+)
 
 
 
