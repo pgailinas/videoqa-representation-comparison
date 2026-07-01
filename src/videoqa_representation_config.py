@@ -472,6 +472,37 @@ CLIP_VIDEOQA_SUMMARY_CSV = (
 )
 
 # ============================================================
+# Representation-Based VideoQA Google Drive Output Directories
+# ============================================================
+
+REPRESENTATION_VIDEOQA_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "outputs" / "representation_videoqa"
+)
+
+CLIP_VIDEOQA_DRIVE_DIR = (
+    REPRESENTATION_VIDEOQA_DRIVE_DIR / "clip_video"
+)
+
+# ============================================================
+# Representation-Based VideoQA Google Drive Output Files
+# ============================================================
+
+CLIP_VIDEOQA_PREDICTIONS_DRIVE_CSV = (
+    CLIP_VIDEOQA_DRIVE_DIR /
+    "representation_videoqa_predictions.csv"
+)
+
+CLIP_VIDEOQA_VALIDATION_DRIVE_CSV = (
+    CLIP_VIDEOQA_DRIVE_DIR /
+    "representation_videoqa_validation.csv"
+)
+
+CLIP_VIDEOQA_SUMMARY_DRIVE_CSV = (
+    CLIP_VIDEOQA_DRIVE_DIR /
+    "representation_videoqa_summary.csv"
+)
+
+# ============================================================
 # Development Evaluation Input Selection
 # ============================================================
 
@@ -481,20 +512,9 @@ EVALUATION_PREDICTIONS_CSV = CLIP_VIDEOQA_PREDICTIONS_CSV
 EVALUATION_VALIDATION_CSV = CLIP_VIDEOQA_VALIDATION_CSV
 EVALUATION_SUMMARY_CSV = CLIP_VIDEOQA_SUMMARY_CSV
 
-EVALUATION_PREDICTIONS_DRIVE_CSV = (
-    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
-    "representation_videoqa_predictions.csv"
-)
-
-EVALUATION_VALIDATION_DRIVE_CSV = (
-    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
-    "representation_videoqa_validation.csv"
-)
-
-EVALUATION_SUMMARY_DRIVE_CSV = (
-    GOOGLE_DRIVE_ROOT / "representation_videoqa" / EVALUATION_SOURCE_NAME /
-    "representation_videoqa_summary.csv"
-)
+EVALUATION_PREDICTIONS_DRIVE_CSV = CLIP_VIDEOQA_PREDICTIONS_DRIVE_CSV
+EVALUATION_VALIDATION_DRIVE_CSV = CLIP_VIDEOQA_VALIDATION_DRIVE_CSV
+EVALUATION_SUMMARY_DRIVE_CSV = CLIP_VIDEOQA_SUMMARY_DRIVE_CSV
 
 # ============================================================
 # Development Evaluation Output Files
