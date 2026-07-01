@@ -431,10 +431,45 @@ CLIP_VIDEO_SUMMARY_LOCAL_CSV = (
     "clip_video_representation_summary.csv"
 )
 
+# ============================================================
+# Representation-Based VideoQA Settings
+# ============================================================
 
+REPRESENTATION_VIDEOQA_METHOD = "cosine_similarity"
 
+DEFAULT_VIDEO_REPRESENTATION_SOURCE = "clip_video"
+DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
 
+# ============================================================
+# Representation-Based VideoQA Output Directories
+# ============================================================
 
+REPRESENTATION_VIDEOQA_DIR = (
+    OUTPUTS_DIR / "representation_videoqa"
+)
+
+CLIP_VIDEOQA_DIR = (
+    REPRESENTATION_VIDEOQA_DIR / "clip_video"
+)
+
+# ============================================================
+# Representation-Based VideoQA Output Files
+# ============================================================
+
+CLIP_VIDEOQA_PREDICTIONS_CSV = (
+    CLIP_VIDEOQA_DIR /
+    "representation_videoqa_predictions.csv"
+)
+
+CLIP_VIDEOQA_VALIDATION_CSV = (
+    CLIP_VIDEOQA_DIR /
+    "representation_videoqa_validation.csv"
+)
+
+CLIP_VIDEOQA_SUMMARY_CSV = (
+    CLIP_VIDEOQA_DIR /
+    "representation_videoqa_summary.csv"
+)
 
 
 
