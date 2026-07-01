@@ -471,6 +471,16 @@ CLIP_VIDEOQA_SUMMARY_CSV = (
     "representation_videoqa_summary.csv"
 )
 
+# ============================================================
+# Evaluation Input Files
+# ============================================================
+
+EVALUATION_PREDICTIONS_CSV = CLIP_VIDEOQA_PREDICTIONS_CSV
+EVALUATION_VALIDATION_CSV = CLIP_VIDEOQA_VALIDATION_CSV
+EVALUATION_SUMMARY_CSV = CLIP_VIDEOQA_SUMMARY_CSV
+
+
+
 
 
 
