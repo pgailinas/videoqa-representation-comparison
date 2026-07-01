@@ -148,3 +148,20 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** -- NExT-QA is a multiple-choice benchmark dataset. Restricting evaluation to answer-choice prediction provides a consistent and objective accuracy metric while isolating the effects of video representation learning, reconstruction quality, and compression. This approach eliminates variability introduced by open-ended language generation and ensures direct comparison between baseline and autoencoder-based VideoQA workflows.
 
+## Shared Representation Architecture (June 2026)
+
+### 1) Separate Shared Representation Generation from Experiment Execution (06/27)
+
+**Decision:** Established dedicated notebooks to generate reusable pretrained CLIP text and video representations independently of downstream VideoQA experiments.
+
+**Rationale:** Pretrained CLIP representations are independent of individual autoencoder experiments and therefore should be generated once and reused across all representation-based VideoQA workflows. Separating representation generation from experiment execution reduces redundant computation, simplifies experiment management, and improves reproducibility by ensuring every experiment consumes the same shared representation artifacts.
+
+### 2) Distinguish Shared and Experiment-Specific Artifacts (06/27)
+
+**Decision:** Adopted separate storage strategies for shared pretrained representations and experiment-specific autoencoder representations.
+
+**Rationale:** CLIP text and video representations are dataset-wide resources that do not depend on autoencoder training parameters and are therefore stored as shared artifacts outside the experiment hierarchy. Autoencoder video representations depend on training configuration and remain experiment-specific. This distinction minimizes duplicated storage, simplifies experiment comparison, and supports efficient evaluation of multiple autoencoder configurations using a common set of pretrained representations.
+
+
+
+
