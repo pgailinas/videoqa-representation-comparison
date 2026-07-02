@@ -70,20 +70,6 @@ EXPERIMENT_NAME = "qwen2vl_baseline_dev25"
 # EXPERIMENT_NAME = "clip_dev25"
 # EXPERIMENT_NAME = "ae_seg6s_stride4_dev25"
 
-def get_experiment_type(experiment_name: str) -> str:
-    """Infer the experiment type from the experiment name."""
-    if experiment_name.startswith("qwen2vl"):
-        return "baseline"
-    if experiment_name.startswith("clip"):
-        return "clip_video"
-    if experiment_name.startswith("ae_"):
-        return "autoencoder"
-    return "unknown"
-
-
-EXPERIMENT_TYPE = get_experiment_type(EXPERIMENT_NAME)
-
-
 # ============================================================
 # 3. Dataset Configuration
 # ============================================================
@@ -156,27 +142,9 @@ def get_experiment_manifest_path(experiment_name: str) -> Path:
     return get_drive_experiment_dir(experiment_name) / "experiment.json"
 
 
-def get_videoqa_artifact_filenames(experiment_type: str) -> dict:
-    """Return standard VideoQA artifact filenames for an experiment type."""
-    if experiment_type == "baseline":
-        return {
-            "predictions": "baseline_predictions.csv",
-            "validation": "baseline_validation.csv",
-            "summary": "baseline_summary.csv",
-        }
-
-    if experiment_type in {"clip_video", "autoencoder"}:
-        return {
-            "predictions": "representation_videoqa_predictions.csv",
-            "validation": "representation_videoqa_validation.csv",
-            "summary": "representation_videoqa_summary.csv",
-        }
-
-    raise ValueError(
-        "Unsupported experiment type for VideoQA artifacts: "
-        f"{experiment_type}"
-    )
-
+VIDEOQA_PREDICTIONS_FILENAME = "predictions.csv"
+VIDEOQA_VALIDATION_FILENAME = "validation.csv"
+VIDEOQA_SUMMARY_FILENAME = "summary.csv"
 
 # Active experiment directories.
 EXPERIMENT_DRIVE_DIR = get_drive_experiment_dir(EXPERIMENT_NAME)
@@ -426,7 +394,6 @@ REPRESENTATION_VIDEOQA_DIR = OUTPUTS_DIR / "representation_videoqa"
 # Prediction filenames are selected automatically from EXPERIMENT_TYPE.
 # ============================================================
 
-EVALUATION_SOURCE_NAME = EXPERIMENT_TYPE
 EVALUATION_EXPERIMENT_DIR = EXPERIMENT_DRIVE_DIR
 EVALUATION_OUTPUT_DRIVE_DIR = EXPERIMENT_EVALUATION_DRIVE_DIR
 
@@ -463,8 +430,8 @@ EVALUATION_REPORT_SUMMARY_CSV = EVALUATION_OUTPUT_DIR / "evaluation_summary.csv"
 
 # Optional compatibility aliases for older notebook code.
 # These roots are legacy locations and should not be used for new outputs.
-EVALUATION_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "evaluation"
-VIDEOQA_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "videoqa"
+# EVALUATION_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "evaluation"
+# VIDEOQA_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "videoqa"
 
 
 # ============================================================
