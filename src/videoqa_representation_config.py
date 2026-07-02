@@ -11,11 +11,22 @@
 #   2. Google Drive persistent project storage lives under GOOGLE_DRIVE_ROOT.
 #   3. Shared artifacts live under GOOGLE_DRIVE_ROOT / "representations".
 #   4. Experiment-specific artifacts live under
-#      GOOGLE_DRIVE_ROOT / "experiments" / <experiment_name>.
+#      GOOGLE_DRIVE_ROOT / "experiments" / EXPERIMENT_NAME.
 #
 # Shared CLIP text/video representations are intentionally not stored
 # inside individual experiment folders. Prediction and evaluation results
 # are experiment-specific and should be stored inside each experiment.
+#
+# EXTREMELY IMPORTANT:
+#
+#   EXPERIMENT_NAME is the single active experiment selector.
+#
+#   Examples:
+#       "qwen2vl_baseline_dev25"
+#       "clip_dev25"
+#       "ae_seg6s_stride4_dev25"
+#
+# All experiment-specific paths are derived from EXPERIMENT_NAME.
 # ============================================================
 
 from pathlib import Path
@@ -43,24 +54,34 @@ SHARED_REPRESENTATIONS_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "representations"
 
 
 # ============================================================
-# 2. Experiment Names
+# 2. Active Experiment
 # ============================================================
 #
-# These names define persistent experiment folders under:
+# Change this one value to select the active experiment.
 #
-#   /content/drive/MyDrive/VideoQA_Project/experiments/
-#
-# Notebook 07 and later notebooks may scan EXPERIMENTS_DRIVE_DIR to
-# discover available experiments instead of hard-coding experiment names.
+# Notebook expectations:
+#   Notebook 01: EXPERIMENT_NAME should start with "qwen2vl"
+#   Notebook 02-04: EXPERIMENT_NAME should start with "ae_"
+#   Notebook 07: EXPERIMENT_NAME should start with "clip" or "ae_"
+#   Notebook 08: EXPERIMENT_NAME should identify the experiment to evaluate
 # ============================================================
 
-BASELINE_EXPERIMENT_NAME = "qwen2vl_baseline_dev25"
-CLIP_VIDEO_EXPERIMENT_NAME = "clip_video_dev25"
+EXPERIMENT_NAME = "qwen2vl_baseline_dev25"
+# EXPERIMENT_NAME = "clip_dev25"
+# EXPERIMENT_NAME = "ae_seg6s_stride4_dev25"
 
-# EXTREMELY IMPORTANT:
-# This is the active autoencoder experiment used by Notebooks 02-04.
-EXPERIMENT_NAME = "ae_seg6s_stride4_dev25"
-AUTOENCODER_EXPERIMENT_NAME = EXPERIMENT_NAME
+def get_experiment_type(experiment_name: str) -> str:
+    """Infer the experiment type from the experiment name."""
+    if experiment_name.startswith("qwen2vl"):
+        return "baseline"
+    if experiment_name.startswith("clip"):
+        return "clip_video"
+    if experiment_name.startswith("ae_"):
+        return "autoencoder"
+    return "unknown"
+
+
+EXPERIMENT_TYPE = get_experiment_type(EXPERIMENT_NAME)
 
 
 # ============================================================
@@ -135,6 +156,41 @@ def get_experiment_manifest_path(experiment_name: str) -> Path:
     return get_drive_experiment_dir(experiment_name) / "experiment.json"
 
 
+def get_videoqa_artifact_filenames(experiment_type: str) -> dict:
+    """Return standard VideoQA artifact filenames for an experiment type."""
+    if experiment_type == "baseline":
+        return {
+            "predictions": "baseline_predictions.csv",
+            "validation": "baseline_validation.csv",
+            "summary": "baseline_summary.csv",
+        }
+
+    if experiment_type in {"clip_video", "autoencoder"}:
+        return {
+            "predictions": "representation_videoqa_predictions.csv",
+            "validation": "representation_videoqa_validation.csv",
+            "summary": "representation_videoqa_summary.csv",
+        }
+
+    raise ValueError(
+        "Unsupported experiment type for VideoQA artifacts: "
+        f"{experiment_type}"
+    )
+
+
+# Active experiment directories.
+EXPERIMENT_DRIVE_DIR = get_drive_experiment_dir(EXPERIMENT_NAME)
+EXPERIMENT_LOCAL_DIR = get_local_experiment_dir(EXPERIMENT_NAME)
+
+EXPERIMENT_VIDEOQA_DRIVE_DIR = EXPERIMENT_DRIVE_DIR / "videoqa"
+EXPERIMENT_EVALUATION_DRIVE_DIR = EXPERIMENT_DRIVE_DIR / "evaluation"
+
+EXPERIMENT_VIDEOQA_LOCAL_DIR = EXPERIMENT_LOCAL_DIR / "videoqa"
+EXPERIMENT_EVALUATION_LOCAL_DIR = EXPERIMENT_LOCAL_DIR / "evaluation"
+
+EXPERIMENT_MANIFEST_PATH = get_experiment_manifest_path(EXPERIMENT_NAME)
+
+
 # ============================================================
 # 6. Shared CLIP Representation Paths
 # ============================================================
@@ -189,10 +245,14 @@ CLIP_VIDEO_REPRESENTATIONS_CSV = CLIP_VIDEO_REPRESENTATIONS_LOCAL_CSV
 # ============================================================
 # 7. Baseline Experiment Paths
 # ============================================================
+#
+# These aliases intentionally resolve to the active experiment.
+# Notebook 01 should validate that EXPERIMENT_NAME starts with "qwen2vl".
+# ============================================================
 
-BASELINE_EXPERIMENT_DIR = get_drive_experiment_dir(BASELINE_EXPERIMENT_NAME)
-BASELINE_VIDEOQA_DRIVE_DIR = BASELINE_EXPERIMENT_DIR / "videoqa"
-BASELINE_EVALUATION_DRIVE_DIR = BASELINE_EXPERIMENT_DIR / "evaluation"
+BASELINE_EXPERIMENT_DIR = EXPERIMENT_DRIVE_DIR
+BASELINE_VIDEOQA_DRIVE_DIR = EXPERIMENT_VIDEOQA_DRIVE_DIR
+BASELINE_EVALUATION_DRIVE_DIR = EXPERIMENT_EVALUATION_DRIVE_DIR
 
 BASELINE_PREDICTIONS_DRIVE_CSV = (
     BASELINE_VIDEOQA_DRIVE_DIR / "baseline_predictions.csv"
@@ -205,8 +265,8 @@ BASELINE_SUMMARY_DRIVE_CSV = (
 )
 
 # Local temporary baseline outputs.
-BASELINE_LOCAL_EXPERIMENT_DIR = get_local_experiment_dir(BASELINE_EXPERIMENT_NAME)
-BASELINE_DIR = BASELINE_LOCAL_EXPERIMENT_DIR / "videoqa"
+BASELINE_LOCAL_EXPERIMENT_DIR = EXPERIMENT_LOCAL_DIR
+BASELINE_DIR = EXPERIMENT_VIDEOQA_LOCAL_DIR
 
 BASELINE_PREDICTIONS_CSV = BASELINE_DIR / "baseline_predictions.csv"
 BASELINE_VALIDATION_CSV = BASELINE_DIR / "baseline_validation.csv"
@@ -218,12 +278,14 @@ BASELINE_SUMMARY_CSV = BASELINE_DIR / "baseline_summary.csv"
 # ============================================================
 #
 # The shared CLIP video embeddings remain under representations/clip/video.
-# The downstream VideoQA and evaluation results belong to this experiment.
+# The downstream VideoQA and evaluation results belong to the active
+# experiment. Notebook 07 should validate that EXPERIMENT_NAME starts
+# with "clip" before using these aliases for a CLIP run.
 # ============================================================
 
-CLIP_VIDEO_EXPERIMENT_DIR = get_drive_experiment_dir(CLIP_VIDEO_EXPERIMENT_NAME)
-CLIP_VIDEOQA_DRIVE_DIR = CLIP_VIDEO_EXPERIMENT_DIR / "videoqa"
-CLIP_VIDEO_EVALUATION_DRIVE_DIR = CLIP_VIDEO_EXPERIMENT_DIR / "evaluation"
+CLIP_VIDEO_EXPERIMENT_DIR = EXPERIMENT_DRIVE_DIR
+CLIP_VIDEOQA_DRIVE_DIR = EXPERIMENT_VIDEOQA_DRIVE_DIR
+CLIP_VIDEO_EVALUATION_DRIVE_DIR = EXPERIMENT_EVALUATION_DRIVE_DIR
 
 CLIP_VIDEOQA_PREDICTIONS_DRIVE_CSV = (
     CLIP_VIDEOQA_DRIVE_DIR / "representation_videoqa_predictions.csv"
@@ -236,8 +298,8 @@ CLIP_VIDEOQA_SUMMARY_DRIVE_CSV = (
 )
 
 # Local temporary CLIP VideoQA outputs.
-CLIP_VIDEO_LOCAL_EXPERIMENT_DIR = get_local_experiment_dir(CLIP_VIDEO_EXPERIMENT_NAME)
-CLIP_VIDEOQA_DIR = CLIP_VIDEO_LOCAL_EXPERIMENT_DIR / "videoqa"
+CLIP_VIDEO_LOCAL_EXPERIMENT_DIR = EXPERIMENT_LOCAL_DIR
+CLIP_VIDEOQA_DIR = EXPERIMENT_VIDEOQA_LOCAL_DIR
 
 CLIP_VIDEOQA_PREDICTIONS_CSV = (
     CLIP_VIDEOQA_DIR / "representation_videoqa_predictions.csv"
@@ -253,8 +315,12 @@ CLIP_VIDEOQA_SUMMARY_CSV = (
 # ============================================================
 # 9. Autoencoder Experiment Paths
 # ============================================================
+#
+# These aliases intentionally resolve to the active experiment.
+# Notebooks 02-04 should validate that EXPERIMENT_NAME starts with "ae_".
+# ============================================================
 
-AUTOENCODER_EXPERIMENT_DIR = get_drive_experiment_dir(AUTOENCODER_EXPERIMENT_NAME)
+AUTOENCODER_EXPERIMENT_DIR = EXPERIMENT_DRIVE_DIR
 
 AUTOENCODER_TRAINING_DIR = AUTOENCODER_EXPERIMENT_DIR / "training"
 AUTOENCODER_TRAINING_METADATA_DIR = AUTOENCODER_TRAINING_DIR / "metadata"
@@ -279,7 +345,6 @@ AUTOENCODER_TRAINING_VALIDATION_CSV = (
     AUTOENCODER_TRAINING_REPORTS_DIR / "training_metadata_validation.csv"
 )
 
-AUTOENCODER_MODEL_CSV_PLACEHOLDER = None  # Reserved for future model metadata if needed.
 AUTOENCODER_MODEL_PATH = AUTOENCODER_MODELS_DIR / "autoencoder.pt"
 
 AUTOENCODER_SEGMENT_REPRESENTATIONS_CSV = (
@@ -305,8 +370,8 @@ AUTOENCODER_VIDEOQA_SUMMARY_DRIVE_CSV = (
     AUTOENCODER_VIDEOQA_DRIVE_DIR / "representation_videoqa_summary.csv"
 )
 
-# Local temporary autoencoder outputs mirror the experiment layout.
-LOCAL_EXPERIMENT_DIR = get_local_experiment_dir(AUTOENCODER_EXPERIMENT_NAME)
+# Local temporary autoencoder outputs mirror the active experiment layout.
+LOCAL_EXPERIMENT_DIR = EXPERIMENT_LOCAL_DIR
 
 TRAINING_DATA_DIR = LOCAL_EXPERIMENT_DIR / "training"
 TRAINING_METADATA_DIR = TRAINING_DATA_DIR / "metadata"
@@ -357,44 +422,38 @@ REPRESENTATION_VIDEOQA_DIR = OUTPUTS_DIR / "representation_videoqa"
 # 11. Development Evaluation Settings and Aliases
 # ============================================================
 #
-# Select which completed experiment Notebook 08 evaluates by setting
-# EVALUATION_EXPERIMENT_NAME and the corresponding source label.
+# Notebook 08 evaluates the active experiment identified by EXPERIMENT_NAME.
+# Prediction filenames are selected automatically from EXPERIMENT_TYPE.
 # ============================================================
 
-EVALUATION_SOURCE_NAME = "clip_video"
-EVALUATION_EXPERIMENT_NAME = CLIP_VIDEO_EXPERIMENT_NAME
+EVALUATION_SOURCE_NAME = EXPERIMENT_TYPE
+EVALUATION_EXPERIMENT_DIR = EXPERIMENT_DRIVE_DIR
+EVALUATION_OUTPUT_DRIVE_DIR = EXPERIMENT_EVALUATION_DRIVE_DIR
 
-EVALUATION_EXPERIMENT_DIR = get_drive_experiment_dir(EVALUATION_EXPERIMENT_NAME)
-EVALUATION_OUTPUT_DRIVE_DIR = EVALUATION_EXPERIMENT_DIR / "evaluation"
+EVALUATION_ARTIFACT_FILENAMES = get_videoqa_artifact_filenames(EXPERIMENT_TYPE)
 
 EVALUATION_PREDICTIONS_DRIVE_CSV = (
-    EVALUATION_EXPERIMENT_DIR / "videoqa" / REPRESENTATION_VIDEOQA_PREDICTIONS_FILENAME
+    EXPERIMENT_VIDEOQA_DRIVE_DIR / EVALUATION_ARTIFACT_FILENAMES["predictions"]
 )
 EVALUATION_VALIDATION_DRIVE_CSV = (
-    EVALUATION_EXPERIMENT_DIR / "videoqa" / REPRESENTATION_VIDEOQA_VALIDATION_FILENAME
+    EXPERIMENT_VIDEOQA_DRIVE_DIR / EVALUATION_ARTIFACT_FILENAMES["validation"]
 )
 EVALUATION_SUMMARY_DRIVE_CSV = (
-    EVALUATION_EXPERIMENT_DIR / "videoqa" / REPRESENTATION_VIDEOQA_SUMMARY_FILENAME
+    EXPERIMENT_VIDEOQA_DRIVE_DIR / EVALUATION_ARTIFACT_FILENAMES["summary"]
 )
 
 # Local temporary evaluation outputs.
-EVALUATION_DIR = get_local_experiment_dir(EVALUATION_EXPERIMENT_NAME) / "evaluation"
+EVALUATION_DIR = EXPERIMENT_EVALUATION_LOCAL_DIR
 EVALUATION_OUTPUT_DIR = EVALUATION_DIR
 
 EVALUATION_PREDICTIONS_CSV = (
-    get_local_experiment_dir(EVALUATION_EXPERIMENT_NAME)
-    / "videoqa"
-    / REPRESENTATION_VIDEOQA_PREDICTIONS_FILENAME
+    EXPERIMENT_VIDEOQA_LOCAL_DIR / EVALUATION_ARTIFACT_FILENAMES["predictions"]
 )
 EVALUATION_VALIDATION_CSV = (
-    get_local_experiment_dir(EVALUATION_EXPERIMENT_NAME)
-    / "videoqa"
-    / REPRESENTATION_VIDEOQA_VALIDATION_FILENAME
+    EXPERIMENT_VIDEOQA_LOCAL_DIR / EVALUATION_ARTIFACT_FILENAMES["validation"]
 )
 EVALUATION_SUMMARY_CSV = (
-    get_local_experiment_dir(EVALUATION_EXPERIMENT_NAME)
-    / "videoqa"
-    / REPRESENTATION_VIDEOQA_SUMMARY_FILENAME
+    EXPERIMENT_VIDEOQA_LOCAL_DIR / EVALUATION_ARTIFACT_FILENAMES["summary"]
 )
 
 EVALUATION_DATASET_CSV = EVALUATION_OUTPUT_DIR / "evaluation_dataset.csv"
@@ -403,6 +462,7 @@ EVALUATION_DETAILS_CSV = EVALUATION_OUTPUT_DIR / "evaluation_details.csv"
 EVALUATION_REPORT_SUMMARY_CSV = EVALUATION_OUTPUT_DIR / "evaluation_summary.csv"
 
 # Optional compatibility aliases for older notebook code.
+# These roots are legacy locations and should not be used for new outputs.
 EVALUATION_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "evaluation"
 VIDEOQA_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "videoqa"
 
