@@ -255,6 +255,7 @@ This document should be updated as the artifact registry matures, especially aft
 
 ## TARGET STRUCTURE
 
+```text
 VideoQA_Project/
 ├── representations/
 │   └── clip/
@@ -275,4 +276,4 @@ VideoQA_Project/
         ├── autoencoder/
         ├── videoqa/
         └── evaluation/
-
+```
