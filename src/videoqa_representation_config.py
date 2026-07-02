@@ -103,6 +103,7 @@ RANDOM_SEED = 42
 # ============================================================
 # Baseline VideoQA Settings
 # ============================================================
+BASELINE_MODEL_NAME = "Qwen/Qwen2-VL-7B-Instruct"
 MAX_SEGMENTS_PER_VIDEO = 5
 MAX_FRAMES_PER_QUESTION = 8
 MAX_NEW_TOKENS = 64
