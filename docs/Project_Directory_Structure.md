@@ -252,3 +252,27 @@ This project uses a dual-storage architecture. GitHub manages source code, noteb
 - self-supervised autoencoder representations.
 
 This document should be updated as the artifact registry matures, especially after Notebook 07 fully supports both representation sources and Notebook 09 produces final comparison outputs.
+
+## TARGET STRUCTURE
+
+VideoQA_Project/
+├── representations/
+│   └── clip/
+│       ├── text/
+│       └── video/
+│
+└── experiments/
+    ├── qwen2vl_baseline_dev25/
+    │   ├── videoqa/
+    │   └── evaluation/
+    │
+    ├── clip_video_dev25/
+    │   ├── videoqa/
+    │   └── evaluation/
+    │
+    └── ae_seg6s_stride4_dev25/
+        ├── training/
+        ├── autoencoder/
+        ├── videoqa/
+        └── evaluation/
+
