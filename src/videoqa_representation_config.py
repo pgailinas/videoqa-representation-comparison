@@ -448,6 +448,258 @@ def get_evaluation_paths(experiment_name: str, experiment_type: str | None = Non
     }
 
 
+
+
+
+def configure_experiment(
+    experiment_name: str,
+    experiment_type: str | None = None,
+    update_caller_globals: bool = True,
+) -> dict:
+    """Configure experiment-specific uppercase aliases for notebook compatibility.
+
+    This function intentionally performs the experiment-specific path binding
+    after a notebook has selected EXPERIMENT_NAME locally. The configuration
+    module remains import-safe because no experiment-specific aliases are
+    created during import.
+
+    Typical notebook usage:
+
+        from src.videoqa_representation_config import *
+
+        EXPERIMENT_NAME = "qwen2vl_baseline_dev25"
+        configure_experiment(EXPERIMENT_NAME)
+
+    The returned dictionary contains the configured aliases. The same values
+    are also written into this module's global namespace and, by default, into
+    the calling notebook's global namespace. This allows existing notebook
+    code imported with ``from src.videoqa_representation_config import *`` to
+    continue using names such as BASELINE_DIR, BASELINE_PREDICTIONS_CSV,
+    AUTOENCODER_MODEL_PATH, and EVALUATION_DIR.
+    """
+    if experiment_type is None:
+        experiment_type = infer_experiment_type(experiment_name)
+
+    experiment_paths = get_experiment_paths(experiment_name)
+    baseline_paths = get_baseline_videoqa_paths(experiment_name)
+    representation_paths = get_representation_videoqa_paths(experiment_name)
+    autoencoder_paths = get_autoencoder_paths(experiment_name)
+    evaluation_paths = get_evaluation_paths(experiment_name, experiment_type)
+
+    aliases = {
+        # Active experiment identity.
+        "EXPERIMENT_NAME": experiment_name,
+        "EXPERIMENT_TYPE": experiment_type,
+
+        # Generic experiment directories.
+        "EXPERIMENT_DRIVE_DIR": experiment_paths["experiment_drive_dir"],
+        "EXPERIMENT_LOCAL_DIR": experiment_paths["experiment_local_dir"],
+        "EXPERIMENT_VIDEOQA_DRIVE_DIR": experiment_paths["videoqa_drive_dir"],
+        "EXPERIMENT_EVALUATION_DRIVE_DIR": experiment_paths["evaluation_drive_dir"],
+        "EXPERIMENT_VIDEOQA_LOCAL_DIR": experiment_paths["videoqa_local_dir"],
+        "EXPERIMENT_EVALUATION_LOCAL_DIR": experiment_paths["evaluation_local_dir"],
+        "EXPERIMENT_MANIFEST_PATH": experiment_paths["manifest_path"],
+
+        # Baseline aliases used by Notebook 01.
+        "BASELINE_EXPERIMENT_DIR": baseline_paths["baseline_experiment_dir"],
+        "BASELINE_VIDEOQA_DRIVE_DIR": baseline_paths["baseline_videoqa_drive_dir"],
+        "BASELINE_EVALUATION_DRIVE_DIR": baseline_paths["baseline_evaluation_drive_dir"],
+        "BASELINE_LOCAL_EXPERIMENT_DIR": baseline_paths["baseline_local_experiment_dir"],
+        "BASELINE_DIR": baseline_paths["baseline_dir"],
+        "BASELINE_PREDICTIONS_DRIVE_CSV": baseline_paths["baseline_predictions_drive_csv"],
+        "BASELINE_VALIDATION_DRIVE_CSV": baseline_paths["baseline_validation_drive_csv"],
+        "BASELINE_SUMMARY_DRIVE_CSV": baseline_paths["baseline_summary_drive_csv"],
+        "BASELINE_PREDICTIONS_CSV": baseline_paths["baseline_predictions_csv"],
+        "BASELINE_VALIDATION_CSV": baseline_paths["baseline_validation_csv"],
+        "BASELINE_SUMMARY_CSV": baseline_paths["baseline_summary_csv"],
+
+        # CLIP representation VideoQA aliases used by Notebook 07 when running
+        # the pretrained representation pipeline.
+        "CLIP_VIDEO_EXPERIMENT_DIR": experiment_paths["experiment_drive_dir"],
+        "CLIP_VIDEOQA_DRIVE_DIR": experiment_paths["videoqa_drive_dir"],
+        "CLIP_VIDEO_EVALUATION_DRIVE_DIR": experiment_paths["evaluation_drive_dir"],
+        "CLIP_VIDEO_LOCAL_EXPERIMENT_DIR": experiment_paths["experiment_local_dir"],
+        "CLIP_VIDEOQA_DIR": experiment_paths["videoqa_local_dir"],
+        "CLIP_VIDEOQA_PREDICTIONS_DRIVE_CSV": representation_paths[
+            "representation_videoqa_predictions_drive_csv"
+        ],
+        "CLIP_VIDEOQA_VALIDATION_DRIVE_CSV": representation_paths[
+            "representation_videoqa_validation_drive_csv"
+        ],
+        "CLIP_VIDEOQA_SUMMARY_DRIVE_CSV": representation_paths[
+            "representation_videoqa_summary_drive_csv"
+        ],
+        "CLIP_VIDEOQA_PREDICTIONS_CSV": representation_paths[
+            "representation_videoqa_predictions_csv"
+        ],
+        "CLIP_VIDEOQA_VALIDATION_CSV": representation_paths[
+            "representation_videoqa_validation_csv"
+        ],
+        "CLIP_VIDEOQA_SUMMARY_CSV": representation_paths[
+            "representation_videoqa_summary_csv"
+        ],
+
+        # Generic representation VideoQA aliases.
+        "REPRESENTATION_VIDEOQA_DRIVE_DIR": representation_paths[
+            "representation_videoqa_drive_dir"
+        ],
+        "REPRESENTATION_VIDEOQA_LOCAL_DIR": representation_paths[
+            "representation_videoqa_local_dir"
+        ],
+        "REPRESENTATION_VIDEOQA_PREDICTIONS_DRIVE_CSV": representation_paths[
+            "representation_videoqa_predictions_drive_csv"
+        ],
+        "REPRESENTATION_VIDEOQA_VALIDATION_DRIVE_CSV": representation_paths[
+            "representation_videoqa_validation_drive_csv"
+        ],
+        "REPRESENTATION_VIDEOQA_SUMMARY_DRIVE_CSV": representation_paths[
+            "representation_videoqa_summary_drive_csv"
+        ],
+        "REPRESENTATION_VIDEOQA_PREDICTIONS_CSV": representation_paths[
+            "representation_videoqa_predictions_csv"
+        ],
+        "REPRESENTATION_VIDEOQA_VALIDATION_CSV": representation_paths[
+            "representation_videoqa_validation_csv"
+        ],
+        "REPRESENTATION_VIDEOQA_SUMMARY_CSV": representation_paths[
+            "representation_videoqa_summary_csv"
+        ],
+
+        # Autoencoder aliases used by Notebooks 02-04 and Notebook 07 when
+        # running the self-supervised representation pipeline.
+        "AUTOENCODER_EXPERIMENT_DIR": autoencoder_paths["autoencoder_experiment_dir"],
+        "AUTOENCODER_TRAINING_DIR": autoencoder_paths["autoencoder_training_dir"],
+        "AUTOENCODER_TRAINING_METADATA_DIR": autoencoder_paths[
+            "autoencoder_training_metadata_dir"
+        ],
+        "AUTOENCODER_TRAINING_REPORTS_DIR": autoencoder_paths[
+            "autoencoder_training_reports_dir"
+        ],
+        "AUTOENCODER_DIR": autoencoder_paths["autoencoder_dir"],
+        "AUTOENCODER_MODELS_DIR": autoencoder_paths["autoencoder_models_dir"],
+        "AUTOENCODER_RECONSTRUCTIONS_DIR": autoencoder_paths[
+            "autoencoder_reconstructions_dir"
+        ],
+        "AUTOENCODER_REPORTS_DIR": autoencoder_paths["autoencoder_reports_dir"],
+        "AUTOENCODER_REPRESENTATIONS_DRIVE_DIR": autoencoder_paths[
+            "autoencoder_representations_drive_dir"
+        ],
+        "AUTOENCODER_VIDEOQA_DRIVE_DIR": autoencoder_paths[
+            "autoencoder_videoqa_drive_dir"
+        ],
+        "AUTOENCODER_EVALUATION_DRIVE_DIR": autoencoder_paths[
+            "autoencoder_evaluation_drive_dir"
+        ],
+        "AUTOENCODER_TRAINING_METADATA_CSV": autoencoder_paths[
+            "autoencoder_training_metadata_csv"
+        ],
+        "AUTOENCODER_TRAINING_SUMMARY_CSV": autoencoder_paths[
+            "autoencoder_training_summary_csv"
+        ],
+        "AUTOENCODER_TRAINING_VALIDATION_CSV": autoencoder_paths[
+            "autoencoder_training_validation_csv"
+        ],
+        "AUTOENCODER_MODEL_PATH": autoencoder_paths["autoencoder_model_path"],
+        "AUTOENCODER_SEGMENT_REPRESENTATIONS_CSV": autoencoder_paths[
+            "autoencoder_segment_representations_csv"
+        ],
+        "AUTOENCODER_VIDEO_REPRESENTATIONS_CSV": autoencoder_paths[
+            "autoencoder_video_representations_csv"
+        ],
+        "AUTOENCODER_REPRESENTATION_SUMMARY_CSV": autoencoder_paths[
+            "autoencoder_representation_summary_csv"
+        ],
+        "AUTOENCODER_EVALUATION_REPRESENTATION_DATASET_CSV": autoencoder_paths[
+            "autoencoder_evaluation_representation_dataset_csv"
+        ],
+        "AUTOENCODER_VIDEOQA_PREDICTIONS_DRIVE_CSV": autoencoder_paths[
+            "autoencoder_videoqa_predictions_drive_csv"
+        ],
+        "AUTOENCODER_VIDEOQA_VALIDATION_DRIVE_CSV": autoencoder_paths[
+            "autoencoder_videoqa_validation_drive_csv"
+        ],
+        "AUTOENCODER_VIDEOQA_SUMMARY_DRIVE_CSV": autoencoder_paths[
+            "autoencoder_videoqa_summary_drive_csv"
+        ],
+        "LOCAL_EXPERIMENT_DIR": autoencoder_paths["local_experiment_dir"],
+        "TRAINING_DATA_DIR": autoencoder_paths["training_data_dir"],
+        "TRAINING_METADATA_DIR": autoencoder_paths["training_metadata_dir"],
+        "TRAINING_REPORTS_DIR": autoencoder_paths["training_reports_dir"],
+        "TRAINING_METADATA_CSV": autoencoder_paths["training_metadata_csv"],
+        "TRAINING_VALIDATION_CSV": autoencoder_paths["training_validation_csv"],
+        "TRAINING_SUMMARY_CSV": autoencoder_paths["training_summary_csv"],
+        "AUTOENCODER_LOCAL_DIR": autoencoder_paths["autoencoder_local_dir"],
+        "AUTOENCODER_LOCAL_MODELS_DIR": autoencoder_paths[
+            "autoencoder_local_models_dir"
+        ],
+        "AUTOENCODER_LOCAL_RECONSTRUCTIONS_DIR": autoencoder_paths[
+            "autoencoder_local_reconstructions_dir"
+        ],
+        "AUTOENCODER_LOCAL_REPORTS_DIR": autoencoder_paths[
+            "autoencoder_local_reports_dir"
+        ],
+        "AUTOENCODER_LOCAL_REPRESENTATIONS_DIR": autoencoder_paths[
+            "autoencoder_local_representations_dir"
+        ],
+        "AUTOENCODER_LOCAL_SEGMENT_REPRESENTATIONS_CSV": autoencoder_paths[
+            "autoencoder_local_segment_representations_csv"
+        ],
+        "AUTOENCODER_LOCAL_VIDEO_REPRESENTATIONS_CSV": autoencoder_paths[
+            "autoencoder_local_video_representations_csv"
+        ],
+
+        # Evaluation aliases used by Notebook 08.
+        "EVALUATION_EXPERIMENT_DIR": evaluation_paths["evaluation_experiment_dir"],
+        "EVALUATION_OUTPUT_DRIVE_DIR": evaluation_paths[
+            "evaluation_output_drive_dir"
+        ],
+        "EVALUATION_ARTIFACT_FILENAMES": evaluation_paths[
+            "evaluation_artifact_filenames"
+        ],
+        "EVALUATION_PREDICTIONS_DRIVE_CSV": evaluation_paths[
+            "evaluation_predictions_drive_csv"
+        ],
+        "EVALUATION_VALIDATION_DRIVE_CSV": evaluation_paths[
+            "evaluation_validation_drive_csv"
+        ],
+        "EVALUATION_SUMMARY_DRIVE_CSV": evaluation_paths[
+            "evaluation_summary_drive_csv"
+        ],
+        "EVALUATION_DIR": evaluation_paths["evaluation_dir"],
+        "EVALUATION_OUTPUT_DIR": evaluation_paths["evaluation_output_dir"],
+        "EVALUATION_PREDICTIONS_CSV": evaluation_paths[
+            "evaluation_predictions_csv"
+        ],
+        "EVALUATION_VALIDATION_CSV": evaluation_paths["evaluation_validation_csv"],
+        "EVALUATION_SUMMARY_CSV": evaluation_paths["evaluation_summary_csv"],
+        "EVALUATION_DATASET_CSV": evaluation_paths["evaluation_dataset_csv"],
+        "EVALUATION_METRICS_CSV": evaluation_paths["evaluation_metrics_csv"],
+        "EVALUATION_DETAILS_CSV": evaluation_paths["evaluation_details_csv"],
+        "EVALUATION_REPORT_SUMMARY_CSV": evaluation_paths[
+            "evaluation_report_summary_csv"
+        ],
+    }
+
+    globals().update(aliases)
+
+    if update_caller_globals:
+        # Support notebook usage with:
+        #     from src.videoqa_representation_config import *
+        #     EXPERIMENT_NAME = "..."
+        #     configure_experiment(EXPERIMENT_NAME)
+        #
+        # Without this caller update, aliases created inside this module would
+        # not be visible as bare names in the notebook namespace after a
+        # star import.
+        import inspect
+
+        caller_frame = inspect.currentframe().f_back
+        if caller_frame is not None:
+            caller_frame.f_globals.update(aliases)
+
+    return aliases
+
+
 # Backward-compatible local root aliases that do not depend on EXPERIMENT_NAME.
 # These roots are legacy locations and should not be used for new outputs.
 REPRESENTATION_VIDEOQA_DIR = OUTPUTS_DIR / "representation_videoqa"
