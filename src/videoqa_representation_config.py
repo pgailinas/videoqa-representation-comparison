@@ -737,12 +737,18 @@ AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
 FUSION_EMBEDDING_DIM = 256
 
 # -----------------------------------------------------------------
+# Classifier Architecture
+# -----------------------------------------------------------------
+FUSION_MODEL_TYPE = "mlp"
+
+# -----------------------------------------------------------------
 # Fusion MLP Architecture
 # -----------------------------------------------------------------
+FUSION_NUM_INPUT_EMBEDDINGS = 3
 FUSION_INPUT_DIM = (
-    FUSION_EMBEDDING_DIM * 3
+    FUSION_NUM_INPUT_EMBEDDINGS
+    * FUSION_EMBEDDING_DIM
 )
-
 FUSION_HIDDEN_DIM_1 = 256
 FUSION_HIDDEN_DIM_2 = 64
 FUSION_OUTPUT_DIM = 1
@@ -786,6 +792,10 @@ USE_LAYER_NORMALIZATION = True
 # -----------------------------------------------------------------
 SAVE_FUSION_MODEL = True
 FUSION_MODEL_FILENAME = "fusion_classifier.pt"
+FUSION_MODEL_PATH = (
+    REPRESENTATION_VIDEOQA_LOCAL_DIR
+    / FUSION_MODEL_FILENAME
+)
 
 # -----------------------------------------------------------------
 # Training Data Source
