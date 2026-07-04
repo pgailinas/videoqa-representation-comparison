@@ -787,6 +787,12 @@ USE_LAYER_NORMALIZATION = True
 SAVE_FUSION_MODEL = True
 FUSION_MODEL_FILENAME = "fusion_classifier.pt"
 
+# -----------------------------------------------------------------
+# Training Data Source
+# -----------------------------------------------------------------
+FUSION_TRAIN_SPLIT = "train"
+FUSION_EVALUATION_SPLIT = "val"
+
 # ============================================================
 # 12. Video Segmentation Settings
 # ============================================================
