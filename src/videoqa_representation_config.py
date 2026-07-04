@@ -565,6 +565,11 @@ def configure_experiment(
             "representation_videoqa_summary_csv"
         ],
 
+        "FUSION_MODEL_PATH": (
+            representation_paths["representation_videoqa_local_dir"]
+            / FUSION_MODEL_FILENAME
+        ),
+
         # Autoencoder aliases used by Notebooks 02-04 and Notebook 07 when
         # running the self-supervised representation pipeline.
         "AUTOENCODER_EXPERIMENT_DIR": autoencoder_paths["autoencoder_experiment_dir"],
@@ -792,10 +797,6 @@ USE_LAYER_NORMALIZATION = True
 # -----------------------------------------------------------------
 SAVE_FUSION_MODEL = True
 FUSION_MODEL_FILENAME = "fusion_classifier.pt"
-FUSION_MODEL_PATH = (
-    REPRESENTATION_VIDEOQA_LOCAL_DIR
-    / FUSION_MODEL_FILENAME
-)
 
 # -----------------------------------------------------------------
 # Training Data Source
