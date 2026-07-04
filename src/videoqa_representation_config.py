@@ -713,10 +713,79 @@ AUTOENCODER_REPRESENTATIONS_CSV = (
 # 10. Representation-Based VideoQA Settings
 # ============================================================
 
-REPRESENTATION_VIDEOQA_METHOD = "cosine_similarity"
-
+# -----------------------------------------------------------------
+# Representation Sources
+# -----------------------------------------------------------------
 DEFAULT_VIDEO_REPRESENTATION_SOURCE = "clip_video"
 DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
+
+# Supported methods:
+#
+#   cosine_similarity        (legacy)
+#   fusion_mlp_classifier    (recommended)
+#
+REPRESENTATION_VIDEOQA_METHOD = "fusion_mlp_classifier"
+
+# -----------------------------------------------------------------
+# Shared Representation Dimensions
+# -----------------------------------------------------------------
+CLIP_VIDEO_EMBEDDING_DIM = 512
+CLIP_TEXT_EMBEDDING_DIM = 512
+AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
+
+# Common latent dimension used by the fusion classifier.
+FUSION_EMBEDDING_DIM = 256
+
+# -----------------------------------------------------------------
+# Fusion MLP Architecture
+# -----------------------------------------------------------------
+FUSION_INPUT_DIM = (
+    FUSION_EMBEDDING_DIM * 3
+)
+
+FUSION_HIDDEN_DIM_1 = 256
+FUSION_HIDDEN_DIM_2 = 64
+FUSION_OUTPUT_DIM = 1
+FUSION_DROPOUT = 0.20
+
+# -----------------------------------------------------------------
+# Training Hyperparameters
+# -----------------------------------------------------------------
+FUSION_BATCH_SIZE = 64
+FUSION_LEARNING_RATE = 1e-3
+FUSION_WEIGHT_DECAY = 1e-5
+FUSION_EPOCHS = 20
+FUSION_RANDOM_SEED = RANDOM_SEED
+
+# -----------------------------------------------------------------
+# Optimization
+# -----------------------------------------------------------------
+FUSION_OPTIMIZER = "adam"
+FUSION_LOSS = "cross_entropy"
+
+# -----------------------------------------------------------------
+# Inference
+# -----------------------------------------------------------------
+FUSION_SCORE_REDUCTION = "argmax"
+
+# -----------------------------------------------------------------
+# Candidate Answers
+# -----------------------------------------------------------------
+NUM_MULTIPLE_CHOICE_ANSWERS = 5
+
+# -----------------------------------------------------------------
+# Projection Layers
+# -----------------------------------------------------------------
+USE_VIDEO_PROJECTION = True
+USE_TEXT_PROJECTION = True
+USE_BATCH_NORMALIZATION = False
+USE_LAYER_NORMALIZATION = True
+
+# -----------------------------------------------------------------
+# Model Checkpoints
+# -----------------------------------------------------------------
+SAVE_FUSION_MODEL = True
+FUSION_MODEL_FILENAME = "fusion_classifier.pt"
 
 # ============================================================
 # 12. Video Segmentation Settings
