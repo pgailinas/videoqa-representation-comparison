@@ -721,7 +721,9 @@ AUTOENCODER_REPRESENTATIONS_CSV = (
 # -----------------------------------------------------------------
 # Representation Sources
 # -----------------------------------------------------------------
-DEFAULT_VIDEO_REPRESENTATION_SOURCE = "clip_video"
+CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
+AUTOENCODER_VIDEO_REPRESENTATION_SOURCE = "autoencoder_video"
+DEFAULT_VIDEO_REPRESENTATION_SOURCE = CLIP_VIDEO_REPRESENTATION_SOURCE
 DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
 
 # Supported methods:
@@ -870,7 +872,6 @@ TEXT_INPUT_TYPES = [
 
 CLIP_VIDEO_MODEL_NAME = "openai/clip-vit-base-patch32"
 CLIP_VIDEO_REPRESENTATION_SCOPE = "referenced_videos"
-CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
 
 CLIP_VIDEO_FRAMES_PER_VIDEO = 8
 CLIP_VIDEO_FRAME_BATCH_SIZE = 16
