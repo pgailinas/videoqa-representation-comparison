@@ -14,11 +14,11 @@ has_toc: false
 
 ## Purpose
 
-This notebook prepares the training data required for self-supervised autoencoder learning using the NExT-QA video dataset.
+This notebook prepares the standardized training metadata required for self-supervised autoencoder learning using the NExT-QA video dataset.
 
-Source videos are segmented into standardized temporal units, and metadata describing each segment is generated. These training segments provide a consistent dataset representation for reproducible self-supervised learning experiments.
+Rather than duplicating video content, the notebook generates structured metadata describing fixed-duration video segments, including video identifiers, timestamps, representative frames, and segment properties. These standardized metadata records provide a reproducible framework for downstream self-supervised autoencoder training.
 
-The resulting training metadata defines fixed video segment units and ensures reproducible preprocessing across experiments.
+The resulting training metadata establishes a consistent segmentation strategy that supports reproducible representation learning experiments and downstream comparison with pretrained CLIP video representations.
 
 ## Inputs
 
@@ -35,23 +35,24 @@ The resulting training metadata defines fixed video segment units and ensures re
 ## Outputs
 
 * Local NExT-QA video cache (restored or verified)
-* Segment-level training metadata dataset
+* Standardized training metadata dataset
 * Training metadata summary report
 * Video inventory summary
-* Metadata validation report
-* Sample training segment records for verification
+* Training metadata validation report
+* Representative training metadata records
 
 ## Processing Workflow
 
-1. Initialize the project environment and verify the local NExT-QA video cache
-2. Load NExT-QA metadata and construct the video inventory
-3. Define segmentation parameters for training metadata generation
-4. Inspect representative videos and extract video properties
-5. Generate fixed-duration training segments for all videos
-6. Build structured training metadata records for each segment
-7. Validate metadata completeness and consistency
-8. Save training metadata and summary files
-9. Display sample training segment records for verification
+1. Initialize the project environment and restore the NExT-QA video dataset.
+2. Load the shared training metadata schema.
+3. Configure video segmentation parameters.
+4. Inspect representative source videos.
+5. Generate standardized training metadata records.
+6. Validate training metadata completeness and consistency.
+7. Save training metadata and summary artifacts.
+8. Preview representative training metadata records.
+9. Summarize the completed training metadata preparation workflow.
+10. Promote generated training metadata artifacts to Google Drive.
 
 ### Video Segmentation Strategy
 
@@ -96,7 +97,7 @@ These training segments provide a consistent and reproducible unit of video data
 | `motion_score`            | Optional motion metric (disabled by default). |
 | `scene_change_score`      | Optional scene transition metric (disabled by default). |
 
-### Standard and Enhanced Training Data Parameters
+### Standard and Enhanced Training Metadata Parameters
 
 This notebook implements a **fixed baseline segmentation strategy** for autoencoder training data generation.
 
@@ -117,10 +118,10 @@ This notebook implements a **fixed baseline segmentation strategy** for autoenco
 The current segmentation configuration produces:
 
 * 5,440 source videos
-* 38,834 training segments
-* Fixed-duration segmentation (6-second segments)
+* 38,834 standardized training metadata records
+* Fixed-duration 6-second video segments
 * One representative midpoint frame per segment
-* Motion and scene scoring disabled in baseline configuration
+* Motion and scene analysis disabled in the baseline configuration
 
-These training segments define the structured dataset used for consistent and reproducible experimental workflows.
+These standardized training metadata records provide the reproducible segmentation framework used for downstream self-supervised autoencoder training.
 
