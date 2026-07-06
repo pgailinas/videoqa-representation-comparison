@@ -33,28 +33,6 @@ The generated `clip_video` artifacts are combined with the shared `clip_text` re
 - Representative representation records
 - CLIP representation artifacts for downstream VideoQA inference
 
-Local artifacts:
-
-```text
-outputs/
-└── representations/
-    └── clip/
-        └── video/
-            ├── clip_video_representations.csv
-            └── clip_video_representation_summary.csv
-```
-
-Google Drive artifacts (full-dataset mode only):
-
-```text
-VideoQA_Project/
-└── representations/
-    └── clip/
-        └── video/
-            ├── clip_video_representations.csv
-            └── clip_video_representation_summary.csv
-```
-
 ## Processing Workflow
 
 1. Initialize the notebook environment and restore the NExT-QA video dataset.
