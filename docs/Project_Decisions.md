@@ -32,11 +32,11 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** The baseline workflow provides a strong multimodal reference for comparison with representation-based VideoQA pipelines. Using a single baseline model enables downstream evaluation of whether pretrained CLIP representations and self-supervised autoencoder representations preserve information useful for VideoQA reasoning.
 
-### 4) Maintain a Fixed Downstream VideoQA Model
+### 4) Standardize the Downstream Representation-Based Classifier
 
-**Decision:** -- Maintained a single downstream VideoQA inference model across all experimental workflows.
+**Decision:** Standardized on a common Fusion MLP classifier for all representation-based VideoQA methods while retaining Qwen2-VL as the baseline reference method.
 
-**Rationale:** -- The objective of the project is to evaluate the impact of different video representations rather than compare VideoQA model architectures. Keeping the downstream inference model fixed isolates the effects of representation quality and enables direct comparison between baseline video evidence, pretrained representations, and autoencoder-based latent representations.
+**Rationale:** The objective of the project is to compare video representations rather than downstream classifier architectures. Both representation-based methods use the same Fusion MLP classifier, prediction workflow, and evaluation methodology, isolating the contribution of the video representation. The Qwen2-VL baseline provides the reference method using the original videos.
 
 ---
 
@@ -144,12 +144,41 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** Pretrained CLIP representations are independent of individual autoencoder experiments and therefore should be generated once and reused across all representation-based VideoQA workflows. Separating representation generation from experiment execution reduces redundant computation, simplifies experiment management, and improves reproducibility by ensuring every experiment consumes the same shared representation artifacts.
 
-### 2) Distinguish Shared and Experiment-Specific Artifacts (06/27)
+### 2) Distinguish Shared and Experiment-Specific Representations (06/27)
 
 **Decision:** Adopted separate storage strategies for shared pretrained representations and experiment-specific autoencoder representations.
 
-**Rationale:** CLIP text and video representations are dataset-wide resources that do not depend on autoencoder training parameters and are therefore stored as shared artifacts outside the experiment hierarchy. Autoencoder video representations depend on training configuration and remain experiment-specific. This distinction minimizes duplicated storage, simplifies experiment comparison, and supports efficient evaluation of multiple autoencoder configurations using a common set of pretrained representations.
+**Rationale:** Shared `clip_text` representations are generated once and reused by both representation-based methods. `clip_video` representations are reusable but are used only by the CLIP representation method. `autoencoder_video` representations depend on the autoencoder training configuration and remain experiment-specific. This distinction minimizes duplicated storage, simplifies experiment comparison, and supports efficient evaluation of multiple autoencoder configurations using a common set of pretrained representations.
 
 
 
 
+
+
+---
+
+## Final Architecture (July 2026)
+
+### 1) Adopt a Shared Fusion MLP Classifier
+
+**Decision:** Standardized all representation-based VideoQA methods on a common Fusion MLP classifier.
+
+**Rationale:** Using the same classifier, prediction workflow, and multiple-choice objective isolates the effect of the video representation while minimizing architectural differences between the representation-based methods.
+
+### 2) Replace Cosine Similarity with Learned Classification
+
+**Decision:** Replaced cosine-similarity scoring with a learned Fusion MLP classifier trained using CrossEntropyLoss.
+
+**Rationale:** The learned classifier provides a common multimodal prediction architecture for both representation-based methods while supporting direct comparison of `clip_video` and `autoencoder_video` representations.
+
+### 3) Standardize Shared and Experiment-Specific Representations
+
+**Decision:** Adopted shared `clip_text` representations together with experiment-specific video representations.
+
+**Rationale:** Shared `clip_text` representations are reused by both representation-based methods, while `clip_video` and `autoencoder_video` remain method-specific. This isolates the contribution of the video representation.
+
+### 4) Standardize on a Common Evaluation Framework
+
+**Decision:** Evaluated all implemented methods using the same multiple-choice evaluation framework.
+
+**Rationale:** Common metrics, reporting, and analysis enable fair comparison among the Qwen2-VL baseline, CLIP representation method, and autoencoder representation method.
