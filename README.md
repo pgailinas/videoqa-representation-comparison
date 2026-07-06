@@ -17,36 +17,31 @@ Both representation-based approaches use a shared CLIP text embedding dataset, t
 
 ## Research Objective
 
-The objective of this project is to compare pretrained and
-self-supervised video representations for downstream multiple-choice
-VideoQA. Learned autoencoder video representations are evaluated
-against pretrained CLIP video representations using a shared CLIP text
-embedding dataset, a common downstream classifier, and an identical
-evaluation framework.
+The objective of this project is to compare pretrained and self-supervised video representations for downstream multiple-choice VideoQA. Learned `autoencoder_video` representations are evaluated against pretrained `clip_video` representations using shared `clip_text` representations, a common Fusion MLP classifier, and an identical evaluation framework.
 
 ## Experimental Framework
 
-The experimental framework consists of three complementary pipelines:
+The project implements three complementary VideoQA pipelines:
 
-- Baseline VideoQA using Qwen2-VL
-- Representation-Based VideoQA using pretrained CLIP video and shared CLIP text embeddings
-- Representation-Based VideoQA using self-supervised autoencoder video embeddings and shared CLIP text embeddings
+* **Baseline VideoQA** using Qwen2-VL and the original videos.
+* **Representation-Based VideoQA** using pretrained `clip_video` representations together with shared `clip_text` representations.
+* **Representation-Based VideoQA** using self-supervised `autoencoder_video` representations together with the same shared `clip_text` representations.
 
-Development-mode execution is used to validate notebook functionality and tune experiment parameters before full-dataset evaluation. The representation-based pipelines share identical text representations, classifier, and evaluation methodology, isolating the impact of the video representation.
+Development-mode execution supports rapid experimentation, debugging, and parameter tuning before full-dataset evaluation. The two representation-based pipelines use an identical Fusion MLP classifier, multiple-choice prediction workflow, and evaluation methodology, allowing differences in performance to be attributed primarily to the quality of the video representations.
 
-Shared CLIP text and pretrained CLIP video embeddings are generated once and stored as reusable shared artifacts. These artifacts are reused across all downstream representation-based VideoQA experiments, while autoencoder-generated video representations remain experiment-specific.
+Shared CLIP text and CLIP video representations are generated once and reused across experiments, while autoencoder video representations remain experiment-specific.
 
 The project focuses on:
 
--   Video Question Answering (VideoQA)
--   Self-Supervised Learning
--   Autoencoders
--   Video Representation Learning
--   Multimodal Representation Learning
--   CLIP Representations
--   Latent Feature Learning
--   Multiple-Choice VideoQA
--   Experimental Performance Analysis
+* Video Question Answering (VideoQA)
+* Self-Supervised Learning
+* Autoencoders
+* Video Representation Learning
+* Multimodal Representation Learning
+* CLIP Representations
+* Latent Feature Learning
+* Multiple-Choice VideoQA
+* Experimental Performance Analysis
 
 ## Dataset
 
@@ -63,11 +58,9 @@ The videos are used for baseline VideoQA inference, pretrained CLIP video repres
 
 The primary research hypothesis is:
 
-> Self-supervised autoencoder video representations can provide more effective downstream VideoQA performance than pretrained CLIP video representations when both are evaluated using identical CLIP text embeddings and the same downstream classifier.
+> Self-supervised `autoencoder_video` representations can provide more effective downstream multiple-choice VideoQA performance than pretrained `clip_video` representations when both are evaluated using identical `clip_text` representations, the same Fusion MLP classifier, and a common evaluation framework.
 
-The project further investigates whether learned autoencoder representations can provide meaningful latent structure for downstream VideoQA evaluation when compared with
-pretrained CLIP video representations under a common evaluation
-framework.
+The project further investigates whether self-supervised representation learning can produce video embeddings that improve downstream VideoQA performance while maintaining a consistent multimodal classification pipeline.
 
 ## ⚙️ Execution Notes
 
