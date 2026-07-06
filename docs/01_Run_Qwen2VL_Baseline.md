@@ -14,9 +14,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The notebook generates standardized baseline prediction, validation, and summary artifacts that establish the reference against which the CLIP-based and self-supervised autoencoder representation pipelines are compared.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The notebook generates standardized prediction, validation, and summary artifacts that establish the baseline reference for comparison with the project's representation-based VideoQA methods.
 
-Development-subset experiments enable rapid iteration and parameter optimization while minimizing computational cost. The validated inference configuration serves as the baseline for comparison with the representation-based VideoQA pipelines before full-dataset experimentation.
+Development-subset experiments enable rapid experimentation, workflow validation, and parameter tuning while minimizing computational cost. The validated baseline configuration provides the reference against which the CLIP representation method and the self-supervised autoencoder representation method are evaluated using the common evaluation framework implemented in Notebook 08.
 
 ## Inputs
 
@@ -29,7 +29,7 @@ Development-subset experiments enable rapid iteration and parameter optimization
 
 ## Outputs
 
-### Generated Files
+### Generated Artifacts
 
 These outputs provide the baseline performance reference used throughout the remainder of the project.
 
@@ -49,18 +49,17 @@ These outputs provide the baseline performance reference used throughout the rem
 
 ## Processing Workflow
 
-* Initialize the notebook environment and restore the NExT-QA dataset
-* Load NExT-QA annotations and video inventory information
-* Configure baseline inference parameters
-* Verify GPU runtime and model dependencies
-* Load the Qwen2-VL-7B model and processor
-* Prepare the development evaluation dataset
-* Execute development-subset baseline VideoQA inference using Qwen2-VL-7B
-* Create standardized baseline prediction and summary artifacts
-* Validate generated baseline artifacts
-* Save baseline artifacts locally
-* Promote baseline artifacts to Google Drive
-* Display summary metrics and representative prediction samples
+* Initialize the notebook environment and restore the NExT-QA dataset.
+* Configure the baseline VideoQA experiment.
+* Verify GPU runtime readiness and model dependencies.
+* Load the Qwen2-VL-7B model and processor.
+* Prepare the development evaluation dataset.
+* Execute development-subset multiple-choice VideoQA inference.
+* Validate generated prediction artifacts.
+* Save prediction artifacts locally.
+* Promote prediction artifacts to Google Drive.
+* Display representative prediction samples.
+* Finalize baseline artifacts for downstream evaluation.
 
 ## Runtime Requirements
 
@@ -74,15 +73,13 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 
 ## Notes
 
-* This notebook performs development-subset baseline VideoQA experiments using direct multimodal inference.
-* Representative video frames are sampled directly from source videos during inference execution.
-* Prediction results include generated answers, ground-truth answers, and inference timing information.
+* This notebook performs development-subset baseline VideoQA using direct Qwen2-VL-7B multimodal inference.
+* Representative video frames are sampled directly from the source videos during inference.
+* Prediction artifacts include multiple-choice predictions, validation results, summary statistics, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
-* GPU memory requirements may vary significantly based on the number of sampled video frames and model generation settings.
-* Generated prediction datasets and summary reports provide the baseline performance reference used to compare direct Qwen2-VL inference with CLIP-based and self-supervised autoencoder representation-learning pipelines.
-* This notebook is intended for development-subset VideoQA inference using direct Qwen2-VL-7B evaluation. It is used for baseline performance measurement, workflow validation, and generation of reference predictions for downstream representation-learning comparisons.
-* * This notebook follows the project's standard producer architecture.
-* Baseline artifacts are generated locally, verified, and then promoted to Google Drive.
-* Notebook 08 restores these artifacts from Google Drive and evaluates them using the same experiment-agnostic evaluation pipeline used for the CLIP and autoencoder approaches.
+* GPU memory requirements vary with the number of sampled video frames and model generation parameters.
+* This notebook serves as the baseline method for comparison with the project's representation-based VideoQA methods.
+* Baseline prediction artifacts are generated locally, validated, and promoted to Google Drive.
+* Notebook 08 restores these artifacts and evaluates them using the same experiment-agnostic evaluation workflow applied to all implemented VideoQA methods.
 * The generated prediction, validation, and summary artifacts provide the baseline reference used throughout the remainder of the project.
 
