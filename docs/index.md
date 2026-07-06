@@ -9,11 +9,11 @@ nav_order: 0
 
 This project investigates self-supervised autoencoder learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset, pretrained CLIP representations, and the Qwen2-VL-7B multimodal foundation model.
 
-The project compares three complementary approaches to VideoQA. The first establishes a baseline using Qwen2-VL and the original NExT-QA videos. The second evaluates pretrained CLIP video embeddings together with shared CLIP text embeddings, while the third investigates whether compact video representations learned through self-supervised autoencoder training can provide comparable downstream VideoQA performance.
+The project evaluates three complementary VideoQA pipelines. The first establishes a baseline using Qwen2-VL and the original NExT-QA videos. The second performs representation-based VideoQA using pretrained `clip_video` representations together with shared `clip_text` representations. The third evaluates self-supervised `autoencoder_video` representations using the same shared `clip_text` representations.
 
-To enable a controlled comparison, both representation-based approaches use a common set of CLIP text embeddings for the questions and answer choices together with the same downstream VideoQA classifier. This experimental design isolates the impact of the video representation while minimizing differences introduced by the inference architecture.
+Both representation-based pipelines use an identical Fusion MLP classifier, multiple-choice prediction workflow, and evaluation methodology. This experimental design isolates the effect of the video representation while minimizing differences introduced by the downstream inference architecture.
 
-Experiments are conducted using a two-stage methodology consisting of development-mode experimentation followed by full-dataset evaluation. Shared CLIP text and pretrained CLIP video embedding datasets are generated once and reused across all downstream representation-based experiments. The repository provides a reproducible notebook-driven research environment for investigating representation learning, multimodal reasoning, and VideoQA performance.
+Experiments are conducted using a two-stage methodology consisting of development-mode experimentation followed by full-dataset evaluation. Shared `clip_text` and `clip_video` representation datasets are generated once and reused across experiments, while `autoencoder_video` representations remain experiment-specific. The repository provides a reproducible notebook-driven research environment for investigating representation learning and downstream VideoQA performance.
 
 ## Motivation and Research Problem
 
@@ -21,7 +21,7 @@ Video Question Answering (VideoQA) requires models to understand both the visual
 
 Recent advances in foundation models have demonstrated impressive VideoQA performance by processing video and text directly. At the same time, self-supervised learning has shown that compact feature representations can be learned from large collections of unlabeled data without requiring manual annotation. These learned representations have proven effective across a wide range of computer vision tasks, suggesting that they may also provide useful information for downstream VideoQA.
 
-This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video embeddings with representations learned through self-supervised autoencoder training while using a common set of text representations and a shared classifier.
+This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video embeddings with representations learned through self-supervised autoencoder training while using shared clip_text representations and a common Fusion MLP classifier.
 
 By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences VideoQA performance across temporal, causal, and descriptive reasoning tasks.
 
@@ -67,15 +67,15 @@ Evaluation results are reported both overall and by reasoning category to provid
 
 ## System Architecture
 
-The experimental framework is organized around three complementary VideoQA pipelines that evaluate different approaches to generating video representations while maintaining a consistent downstream evaluation methodology.
+The experimental framework is organized around three complementary VideoQA pipelines that maintain a common evaluation methodology while varying the source of the video representations.
 
-The **Baseline Pipeline** establishes a performance reference by processing the original NExT-QA videos directly with the Qwen2-VL-7B multimodal foundation model. This pipeline provides the benchmark against which all representation-based approaches are compared.
+The **Baseline Pipeline** establishes a performance reference by processing the original NExT-QA videos directly with the Qwen2-VL-7B multimodal foundation model.
 
-The **Pretrained Representation Pipeline** uses reusable shared CLIP text embeddings together with reusable shared pretrained CLIP video embeddings. These shared representations are evaluated using a common downstream multiple-choice VideoQA classifier.
+The **CLIP Representation Pipeline** combines reusable shared `clip_video` and `clip_text` representations and performs multiple-choice VideoQA using the shared Fusion MLP classifier.
 
-The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder using the NExT-QA videos, generates segment-level and video-level latent representations, and prepares evaluation representation datasets for downstream VideoQA classification. As with the pretrained pipeline, the reusable shared CLIP text embedding dataset together with experiment-specific autoencoder video representations and the same downstream classifier are used to evaluate VideoQA performance.
+The **Autoencoder Representation Pipeline** trains a self-supervised video autoencoder, generates experiment-specific `autoencoder_video` representations, and combines them with the same shared `clip_text` representations using the identical Fusion MLP classifier.
 
-By using identical text representations, classification methods, and evaluation procedures for both representation-based pipelines, the experimental framework isolates the impact of the video representation itself. This controlled design enables direct comparison between pretrained and learned representations while providing a consistent baseline through Qwen2-VL-7B.
+By maintaining identical text representations, classifier architecture, prediction methodology, and evaluation procedures across both representation-based pipelines, the framework isolates the contribution of the video representation itself while providing a direct comparison against the baseline Qwen2-VL pipeline.
 
 ---
 
@@ -92,14 +92,14 @@ The project is organized as nine modular notebooks supporting the three experime
 | Notebook | Purpose |
 |----------|---------|
 | **01_Run_Qwen2VL_Baseline** | Execute baseline multiple-choice VideoQA experiments using the original NExT-QA videos and Qwen2-VL-7B. |
-| **02_Prepare_Autoencoder_Training_Data** | Prepare training datasets and supporting metadata required for self-supervised autoencoder learning. |
+| **02_Prepare_Autoencoder_Training_Data** | Prepare standardized training metadata required for self-supervised autoencoder learning. |
 | **03_Train_Video_Autoencoder** | Train self-supervised video autoencoder models using unlabeled NExT-QA videos. |
 | **04_Generate_Autoencoder_Video_Representations** | Generate reusable autoencoder video representation datasets by encoding NExT-QA video segments with a trained self-supervised autoencoder. |
 | **05_Generate_CLIP_Text_Representations** | Generate a reusable shared CLIP text embedding dataset for VideoQA questions and answer choices. |
 | **06_Generate_CLIP_Video_Representations** | Generate a reusable pretrained CLIP video embedding dataset from the NExT-QA videos. |
-| **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either pretrained CLIP or learned autoencoder latent representations together with shared CLIP text representations. |
+| **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using either clip_video or autoencoder_video representations together with shared clip_text representations and the Fusion MLP classifier. |
 | **08_Evaluate_Development_Results** | Compare development results from the Qwen2-VL baseline, pretrained CLIP representations, and autoencoder experiments using common evaluation metrics, visualizations, and performance analysis. |
-| **09_Run_Final_Comparison_Experiment** | Execute the selected best-performing representation configuration on the complete NExT-QA dataset and generate the project's final evaluation results. |
+| **09_Run_Final_Comparison_Experiment** | Execute the selected best-performing experiment configuration on the complete NExT-QA dataset and generate the project's final evaluation artifacts. |
 
 Development-subset experiments are used to compare baseline, pretrained, and autoencoder representation methods and to select the best-performing configuration before full-dataset evaluation. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
@@ -107,7 +107,7 @@ Development-subset experiments are used to compare baseline, pretrained, and aut
 
 This project contributes a reproducible framework for comparing pretrained and learned video representations using a reproducible notebook-driven workflow that separates representation learning, representation preparation, and downstream VideoQA evaluation.
 
-The experimental framework enables direct comparison by holding the reusable CLIP text embedding dataset, classifier, and evaluation methodology constant while varying only the video representation.
+The experimental framework enables direct comparison by holding the shared `clip_text` representations, Fusion MLP classifier, prediction methodology, and evaluation procedures constant while varying only the video representation. This controlled design supports reproducible comparison between pretrained and self-supervised video representations for downstream multiple-choice VideoQA.
 
 The resulting notebook workflow provides a modular and reproducible research platform that separates shared representation generation, experiment-specific autoencoder representation learning, downstream VideoQA evaluation, and comparative performance analysis.
 
