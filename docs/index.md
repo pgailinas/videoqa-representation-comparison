@@ -65,6 +65,26 @@ NExT-QA is designed to evaluate video understanding through three primary reason
 
 Evaluation results are reported both overall and by reasoning category to provide insight into how different video representations support temporal, causal, and descriptive reasoning tasks.
 
+## Dataset Split Strategy
+
+The NExT-QA benchmark provides three official dataset splits: **training**, **validation**, and **test**. Each split serves a distinct role within the experimental framework to ensure reproducible model development and unbiased performance evaluation.
+
+| Dataset Split  | Primary Purpose            | Project Usage                                                                                                                                                                                                                                                                                                                             |
+| -------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Training**   | Learn model parameters     | Train self-supervised video autoencoders and train the Fusion MLP classifier used by the representation-based VideoQA pipelines.                                                                                                                                                                                                          |
+| **Validation** | Development evaluation     | Evaluate all experimental pipelines, compare competing video representations, perform error analysis, and select the best-performing experimental configuration. Development experiments may use reproducible subsets of the validation split (for example, 100 samples) to reduce computational cost while maintaining fair comparisons. |
+| **Test**       | Final benchmark evaluation | Reserved for future work and final benchmark evaluation. The test split is not used during model development or experiment selection.                                                                                                                                                                                                     |
+
+The three VideoQA pipelines use the dataset splits differently depending on whether learning is required.
+
+| Pipeline                                | Training Split                                                                                                                            | Validation Split                                                                           |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Qwen2-VL Baseline**                   | Not required. The pretrained Qwen2-VL-7B foundation model performs inference directly on the original videos without additional training. | Used for baseline multiple-choice VideoQA evaluation and performance analysis.             |
+| **CLIP Representation Pipeline**        | Generates CLIP video and text representations and trains the shared Fusion MLP classifier.                                                | Evaluates the trained classifier using the validation representations.                     |
+| **Autoencoder Representation Pipeline** | Trains the self-supervised video autoencoder, generates learned video representations, and trains the shared Fusion MLP classifier.       | Evaluates the trained representations and classifier using the validation representations. |
+
+This separation of responsibilities follows standard machine learning practice by reserving the validation split exclusively for development evaluation while using the training split for all learned model components. As a result, all reported comparisons are performed on data that were not used to train the representation-based models or classifiers.
+
 ## System Architecture
 
 The experimental framework is organized around three complementary VideoQA pipelines that maintain a common evaluation methodology while varying the source of the video representations.
