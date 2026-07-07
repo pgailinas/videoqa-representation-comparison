@@ -40,7 +40,7 @@ videoqa-representation-comparison/
 │   ├── References.md
 │   ├── Results_and_Insights.md
 │   ├── 01_Run_Qwen2VL_Baseline.md
-│   ├── 02_Prepare_Autoencoder_Training_Data.md
+│   ├── 02_Prepare_Autoencoder_Segment_Metadata.md
 │   ├── 03_Train_Video_Autoencoder.md
 │   ├── 04_Generate_Autoencoder_Video_Representations.md
 │   ├── 05_Generate_CLIP_Text_Representations.md
@@ -51,7 +51,7 @@ videoqa-representation-comparison/
 │   └── images/
 ├── notebooks/
 │   ├── 01_Run_Qwen2VL_Baseline.ipynb
-│   ├── 02_Prepare_Autoencoder_Training_Data.ipynb
+│   ├── 02_Prepare_Autoencoder_Segment_Metadata.ipynb
 │   ├── 03_Train_Video_Autoencoder.ipynb
 │   ├── 04_Generate_Autoencoder_Video_Representations.ipynb
 │   ├── 05_Generate_CLIP_Text_Representations.ipynb
