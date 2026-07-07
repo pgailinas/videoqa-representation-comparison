@@ -9,68 +9,63 @@ nav_order: 1
 
 This document describes the two complementary directory structures that together comprise the VideoQA research project:
 
-1. **GitHub Repository** — stores source code, notebooks, documentation, and configuration under version control.
-2. **Google Drive Project Storage** — stores large datasets and generated artifacts that are impractical to maintain in GitHub.
+1. **GitHub Repository** — stores version-controlled source code, notebooks, documentation, dataset metadata, and shared Python modules.
+2. **Google Drive Project Storage** — stores large benchmark datasets and generated experiment artifacts that are impractical to maintain within the GitHub repository.
 
-The repository and Google Drive should be considered a single logical project. Notebooks execute from the GitHub repository while reading from and writing to the Google Drive project structure.
+Together, these two storage locations form a single logical project. The notebooks execute from the GitHub repository while reading from and writing to the Google Drive project structure.
 
-This document is intended to evolve into the authoritative reference for both:
+This document serves as the authoritative reference for:
 
-- the project directory structures, and
-- the generated artifacts created and consumed by each notebook.
+- the GitHub repository organization,
+- the Google Drive project organization,
+- generated experiment artifacts,
+- notebook artifact dependencies, and
+- project storage conventions.
 
 ## GitHub Repository Structure
 
-The GitHub repository contains the version-controlled project materials: notebooks, source modules, documentation, configuration, and diagrams.
+The GitHub repository contains the version-controlled implementation of the VideoQA research project, including datasets, notebooks, documentation, shared Python modules, and project configuration.
 
 ```text
 videoqa-representation-comparison/
-├── README.md
-├── notebooks/
-│   ├── 01_Run_Qwen2VL_Baseline.ipynb
-│   ├── 02_Prepare_Autoencoder_Training_Data.ipynb
-│   ├── 03_Train_Video_Autoencoder.ipynb
-│   ├── 04_Generate_Autoencoder_Video_Representations.ipynb
-│   ├── 05_Generate_CLIP_Text_Representations.ipynb
-│   ├── 06_Generate_CLIP_Video_Representations.ipynb
-│   ├── 07_Run_Representation_VideoQA.ipynb
-│   ├── 08_Evaluate_Development_Results.ipynb
-│   └── 09_Run_Final_Comparison_Experiment.ipynb
+├── datasets/
+│   └── NExT-QA/
+│       ├── metadata/
+│       ├── questions/
+│       └── videos/
 ├── docs/
-│   ├── _config.yml
 │   ├── index.md
 │   ├── Project_Directory_Structure.md
 │   ├── Project_Decisions.md
 │   ├── References.md
 │   ├── Results_and_Insights.md
 │   ├── 01_Run_Qwen2VL_Baseline.md
-│   ├── 02_Prepare_Autoencoder_Training_Data.md
-│   ├── 03_Train_Video_Autoencoder.md
-│   ├── 04_Generate_Autoencoder_Video_Representations.md
-│   ├── 05_Generate_CLIP_Text_Representations.md
-│   ├── 06_Generate_CLIP_Video_Representations.md
-│   ├── 07_Run_Representation_VideoQA.md
-│   ├── 08_Evaluate_Development_Results.md
-│   ├── 09_Run_Final_Comparison_Experiment.md
+│   ├── ...
 │   └── images/
-│       └── overview_pipeline.png
-└── src/
-    ├── videoqa_representation_config.py
-    ├── nextqa_metadata.py
-    ├── nextqa_video_cache.py
-    ├── training_metadata_io.py
-    ├── training_validation.py
-    └── video_segments.py
+├── notebooks/
+│   ├── 01_Run_Qwen2VL_Baseline.ipynb
+│   ├── ...
+│   └── 09_Run_Final_Full_Experiment.ipynb
+├── src/
+│   ├── autoencoder_model.py
+│   ├── nextqa_metadata.py
+│   ├── nextqa_video_cache.py
+│   ├── training_metadata_io.py
+│   ├── training_validation.py
+│   ├── video_segments.py
+│   └── videoqa_representation_config.py
+└── README.md
 ```
 
 ### GitHub Repository Directory Purposes
 
 | Directory | Purpose |
 |-----------|---------|
-| `notebooks/` | Google Colab notebooks implementing each project stage. |
-| `docs/` | GitHub Pages documentation, notebook descriptions, decisions, references, and results. |
-| `docs/images/` | Diagrams and documentation images, including the pipeline overview figure. |
-| `src/` | Shared Python modules and centralized project configuration. |
+| `datasets/` | NExT-QA dataset metadata, question annotations, and repository documentation. Large benchmark videos are stored separately in Google Drive. |
+| `docs/` | GitHub Pages documentation, notebook descriptions, project documentation, references, and supporting images. |
+| `notebooks/` | Google Colab notebooks implementing the complete VideoQA experimental workflow. |
+| `src/` | Shared Python modules providing configuration, data management, validation, model definitions, and reusable utilities used throughout the notebooks. |
+| `README.md` | Repository overview, project introduction, and navigation entry point. |
 
 ## Google Drive Project Structure
 
