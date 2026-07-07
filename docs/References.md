@@ -4,25 +4,21 @@ nav_order: 12
 has_toc: false
 ---
 
-# References and Learning Resources
+# References
 
----
-
-## Technical Papers
-
-### Video Question Answering Datasets
+## Video Question Answering Datasets
 
 * <a href="https://arxiv.org/abs/2105.08276" target="_blank" rel="noopener noreferrer">NExT-QA: Next Phase of Question Answering to Explain Temporal Actions (2021)</a>
 
 * <a href="https://github.com/doc-doc/NExT-QA" target="_blank" rel="noopener noreferrer">NExT-QA Dataset Repository</a>
 
-### VideoQA Foundation Models
+## VideoQA Foundation Models
 
 * <a href="https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct" target="_blank" rel="noopener noreferrer">Qwen2-VL-7B-Instruct</a>
 
 * <a href="https://arxiv.org/abs/2409.12191" target="_blank" rel="noopener noreferrer">Qwen2-VL Technical Report (2024)</a>
 
-### Self-Supervised Autoencoder Representation Learning
+## Self-Supervised Autoencoder Representation Learning
 
 * <a href="https://arxiv.org/pdf/2111.06377.pdf" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners (CVPR 2022)</a>
 
@@ -34,7 +30,7 @@ has_toc: false
 
 * <a href="https://openreview.net/forum?id=bFrNPlWchg" target="_blank" rel="noopener noreferrer">Extending Video Masked Autoencoders to 128 Frames (2023)</a>
 
-### CLIP Representations
+## CLIP Representations
 
 * <a href="https://arxiv.org/abs/2103.00020" target="_blank" rel="noopener noreferrer">Learning Transferable Visual Models From Natural Language Supervision (CLIP, ICML 2021)
 </a>
@@ -42,27 +38,9 @@ has_toc: false
 * <a href="https://github.com/openai/CLIP" target="_blank" rel="noopener noreferrer">OpenAI CLIP GitHub Repository
 </a>
 
-### VideoQA Reasoning and Latent Representations
+## VideoQA Reasoning and Latent Representations
 
 * <a href="https://donglaiw.github.io/paper/2024_iclr_llcp.pdf" target="_blank" rel="noopener noreferrer">LLCP: Learning Latent Causal Processes for Reasoning-Based VideoQA (ICLR 2024)</a>
 
 * <a href="https://aclanthology.org/2025.naacl-long.82.pdf" target="_blank" rel="noopener noreferrer">ReasVQA: Advancing VideoQA with Imperfect Reasoning Process (NAACL 2025)</a>
-
----
-
-## Learning Resources
-
-## Autoencoders
-
-* <a href="https://www.youtube.com/watch?v=-EBqzYIJRaQ" target="_blank" rel="noopener noreferrer">Masked Autoencoders (MAE) Paper Explained</a>
-
-### Video Representation Learning
-
-* YouTube: Self-Supervised Learning for Computer Vision
-* YouTube: Vision-Language Representation Learning
-
-### Vision-Language Models
-
-* YouTube: Multimodal AI Systems
-* YouTube: Qwen2-VL Overview
 
