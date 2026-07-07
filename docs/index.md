@@ -69,21 +69,23 @@ Evaluation results are reported both overall and by reasoning category to provid
 
 The NExT-QA benchmark provides three official dataset splits: **training**, **validation**, and **test**. Each split serves a distinct role within the experimental framework to ensure reproducible model development and unbiased performance evaluation.
 
-| Dataset Split  | Primary Purpose            | Project Usage                                                                                                                                                                                                                                                                                                                             |
-| -------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Training**   | Learn model parameters     | Train self-supervised video autoencoders and train the Fusion MLP classifier used by the representation-based VideoQA pipelines.                                                                                                                                                                                                          |
-| **Validation** | Development evaluation     | Evaluate all experimental pipelines, compare competing video representations, perform error analysis, and select the best-performing experimental configuration. Development experiments may use reproducible subsets of the validation split (for example, 100 samples) to reduce computational cost while maintaining fair comparisons. |
-| **Test**       | Final benchmark evaluation | Reserved for future work and final benchmark evaluation. The test split is not used during model development or experiment selection.                                                                                                                                                                                                     |
+| Dataset Split | Primary Purpose | Project Usage |
+|---------------|-----------------|---------------|
+| **Training** | Learn model parameters | Train self-supervised video autoencoders and the shared Fusion MLP classifier used by the representation-based VideoQA pipelines. |
+| **Validation** | Development evaluation | Evaluate all experimental pipelines, compare competing video representations, perform error analysis, and select the best-performing experimental configuration. Development experiments may use reproducible subsets of the validation split (for example, 100 samples) to reduce computational cost while maintaining fair comparisons. |
+| **Test** | Final benchmark evaluation | Reserved for future work and final benchmark evaluation. The test split is not used during model development or experiment selection. |
 
-The three VideoQA pipelines use the dataset splits differently depending on whether learning is required.
+In addition to the official dataset splits, this project generates reusable CLIP text and CLIP video representation datasets. Because the CLIP encoders are pretrained and remain frozen throughout the experiments, these representations are generated once for the entire NExT-QA dataset (training, validation, and test) and reused by all representation-based pipelines. This avoids redundant computation while ensuring identical pretrained representations are used throughout the experimental framework.
 
-| Pipeline                                | Training Split                                                                                                                            | Validation Split                                                                           |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Qwen2-VL Baseline**                   | Not required. The pretrained Qwen2-VL-7B foundation model performs inference directly on the original videos without additional training. | Used for baseline multiple-choice VideoQA evaluation and performance analysis.             |
-| **CLIP Representation Pipeline**        | Generates CLIP video and text representations and trains the shared Fusion MLP classifier.                                                | Evaluates the trained classifier using the validation representations.                     |
-| **Autoencoder Representation Pipeline** | Trains the self-supervised video autoencoder, generates learned video representations, and trains the shared Fusion MLP classifier.       | Evaluates the trained representations and classifier using the validation representations. |
+The three VideoQA pipelines use the dataset splits differently depending on whether model learning is required.
 
-This separation of responsibilities follows standard machine learning practice by reserving the validation split exclusively for development evaluation while using the training split for all learned model components. As a result, all reported comparisons are performed on data that were not used to train the representation-based models or classifiers.
+| Pipeline | Training Split | Validation Split |
+|----------|----------------|------------------|
+| **Qwen2-VL Baseline** | Not required. The pretrained Qwen2-VL-7B foundation model performs inference directly on the original videos without additional training. | Performs multiple-choice VideoQA inference and evaluation using the validation split. |
+| **CLIP Representation Pipeline** | Uses the precomputed CLIP video and CLIP text representations to train the shared Fusion MLP classifier. | Uses the corresponding validation representations to evaluate the trained Fusion MLP classifier. |
+| **Autoencoder Representation Pipeline** | Trains the self-supervised video autoencoder using the training videos, generates learned video representations, and trains the shared Fusion MLP classifier. | Uses the learned validation representations to evaluate the trained Fusion MLP classifier. |
+
+This separation of responsibilities follows standard machine learning practice by reserving the validation split exclusively for development evaluation while using the training split for all learned model components. Because the CLIP representations are fixed pretrained features rather than learned models, they may be generated once for the complete dataset without introducing information leakage between the training and validation splits. As a result, all reported comparisons evaluate models on validation data that were not used to train the representation-based learning components.
 
 ## System Architecture
 
