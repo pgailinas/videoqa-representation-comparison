@@ -6,13 +6,13 @@ has_toc: false
 
 # References
 
-## Video Question Answering Datasets
+## NExT-QA VideoQA Benchmark Dataset
 
 * <a href="https://arxiv.org/abs/2105.08276" target="_blank" rel="noopener noreferrer">NExT-QA: Next Phase of Question Answering to Explain Temporal Actions (2021)</a>
 
 * <a href="https://github.com/doc-doc/NExT-QA" target="_blank" rel="noopener noreferrer">NExT-QA Dataset Repository</a>
 
-## VideoQA Foundation Models
+## Qwen2-VL Baseline Model
 
 * <a href="https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct" target="_blank" rel="noopener noreferrer">Qwen2-VL-7B-Instruct</a>
 
