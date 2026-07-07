@@ -22,7 +22,7 @@ has_toc: false
 
 * <a href="https://arxiv.org/abs/2409.12191" target="_blank" rel="noopener noreferrer">Qwen2-VL Technical Report (2024)</a>
 
-### Autoencoder-Based Video Representations
+### Self-Supervised Autoencoder Representation Learning
 
 * <a href="https://arxiv.org/pdf/2111.06377.pdf" target="_blank" rel="noopener noreferrer">Masked Autoencoders Are Scalable Vision Learners (CVPR 2022)</a>
 
@@ -33,6 +33,16 @@ has_toc: false
 * <a href="https://arxiv.org/abs/2110.02951" target="_blank" rel="noopener noreferrer">Video Autoencoder: Self-Supervised Disentanglement of Static 3D Structure and Motion (CVPR 2022)</a>
 
 * <a href="https://openreview.net/forum?id=bFrNPlWchg" target="_blank" rel="noopener noreferrer">Extending Video Masked Autoencoders to 128 Frames (2023)</a>
+
+### CLIP Representations
+
+* <a href="https://arxiv.org/abs/2103.00020" target="_blank" rel="noopener noreferrer">
+Learning Transferable Visual Models From Natural Language Supervision (CLIP, ICML 2021)
+</a>
+
+* <a href="https://github.com/openai/CLIP" target="_blank" rel="noopener noreferrer">
+OpenAI CLIP GitHub Repository
+</a>
 
 ### VideoQA Reasoning and Latent Representations
 
@@ -51,7 +61,7 @@ has_toc: false
 ### Video Representation Learning
 
 * YouTube: Self-Supervised Learning for Computer Vision
-* YouTube: VideoMAE Overview
+* YouTube: Vision-Language Representation Learning
 
 ### Vision-Language Models
 
