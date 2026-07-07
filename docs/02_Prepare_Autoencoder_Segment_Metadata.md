@@ -14,11 +14,13 @@ has_toc: false
 
 ## Purpose
 
-This notebook prepares the standardized training metadata required for self-supervised autoencoder learning using the NExT-QA video dataset.
+This notebook prepares standardized segment metadata for the self-supervised autoencoder pipeline using the NExT-QA video dataset.
 
-Rather than duplicating video content, the notebook generates structured metadata describing fixed-duration video segments, including video identifiers, timestamps, representative frames, and segment properties. These standardized metadata records provide a reproducible framework for downstream self-supervised autoencoder training.
+Rather than duplicating video content, the notebook generates structured metadata describing fixed-duration video segments, including video identifiers, dataset splits, timestamps, representative frames, and segment properties. The generated metadata serves as a reusable catalog of video segments spanning the training, validation, and test splits.
 
-The resulting training metadata establishes a consistent segmentation strategy that supports reproducible representation learning experiments and downstream comparison with pretrained CLIP video representations.
+Although the generated artifact is named `training_metadata.csv`, it intentionally includes segment metadata for all NExT-QA dataset splits. The retained `split` field enables downstream notebooks to select the appropriate subset for model training, development evaluation, or future benchmark testing.
+
+The resulting segment metadata establishes a consistent segmentation strategy that supports reproducible self-supervised representation learning and downstream comparison with pretrained CLIP video representations.
 
 ## Inputs
 
@@ -35,30 +37,30 @@ The resulting training metadata establishes a consistent segmentation strategy t
 ## Outputs
 
 * Local NExT-QA video cache (restored or verified)
-* Standardized training metadata dataset
-* Training metadata summary report
+* Standardized autoencoder segment metadata dataset
+* Autoencoder segment metadata summary report
 * Video inventory summary
-* Training metadata validation report
-* Representative training metadata records
+* Segment metadata validation report
+* Representative segment metadata records
 
 ## Processing Workflow
 
 1. Initialize the project environment and restore the NExT-QA video dataset.
-2. Load the shared training metadata schema.
+2. Load the shared autoencoder segment metadata schema.
 3. Configure video segmentation parameters.
 4. Inspect representative source videos.
-5. Generate standardized training metadata records.
-6. Validate training metadata completeness and consistency.
-7. Save training metadata and summary artifacts.
-8. Preview representative training metadata records.
-9. Summarize the completed training metadata preparation workflow.
-10. Promote generated training metadata artifacts to Google Drive.
+5. Generate standardized video segment metadata.
+6. Validate segment metadata completeness and consistency.
+7. Save segment metadata and summary artifacts.
+8. Preview representative segment metadata records.
+9. Summarize the completed segment metadata preparation workflow.
+10. Promote generated metadata artifacts to Google Drive.
 
 ### Video Segmentation Strategy
 
 Videos are segmented using a fixed-duration segmentation strategy.
 
-Each training segment represents a contiguous temporal region within a source video and is used as a unit for self-supervised autoencoder training.
+Each generated segment represents a contiguous temporal region within a source video and is used as a unit for self-supervised autoencoder training.
 
 Each segment includes:
 
@@ -68,9 +70,9 @@ Each segment includes:
 * Video properties (fps, resolution, frame count)
 * Optional motion and scene-change metrics (disabled by default)
 
-These training segments provide a consistent and reproducible unit of video data for downstream learning tasks.
+These standardized video segments provide a consistent and reproducible unit of video data for downstream learning tasks.
 
-### Training Metadata Field Definitions
+### Segment Metadata Field Definitions
 
 | Field                        | Description |
 |----------------------------|-------------|
@@ -97,7 +99,7 @@ These training segments provide a consistent and reproducible unit of video data
 | `motion_score`            | Optional motion metric (disabled by default). |
 | `scene_change_score`      | Optional scene transition metric (disabled by default). |
 
-### Standard and Enhanced Training Metadata Parameters
+### Standard and Enhanced Segmentation Parameters
 
 This notebook implements a **fixed baseline segmentation strategy** for autoencoder training data generation.
 
@@ -115,13 +117,15 @@ This notebook implements a **fixed baseline segmentation strategy** for autoenco
 
 ### Dataset Statistics
 
-The current segmentation configuration produces:
+The current segmentation configuration generates a reusable segment metadata dataset for the complete NExT-QA benchmark.
 
-* 5,440 source videos
-* 38,834 standardized training metadata records
-* Fixed-duration 6-second video segments
-* One representative midpoint frame per segment
+The generated metadata includes:
+
+* Segment metadata for all **5,440** NExT-QA source videos
+* Fixed-duration **6-second** video segments
+* One representative midpoint frame for each segment
 * Motion and scene analysis disabled in the baseline configuration
+* Original dataset split (`train`, `val`, or `test`) retained for every segment
 
-These standardized training metadata records provide the reproducible segmentation framework used for downstream self-supervised autoencoder training.
+The total number of generated segment metadata records depends on the configured segmentation strategy and the durations of the source videos. By retaining the original dataset split for each segment, the metadata can be reused throughout the project for autoencoder training, development evaluation, and future benchmark testing without regenerating the segmentation metadata.
 
