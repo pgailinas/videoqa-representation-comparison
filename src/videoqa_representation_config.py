@@ -731,8 +731,8 @@ DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
 #   cosine_similarity        (legacy)
 #   fusion_mlp_classifier    (recommended)
 #
-REPRESENTATION_VIDEOQA_METHOD = "cosine_similarity"
-# REPRESENTATION_VIDEOQA_METHOD = "fusion_mlp_classifier"
+# Set locally in notebook 07
+REPRESENTATION_VIDEOQA_METHOD = "None"
 
 # -----------------------------------------------------------------
 # Shared Representation Dimensions
