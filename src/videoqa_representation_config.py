@@ -862,8 +862,7 @@ CLIP_TEXT_BATCH_SIZE = 32
 CLIP_TEXT_REPRESENTATION_SCOPE = "questions_and_answer_choices"
 
 TEXT_INPUT_TYPES = [
-    "question",
-    "answer_choice",
+    "question_answer",
 ]
 
 
