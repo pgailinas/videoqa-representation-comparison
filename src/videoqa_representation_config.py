@@ -726,13 +726,105 @@ AUTOENCODER_VIDEO_REPRESENTATION_SOURCE = "autoencoder_video"
 DEFAULT_VIDEO_REPRESENTATION_SOURCE = CLIP_VIDEO_REPRESENTATION_SOURCE
 DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
 
+# -----------------------------------------------------------------
+# Representation-Based VideoQA Prediction Methods
+# -----------------------------------------------------------------
+#
 # Supported methods:
 #
-#   cosine_similarity        (legacy)
-#   fusion_mlp_classifier    (recommended)
+#   cosine_similarity
+#       CLIP zero-shot cosine-similarity baseline.
 #
-# Set locally in notebook 07
-REPRESENTATION_VIDEOQA_METHOD = "None"
+#   fusion_mlp_classifier
+#       Learned Fusion MLP classifier using projected video and
+#       question-answer embeddings.
+#
+#   interaction_fusion_classifier
+#       Learned fusion classifier using explicit video-text
+#       interaction features.
+#
+#   gated_fusion_classifier
+#       Learned fusion classifier using adaptive modality gates.
+#
+#   bilinear_fusion_classifier
+#       Learned fusion classifier using multiplicative bilinear
+#       video-text interactions.
+#
+# Notebook 07 selects the active method locally.
+REPRESENTATION_VIDEOQA_METHOD = None
+
+SUPPORTED_REPRESENTATION_VIDEOQA_METHODS = {
+    "cosine_similarity",
+    "fusion_mlp_classifier",
+    "interaction_fusion_classifier",
+    "gated_fusion_classifier",
+    "bilinear_fusion_classifier",
+}
+
+REPRESENTATION_VIDEOQA_METHOD_LABELS = {
+    "cosine_similarity": "Cosine Similarity",
+    "fusion_mlp_classifier": "Fusion MLP",
+    "interaction_fusion_classifier": "Interaction Fusion",
+    "gated_fusion_classifier": "Gated Fusion",
+    "bilinear_fusion_classifier": "Bilinear Fusion",
+}
+
+REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS = {
+    "cosine_similarity": "similarity",
+    "fusion_mlp_classifier": "mlp",
+    "interaction_fusion_classifier": "interaction",
+    "gated_fusion_classifier": "gated",
+    "bilinear_fusion_classifier": "bilinear",
+}
+
+# -----------------------------------------------------------------
+# Prediction Method Configuration Validation
+# -----------------------------------------------------------------
+
+if (
+    set(REPRESENTATION_VIDEOQA_METHOD_LABELS)
+    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+):
+    raise ValueError(
+        "REPRESENTATION_VIDEOQA_METHOD_LABELS must define exactly "
+        "the supported representation-based VideoQA methods."
+    )
+
+if (
+    set(REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS)
+    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+):
+    raise ValueError(
+        "REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS must define "
+        "exactly the supported representation-based VideoQA methods."
+    )
+
+method_experiment_tokens = list(
+    REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS.values()
+)
+
+if len(method_experiment_tokens) != len(
+    set(method_experiment_tokens)
+):
+    raise ValueError(
+        "Representation-based VideoQA experiment tokens must be unique."
+    )
+
+invalid_method_experiment_tokens = [
+    token
+    for token in method_experiment_tokens
+    if (
+        not token
+        or token != token.lower()
+        or not token.replace("_", "").isalnum()
+    )
+]
+
+if invalid_method_experiment_tokens:
+    raise ValueError(
+        "Invalid representation-based VideoQA experiment tokens: "
+        + ", ".join(invalid_method_experiment_tokens)
+    )
 
 # -----------------------------------------------------------------
 # Shared Representation Dimensions
