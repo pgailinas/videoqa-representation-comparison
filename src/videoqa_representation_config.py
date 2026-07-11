@@ -852,7 +852,7 @@ FUSION_INPUT_DIM = (
 FUSION_HIDDEN_DIM_1 = 128
 FUSION_HIDDEN_DIM_2 = 64
 FUSION_OUTPUT_DIM = 1
-FUSION_DROPOUT = 0.3
+FUSION_DROPOUT = 0.5
 
 # -----------------------------------------------------------------
 # Training Hyperparameters
