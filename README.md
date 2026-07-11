@@ -17,7 +17,7 @@ Both representation-based approaches use a shared CLIP text embedding dataset, t
 
 ## Research Objective
 
-The objective of this project is to compare pretrained and self-supervised video representations for downstream multiple-choice VideoQA. Learned `autoencoder_video` representations are evaluated against pretrained `clip_video` representations using shared `clip_text` representations, a common Fusion MLP classifier, and an identical evaluation framework.
+The objective of this project is to compare pretrained and self-supervised video representations for downstream multiple-choice VideoQA. Learned `autoencoder_video` representations are evaluated against pretrained `clip_video` representations using shared `clip_text` question-answer representations, configurable representation-based prediction methods, and a common evaluation framework.
 
 ## Experimental Framework
 
@@ -27,9 +27,11 @@ The project implements three complementary VideoQA pipelines:
 * **Representation-Based VideoQA** using pretrained `clip_video` representations together with shared `clip_text` representations.
 * **Representation-Based VideoQA** using self-supervised `autoencoder_video` representations together with the same shared `clip_text` representations.
 
-Development-mode execution supports rapid experimentation, debugging, and parameter tuning before full-dataset evaluation. The two representation-based pipelines use an identical Fusion MLP classifier, multiple-choice prediction workflow, and evaluation methodology, allowing differences in performance to be attributed primarily to the quality of the video representations.
+Development-mode execution supports rapid experimentation, debugging, and parameter tuning before full-dataset evaluation.
 
-Shared CLIP text and CLIP video representations are generated once and reused across experiments, while autoencoder video representations remain experiment-specific.
+Both representation-based pipelines use the same shared `clip_text` question-answer representations, identical multiple-choice prediction workflow, and common evaluation methodology. The active experiment may use cosine similarity or one of several learned multimodal fusion classifiers, allowing both the video representation source and the prediction method to be evaluated independently.
+
+Shared CLIP text representations are generated once and reused across all representation-based experiments. Shared CLIP video representations are likewise generated once and reused, while autoencoder video representations remain experiment-specific.
 
 The project focuses on:
 
@@ -58,7 +60,7 @@ The videos are used for baseline VideoQA inference, pretrained CLIP video repres
 
 The primary research hypothesis is:
 
-> Self-supervised `autoencoder_video` representations can provide more effective downstream multiple-choice VideoQA performance than pretrained `clip_video` representations when both are evaluated using identical `clip_text` representations, the same Fusion MLP classifier, and a common evaluation framework.
+> Self-supervised `autoencoder_video` representations can provide more effective downstream multiple-choice VideoQA performance than pretrained `clip_video` representations when both are evaluated using identical shared `clip_text` question-answer representations, the same representation-based prediction method, and a common evaluation framework.
 
 The project further investigates whether self-supervised representation learning can produce video embeddings that improve downstream VideoQA performance while maintaining a consistent multimodal classification pipeline.
 
@@ -67,11 +69,11 @@ The project further investigates whether self-supervised representation learning
 - Designed primarily for Google Colab
 - Supports local Jupyter execution
 - Notebook-driven workflow
-- Shared CLIP text and pretrained CLIP video embedding datasets generated once and stored independently of experiments
+- Shared CLIP question-answer text and pretrained CLIP video representation datasets generated once and reused across experiments
 - Experiment-specific autoencoder artifacts stored by experiment name
 - Development and full-dataset execution modes
 - GPU acceleration where appropriate
-- Modular and reproducible experimental framework
+- Modular experimental framework supporting multiple representation sources and prediction methods
 - Local-first artifact generation with optional promotion to shared Google Drive storage
 
 ## 🌐 Documentation
