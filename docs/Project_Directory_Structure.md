@@ -111,9 +111,10 @@ VideoQA_Project/
 │       └── video/
 │
 ├── experiments/
-│   ├── qwen2vl_baseline_dev25/
-│   ├── clip_video_dev25/
-│   └── ae_seg6s_stride4_dev25/
+│   ├── <experiment_1>/
+│   ├── <experiment_2>/
+│   ├── ...
+│   └── <experiment_n>/
 │
 └── evaluation/
 ```
