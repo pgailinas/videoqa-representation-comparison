@@ -14,9 +14,11 @@ has_toc: false
 
 ## Purpose
 
-This notebook generates reusable shared CLIP text representations for NExT-QA questions and multiple-choice answer options. These normalized semantic representations provide the common `clip_text` representation source used by both representation-based VideoQA methods.
+This notebook generates reusable shared CLIP text representations for NExT-QA question–answer candidates. These normalized semantic representations provide the common `clip_text` representation source used by the representation-based VideoQA methods.
 
-The generated `clip_text` artifacts are shared across the CLIP representation method and the self-supervised autoencoder representation method. Both methods combine these shared text representations with their respective video representations using the common Fusion MLP classifier implemented in Notebook 07.
+For each NExT-QA annotation record, the notebook constructs five combined question–answer text inputs—one for each multiple-choice candidate answer. Each combined text input is encoded as a normalized 512-dimensional CLIP representation.
+
+The generated `clip_text` artifacts are shared across the CLIP representation method and the self-supervised autoencoder representation method. Notebook 07 combines these shared question–answer candidate representations with the selected video representation source using the configured representation-based VideoQA method.
 
 ## Inputs
 
@@ -27,31 +29,36 @@ The generated `clip_text` artifacts are shared across the CLIP representation me
 
 ## Outputs
 
-- Shared `clip_text` representation dataset containing normalized 512-dimensional representations for all generated questions and answer choices.
+- Shared `clip_text` representation dataset containing one normalized 512-dimensional question–answer representation for each candidate answer.
 - Shared `clip_text` representation summary report.
-- Representation validation report.
-- Representative CLIP text representation records.
+- Representation validation results.
+- Representative CLIP question–answer representation records.
 - Shared representation artifacts for downstream representation-based VideoQA experiments.
 
 ## Processing Workflow
 
 - Initialize the notebook environment and load shared project configuration.
-- Configure shared CLIP text representation generation.
+- Configure shared CLIP question–answer text representation generation.
 - Verify the runtime environment.
-- Prepare the selected NExT-QA annotation dataset and construct normalized text input records.
+- Select either a development annotation subset or the complete NExT-QA annotation dataset.
+- Construct five combined question–answer text records for each annotation, one for each candidate answer.
 - Load the pretrained CLIP text encoder.
-- Generate normalized CLIP text representations for questions and answer choices.
-- Validate the generated representation dataset.
-- Save representation artifacts locally and optionally promote full-dataset artifacts to the shared Google Drive representation directory.
+- Generate normalized CLIP question–answer candidate representations.
+- Validate record counts, metadata, embedding dimensions, and embedding values.
+- Save representation artifacts locally.
+- Promote representation and summary artifacts to the shared Google Drive directory when full-dataset generation is enabled.
 - Generate a representation summary report.
-- Display representative CLIP text representation records.
+- Display representative CLIP question–answer representation records.
 - Summarize notebook outputs and generated artifacts.
 
 ## Notes
 
-- This notebook generates shared `clip_text` representations only; video representations are generated separately by Notebooks 04 and 06.
-- One question representation and five answer-choice representations are generated for each NExT-QA question.
-- Shared `clip_text` representations are generated once and reused by both representation-based VideoQA methods.
-- Notebook 07 combines the shared `clip_text` representations with either `clip_video` or `autoencoder_video` representations using the common Fusion MLP classifier.
-- Development mode supports workflow validation and experimentation, while full-dataset mode generates the reusable shared representation artifacts used throughout the project.
+- This notebook generates shared `clip_text` representations only; video representations are prepared separately by Notebooks 04 and 06.
+- One combined question–answer representation is generated for each candidate answer.
+- Each NExT-QA annotation therefore produces five CLIP text representation records.
+- The combined text input contains the complete question and one candidate answer.
+- Shared `clip_text` representations are generated once and reused by the representation-based VideoQA methods.
+- Notebook 07 combines these text representations with either `clip_video` or `autoencoder_video` representations using the configured scoring or classifier method.
+- Development mode generates representations for a reproducible sample of annotation records from the configured evaluation split.
+- Full-dataset mode generates representations for all available NExT-QA annotation records and writes the reusable shared artifacts to Google Drive.
 
