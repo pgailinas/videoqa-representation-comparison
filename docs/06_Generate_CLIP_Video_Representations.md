@@ -14,9 +14,11 @@ has_toc: false
 
 ## Purpose
 
-This notebook generates reusable pretrained CLIP video representations for the referenced NExT-QA videos. These standardized `clip_video` representations provide the video representation source for the CLIP representation-based VideoQA method.
+This notebook generates reusable pretrained CLIP video representations for the NExT-QA videos referenced by the project annotation dataset. These standardized `clip_video` representations provide the video representation source for CLIP-based representation VideoQA experiments.
 
-The generated `clip_video` artifacts are combined with the shared `clip_text` representations produced by Notebook 05 and consumed by the common Fusion MLP classifier implemented in Notebook 07. This representation method provides the pretrained comparison against the self-supervised autoencoder representation method.
+For each selected video, the notebook uniformly samples representative frames, generates normalized frame-level embeddings using a pretrained CLIP image encoder, mean-pools the frame embeddings, and normalizes the resulting video-level representation.
+
+The generated `clip_video` artifacts are combined with the shared `clip_text` question–answer representations produced by Notebook 05 and consumed by Notebook 07 using the configured representation-based VideoQA scoring or classifier method. This provides the pretrained representation comparison against the self-supervised autoencoder representation method.
 
 ## Inputs
 
@@ -29,29 +31,36 @@ The generated `clip_video` artifacts are combined with the shared `clip_text` re
 
 - `clip_video` representation dataset
 - `clip_video` representation summary report
-- Representation validation report
+- Representation validation results
 - Representative representation records
-- CLIP representation artifacts for downstream VideoQA inference
+- Shared CLIP video representation artifacts for downstream VideoQA experiments when full-dataset generation is enabled
 
 ## Processing Workflow
 
 1. Initialize the notebook environment and restore the NExT-QA video dataset.
 2. Configure CLIP video representation generation.
 3. Verify the runtime environment.
-4. Prepare the CLIP video input dataset.
-5. Load the pretrained CLIP image encoder.
-6. Generate normalized `clip_video` representations from sampled video frames.
-7. Validate the generated representation dataset.
-8. Save representation artifacts locally and optionally copy full-dataset artifacts to Google Drive.
-9. Generate a representation summary report.
-10. Display representative CLIP video representation records.
-11. Summarize notebook outputs and generated artifacts.
+4. Prepare either a reproducible development subset of unique videos or all unique videos referenced by the complete NExT-QA annotation dataset.
+5. Load the pretrained CLIP image encoder and processor.
+6. Uniformly sample frames from each selected video.
+7. Generate normalized frame-level CLIP embeddings.
+8. Mean-pool and normalize the frame embeddings into one video-level representation per selected video.
+9. Validate representation counts, identifiers, embedding dimensions, embedding values, video paths, and sampled-frame counts.
+10. Save representation artifacts locally and copy full-dataset artifacts to Google Drive.
+11. Generate and save a representation summary report.
+12. Display representative CLIP video representation records.
+13. Summarize notebook outputs and generated artifacts.
 
 ## Notes
 
-- Generates one normalized `clip_video` representation for each referenced NExT-QA video.
-- Uses configurable frame sampling and mean pooling to aggregate frame-level CLIP embeddings into a single video representation.
-- These `clip_video` representations are specific to the CLIP representation method and are not shared with the autoencoder representation method.
-- Notebook 07 combines the generated `clip_video` representations with the shared `clip_text` representations produced by Notebook 05.
-- Development mode supports workflow validation and experimentation, while full-dataset mode generates reusable CLIP video representation artifacts for the complete NExT-QA dataset.
+- The notebook generates one normalized `clip_video` representation for each unique selected NExT-QA video.
+- Development mode selects a reproducible random subset of unique videos referenced by the configured evaluation split.
+- Full-dataset mode generates representations for all unique videos referenced across the complete NExT-QA annotation dataset.
+- Frames are sampled uniformly across each video.
+- Frame-level CLIP embeddings are normalized, mean-pooled, and normalized again to create one video-level representation.
+- The representation records retain their associated dataset split information.
+- These `clip_video` representations are specific to the CLIP representation method and are not used as the autoencoder video representation source.
+- Notebook 07 combines the generated `clip_video` representations with the shared `clip_text` question–answer representations produced by Notebook 05.
+- Development-mode artifacts are saved locally without overwriting the persistent shared Google Drive artifacts.
+- Full-dataset mode writes reusable CLIP video representation and summary artifacts to the shared Google Drive representation directory.
 
