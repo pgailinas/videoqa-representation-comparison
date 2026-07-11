@@ -150,35 +150,61 @@ Dates are provided when known or when a decision corresponds to a significant pr
 
 **Rationale:** Shared `clip_text` representations are generated once and reused by both representation-based methods. `clip_video` representations are reusable but are used only by the CLIP representation method. `autoencoder_video` representations depend on the autoencoder training configuration and remain experiment-specific. This distinction minimizes duplicated storage, simplifies experiment comparison, and supports efficient evaluation of multiple autoencoder configurations using a common set of pretrained representations.
 
-
-
-
-
-
 ---
 
 ## Final Architecture (July 2026)
 
-### 1) Adopt a Shared Fusion MLP Classifier
+### 1) Adopt a Configurable Representation-Based VideoQA Framework
 
-**Decision:** Standardized all representation-based VideoQA methods on a common Fusion MLP classifier.
+**Decision:** Expanded the representation-based VideoQA pipeline from a single Fusion MLP classifier to a configurable prediction framework supporting multiple representation-based methods.
 
-**Rationale:** Using the same classifier, prediction workflow, and multiple-choice objective isolates the effect of the video representation while minimizing architectural differences between the representation-based methods.
+**Rationale:** As experimentation progressed, it became valuable to compare not only different video representations but also different multimodal prediction strategies. The final implementation supports cosine similarity together with multiple learned fusion classifiers while maintaining a common data preparation and evaluation workflow.
 
-### 2) Replace Cosine Similarity with Learned Classification
+Supported methods include:
 
-**Decision:** Replaced cosine-similarity scoring with a learned Fusion MLP classifier trained using CrossEntropyLoss.
+- Cosine Similarity
+- Fusion MLP
+- Interaction Fusion
+- Gated Fusion
+- Bilinear Fusion
 
-**Rationale:** The learned classifier provides a common multimodal prediction architecture for both representation-based methods while supporting direct comparison of `clip_video` and `autoencoder_video` representations.
+---
 
-### 3) Standardize Shared and Experiment-Specific Representations
+### 2) Move Autoencoder Representation Generation into Notebook 03
 
-**Decision:** Adopted shared `clip_text` representations together with experiment-specific video representations.
+**Decision:** Consolidated autoencoder training and latent representation generation within Notebook 03.
 
-**Rationale:** Shared `clip_text` representations are reused by both representation-based methods, while `clip_video` and `autoencoder_video` remain method-specific. This isolates the contribution of the video representation.
+**Rationale:** Because latent representations are produced immediately after training using the trained encoder, generating them within the training notebook simplifies the workflow and eliminates redundant model loading. Notebook 04 was refocused on loading, validating, and standardizing the generated representation artifacts for downstream experiments.
 
-### 4) Standardize on a Common Evaluation Framework
+---
 
-**Decision:** Evaluated all implemented methods using the same multiple-choice evaluation framework.
+### 3) Adopt Combined Question–Answer CLIP Text Representations
 
-**Rationale:** Common metrics, reporting, and analysis enable fair comparison among the Qwen2-VL baseline, CLIP representation method, and autoencoder representation method.
+**Decision:** Replaced separate question and answer embeddings with combined question–answer candidate representations.
+
+**Rationale:** Each NExT-QA question is represented by five combined question–answer candidate embeddings, allowing every candidate answer to be evaluated directly against the corresponding video representation. This representation better aligns the semantic information available to downstream representation-based VideoQA methods.
+
+---
+
+### 4) Separate Shared and Experiment-Specific Representation Artifacts
+
+**Decision:** Finalized the distinction between shared CLIP representations and experiment-specific autoencoder representations.
+
+**Rationale:** Shared `clip_text` and `clip_video` representations are generated once and reused across compatible experiments, while `autoencoder_video` representations remain specific to the corresponding trained autoencoder configuration. This organization minimizes redundant computation while supporting efficient comparison among multiple experiments.
+
+---
+
+### 5) Standardize Representation-Based Evaluation
+
+**Decision:** Adopted a common representation-based evaluation workflow independent of the selected prediction method.
+
+**Rationale:** All representation-based experiments use identical candidate generation, prediction artifact formats, validation procedures, and evaluation methodology. This allows controlled comparison of both video representation sources and prediction methods while maintaining reproducible experimental conditions.
+
+---
+
+### 6) Adopt Dynamic Multi-Experiment Evaluation
+
+**Decision:** Redesigned Notebook 08 to automatically discover and compare all completed experiments.
+
+**Rationale:** Rather than evaluating a fixed set of predefined experiments, the evaluation framework now discovers valid prediction artifacts, compares all available experiments using identical metrics, performs error analysis, generates comparative visualizations, and identifies the highest-performing development experiment for future full-dataset evaluation.
+
