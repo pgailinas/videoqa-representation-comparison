@@ -6,6 +6,10 @@ has_toc: false
 
 # References
 
+This page collects the principal technical references used throughout the project. The references are organized by the major components of the experimental framework, including the benchmark dataset, baseline multimodal model, pretrained CLIP representations, self-supervised autoencoder learning, and recent research related to Video Question Answering (VideoQA) and video representation learning.
+
+The collection is intended to provide readers with convenient access to the primary papers, software repositories, and supporting resources referenced by the notebooks and accompanying documentation.
+
 ## NExT-QA VideoQA Benchmark Dataset
 
 * <a href="https://arxiv.org/abs/2105.08276" target="_blank" rel="noopener noreferrer">NExT-QA: Next Phase of Question Answering to Explain Temporal Actions (2021)</a>
