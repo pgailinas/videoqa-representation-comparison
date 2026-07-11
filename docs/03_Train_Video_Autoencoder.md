@@ -16,11 +16,11 @@ has_toc: false
 
 ## Purpose
 
-This notebook trains a self-supervised convolutional autoencoder using the standardized training metadata prepared in Notebook 02. The objective is to learn compact latent video representations from NExT-QA videos without using question-answer supervision.
+This notebook trains a self-supervised convolutional autoencoder using the standardized segment metadata prepared in Notebook 02. The objective is to learn compact latent video representations from NExT-QA videos without using question-answer supervision.
 
-The notebook constructs a reproducible development training dataset, trains the autoencoder using frame reconstruction as the self-supervised learning objective, evaluates reconstruction quality, and generates latent video representations for downstream representation-based VideoQA experiments.
+The notebook constructs a reproducible development training dataset from the training split, trains the autoencoder using frame reconstruction as the self-supervised learning objective, evaluates reconstruction quality, and applies the trained encoder to selected videos from the training, validation, and test splits.
 
-The trained model, latent representation artifacts, and experiment summary are consumed by Notebook 04 to prepare standardized autoencoder video representations.
+It generates standardized segment/frame-level and video-level latent representation artifacts for validation in Notebook 04 and downstream representation-based VideoQA experiments.
 
 ## Inputs
 
@@ -45,18 +45,19 @@ The trained model, latent representation artifacts, and experiment summary are c
 ## Processing Workflow
 
 1. Initialize the notebook environment and restore the NExT-QA dataset.
-2. Load standardized training metadata.
+2. Load standardized segment metadata.
 3. Configure the autoencoder training experiment.
-4. Build the development training dataset.
+4. Build the development training dataset from the training split.
 5. Preview representative training segments.
 6. Define the convolutional autoencoder architecture.
 7. Train the autoencoder using frame reconstruction.
-8. Generate reconstruction examples and latent representations.
+8. Generate reconstruction examples and sample latent representations.
 9. Evaluate reconstruction quality.
-10. Save model checkpoints and experiment artifacts.
-11. Generate latent representation files.
-12. Summarize the completed experiment.
-13. Export experiment outputs to Google Drive.
+10. Display representative reconstruction examples.
+11. Save the model, training artifacts, and reconstruction reports.
+12. Generate standardized segment/frame-level and video-level latent representations for selected train, validation, and test videos.
+13. Summarize the completed training and representation-generation experiment.
+14. Export the complete autoencoder experiment outputs to Google Drive.
 
 ### Autoencoder Training Strategy
 
@@ -122,5 +123,5 @@ This notebook produces the following experiment artifacts:
 * Representative reconstruction examples
 * Experiment summary report
 
-These artifacts are consumed by Notebook 04 to generate standardized `autoencoder_video` representations for downstream representation-based VideoQA experiments.
+These artifacts include standardized segment/frame-level and video-level autoencoder representations for the selected training, validation, and test videos. Notebook 04 loads and validates these generated representation files before they are used in downstream representation-based VideoQA experiments.
 
