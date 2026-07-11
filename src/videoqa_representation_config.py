@@ -835,7 +835,7 @@ AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
 
 # Common latent dimension used by the fusion classifier.
 # FUSION_EMBEDDING_DIM = 256
-FUSION_EMBEDDING_DIM = 64
+FUSION_EMBEDDING_DIM = 128
 
 # -----------------------------------------------------------------
 # Classifier Architecture
@@ -851,11 +851,11 @@ FUSION_INPUT_DIM = (
     * FUSION_EMBEDDING_DIM
 )
 # FUSION_HIDDEN_DIM_1 = 256
-FUSION_HIDDEN_DIM_1 = 64
+FUSION_HIDDEN_DIM_1 = 128
 # FUSION_HIDDEN_DIM_2 = 64
-FUSION_HIDDEN_DIM_2 = 32
+FUSION_HIDDEN_DIM_2 = 64
 FUSION_OUTPUT_DIM = 1
-# FUSION_DROPOUT = 0.20
+# FUSION_DROPOUT = 0.30
 FUSION_DROPOUT = 0.5
 
 # -----------------------------------------------------------------
@@ -863,9 +863,9 @@ FUSION_DROPOUT = 0.5
 # -----------------------------------------------------------------
 FUSION_BATCH_SIZE = 64
 # FUSION_LEARNING_RATE = 1e-3
-FUSION_LEARNING_RATE = 3e-4
+FUSION_LEARNING_RATE = 0.001
 # FUSION_WEIGHT_DECAY = 1e-5
-FUSION_WEIGHT_DECAY = 1e-3
+FUSION_WEIGHT_DECAY = 1e-4
 # FUSION_EPOCHS = 20
 FUSION_EPOCHS = 10
 FUSION_RANDOM_SEED = RANDOM_SEED
