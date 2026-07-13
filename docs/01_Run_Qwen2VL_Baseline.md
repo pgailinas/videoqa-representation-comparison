@@ -53,23 +53,11 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Outputs
 
-### Generated Artifacts
-
 These outputs provide the baseline performance reference used throughout the remainder of the project.
 
 * outputs/baseline/baseline_predictions.csv
 * outputs/baseline/baseline_validation.csv
 * outputs/baseline/baseline_summary.csv
-
-### Generated Results
-
-* Baseline prediction artifact
-* Baseline validation artifact
-* Baseline summary artifact
-* Multiple-choice prediction accuracy
-* Inference timing statistics
-* Runtime projections
-* Sample predictions for qualitative review
 
 ## Runtime Requirements
 
