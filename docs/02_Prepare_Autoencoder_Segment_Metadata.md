@@ -27,7 +27,7 @@ The resulting segment metadata establishes a consistent segmentation strategy th
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
 <p align="center">
-  <img src="images/workflows/02_Prepare_Autoencoder_Segment_Metadata.png"
+  <img src="images/workflows/02_Prepare_Autoencoder_Segment_Metadata_workflow.png"
        alt="Notebook 02 Workflow"
        width="850">
 </p>
