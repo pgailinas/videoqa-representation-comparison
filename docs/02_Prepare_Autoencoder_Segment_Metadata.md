@@ -46,12 +46,8 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Outputs
 
-* Local NExT-QA video cache (restored or verified)
-* Standardized autoencoder segment metadata dataset
-* Autoencoder segment metadata summary report
-* Video inventory summary
-* Segment metadata validation report
-* Representative segment metadata records
+- experiments/<experiment>/training/metadata/training_metadata.csv
+- experiments/<experiment>/training/reports/training_data_summary.csv
 
 ## Processing Workflow
 
