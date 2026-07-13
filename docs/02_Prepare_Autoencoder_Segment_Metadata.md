@@ -34,22 +34,12 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Inputs
 
-* NExT-QA video dataset archive
-  * Combined or multipart video archive (preferred or fallback)
-* NExT-QA question-answer annotation files
-  * train.csv
-  * val.csv
-  * test.csv
-* NExT-QA metadata resources
-* Project configuration settings
-* Shared dataset and video utility functions
+- NExT-QA video dataset
+- NExT-QA question-answer annotations
+- Project configuration settings
+- Video segmentation configuration
 
-## Outputs
-
-- experiments/<experiment>/training/metadata/training_metadata.csv
-- experiments/<experiment>/training/reports/training_data_summary.csv
-
-## Processing Workflow
+## Processing Summary
 
 1. Initialize the project environment and restore the NExT-QA video dataset.
 2. Load the shared autoencoder segment metadata schema.
@@ -61,6 +51,13 @@ The following diagram summarizes the notebook workflow, including the required i
 8. Preview representative segment metadata records.
 9. Summarize the completed segment metadata preparation workflow.
 10. Promote generated metadata artifacts to Google Drive.
+
+## Generated Artifacts
+
+The notebook generates the following persistent artifacts for downstream autoencoder training and evaluation:
+
+- `experiments/<experiment>/training/metadata/training_metadata.csv`
+- `experiments/<experiment>/training/reports/training_data_summary.csv`
 
 ### Video Segmentation Strategy
 
