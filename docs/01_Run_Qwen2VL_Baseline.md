@@ -49,7 +49,7 @@ The following diagram summarizes the notebook workflow, including the required i
 * Display representative prediction samples.
 * Finalize baseline artifacts for downstream evaluation.
 
-## Outputs
+## Generated Artifacts
 
 These outputs provide the baseline performance reference used throughout the remainder of the project.
 
