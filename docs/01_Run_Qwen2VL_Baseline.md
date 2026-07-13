@@ -34,7 +34,6 @@ The following diagram summarizes the notebook workflow, including the required i
 * NExT-QA question-answer annotations
 * NExT-QA metadata
 * Project configuration settings
-* Shared utility modules
 * Qwen2-VL-7B multimodal model
 
 ## Processing Summary
