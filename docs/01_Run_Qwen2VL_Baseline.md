@@ -31,11 +31,11 @@ The following diagram summarizes the notebook workflow, including the required i
 ## Inputs
 
 * NExT-QA video dataset
-* NExT-QA question-answer annotation files
-* NExT-QA metadata resources
+* NExT-QA question-answer annotations
+* NExT-QA metadata
 * Project configuration settings
-* Shared utility modules and helper functions
-* Qwen2-VL-7B model and processor
+* Shared utility modules
+* Qwen2-VL-7B multimodal model
 
 ## Processing Summary
 
