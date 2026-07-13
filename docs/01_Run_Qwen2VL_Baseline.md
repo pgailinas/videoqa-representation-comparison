@@ -28,6 +28,10 @@ The following diagram summarizes the notebook workflow, including the required i
        width="850">
 </p>
 
+<a href="images/workflows/01_Run_Qwen2VL_Baseline_workflow.png" target="_blank">
+  <img src="images/workflows/01_Run_Qwen2VL_Baseline_workflow.png" width="800">
+</a>
+
 ## Inputs
 
 * Qwen2-VL-7B multimodal model
