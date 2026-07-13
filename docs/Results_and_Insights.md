@@ -64,9 +64,10 @@ The self-supervised autoencoder pipeline was evaluated using learned video repre
 
 | Method | Accuracy |
 |--------|---------:|
-| Autoencoder + Fusion MLP (Development) | **23.46%** |
+| Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
+| Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-Although the autoencoder successfully learned compact latent video representations, these representations did not achieve competitive VideoQA performance within the current experimental configuration. Additional investigation into improved representation learning, larger training sets, or semantic alignment objectives may further improve downstream performance.
+Although the autoencoder successfully learned compact latent video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved 21.78% accuracy compared with 23.46% for the smaller development experiment, suggesting that the current representation-learning approach, rather than the amount of development data, is the primary performance limitation. Additional investigation into representation quality, training objectives, and semantic alignment may further improve downstream performance.
 
 ---
 
@@ -116,7 +117,8 @@ Overall representation-based performance ranked as follows:
 | 3 | Cosine Similarity | **44.18%** |
 | 4 | Gated Fusion | **41.61%** |
 | 5 | Fusion MLP | **34.21%** |
-| 6 | Autoencoder + Fusion MLP (Development) | **23.46%** |
+| 6 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
+| 7 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
 These results demonstrate that pretrained CLIP representations substantially outperform the current self-supervised autoencoder representations while also showing that learned multimodal fusion can improve upon simple cosine similarity when appropriate interaction mechanisms are used.
 
@@ -131,6 +133,7 @@ These results demonstrate that pretrained CLIP representations substantially out
 - Gated Fusion exhibited evidence of overfitting with extended training and did not surpass cosine similarity.
 - The standard Fusion MLP substantially underperformed the interaction-based fusion architectures.
 - Representation generation and downstream prediction were successfully separated into reusable notebook stages, enabling rapid experimentation across multiple prediction methods.
+- Increasing the autoencoder development experiment from 100 to 500 videos did not improve downstream VideoQA accuracy, indicating that representation quality rather than development dataset size is the dominant limitation.
 
 ---
 
@@ -149,7 +152,7 @@ Several architectural decisions proved particularly valuable:
 
 Potential directions for future investigation include:
 
-- Improve self-supervised autoencoder representations through larger training datasets and additional training epochs.
+- Investigate improved self-supervised representation-learning objectives and network architectures, since increasing the development training set from 100 to 500 videos alone did not improve downstream VideoQA performance.
 - Investigate semantic alignment between learned autoencoder representations and pretrained CLIP representations.
 - Evaluate additional multimodal fusion architectures and contrastive learning objectives.
 - Extend evaluation to the complete NExT-QA test split.
