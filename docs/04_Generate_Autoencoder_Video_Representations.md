@@ -1,14 +1,14 @@
 ---
-title: 04 Generate Autoencoder Video Representations
+title: 04 Validate Autoencoder Video Representations
 nav_order: 5
 has_toc: false
 ---
 
-# 04 Generate Autoencoder Video Representations
+# 04 Validate Autoencoder Video Representations
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/04_Generate_Autoencoder_Video_Representations.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/videoqa-representation-comparison/blob/main/notebooks/04_Validate_Autoencoder_Video_Representations.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -26,7 +26,7 @@ The validated `autoencoder_video` representation dataset serves as the experimen
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
 <p align="center">
-  <img src="images/workflows/04_Generate_Autoencoder_Video_Representations_workflow.png"
+  <img src="images/workflows/04_Validate_Autoencoder_Video_Representations_workflow.png"
        alt="Notebook 04 Workflow"
        width="850">
 </p>
