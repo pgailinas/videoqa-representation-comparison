@@ -26,11 +26,9 @@ It generates standardized segment/frame-level and video-level latent representat
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
-<p align="center">
-  <img src="images/workflows/03_Train_Video_Autoencoder_workflow.png"
-       alt="Notebook 03 Workflow"
-       width="850">
-</p>
+<a href="images/workflows/03_Train_Video_Autoencoder_workflow.png" target="_blank">
+  <img src="images/workflows/03_Train_Video_Autoencoder_workflow.png" width="800">
+</a>
 
 ## Inputs
 
