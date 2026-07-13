@@ -31,33 +31,28 @@ The following diagram summarizes the notebook workflow, including the required i
 ## Inputs
 
 - NExT-QA video dataset
-- NExT-QA annotation files
-- Pretrained CLIP vision model
-- Project configuration
+- NExT-QA question-answer annotations
+- Project configuration settings
+- Pretrained CLIP vision encoder
 
-## Outputs
-
-- `clip_video` representation dataset
-- `clip_video` representation summary report
-- Representation validation results
-- Representative representation records
-- Shared CLIP video representation artifacts for downstream VideoQA experiments when full-dataset generation is enabled
-
-## Processing Workflow
+## Processing Summary
 
 1. Initialize the notebook environment and restore the NExT-QA video dataset.
-2. Configure CLIP video representation generation.
-3. Verify the runtime environment.
-4. Prepare either a reproducible development subset of unique videos or all unique videos referenced by the complete NExT-QA annotation dataset.
-5. Load the pretrained CLIP image encoder and processor.
-6. Uniformly sample frames from each selected video.
-7. Generate normalized frame-level CLIP embeddings.
-8. Mean-pool and normalize the frame embeddings into one video-level representation per selected video.
-9. Validate representation counts, identifiers, embedding dimensions, embedding values, video paths, and sampled-frame counts.
-10. Save representation artifacts locally and copy full-dataset artifacts to Google Drive.
-11. Generate and save a representation summary report.
-12. Display representative CLIP video representation records.
-13. Summarize notebook outputs and generated artifacts.
+2. Identify the unique NExT-QA videos referenced by the annotation dataset.
+3. Load the pretrained CLIP vision encoder.
+4. Uniformly sample representative frames from each video.
+5. Generate normalized frame-level CLIP representations.
+6. Mean-pool and normalize the frame representations into one video-level representation per video.
+7. Validate record counts, video identifiers, embedding dimensions, sampled-frame counts, and representation values.
+8. Generate the CLIP video representation summary.
+9. Save and promote the generated artifacts.
+
+## Generated Artifacts
+
+The notebook generates the following persistent artifacts for downstream CLIP-based VideoQA experiments:
+
+- `representations/clip/video/clip_video_representations.csv`
+- `representations/clip/video/clip_video_representation_summary.csv`
 
 ## Notes
 
