@@ -47,6 +47,86 @@ These outputs provide the baseline performance reference used throughout the rem
 * Runtime projections
 * Sample predictions for qualitative review
 
+## Workflow Overview
+
+The following diagram summarizes the Notebook 01 workflow. It identifies the required inputs, the primary processing stages, the generated artifacts, and the downstream notebook that consumes the results.
+
+```mermaid
+flowchart TD
+
+%% ==========================================================
+%% Inputs
+%% ==========================================================
+
+subgraph INPUTS["Inputs"]
+    A["NExT-QA Videos"]
+    B["Questions & Answer Choices"]
+    C["Project Configuration"]
+    D["Qwen2-VL-7B Model"]
+end
+
+%% ==========================================================
+%% Processing
+%% ==========================================================
+
+subgraph PROCESS["Processing Workflow"]
+    E["Initialize Notebook"]
+    F["Prepare Development Dataset"]
+    G["Run Multiple-Choice VideoQA Inference"]
+    H["Validate Prediction Artifacts"]
+    I["Save & Promote Artifacts"]
+end
+
+%% ==========================================================
+%% Outputs
+%% ==========================================================
+
+subgraph OUTPUTS["Generated Artifacts"]
+    J["baseline_predictions.csv"]
+    K["baseline_validation.csv"]
+    L["baseline_summary.csv"]
+end
+
+%% ==========================================================
+%% Downstream
+%% ==========================================================
+
+subgraph DOWNSTREAM["Downstream Consumer"]
+    M["Notebook 08<br/>Evaluate Development Results"]
+end
+
+%% ==========================================================
+%% Connections
+%% ==========================================================
+
+A --> E
+B --> E
+C --> E
+D --> G
+
+E --> F
+F --> G
+G --> H
+H --> I
+
+I --> J
+I --> K
+I --> L
+
+J --> M
+K --> M
+L --> M
+
+%% ==========================================================
+%% Styling
+%% ==========================================================
+
+style INPUTS fill:#D6EAF8,stroke:#1F618D,stroke-width:2px
+style PROCESS fill:#D5F5E3,stroke:#1E8449,stroke-width:2px
+style OUTPUTS fill:#FCF3CF,stroke:#B7950B,stroke-width:2px
+style DOWNSTREAM fill:#E8DAEF,stroke:#7D3C98,stroke-width:2px
+```
+
 ## Processing Workflow
 
 * Initialize the notebook environment and restore the NExT-QA dataset.
