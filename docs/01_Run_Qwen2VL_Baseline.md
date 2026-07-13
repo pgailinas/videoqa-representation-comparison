@@ -107,6 +107,20 @@ style DOWNSTREAM fill:#E8DAEF,stroke:#7D3C98,stroke-width:2px
 * Shared utility modules and helper functions
 * Qwen2-VL-7B model and processor
 
+## Processing Summary
+
+* Initialize the notebook environment and restore the NExT-QA dataset.
+* Configure the baseline VideoQA experiment.
+* Verify GPU runtime readiness and model dependencies.
+* Load the Qwen2-VL-7B model and processor.
+* Prepare the development evaluation dataset.
+* Execute development-subset multiple-choice VideoQA inference.
+* Validate generated prediction artifacts.
+* Save prediction artifacts locally.
+* Promote prediction artifacts to Google Drive.
+* Display representative prediction samples.
+* Finalize baseline artifacts for downstream evaluation.
+
 ## Outputs
 
 ### Generated Artifacts
@@ -126,20 +140,6 @@ These outputs provide the baseline performance reference used throughout the rem
 * Inference timing statistics
 * Runtime projections
 * Sample predictions for qualitative review
-
-## Processing Workflow
-
-* Initialize the notebook environment and restore the NExT-QA dataset.
-* Configure the baseline VideoQA experiment.
-* Verify GPU runtime readiness and model dependencies.
-* Load the Qwen2-VL-7B model and processor.
-* Prepare the development evaluation dataset.
-* Execute development-subset multiple-choice VideoQA inference.
-* Validate generated prediction artifacts.
-* Save prediction artifacts locally.
-* Promote prediction artifacts to Google Drive.
-* Display representative prediction samples.
-* Finalize baseline artifacts for downstream evaluation.
 
 ## Runtime Requirements
 
