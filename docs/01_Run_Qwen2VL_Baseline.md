@@ -18,35 +18,6 @@ This notebook performs development-subset baseline Video Question Answering (Vid
 
 Development-subset experiments enable rapid experimentation, workflow validation, and parameter tuning while minimizing computational cost. The validated baseline configuration provides the reference against which the CLIP representation method and the self-supervised autoencoder representation method are evaluated using the common evaluation framework implemented in Notebook 08.
 
-## Inputs
-
-* NExT-QA video dataset
-* NExT-QA question-answer annotation files
-* NExT-QA metadata resources
-* Project configuration settings
-* Shared utility modules and helper functions
-* Qwen2-VL-7B model and processor
-
-## Outputs
-
-### Generated Artifacts
-
-These outputs provide the baseline performance reference used throughout the remainder of the project.
-
-* outputs/baseline/baseline_predictions.csv
-* outputs/baseline/baseline_validation.csv
-* outputs/baseline/baseline_summary.csv
-
-### Generated Results
-
-* Baseline prediction artifact
-* Baseline validation artifact
-* Baseline summary artifact
-* Multiple-choice prediction accuracy
-* Inference timing statistics
-* Runtime projections
-* Sample predictions for qualitative review
-
 ## Workflow Overview
 
 The following diagram summarizes the Notebook 01 workflow. It identifies the required inputs, the primary processing stages, the generated artifacts, and the downstream notebook that consumes the results.
@@ -126,6 +97,35 @@ style PROCESS fill:#D5F5E3,stroke:#1E8449,stroke-width:2px
 style OUTPUTS fill:#FCF3CF,stroke:#B7950B,stroke-width:2px
 style DOWNSTREAM fill:#E8DAEF,stroke:#7D3C98,stroke-width:2px
 ```
+
+## Inputs
+
+* NExT-QA video dataset
+* NExT-QA question-answer annotation files
+* NExT-QA metadata resources
+* Project configuration settings
+* Shared utility modules and helper functions
+* Qwen2-VL-7B model and processor
+
+## Outputs
+
+### Generated Artifacts
+
+These outputs provide the baseline performance reference used throughout the remainder of the project.
+
+* outputs/baseline/baseline_predictions.csv
+* outputs/baseline/baseline_validation.csv
+* outputs/baseline/baseline_summary.csv
+
+### Generated Results
+
+* Baseline prediction artifact
+* Baseline validation artifact
+* Baseline summary artifact
+* Multiple-choice prediction accuracy
+* Inference timing statistics
+* Runtime projections
+* Sample predictions for qualitative review
 
 ## Processing Workflow
 
