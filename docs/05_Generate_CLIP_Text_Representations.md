@@ -30,34 +30,26 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Inputs
 
-- Shared project configuration and constants.
-- NExT-QA annotation files (questions, answer choices, and ground-truth labels).
-- Development-mode or full-dataset execution configuration.
-- Pretrained CLIP text encoder model.
+- NExT-QA question-answer annotations
+- Project configuration settings
+- Pretrained CLIP text encoder
 
-## Outputs
+## Processing Summary
 
-- Shared `clip_text` representation dataset containing one normalized 512-dimensional question–answer representation for each candidate answer.
-- Shared `clip_text` representation summary report.
-- Representation validation results.
-- Representative CLIP question–answer representation records.
-- Shared representation artifacts for downstream representation-based VideoQA experiments.
+1. Initialize the notebook environment and load project configuration.
+2. Construct five combined question-answer candidate text records for each NExT-QA annotation.
+3. Load the pretrained CLIP text encoder.
+4. Generate normalized 512-dimensional CLIP text representations.
+5. Validate record counts, metadata fields, embedding dimensions, and embedding values.
+6. Generate the CLIP text representation summary.
+7. Save and promote the generated artifacts.
 
-## Processing Workflow
+## Generated Artifacts
 
-- Initialize the notebook environment and load shared project configuration.
-- Configure shared CLIP question–answer text representation generation.
-- Verify the runtime environment.
-- Select either a development annotation subset or the complete NExT-QA annotation dataset.
-- Construct five combined question–answer text records for each annotation, one for each candidate answer.
-- Load the pretrained CLIP text encoder.
-- Generate normalized CLIP question–answer candidate representations.
-- Validate record counts, metadata, embedding dimensions, and embedding values.
-- Save representation artifacts locally.
-- Promote representation and summary artifacts to the shared Google Drive directory when full-dataset generation is enabled.
-- Generate a representation summary report.
-- Display representative CLIP question–answer representation records.
-- Summarize notebook outputs and generated artifacts.
+The notebook generates the following persistent shared artifacts for downstream representation-based VideoQA experiments:
+
+- `representations/clip/text/clip_text_representations.csv`
+- `representations/clip/text/clip_text_representation_summary.csv`
 
 ## Notes
 
