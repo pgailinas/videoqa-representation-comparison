@@ -22,7 +22,11 @@ Development-subset experiments enable rapid experimentation, workflow validation
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
-![Notebook 01 Workflow](images/workflow/01_qwen2vl_baseline_workflow.png)
+<p align="center">
+  <img src="images/workflow/01_qwen2vl_baseline_workflow.png"
+       alt="Notebook 01 Workflow"
+       width="850">
+</p>
 
 ## Inputs
 
