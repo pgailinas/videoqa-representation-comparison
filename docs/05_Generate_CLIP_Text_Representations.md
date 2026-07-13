@@ -20,6 +20,14 @@ For each NExT-QA annotation record, the notebook constructs five combined questi
 
 The generated `clip_text` artifacts are shared across the CLIP representation method and the self-supervised autoencoder representation method. Notebook 07 combines these shared question–answer candidate representations with the selected video representation source using the configured representation-based VideoQA method.
 
+## Workflow Overview
+
+The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
+
+<a href="images/workflows/05_Generate_CLIP_Text_Video_Representations_workflow.png" target="_blank">
+  <img src="images/workflows/05_Generate_CLIP_Video_Representations_workflow.png" width="800">
+</a>
+
 ## Inputs
 
 - Shared project configuration and constants.
