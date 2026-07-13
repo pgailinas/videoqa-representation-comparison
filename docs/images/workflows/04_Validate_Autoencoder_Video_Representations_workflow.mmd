@@ -1,0 +1,64 @@
+
+flowchart TD
+
+%% ==========================================================
+%% VideoQA Workflow Diagram
+%% Notebook 04 — Validate Autoencoder Video Representations
+%% ==========================================================
+
+subgraph INPUTS["<b>Required Inputs</b>"]
+    A["Trained Autoencoder Model<br/>autoencoder.pt"]
+    B["Segment Representations<br/>autoencoder_segment_representations.csv"]
+    C["Video Representations<br/>autoencoder_video_representations.csv"]
+    D["NExT-QA Question-Answer<br/>Annotations"]
+    E["Project Configuration Settings"]
+end
+
+subgraph PROCESSING["​ "]
+    F["Initialize Environment and<br/>Load Configuration"]
+    G["Load Autoencoder Model and<br/>Representation Artifacts"]
+    H["Standardize Video<br/>Representation Schema"]
+    I["Validate Splits, Dimensions,<br/>and Latent Values"]
+    J["Verify Representation<br/>Completeness"]
+    K["Generate Representation<br/>Summary"]
+    L["Save Summary Artifact"]
+end
+
+subgraph OUTPUTS["<b>Generated Artifacts</b>"]
+    M["autoencoder_representation_<br/>summary.csv"]
+end
+
+A --> G
+B --> G
+C --> G
+D --> F
+E --> F
+
+F --> G
+G --> H
+H --> I
+I --> J
+J --> K
+K --> L
+
+L --> M
+
+%% ==========================================================
+%% Styling
+%% ==========================================================
+
+style INPUTS fill:#D6EAF8,stroke:#1F618D,stroke-width:2px
+style PROCESSING fill:#D5F5E3,stroke:#1E8449,stroke-width:2px
+style OUTPUTS fill:#FCF3CF,stroke:#B7950B,stroke-width:2px
+
+classDef inputNode fill:#EBF5FB,stroke:#2E86C1,stroke-width:1.5px,color:#1B2631
+classDef processNode fill:#EAFAF1,stroke:#239B56,stroke-width:1.5px,color:#1B2631
+classDef outputNode fill:#FEF9E7,stroke:#B7950B,stroke-width:1.5px,color:#1B2631
+
+class A,B,C,D,E inputNode
+class F,G,H,I,J,K,L processNode
+class M outputNode
+
+linkStyle default stroke:#555555,stroke-width:3px
+
+
