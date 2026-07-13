@@ -20,6 +20,14 @@ For each selected video, the notebook uniformly samples representative frames, g
 
 The generated `clip_video` artifacts are combined with the shared `clip_text` question–answer representations produced by Notebook 05 and consumed by Notebook 07 using the configured representation-based VideoQA scoring or classifier method. This provides the pretrained representation comparison against the self-supervised autoencoder representation method.
 
+## Workflow Overview
+
+The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
+
+<a href="images/workflows/06_Generate_CLIP_Video_Representations_workflow.png" target="_blank">
+  <img src="images/workflows/06_Generate_CLIP_Video_Representations_workflow.png" width="800">
+</a>
+
 ## Inputs
 
 - NExT-QA video dataset
