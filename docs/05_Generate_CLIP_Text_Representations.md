@@ -24,8 +24,8 @@ The generated `clip_text` artifacts are shared across the CLIP representation me
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
-<a href="images/workflows/05_Generate_CLIP_Text_Video_Representations_workflow.png" target="_blank">
-  <img src="images/workflows/05_Generate_CLIP_Video_Representations_workflow.png" width="800">
+<a href="images/workflows/05_Generate_CLIP_Text_Representations_workflow.png" target="_blank">
+  <img src="images/workflows/05_Generate_CLIP_Text_Representations_workflow.png" width="800">
 </a>
 
 ## Inputs
