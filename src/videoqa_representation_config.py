@@ -75,7 +75,7 @@ NEXTQA_COMBINED_ARCHIVE_PATH = ARCHIVES_DIR / NEXTQA_COMBINED_ARCHIVE_NAME
 # 4. Common Development Settings
 # ============================================================
 
-DEVELOPMENT_SUBSET_SIZE = 100
+DEVELOPMENT_SUBSET_SIZE = 25
 EVALUATION_SPLIT = "val"
 RANDOM_SEED = 42
 
