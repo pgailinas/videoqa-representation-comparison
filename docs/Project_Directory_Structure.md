@@ -49,6 +49,27 @@ videoqa-representation-comparison/
 │   ├── 08_Evaluate_Development_Results.md
 │   ├── 09_Run_Final_Full_Experiment.md
 │   └── images/
+│       ├── overview_pipeline.png
+│       └── workflow/
+│           ├── 01_Run_Qwen2VL_Baseline_workflow.png
+│           ├── 02_Prepare_Autoencoder_Segment_Metadata_workflow.png
+│           ├── 03_Train_Video_Autoencoder_workflow.png
+│           ├── 04_Generate_Autoencoder_Video_Representations_workflow.png
+│           ├── 05_Generate_CLIP_Text_Representations_workflow.png
+│           ├── 06_Generate_CLIP_Video_Representations_workflow.png
+│           ├── 07_Run_Representation_VideoQA_workflow.png
+│           ├── 08_Evaluate_Development_Results_workflow.png
+│           ├── 09_Run_Final_Full_Experiment_workflow.png
+│           └── code/
+│               ├── 01_Run_Qwen2VL_Baseline_workflow.mmd
+│               ├── 02_Prepare_Autoencoder_Segment_Metadata_workflow.mmd
+│               ├── 03_Train_Video_Autoencoder_workflow.mmd
+│               ├── 04_Generate_Autoencoder_Video_Representations_workflow.mmd
+│               ├── 05_Generate_CLIP_Text_Representations_workflow.mmd
+│               ├── 06_Generate_CLIP_Video_Representations_workflow.mmd
+│               ├── 07_Run_Representation_VideoQA_workflow.mmd
+│               ├── 08_Evaluate_Development_Results_workflow.mmdg
+│               └── 09_Run_Final_Full_Experiment_workflow.mmd
 ├── notebooks/
 │   ├── 01_Run_Qwen2VL_Baseline.ipynb
 │   ├── 02_Prepare_Autoencoder_Segment_Metadata.ipynb
