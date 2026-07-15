@@ -17,7 +17,7 @@ has_toc: false
 
 This notebook performs representation-based VideoQA using precomputed text and video representations. Rather than performing direct multimodal inference, the notebook combines shared `clip_text` question–answer representations with either `clip_video` or `autoencoder_video` representations and applies the configured scoring or learned fusion method to generate multiple-choice predictions for the NExT-QA benchmark.
 
-The notebook supports five prediction methods:
+The notebook supports five prediction models:
 
 - Cosine similarity
 - Fusion MLP classifier
