@@ -41,6 +41,8 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Prediction Models
 
+The notebook supports five prediction models ranging from a parameter-free similarity measure to four learned multimodal fusion classifiers. Each model produces five candidate scores for every question using the same video and question-answer representations, enabling direct comparison of different prediction strategies while holding the underlying representations constant.
+
 For each question, the notebook compares one video representation with the five candidate question-answer representations.
 
 Let:
@@ -57,7 +59,7 @@ The shared prediction-generation stage selects the candidate with the highest sc
 
 ### Cosine Similarity
 
-Cosine Similarity directly measures the semantic similarity between the video and each candidate question-answer embedding. This model has no learned parameters and requires the video and text embeddings to have identical dimensionality.
+Cosine Similarity directly measures the semantic similarity between the video and each candidate question-answer embedding. Because it performs no training, it provides a simple baseline for evaluating the quality of pretrained representations.
 
 **Score**
 
@@ -69,7 +71,7 @@ sᵢ = cosine(v, tᵢ)
 
 ### Fusion MLP Classifier
 
-The video and text embeddings are first projected into a shared fusion space and then concatenated into a single multimodal representation. A multilayer perceptron (MLP) learns to assign a score to each candidate answer.
+The video and text embeddings are first projected into a shared fusion space and then concatenated into a single multimodal representation. This approach allows the classifier to learn relationships between the two modalities that are not captured by cosine similarity alone. A multilayer perceptron (MLP) learns to assign a score to each candidate answer.
 
 **Fusion**
 
@@ -87,7 +89,7 @@ sᵢ = MLP(xᵢ)
 
 ### Interaction Fusion Classifier
 
-Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product.
+Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product. These interaction features explicitly encode agreement and disagreement between the projected video and text representations, providing richer information for classification.
 
 **Fusion**
 
@@ -107,7 +109,7 @@ where **⊙** denotes elementwise multiplication.
 
 ### Gated Fusion Classifier
 
-Gated Fusion learns a feature-wise gating function that adaptively determines how much information to retain from the projected video and text representations before classification.
+Gated Fusion learns a feature-wise gating function that adaptively determines how much information to retain from the projected video and text representations before classification. This allows the classifier to emphasize whichever modality is more informative for each feature rather than weighting them equally.
 
 **Fusion**
 
@@ -127,7 +129,7 @@ sᵢ = MLP(xᵢ)
 
 ### Bilinear Fusion Classifier
 
-Bilinear Fusion models multiplicative interactions between the projected video and text representations, enabling the classifier to learn richer multimodal relationships than simple concatenation.
+Bilinear Fusion models multiplicative interactions between the projected video and text representations, enabling the classifier to learn richer multimodal relationships than simple concatenation. Bilinear fusion is the most expressive of the five prediction models because it can learn feature-to-feature relationships between the projected video and text representations rather than treating them independently.
 
 **Fusion**
 
@@ -142,6 +144,20 @@ sᵢ = MLP(xᵢ)
 ```
 
 The four learned fusion classifiers are trained using grouped five-choice samples and cross-entropy loss.
+
+### Prediction Model Comparison
+
+The following table summarizes the characteristics of the five prediction models implemented in this notebook.
+
+| Prediction Model | Trains a Classifier | Fusion Strategy | Primary Strength |
+|------------------|:-------------------:|-----------------|------------------|
+| **Cosine Similarity** | No | Direct semantic similarity | Simple baseline that evaluates the quality of pretrained representations without additional training. |
+| **Fusion MLP** | Yes | Concatenation | Learns nonlinear relationships between projected video and text representations. |
+| **Interaction Fusion** | Yes | Concatenation, absolute differences, and elementwise products | Explicitly models agreement and disagreement between the two modalities. |
+| **Gated Fusion** | Yes | Learned feature-wise gating | Learns how much to trust the video and text representations for each feature dimension. |
+| **Bilinear Fusion** | Yes | Learned bilinear interactions | Captures rich feature-to-feature relationships between the projected video and text representations. |
+
+Together, these prediction models provide a progression from a simple parameter-free similarity measure to increasingly expressive learned multimodal fusion strategies, enabling direct comparison of different approaches while using the same underlying video and text representations.
 
 ## Inputs
 
