@@ -48,7 +48,7 @@ The following diagram summarizes the notebook workflow, including the required i
 5. Preview representative training segments.
 6. Define the convolutional autoencoder architecture.
 7. Train the autoencoder using frame reconstruction.
-8. Inspect the sequential flow of information through the trained autoencoder, including encoder and decoder feature maps, latent representations, reconstruction quality, and compression characteristics.
+8. Inspect the sequential flow of information through the trained autoencoder, visualizing each major encoder and decoder stage, the learned latent representation, reconstruction quality, and compression characteristics.
 9. Compute reconstruction metrics.
 10. Generate standardized segment-level and video-level latent representations.
 11. Save experiment artifacts and export results.
@@ -85,7 +85,7 @@ The baseline configuration defines the model and training behavior used for repr
 | Epochs | Number of training passes over dataset |
 | Latent Dimension | Size of the encoder embedding space |
 | Learning Rate | Optimization step size |
-| Development Subset Size | Number of videos used for development experiments |
+| Training Split Size | Number of videos used for development experiments |
 
 Future experiments may modify these parameters to evaluate their impact on embedding quality and downstream classification performance.
 
@@ -105,7 +105,7 @@ Although these metrics quantify reconstruction quality, they do not demonstrate 
 
 ### Autoencoder Information Flow Inspection
 
-Following training, the notebook performs a deterministic inspection of one training frame as it passes through every major stage of the autoencoder.
+Following training, the notebook performs a deterministic inspection of one training frame as it passes through every major stage of the autoencoder. This inspection illustrates how the encoder progressively compresses visual information into a compact latent representation and how the decoder reconstructs an approximation of the original frame.
 
 The inspection visualizes:
 
@@ -119,9 +119,9 @@ The inspection visualizes:
 - Absolute reconstruction error
 - Compression summary
 
-Each convolutional stage displays the feature map with the highest activation variance, providing a representative visualization of the learned features at that stage. Together, these visualizations illustrate how the encoder compresses visual information into a compact latent representation and how the decoder reconstructs the original frame.
+Each convolutional stage displays the feature map with the highest activation variance, providing a representative visualization of the learned features at that stage. Because feature-map channels are learned independently within each layer, the representative channel may differ between successive stages. Together, these visualizations illustrate how the encoder compresses visual information into a compact latent representation and how the decoder reconstructs the original frame.
 
-The inspection concludes by summarizing the compression ratio and reconstruction quality while emphasizing that successful reconstruction alone does not demonstrate semantic organization of the latent space.
+The inspection concludes by summarizing the compression ratio and reconstruction quality while emphasizing that successful reconstruction alone does not demonstrate semantic organization of the latent space. Establishing semantic organization requires additional evaluation using downstream tasks such as representation-based VideoQA.
 
 ### Experiment Configuration
 
