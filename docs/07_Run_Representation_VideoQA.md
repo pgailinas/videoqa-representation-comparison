@@ -147,15 +147,19 @@ The four learned fusion classifiers are trained using grouped five-choice sample
 
 ### Prediction Model Comparison
 
+### Prediction Model Comparison
+
 The following table summarizes the characteristics of the five prediction models implemented in this notebook.
 
-| Prediction Model | Trains a Classifier | Fusion Strategy | Primary Strength |
-|------------------|:-------------------:|-----------------|------------------|
-| **Cosine Similarity** | No | Direct semantic similarity | Simple baseline that evaluates the quality of pretrained representations without additional training. |
-| **Fusion MLP** | Yes | Concatenation | Learns nonlinear relationships between projected video and text representations. |
-| **Interaction Fusion** | Yes | Concatenation, absolute differences, and elementwise products | Explicitly models agreement and disagreement between the two modalities. |
-| **Gated Fusion** | Yes | Learned feature-wise gating | Learns how much to trust the video and text representations for each feature dimension. |
-| **Bilinear Fusion** | Yes | Learned bilinear interactions | Captures rich feature-to-feature relationships between the projected video and text representations. |
+| Prediction Model | Trains a Classifier | Fusion Strategy | Loss Function | Primary Strength |
+|------------------|:-------------------:|-----------------|---------------|------------------|
+| **Cosine Similarity** | No | Direct semantic similarity | None | Simple baseline that evaluates the quality of pretrained representations without additional training. |
+| **Fusion MLP** | Yes | Concatenation | Cross-Entropy | Learns nonlinear relationships between projected video and text representations. |
+| **Interaction Fusion** | Yes | Concatenation, absolute differences, and elementwise products | Cross-Entropy | Explicitly models agreement and disagreement between the two modalities. |
+| **Gated Fusion** | Yes | Learned feature-wise gating | Cross-Entropy | Learns how much to trust the video and text representations for each feature dimension. |
+| **Bilinear Fusion** | Yes | Learned bilinear interactions | Cross-Entropy | Captures rich feature-to-feature relationships between the projected video and text representations. |
+
+Cosine Similarity is a parameter-free scoring method and therefore does not require training or a loss function. The four learned fusion classifiers are trained as grouped five-choice multiple-choice classifiers using the cross-entropy loss function, which compares the predicted score distribution with the ground-truth answer during optimization.
 
 Together, these prediction models provide a progression from a simple parameter-free similarity measure to increasingly expressive learned multimodal fusion strategies, enabling direct comparison of different approaches while using the same underlying video and text representations.
 
