@@ -22,7 +22,7 @@ The notebook constructs a reproducible training dataset from the NExT-QA trainin
 
 Following training, the notebook inspects the complete flow of information through the trained autoencoder, evaluates reconstruction quality, and applies the frozen encoder to selected videos from the training, validation, and test splits.
 
-It generates standardized segment/frame-level and video-level latent representation artifacts for validation in Notebook 04 and downstream representation-based VideoQA experiments.
+It generates standardized segment/frame-level and video-level latent representations, together with the trained autoencoder model and experiment artifacts, for validation in Notebook 04 and downstream representation-based VideoQA experiments.
 
 ## Workflow Overview
 
@@ -89,6 +89,19 @@ The baseline configuration defines the model and training behavior used for repr
 
 Future experiments may modify these parameters to evaluate their impact on embedding quality and downstream classification performance.
 
+### Autoencoder Component Summary
+
+The following table summarizes the major components of the convolutional autoencoder and their roles in representation learning.
+
+| Component | Purpose | Output |
+|-----------|---------|--------|
+| **Encoder** | Progressively compresses the input frame into increasingly compact feature representations. | High-level visual features |
+| **Latent Representation** | Stores the learned visual features in a compact 256-dimensional embedding used for reconstruction and downstream representation generation. | Compact latent vector |
+| **Decoder** | Reconstructs an approximation of the original frame from the latent representation. | Reconstructed image |
+| **Reconstruction Loss** | Measures the difference between the original and reconstructed frames during training, providing the self-supervised learning objective used to optimize the encoder and decoder. | Training loss (MSE) |
+
+Together, these components enable the autoencoder to learn compact visual representations without requiring question-answer supervision. The quality of the learned latent representation is assessed through reconstruction performance and subsequently evaluated in downstream representation-based VideoQA experiments.
+
 ### Reconstruction Metrics
 
 Reconstruction quality is monitored during training using standard image reconstruction metrics:
@@ -125,7 +138,7 @@ The inspection concludes by summarizing the compression ratio and reconstruction
 
 ### Experiment Configuration
 
-The notebook supports both development-scale and full-dataset training experiments. Development configurations enable rapid experimentation and parameter tuning before scaling to the complete NExT-QA training split.
+The notebook supports both development-scale and full-dataset training experiments. Smaller development experiments enable rapid parameter tuning and debugging, while full-dataset training produces the latent representations used for downstream VideoQA evaluation.
 
 The baseline configuration includes:
 
