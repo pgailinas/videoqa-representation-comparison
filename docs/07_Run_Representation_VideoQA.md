@@ -147,8 +147,6 @@ The four learned fusion classifiers are trained using grouped five-choice sample
 
 ### Prediction Model Comparison
 
-### Prediction Model Comparison
-
 The following table summarizes the characteristics of the five prediction models implemented in this notebook.
 
 | Prediction Model | Trains a Classifier | Fusion Strategy | Loss Function | Primary Strength |
