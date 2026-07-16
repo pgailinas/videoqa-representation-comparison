@@ -18,7 +18,9 @@ has_toc: false
 
 This notebook trains a self-supervised convolutional autoencoder using the standardized segment metadata prepared in Notebook 02. The objective is to learn compact latent video representations from NExT-QA videos without using question-answer supervision.
 
-The notebook constructs a reproducible development training dataset from the training split, trains the autoencoder using frame reconstruction as the self-supervised learning objective, evaluates reconstruction quality, and applies the trained encoder to selected videos from the training, validation, and test splits.
+The notebook constructs a reproducible training dataset from the NExT-QA training split, defines the convolutional autoencoder architecture, and trains the model using frame reconstruction as the self-supervised learning objective.
+
+Following training, the notebook inspects the complete flow of information through the trained autoencoder, evaluates reconstruction quality, and applies the frozen encoder to selected videos from the training, validation, and test splits.
 
 It generates standardized segment/frame-level and video-level latent representation artifacts for validation in Notebook 04 and downstream representation-based VideoQA experiments.
 
@@ -42,11 +44,14 @@ The following diagram summarizes the notebook workflow, including the required i
 1. Initialize the notebook environment and restore the NExT-QA video dataset.
 2. Load standardized training segment metadata.
 3. Configure the autoencoder training experiment.
-4. Build the development training dataset.
-5. Train the convolutional autoencoder using frame reconstruction.
-6. Evaluate reconstruction quality.
-7. Generate standardized segment-level and video-level latent representations.
-8. Save experiment artifacts and export results.
+4. Build the training dataset.
+5. Preview representative training segments.
+6. Define the convolutional autoencoder architecture.
+7. Train the autoencoder using frame reconstruction.
+8. Inspect the sequential flow of information through the trained autoencoder, including encoder and decoder feature maps, latent representations, reconstruction quality, and compression characteristics.
+9. Compute reconstruction metrics.
+10. Generate standardized segment-level and video-level latent representations.
+11. Save experiment artifacts and export results.
 
 ## Generated Artifacts
 
@@ -62,9 +67,11 @@ The notebook generates the following persistent artifacts for downstream validat
 
 This notebook implements a self-supervised convolutional autoencoder trained on frames sampled from fixed-duration video segments generated in Notebook 02.
 
-The encoder compresses each frame into a latent embedding, and the decoder reconstructs the original frame from this representation.
+The encoder progressively compresses each input frame into a compact latent representation, and the decoder reconstructs an approximation of the original frame from that representation.
 
-The primary objective is to learn a compact latent representation that captures meaningful visual structure for downstream representation-based VideoQA. Frame reconstruction serves only as the self-supervised learning objective and is used to optimize the encoder during training rather than as the final evaluation task.
+Frame reconstruction serves as the self-supervised learning objective used to optimize the encoder. The resulting latent representation is intended to preserve the visual information required for accurate reconstruction while providing a compact representation suitable for downstream VideoQA experiments.
+
+The notebook also includes a sequential inspection of the trained autoencoder, illustrating how information flows through each encoder and decoder stage, how the latent representation is formed, and how the decoder reconstructs the original frame.
 
 ### Autoencoder Configuration Parameters
 
@@ -94,13 +101,35 @@ Reconstruction quality is monitored during training using standard image reconst
 
 These metrics are used to track training stability and ensure the autoencoder is learning meaningful visual structure in the embedding space.
 
-### Development Experiment Configuration
+Although these metrics quantify reconstruction quality, they do not demonstrate that the learned latent representation captures high-level semantic concepts or aligns with language-based embedding spaces. Establishing semantic organization requires additional downstream evaluation.
 
-The notebook supports development-subset training to enable rapid experimentation and parameter tuning before full-dataset training.
+### Autoencoder Information Flow Inspection
+
+Following training, the notebook performs a deterministic inspection of one training frame as it passes through every major stage of the autoencoder.
+
+The inspection visualizes:
+
+- Original input frame
+- Encoder feature maps
+- Flattened representation
+- Latent representation
+- Expanded latent representation
+- Decoder feature maps
+- Reconstructed frame
+- Absolute reconstruction error
+- Compression summary
+
+Each convolutional stage displays the feature map with the highest activation variance, providing a representative visualization of the learned features at that stage. Together, these visualizations illustrate how the encoder compresses visual information into a compact latent representation and how the decoder reconstructs the original frame.
+
+The inspection concludes by summarizing the compression ratio and reconstruction quality while emphasizing that successful reconstruction alone does not demonstrate semantic organization of the latent space.
+
+### Experiment Configuration
+
+The notebook supports both development-scale and full-dataset training experiments. Development configurations enable rapid experimentation and parameter tuning before scaling to the complete NExT-QA training split.
 
 The baseline configuration includes:
 
-* Development subset of NExT-QA videos
+* Development subset or full NExT-QA training split
 * Standardized training metadata generated by Notebook 02
 * Fixed frame sampling per segment
 * Convolutional autoencoder architecture
