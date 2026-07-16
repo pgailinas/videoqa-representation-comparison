@@ -41,120 +41,107 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Prediction Models
 
-For each question, the notebook evaluates five candidate question-answer representations against one video representation.
+For each question, the notebook compares one video representation with the five candidate question-answer representations.
 
-Let
+Let:
 
-- $\mathbf{v}$ denote the video embedding.
-- $\mathbf{t}_i$ denote the embedding of candidate answer $i$.
-- $s_i$ denote the score assigned to candidate answer $i$.
+- **v** denote the video embedding.
+- **tᵢ** denote the embedding of candidate answer *i*.
+- **sᵢ** denote the score assigned to candidate answer *i*.
 
-The five candidate scores form the score vector
+Each prediction model produces the score vector
 
-$$
-\mathbf{s}=[s_1,s_2,s_3,s_4,s_5].
-$$
+**s = [s₁, s₂, s₃, s₄, s₅]**
 
-The standardized prediction-generation stage selects the candidate with the largest score.
+The shared prediction-generation stage selects the candidate with the highest score.
 
 ### Cosine Similarity
 
-Cosine similarity compares the video and candidate text embeddings directly:
+Cosine Similarity directly measures the semantic similarity between the video and each candidate question-answer embedding. This model has no learned parameters and requires the video and text embeddings to have identical dimensionality.
 
-$$
-s_i=
-\frac{\mathbf{v}^{T}\mathbf{t}_i}
-{\|\mathbf{v}\|_2\|\mathbf{t}_i\|_2}.
-$$
+**Score**
 
-This model has no learned parameters and requires the video and text embeddings to have matching dimensions.
+```
+sᵢ = cosine(v, tᵢ)
+```
+
+---
 
 ### Fusion MLP Classifier
 
-The video and text embeddings are projected into a shared fusion space:
+The video and text embeddings are first projected into a shared fusion space and then concatenated into a single multimodal representation. A multilayer perceptron (MLP) learns to assign a score to each candidate answer.
 
-$$
-\mathbf{v}'=f_v(\mathbf{v}),
-\qquad
-\mathbf{t}'_i=f_t(\mathbf{t}_i).
-$$
+**Fusion**
 
-The projected embeddings are concatenated and scored by a multilayer perceptron:
+```
+xᵢ = [v′ ; tᵢ′]
+```
 
-$$
-\mathbf{x}_i=
-[\mathbf{v}';\mathbf{t}'_i],
-\qquad
-s_i=\mathrm{MLP}(\mathbf{x}_i).
-$$
+**Score**
+
+```
+sᵢ = MLP(xᵢ)
+```
+
+---
 
 ### Interaction Fusion Classifier
 
-Interaction Fusion augments the projected embeddings with explicit difference and similarity features:
+Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product.
 
-$$
-\mathbf{x}_i=
-\left[
-\mathbf{v}';
-\mathbf{t}'_i;
-|\mathbf{v}'-\mathbf{t}'_i|;
-\mathbf{v}'\odot\mathbf{t}'_i
-\right].
-$$
+**Fusion**
 
-The resulting feature vector is scored by an MLP:
+```
+xᵢ = [v′ ; tᵢ′ ; |v′ − tᵢ′| ; v′ ⊙ tᵢ′]
+```
 
-$$
-s_i=\mathrm{MLP}(\mathbf{x}_i).
-$$
+**Score**
 
-Here, $\odot$ denotes elementwise multiplication.
+```
+sᵢ = MLP(xᵢ)
+```
+
+where **⊙** denotes elementwise multiplication.
+
+---
 
 ### Gated Fusion Classifier
 
-Gated Fusion learns a feature-wise gate:
+Gated Fusion learns a feature-wise gating function that adaptively determines how much information to retain from the projected video and text representations before classification.
 
-$$
-\mathbf{g}_i=
-\sigma
-\left(
-W[\mathbf{v}';\mathbf{t}'_i]+\mathbf{b}
-\right).
-$$
+**Fusion**
 
-The projected modalities are combined as
+```
+xᵢ = gᵢ ⊙ v′ + (1 − gᵢ) ⊙ tᵢ′
+```
 
-$$
-\mathbf{x}_i=
-\mathbf{g}_i\odot\mathbf{v}'
-+
-(1-\mathbf{g}_i)\odot\mathbf{t}'_i.
-$$
+A gate value of **1** retains the corresponding video feature, a gate value of **0** retains the corresponding text feature, and intermediate values blend the two modalities.
 
-A gate value of 1 retains the corresponding video feature, a gate value of 0 retains the corresponding text feature, and intermediate values blend the two modalities.
+**Score**
 
-The fused representation is then scored by an MLP:
+```
+sᵢ = MLP(xᵢ)
+```
 
-$$
-s_i=\mathrm{MLP}(\mathbf{x}_i).
-$$
+---
 
 ### Bilinear Fusion Classifier
 
-Bilinear Fusion learns multiplicative interactions between the projected video and text representations:
+Bilinear Fusion models multiplicative interactions between the projected video and text representations, enabling the classifier to learn richer multimodal relationships than simple concatenation.
 
-$$
-\mathbf{x}_i=
-\mathbf{v}'^{T}W\mathbf{t}'_i.
-$$
+**Fusion**
 
-The bilinear feature representation is then scored by a classifier:
+```
+xᵢ = v′ᵀ W tᵢ′
+```
 
-$$
-s_i=\mathrm{MLP}(\mathbf{x}_i).
-$$
+**Score**
 
-The four learned fusion models are trained using grouped five-choice samples and cross-entropy loss.
+```
+sᵢ = MLP(xᵢ)
+```
+
+The four learned fusion classifiers are trained using grouped five-choice samples and cross-entropy loss.
 
 ## Inputs
 
