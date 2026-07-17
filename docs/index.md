@@ -121,7 +121,6 @@ The project is organized as nine modular notebooks supporting the three experime
 | **06_Generate_CLIP_Video_Representations** | Generate reusable pretrained CLIP video representations for the NExT-QA videos. |
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using shared `clip_text` question-answer representations together with either `clip_video` or `autoencoder_video` representations using the selected scoring or learned fusion method. |
 | **08_Evaluate_Development_Results** | Compare all completed development experiments using common validation metrics, error analysis, question-type analysis, visualization, and experiment selection. |
-| **09_Run_Final_Comparison_Experiment** | Execute the selected best-performing experiment configuration on the complete NExT-QA dataset and generate the project's final evaluation artifacts. |
 
 Development-subset experiments are used to compare baseline, pretrained, and autoencoder representation methods and to select the best-performing configuration before full-dataset evaluation. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
