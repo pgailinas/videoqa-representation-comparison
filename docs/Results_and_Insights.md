@@ -149,7 +149,7 @@ These results demonstrate that pretrained CLIP representations substantially out
 - Qwen2-VL achieved the highest overall VideoQA accuracy.
 - Cosine Similarity provided a strong zero-shot representation-based baseline requiring no classifier training.
 - Bilinear Fusion achieved the highest accuracy among the evaluated representation-based prediction methods.
-- Interaction Fusion also outperformed the cosine similarity baseline after training on the complete NExT-QA training split.
+- Interaction Fusion outperformed the cosine similarity baseline after training on the complete NExT-QA training split, while an additional 100-epoch experiment demonstrated that continued optimization reduced training loss but also reduced validation accuracy, indicating overfitting beyond the selected 20-epoch configuration.
 - Gated Fusion improved substantially when trained on the complete training split but remained below both Bilinear Fusion, Interaction Fusion, and the zero-shot cosine similarity baseline.
 - The standard Fusion MLP substantially underperformed the interaction-based fusion architectures.
 - Representation generation and downstream prediction were successfully separated into reusable notebook stages, enabling rapid experimentation across multiple prediction methods.
