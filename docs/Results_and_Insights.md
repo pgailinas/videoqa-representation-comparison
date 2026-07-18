@@ -30,13 +30,13 @@ Shared CLIP text and video representations were generated once for the complete 
 
 | Method | Accuracy |
 |--------|---------:|
-| Cosine Similarity | **44.12%** |
-| Interaction Fusion | 27.44% |
-| Gated Fusion | 25.87% |
-| Fusion MLP | 24.86% |
-| Bilinear Fusion | 22.96% |
+| **Cosine Similarity** | **44.12%** |
+| **Interaction Fusion** | **27.10%** |
+| **Bilinear Fusion** | **26.32%** |
+| **Fusion MLP** | **23.85%** |
+| **Gated Fusion** | **22.17%** |
 
-The development experiments were intentionally performed on a reduced dataset to validate the notebook workflow, compare prediction methods, and identify promising configurations for larger-scale evaluation.
+The development experiments were intentionally performed on a reduced 100-video validation subset to validate the notebook workflow, compare prediction methods, and identify promising configurations before executing full-validation experiments. Although the absolute accuracies differ from the full-validation results, the development experiments correctly identified the strongest fusion architectures for subsequent evaluation.
 
 ### Full Validation Experiments
 
@@ -120,7 +120,7 @@ Overall representation-based performance ranked as follows:
 | 6 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
 | 7 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-These results demonstrate that pretrained CLIP representations substantially outperform the current self-supervised autoencoder representations while also showing that learned multimodal fusion can improve upon simple cosine similarity when appropriate interaction mechanisms are used.
+These results demonstrate that pretrained CLIP representations substantially outperform the current self-supervised autoencoder representations while also showing that learned multimodal fusion can improve upon simple cosine similarity when appropriate interaction mechanisms are used. The autoencoder experiments remain development-scale evaluations, whereas the CLIP fusion methods were additionally evaluated on the complete validation split.
 
 ---
 
@@ -130,7 +130,7 @@ These results demonstrate that pretrained CLIP representations substantially out
 - Cosine Similarity provided a strong zero-shot representation-based baseline requiring no classifier training.
 - Bilinear Fusion achieved the highest accuracy among the evaluated representation-based prediction methods.
 - Interaction Fusion also outperformed the cosine similarity baseline after training on the complete NExT-QA training split.
-- Gated Fusion exhibited evidence of overfitting with extended training and did not surpass cosine similarity.
+- Gated Fusion improved substantially when trained on the complete training split but remained below both Bilinear Fusion, Interaction Fusion, and the zero-shot cosine similarity baseline.
 - The standard Fusion MLP substantially underperformed the interaction-based fusion architectures.
 - Representation generation and downstream prediction were successfully separated into reusable notebook stages, enabling rapid experimentation across multiple prediction methods.
 - Increasing the autoencoder development experiment from 100 to 500 videos did not improve downstream VideoQA accuracy, indicating that representation quality rather than development dataset size is the dominant limitation.
@@ -152,8 +152,8 @@ Several architectural decisions proved particularly valuable:
 
 Potential directions for future investigation include:
 
-- Investigate improved self-supervised representation-learning objectives and network architectures, since increasing the development training set from 100 to 500 videos alone did not improve downstream VideoQA performance.
-- Investigate semantic alignment between learned autoencoder representations and pretrained CLIP representations.
+- Investigate improved self-supervised representation-learning objectives and network architectures, since increasing the development training set from 100 to 500 videos alone did not improve downstream VideoQA accuracy.
+- Investigate semantic alignment between learned autoencoder representations and pretrained CLIP representations using projection networks, teacher–student learning, or contrastive alignment objectives.
 - Evaluate additional multimodal fusion architectures and contrastive learning objectives.
 - Extend evaluation to the complete NExT-QA test split.
 - Explore larger pretrained vision-language models for direct comparison with representation-based approaches.
