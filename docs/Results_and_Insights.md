@@ -58,6 +58,26 @@ Several important observations emerged from the full-validation experiments:
 
 ---
 
+## Interaction Fusion Training Analysis
+
+To investigate whether additional training could further improve representation-based VideoQA performance, the Interaction Fusion classifier was trained for **100 epochs** using the complete NExT-QA training split. The canonical experiment used throughout this project employed **20 training epochs**, which achieved the highest validation accuracy of **45.30%**.
+
+Figure 1 compares the final training loss obtained by the 20-epoch and 100-epoch experiments. Although continued optimization reduced the training loss from **0.2558** to **0.0724**, the corresponding validation accuracy decreased from **45.30%** to **43.15%**. This behavior indicates that the model continued fitting the training data while losing generalization performance on unseen validation samples.
+
+<p align="center">
+  <img src="images/interaction_fusion_training_loss_comparison.png"
+       alt="Interaction Fusion Training Loss Comparison"
+       width="700">
+</p>
+
+<p align="center">
+<b>Figure 1.</b> Interaction Fusion training-loss comparison. The curve represents the 100-epoch training run, while the highlighted marker at epoch 20 corresponds to the final result of the separate canonical 20-epoch experiment. Although additional training substantially reduced training loss, validation accuracy declined from 45.30% to 43.15%, providing evidence of overfitting.
+</p>
+
+Based on these observations, **20 epochs** was retained as the default training configuration for all reported Interaction Fusion experiments presented in this repository.
+
+---
+
 ## Autoencoder Representation Results
 
 The self-supervised autoencoder pipeline was evaluated using learned video representations combined with shared CLIP question-answer representations.
