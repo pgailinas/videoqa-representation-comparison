@@ -131,7 +131,7 @@ This project makes four primary contributions:
 
 ## References and Further Reading
 
-Additional papers, datasets, models, and technical resources related to this project are available on the [References and Further Reading](References.md) page.
+Additional papers, datasets, models, and technical resources related to this project are available on the [References](References.md) page.
 
 ---
 
