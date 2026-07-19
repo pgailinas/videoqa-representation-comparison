@@ -19,7 +19,7 @@ Video Question Answering (VideoQA) requires models to understand both the visual
 
 Recent advances in foundation models have demonstrated impressive VideoQA performance by processing video and text directly. At the same time, self-supervised learning has shown that compact feature representations can be learned from large collections of unlabeled data without requiring manual annotation. These learned representations have proven effective across a wide range of computer vision tasks, suggesting that they may also provide useful information for downstream VideoQA.
 
-This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with representations learned through self-supervised autoencoder training while using shared `clip_text` question-answer representations and a common representation-based evaluation framework.
+This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with self-supervised autoencoder representations using shared `clip_text` question-answer representations within a common evaluation framework.
 
 ## Research Questions
 
@@ -65,7 +65,7 @@ The NExT-QA benchmark provides three official dataset splits: **training**, **va
 | **Validation** | Development evaluation | Evaluate all experimental pipelines, compare competing video representations, perform error analysis, and select the best-performing experimental configuration. Development experiments may use reproducible subsets of the validation split (for example, 100 samples) to reduce computational cost while maintaining fair comparisons. |
 | **Test** | Final benchmark evaluation | Reserved for future work and final benchmark evaluation. The test split is not used during model development or experiment selection. |
 
-In addition to the official dataset splits, this project generates reusable CLIP text and CLIP video representation datasets. Because the CLIP encoders are pretrained and remain frozen throughout the experiments, these representations are generated once for the entire NExT-QA dataset (training, validation, and test) and reused by all representation-based pipelines. This avoids redundant computation while ensuring identical pretrained representations are used throughout the experimental framework.
+In addition to the official dataset splits, pretrained CLIP text and video representations are generated once for the entire NExT-QA dataset and reused throughout the representation-based pipelines. Because the CLIP encoders remain frozen, generating these representations for all dataset splits does not introduce information leakage while eliminating redundant computation and ensuring identical pretrained features are used across all experiments.
 
 The three VideoQA pipelines use the dataset splits differently depending on whether model learning is required.
 
@@ -75,7 +75,7 @@ The three VideoQA pipelines use the dataset splits differently depending on whet
 | **CLIP Representation Pipeline** | Uses the precomputed CLIP video and shared CLIP question-answer representations to train the selected learned fusion classifier when applicable. Cosine similarity requires no training. | Uses the corresponding validation representations to generate predictions and evaluate the selected representation-based method. |
 | **Autoencoder Representation Pipeline** | Trains the self-supervised video autoencoder using the training videos, generates learned video representations, and trains the selected learned fusion classifier when applicable. | Uses the learned validation representations to generate predictions and evaluate the selected representation-based method. |
 
-This separation of responsibilities follows standard machine learning practice by reserving the validation split exclusively for development evaluation while using the training split for all learned model components. Because the CLIP representations are fixed pretrained features rather than learned models, they may be generated once for the complete dataset without introducing information leakage between the training and validation splits. As a result, all reported comparisons evaluate models on validation data that were not used to train the representation-based learning components.
+This separation of responsibilities follows standard machine learning practice by reserving the validation split exclusively for development evaluation while using the training split for all learned model components.
 
 ---
 
@@ -101,7 +101,7 @@ Both representation-based pipelines use identical downstream prediction methods 
 
 ### Notebook Workflow
 
-The project is organized as nine modular notebooks supporting the three experimental pipelines.
+The project is organized as eight modular notebooks supporting the three experimental pipelines.
 
 | Notebook | Purpose |
 |----------|---------|
@@ -114,7 +114,7 @@ The project is organized as nine modular notebooks supporting the three experime
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using shared `clip_text` question-answer representations together with either `clip_video` or `autoencoder_video` representations using the selected scoring or learned fusion method. |
 | **08_Evaluate_Development_Results** | Compare all completed development experiments using common validation metrics, error analysis, question-type analysis, visualization, and experiment selection. |
 
-Development-subset experiments are used to compare baseline, pretrained, and autoencoder representation methods and to select the best-performing configuration before full-dataset evaluation. After the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
+Development-subset experiments are used to compare competing methods before full-validation evaluation. Once the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
 ---
 
