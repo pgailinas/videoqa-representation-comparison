@@ -9,11 +9,9 @@ nav_order: 0
 
 This project investigates self-supervised autoencoder learning for Video Question Answering (VideoQA) using the NExT-QA benchmark dataset, pretrained CLIP representations, and the Qwen2-VL-7B multimodal foundation model.
 
-The project evaluates three complementary VideoQA pipelines. The first establishes a baseline using Qwen2-VL and the original NExT-QA videos. The second performs representation-based VideoQA using pretrained `clip_video` representations together with shared `clip_text` representations. The third evaluates self-supervised `autoencoder_video` representations using the same shared `clip_text` representations.
+The project evaluates three complementary VideoQA pipelines: (1) a Qwen2-VL baseline operating directly on the original videos, (2) representation-based VideoQA using pretrained CLIP video representations, and (3) representation-based VideoQA using self-supervised autoencoder video representations.
 
-Both representation-based pipelines use the same shared `clip_text` question-answer representations and a common evaluation framework. The active representation-based experiment may use cosine similarity or one of several learned multimodal fusion classifiers, allowing both the video representation source and the prediction method to be evaluated independently.
-
-Experiments are conducted using a staged evaluation methodology consisting of development-mode experimentation followed by full-validation evaluation. The modular notebook workflow provides a reproducible research environment for investigating how different video representations influence downstream VideoQA performance.
+Both representation-based pipelines use shared CLIP question-answer representations and a common evaluation framework, allowing different video representations and prediction methods to be compared independently.
 
 ## Motivation and Research Problem
 
@@ -22,8 +20,6 @@ Video Question Answering (VideoQA) requires models to understand both the visual
 Recent advances in foundation models have demonstrated impressive VideoQA performance by processing video and text directly. At the same time, self-supervised learning has shown that compact feature representations can be learned from large collections of unlabeled data without requiring manual annotation. These learned representations have proven effective across a wide range of computer vision tasks, suggesting that they may also provide useful information for downstream VideoQA.
 
 This project investigates whether learned video representations can support VideoQA reasoning without relying solely on direct processing of the original videos. Specifically, the study compares pretrained CLIP video representations with representations learned through self-supervised autoencoder training while using shared `clip_text` question-answer representations and a common representation-based evaluation framework.
-
-By maintaining a consistent evaluation framework and varying only the method used to generate video representations, the project seeks to determine how representation learning influences VideoQA performance across temporal, causal, and descriptive reasoning tasks.
 
 ## Research Questions
 
