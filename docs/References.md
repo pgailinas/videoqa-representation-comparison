@@ -52,3 +52,5 @@ The collection is intended to provide readers with convenient access to the prim
 
 * <a href="https://doi.org/10.48550/arXiv.2401.05224" target="_blank" rel="noopener noreferrer">Do Vision and Language Encoders Represent the World Similarly? (2024)</a>
 
+* <a href="https://doi.org/10.48550/arXiv.1503.02531" target="_blank" rel="noopener noreferrer">Distilling the Knowledge in a Neural Network (2015)</a>
+
