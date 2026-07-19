@@ -87,36 +87,32 @@ The self-supervised autoencoder pipeline was evaluated using learned video repre
 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-Although the autoencoder successfully learned compact latent video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved 21.78% accuracy compared with 23.46% for the smaller development experiment, suggesting that the current representation-learning approach, rather than the amount of development data, is the primary performance limitation. Additional investigation into representation quality, training objectives, and semantic alignment may further improve downstream performance.
+Although the autoencoder successfully learned compact latent video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved 21.78% accuracy compared with 23.46% for the smaller development experiment, suggesting that the current representation-learning approach, rather than the amount of development data, is the primary performance limitation. These results indicate that the current reconstruction-based representation learning approach, rather than the amount of development data, is the primary limitation on downstream VideoQA performance.
 
 ---
 
-## Runtime Environment Observations
+## Runtime and Workflow Observations
 
-Experiments were conducted using Google Colab.
+Experiments were conducted using Google Colab GPU runtimes throughout the project.
+
+Several practical observations improved the efficiency and reproducibility of the experimental workflow:
 
 - Qwen2-VL inference executed reliably on NVIDIA L4 GPU runtimes.
 - NVIDIA T4 runtimes occasionally experienced CUDA out-of-memory errors during Qwen2-VL inference.
 - Representation-based classifier training benefited substantially from GPU acceleration.
-- Shared CLIP representation generation required only a single execution and significantly reduced subsequent experimentation time.
-
----
-
-## Runtime Performance Analysis
-
-Separating representation generation from downstream VideoQA evaluation substantially improved experimentation efficiency.
-
-Once the shared CLIP text and video representations had been generated, additional experiments required only selecting a prediction method and executing Notebook 07. This modular design enabled rapid comparison among multiple multimodal fusion strategies without regenerating representations.
+- Shared CLIP text and video representations were generated only once and reused across all subsequent experiments.
+- Separating representation generation from downstream VideoQA evaluation substantially reduced experimentation time by allowing multiple prediction methods to be evaluated without regenerating video representations.
+- The modular notebook design enabled new experiments to be executed primarily through configuration changes rather than code modifications.
 
 ---
 
 ## Representation Analysis
 
-The experiments indicate that pretrained CLIP representations already provide a strong semantic embedding space for VideoQA.
+The experiments demonstrate that pretrained CLIP representations provide a strong semantic embedding space for VideoQA.
 
-Zero-shot cosine similarity achieved over 44% validation accuracy without any supervised classifier training, demonstrating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
+Zero-shot cosine similarity achieved more than 44% validation accuracy without any supervised classifier training, indicating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
 
-Learned multimodal fusion methods produced mixed results, indicating that architecture selection plays an important role when attempting to improve upon pretrained representations.
+Learned multimodal fusion methods produced mixed results. Interaction-based architectures consistently outperformed simple feature concatenation, indicating that explicit cross-modal modeling is important when combining video and text representations.
 
 ---
 
@@ -128,7 +124,7 @@ Notebook 08 provides per-category evaluation metrics and error analysis across a
 
 ## Representation Comparison
 
-Overall representation-based performance ranked as follows:
+The completed experiments provide a direct comparison between all evaluated representation-based approaches.
 
 | Rank | Method | Accuracy |
 |-----:|--------|---------:|
@@ -140,41 +136,43 @@ Overall representation-based performance ranked as follows:
 | 6 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
 | 7 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-These results demonstrate that pretrained CLIP representations substantially outperform the current self-supervised autoencoder representations while also showing that learned multimodal fusion can improve upon simple cosine similarity when appropriate interaction mechanisms are used. The autoencoder experiments remain development-scale evaluations, whereas the CLIP fusion methods were additionally evaluated on the complete validation split.
+The ranking illustrates the performance differences among the evaluated representation-based approaches. Bilinear Fusion achieved the highest representation-based accuracy, while the current reconstruction-based autoencoder representations produced substantially lower downstream performance.
 
 ---
 
 ## Key Findings
 
+The completed experiments support the following scientific conclusions:
+
 - Qwen2-VL achieved the highest overall VideoQA accuracy.
-- Cosine Similarity provided a strong zero-shot representation-based baseline requiring no classifier training.
-- Bilinear Fusion achieved the highest accuracy among the evaluated representation-based prediction methods.
-- Interaction Fusion outperformed the cosine similarity baseline after training on the complete NExT-QA training split, while an additional 100-epoch experiment demonstrated that continued optimization reduced training loss but also reduced validation accuracy, indicating overfitting beyond the selected 20-epoch configuration.
-- Gated Fusion improved substantially when trained on the complete training split but remained below both Bilinear Fusion, Interaction Fusion, and the zero-shot cosine similarity baseline.
-- The standard Fusion MLP substantially underperformed the interaction-based fusion architectures.
-- Representation generation and downstream prediction were successfully separated into reusable notebook stages, enabling rapid experimentation across multiple prediction methods.
-- Increasing the autoencoder development experiment from 100 to 500 videos did not improve downstream VideoQA accuracy, indicating that representation quality rather than development dataset size is the dominant limitation.
+- Pretrained CLIP representations substantially outperformed the evaluated self-supervised autoencoder representations.
+- Bilinear Fusion achieved the highest representation-based VideoQA accuracy.
+- Interaction Fusion surpassed the zero-shot cosine similarity baseline after supervised training.
+- Extending Interaction Fusion training from 20 to 100 epochs reduced training loss but also reduced validation accuracy, demonstrating overfitting rather than undertraining.
+- Increasing the autoencoder development experiment from 100 to 500 videos did not improve downstream VideoQA accuracy, indicating that representation quality rather than training-set size was the dominant limitation.
+- Across all representation-based experiments, semantic representation quality had a greater influence on VideoQA performance than the choice of downstream prediction model.
 
 ---
 
 ## Lessons Learned
 
-Several architectural decisions proved particularly valuable:
+Several engineering decisions contributed significantly to the success of the project:
 
 - Generating shared CLIP representations only once dramatically reduced experimentation time.
 - Standardized prediction artifacts enabled Notebook 08 to evaluate multiple experiments without modification.
-- A modular notebook workflow allowed new representation-based experiments to be executed by changing only a small number of configuration parameters.
-- Development-mode experiments effectively identified promising methods before committing to full-scale evaluation.
+- A modular notebook workflow allowed new representation-learning experiments to be executed with minimal code changes.
+- Development-mode experiments effectively identified promising prediction methods before committing to computationally expensive full-validation experiments.
+- Maintaining a common evaluation framework simplified direct comparison among competing representation-learning approaches.
 
 ---
 
 ## Future Work
 
-Potential directions for future investigation include:
+The experimental results suggest several promising directions for future investigation:
 
-- Investigate improved self-supervised representation-learning objectives and network architectures, since increasing the development training set from 100 to 500 videos alone did not improve downstream VideoQA accuracy.
-- Investigate semantic alignment between learned autoencoder representations and pretrained CLIP representations using projection networks, teacher–student learning, or contrastive alignment objectives.
-- Evaluate additional multimodal fusion architectures and contrastive learning objectives.
-- Extend evaluation to the complete NExT-QA test split.
-- Explore larger pretrained vision-language models for direct comparison with representation-based approaches.
+- Develop semantic-alignment techniques that encourage reconstruction-based autoencoder representations to align with pretrained CLIP embedding spaces.
+- Investigate teacher--student learning, projection networks, and contrastive alignment objectives for improving self-supervised video representations.
+- Evaluate larger latent dimensions, transformer-based video encoders, and alternative self-supervised learning objectives.
+- Explore hybrid representations that combine reconstruction-based and pretrained semantic embeddings.
+- Extend evaluation to additional VideoQA benchmark datasets and the complete NExT-QA test split.
 
