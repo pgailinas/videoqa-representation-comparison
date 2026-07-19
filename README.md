@@ -26,7 +26,7 @@ The primary benchmark dataset is **NExT-QA**, containing:
 -   Official training, validation, and test splits
 -   Temporal, causal, and descriptive reasoning tasks
 
-The videos are used for baseline VideoQA inference, pretrained CLIP video representation generation, self-supervised autoencoder training, and autoencoder latent representation generation. NExT-QA questions and answer choices are encoded as a reusable shared CLIP text embedding dataset for downstream representation-based VideoQA evaluation.
+The videos are used for baseline VideoQA inference, pretrained CLIP embedding generation, self-supervised autoencoder training, and learned video representation generation. NExT-QA questions and answer choices are encoded as a reusable shared CLIP text embedding dataset for downstream representation-based VideoQA evaluation.
 
 ## Execution Notes
 
