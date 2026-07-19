@@ -29,15 +29,15 @@ By maintaining a consistent evaluation framework and varying only the method use
 
 This project investigates the following research questions:
 
-1. Can self-supervised autoencoder training learn compact video representations that preserve the semantic and temporal information required for VideoQA?
+1. Can self-supervised autoencoder training learn compact video representations that support competitive downstream VideoQA performance?
 
-2. How does VideoQA performance using learned autoencoder video representations compare with pretrained CLIP video embeddings under a common evaluation framework?
+2. How does VideoQA performance using learned autoencoder video representations compare with pretrained CLIP video representations under a common evaluation framework?
 
 3. How closely do representation-based VideoQA approaches perform relative to the baseline Qwen2-VL system operating directly on the original videos?
 
-4. Which NExT-QA reasoning categories (causal, temporal, and descriptive) are most affected by the choice of video representation?
+4. How does the quality of the underlying video representation influence downstream VideoQA performance under a common evaluation framework?
 
-5. What insights can be gained from comparing foundation-model inference with representation-based VideoQA using identical evaluation procedures?
+5. What insights can be gained by comparing foundation-model inference with representation-based VideoQA under a common evaluation framework?
 
 ## Dataset
 
