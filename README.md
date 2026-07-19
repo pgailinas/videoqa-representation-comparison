@@ -5,13 +5,11 @@ Question Answering (VideoQA) using the NExT-QA benchmark dataset
 together with pretrained CLIP representations and the Qwen2-VL-7B
 multimodal foundation model.
 
-The project evaluates three complementary VideoQA approaches:
+The project evaluates three complementary VideoQA pipelines:
 
--   **Baseline VideoQA** using Qwen2-VL and the original videos.
--   **Representation-Based VideoQA** using pretrained CLIP video
-    embeddings.
--   **Representation-Based VideoQA** using self-supervised autoencoder
-    latent representations.
+- **Baseline VideoQA Pipeline** using Qwen2-VL and the original videos.
+- **CLIP Representation Pipeline** using pretrained `clip_video` representations.
+- **Autoencoder Representation Pipeline** using learned `autoencoder_video` representations.
 
 Both representation-based approaches use a shared CLIP text embedding dataset, the same downstream classifier, and identical evaluation methodology, allowing differences in VideoQA performance to be attributed primarily to the quality of the video representations.
 
