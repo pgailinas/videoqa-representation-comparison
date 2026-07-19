@@ -87,7 +87,7 @@ The self-supervised autoencoder pipeline was evaluated using learned video repre
 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-Although the autoencoder successfully learned compact latent video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved 21.78% accuracy compared with 23.46% for the smaller development experiment, suggesting that the current representation-learning approach, rather than the amount of development data, is the primary performance limitation. These results indicate that the current reconstruction-based representation learning approach, rather than the amount of development data, is the primary limitation on downstream VideoQA performance.
+Although the autoencoder successfully learned compact latent video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved **21.78%** accuracy compared with **23.46%** for the smaller development experiment, indicating that the current reconstruction-based representation learning approach, rather than the amount of development data, is the primary limitation on downstream VideoQA performance.
 
 ---
 
@@ -108,11 +108,7 @@ Several practical observations improved the efficiency and reproducibility of th
 
 ## Representation Analysis
 
-The experiments demonstrate that pretrained CLIP representations provide a strong semantic embedding space for VideoQA.
-
-Zero-shot cosine similarity achieved more than 44% validation accuracy without any supervised classifier training, indicating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
-
-Learned multimodal fusion methods produced mixed results. Interaction-based architectures consistently outperformed simple feature concatenation, indicating that explicit cross-modal modeling is important when combining video and text representations.
+The experiments demonstrate that pretrained CLIP representations provide a strong semantic embedding space for VideoQA. Zero-shot cosine similarity achieved more than **44%** validation accuracy without supervised classifier training, indicating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
 
 ---
 
@@ -136,7 +132,7 @@ The completed experiments provide a direct comparison between all evaluated repr
 | 6 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
 | 7 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
 
-The ranking illustrates the performance differences among the evaluated representation-based approaches. Bilinear Fusion achieved the highest representation-based accuracy, while the current reconstruction-based autoencoder representations produced substantially lower downstream performance.
+The ranking summarizes the relative performance of all evaluated representation-based approaches, with Bilinear Fusion achieving the highest overall validation accuracy.
 
 ---
 
@@ -170,7 +166,7 @@ Yes. The self-supervised autoencoder learned compact latent video representation
 
 **How does VideoQA performance compare across reconstruction-based autoencoder representations, pretrained CLIP video representations, and direct Qwen2-VL foundation-model inference?**
 
-The three pipelines showed clear performance differences. Qwen2-VL achieved the highest validation accuracy (**79.84%**). Among the representation-based approaches, pretrained CLIP representations substantially outperformed the learned autoencoder representations, with Bilinear Fusion achieving **46.42%** accuracy compared with **23.46%** for the best autoencoder experiment.
+The three pipelines exhibited clear performance differences. Qwen2-VL achieved the highest validation accuracy (**79.84%**). Among the representation-based approaches, pretrained CLIP representations substantially outperformed the learned autoencoder representations, with Bilinear Fusion achieving **46.42%** accuracy compared with **23.46%** for the best autoencoder experiment.
 
 ---
 
