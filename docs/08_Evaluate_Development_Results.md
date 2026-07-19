@@ -27,7 +27,7 @@ Evaluation is performed using a common multiple-choice framework, enabling direc
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
 
 <a href="images/workflows/08_Evaluate_Development_Results_workflow.png" target="_blank">
-  <img src="images/workflows/08_Evaluate_Development-Results_workflow.png" width="800">
+  <img src="images/workflows/08_Evaluate_Development_Results_workflow.png" width="800">
 </a>
 
 ## Inputs
