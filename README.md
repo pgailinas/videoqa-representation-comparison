@@ -23,27 +23,11 @@ The objective of this project is to compare pretrained and self-supervised video
 
 The project implements three complementary VideoQA pipelines:
 
-* **Baseline VideoQA** using Qwen2-VL and the original videos.
-* **Representation-Based VideoQA** using pretrained `clip_video` representations together with shared `clip_text` representations.
-* **Representation-Based VideoQA** using self-supervised `autoencoder_video` representations together with the same shared `clip_text` representations.
+- Baseline VideoQA using Qwen2-VL.
+- Representation-Based VideoQA using pretrained CLIP video representations.
+- Representation-Based VideoQA using self-supervised autoencoder representations.
 
-Development-mode execution supports rapid experimentation, debugging, and parameter tuning before full-dataset evaluation.
-
-Both representation-based pipelines use the same shared `clip_text` question-answer representations, identical multiple-choice prediction workflow, and common evaluation methodology. The active experiment may use cosine similarity or one of several learned multimodal fusion classifiers, allowing both the video representation source and the prediction method to be evaluated independently.
-
-Shared CLIP text representations are generated once and reused across all representation-based experiments. Shared CLIP video representations are likewise generated once and reused, while autoencoder video representations remain experiment-specific.
-
-The project focuses on:
-
-* Video Question Answering (VideoQA)
-* Self-Supervised Learning
-* Autoencoders
-* Video Representation Learning
-* Multimodal Representation Learning
-* CLIP Representations
-* Latent Feature Learning
-* Multiple-Choice VideoQA
-* Experimental Performance Analysis
+Both representation-based pipelines use identical CLIP text representations and evaluation methodology, enabling controlled comparison of different video representations.
 
 ## Dataset
 
@@ -56,25 +40,13 @@ The primary benchmark dataset is **NExT-QA**, containing:
 
 The videos are used for baseline VideoQA inference, pretrained CLIP video representation generation, self-supervised autoencoder training, and autoencoder latent representation generation. NExT-QA questions and answer choices are encoded as a reusable shared CLIP text embedding dataset for downstream representation-based VideoQA evaluation.
 
-## Experimental Hypothesis
+## Execution Notes
 
-The primary research hypothesis is:
-
-> Self-supervised `autoencoder_video` representations can provide more effective downstream multiple-choice VideoQA performance than pretrained `clip_video` representations when both are evaluated using identical shared `clip_text` question-answer representations, the same representation-based prediction method, and a common evaluation framework.
-
-The project further investigates whether self-supervised representation learning can produce video embeddings that improve downstream VideoQA performance while maintaining a consistent multimodal classification pipeline.
-
-## ⚙️ Execution Notes
-
-- Designed primarily for Google Colab
-- Supports local Jupyter execution
-- Notebook-driven workflow
-- Shared CLIP question-answer text and pretrained CLIP video representation datasets generated once and reused across experiments
-- Experiment-specific autoencoder artifacts stored by experiment name
+- Google Colab and Jupyter supported
 - Development and full-dataset execution modes
 - GPU acceleration where appropriate
-- Modular experimental framework supporting multiple representation sources and prediction methods
-- Local-first artifact generation with optional promotion to shared Google Drive storage
+- Shared CLIP representations generated once and reused
+- Experiment-specific autoencoder artifacts stored by experiment
 
 ## 🌐 Documentation
 
