@@ -190,14 +190,6 @@ The experiments demonstrated that representation quality was the dominant factor
 
 ---
 
-### Research Question 5
-
-**What insights can be gained by comparing foundation-model inference with representation-based VideoQA under a common evaluation framework?**
-
-The controlled experimental framework demonstrated that both the choice of video representation and the prediction method influence downstream performance. However, improvements obtained by changing the prediction model were smaller than those obtained by using stronger semantic representations. These findings suggest that future improvements in representation-based VideoQA are more likely to result from improved representation learning and semantic alignment than from increasingly complex downstream classifiers.
-
----
-
 ## Lessons Learned
 
 Several engineering decisions contributed significantly to the success of the project:
