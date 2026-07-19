@@ -118,24 +118,6 @@ Notebook 08 provides per-category evaluation metrics and error analysis across a
 
 ---
 
-## Representation Comparison
-
-The completed experiments provide a direct comparison between all evaluated representation-based approaches.
-
-| Rank | Method | Accuracy |
-|-----:|--------|---------:|
-| 1 | Bilinear Fusion | **46.42%** |
-| 2 | Interaction Fusion | **45.30%** |
-| 3 | Cosine Similarity | **44.18%** |
-| 4 | Gated Fusion | **41.61%** |
-| 5 | Fusion MLP | **34.21%** |
-| 6 | Autoencoder + Fusion MLP (Development, 100 videos) | **23.46%** |
-| 7 | Autoencoder + Fusion MLP (Development, 500 videos) | **21.78%** |
-
-The ranking summarizes the relative performance of all evaluated representation-based approaches, with Bilinear Fusion achieving the highest overall validation accuracy.
-
----
-
 ## Key Findings
 
 The completed experiments support the following scientific conclusions:
