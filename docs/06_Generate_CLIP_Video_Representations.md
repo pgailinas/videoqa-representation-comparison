@@ -65,5 +65,5 @@ The notebook generates the following persistent artifacts for downstream CLIP-ba
 - These `clip_video` representations are specific to the CLIP representation method and are not used as the autoencoder video representation source.
 - Notebook 07 combines the generated `clip_video` representations with the shared `clip_text` question–answer representations produced by Notebook 05.
 - Development-mode artifacts are saved locally without overwriting the persistent shared Google Drive artifacts.
-- Full-dataset mode writes reusable CLIP video representation and summary artifacts to the shared Google Drive representation directory.
+- Full-dataset mode writes the CLIP video representation and summary artifacts to the shared Google Drive representation directory.
 
