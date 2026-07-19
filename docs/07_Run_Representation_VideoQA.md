@@ -51,7 +51,7 @@ Let:
 - **tᵢ** denote the embedding of candidate answer *i*.
 - **sᵢ** denote the score assigned to candidate answer *i*.
 
-Each prediction model produces the score vector
+Each prediction model produces a five-element score vector
 
 **s = [s₁, s₂, s₃, s₄, s₅]**
 
@@ -89,7 +89,7 @@ sᵢ = MLP(xᵢ)
 
 ### Interaction Fusion Classifier
 
-Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product. These interaction features explicitly encode agreement and disagreement between the projected video and text representations, providing richer information for classification.
+Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product. These interaction features encode agreement and disagreement between the projected video and text representations, providing richer information for classification.
 
 **Fusion**
 
