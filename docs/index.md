@@ -37,8 +37,6 @@ This project investigates the following research questions:
 
 4. How does the quality of the underlying video representation influence downstream VideoQA performance under a common evaluation framework?
 
-5. What insights can be gained by comparing foundation-model inference with representation-based VideoQA under a common evaluation framework?
-
 ## Dataset
 
 The primary benchmark dataset used in this project is **NExT-QA**, a Video Question Answering (VideoQA) benchmark designed to evaluate visual understanding and reasoning across real-world video content. The dataset contains questions that require models to reason about actions, events, temporal relationships, and contextual interactions occurring within video sequences.
