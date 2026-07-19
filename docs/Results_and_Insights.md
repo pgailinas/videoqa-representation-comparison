@@ -36,7 +36,7 @@ Shared CLIP text and video representations were generated once for the complete 
 | **Fusion MLP** | **23.85%** |
 | **Gated Fusion** | **22.17%** |
 
-The development experiments were intentionally performed on a reduced 100-video validation subset to validate the notebook workflow, compare prediction methods, and identify promising configurations before executing full-validation experiments. Although the absolute accuracies differ from the full-validation results, the development experiments correctly identified the strongest fusion architectures for subsequent evaluation.
+The development experiments were intentionally performed on a reduced 100-video validation subset to validate the notebook workflow, compare prediction methods, and identify promising configurations before executing full-validation experiments. Although the absolute accuracies differed, the development experiments correctly identified the strongest fusion architectures for full-validation evaluation.
 
 ### Full Validation Experiments
 
@@ -118,7 +118,7 @@ Notebook 08 provides per-category evaluation metrics and error analysis across a
 
 ---
 
-## Key Findings
+## Principal Findings
 
 The completed experiments support the following scientific conclusions:
 
