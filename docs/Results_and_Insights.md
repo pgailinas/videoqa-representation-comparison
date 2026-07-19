@@ -156,37 +156,29 @@ The completed experiments support the following scientific conclusions:
 
 ## Answers to the Research Questions
 
-The completed experiments provide the following answers to the project's original research questions.
+The completed experiments provide the following answers to the project's research questions.
 
 ### Research Question 1
 
 **Can self-supervised autoencoder training learn compact video representations that support competitive downstream VideoQA performance?**
 
-Yes, the autoencoder successfully learned compact latent video representations suitable for downstream evaluation. However, these reconstruction-based representations achieved substantially lower VideoQA accuracy than pretrained CLIP representations, indicating that reconstruction alone did not capture the semantic information required for competitive VideoQA performance.
+Yes. The self-supervised autoencoder learned compact latent video representations suitable for downstream evaluation. However, the reconstruction-based representations did not achieve competitive VideoQA performance, indicating that reconstruction alone was insufficient to learn the semantic information required for effective VideoQA.
 
 ---
 
 ### Research Question 2
 
-**How does VideoQA performance using learned autoencoder video representations compare with pretrained CLIP video representations under a common evaluation framework?**
+**How does VideoQA performance compare across reconstruction-based autoencoder representations, pretrained CLIP video representations, and direct Qwen2-VL foundation-model inference?**
 
-Pretrained CLIP representations consistently outperformed the learned autoencoder representations across all completed experiments. The best CLIP-based approach (Bilinear Fusion) achieved **46.42%** validation accuracy, whereas the best autoencoder experiment achieved **23.46%**, demonstrating a substantial advantage for pretrained semantic representations.
+The three pipelines showed clear performance differences. Qwen2-VL achieved the highest validation accuracy (**79.84%**). Among the representation-based approaches, pretrained CLIP representations substantially outperformed the learned autoencoder representations, with Bilinear Fusion achieving **46.42%** accuracy compared with **23.46%** for the best autoencoder experiment.
 
 ---
 
 ### Research Question 3
 
-**How closely do representation-based VideoQA approaches perform relative to the baseline Qwen2-VL system operating directly on the original videos?**
-
-Representation-based approaches remained well below the direct foundation-model baseline. Qwen2-VL achieved **79.84%** accuracy, substantially exceeding the best representation-based result of **46.42%**, demonstrating the continued advantage of end-to-end multimodal reasoning using large pretrained vision-language models.
-
----
-
-### Research Question 4
-
 **How does the quality of the underlying video representation influence downstream VideoQA performance under a common evaluation framework?**
 
-The experiments demonstrated that representation quality was the dominant factor influencing downstream VideoQA performance. Semantically aligned pretrained CLIP representations consistently outperformed reconstruction-based autoencoder representations, regardless of the downstream prediction model used.
+Representation quality proved to be the dominant factor influencing downstream VideoQA performance. Semantically aligned pretrained CLIP representations consistently outperformed reconstruction-based autoencoder representations, while additional classifier training reduced training loss but not validation accuracy. These results indicate that future improvements are more likely to come from better representation learning and semantic alignment than from increasingly complex prediction models.
 
 ---
 
