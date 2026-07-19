@@ -14,11 +14,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook prepares standardized segment metadata for the self-supervised autoencoder pipeline using the NExT-QA video dataset.
-
-Rather than duplicating video content, the notebook generates structured metadata describing fixed-duration video segments, including video identifiers, dataset splits, timestamps, representative frames, and segment properties. The generated metadata serves as a reusable catalog of video segments spanning the training, validation, and test splits.
-
-Although the generated artifact is named `training_metadata.csv`, it intentionally includes segment metadata for all NExT-QA dataset splits. The retained `split` field enables downstream notebooks to select the appropriate subset for model training, development evaluation, or future benchmark testing.
+This notebook generates standardized metadata describing fixed-duration video segments rather than duplicating video content. The resulting metadata includes video identifiers, dataset splits, timestamps, representative frames, and segment properties for the complete NExT-QA dataset. Although the generated artifact is named `training_metadata.csv`, it intentionally includes all dataset splits, allowing downstream notebooks to select the appropriate subsets for training, validation, or future benchmark evaluation without regenerating the metadata.
 
 The resulting segment metadata establishes a consistent segmentation strategy that supports reproducible self-supervised representation learning and downstream comparison with pretrained CLIP video representations.
 
@@ -59,11 +55,7 @@ The notebook generates the following persistent artifacts for downstream autoenc
 
 ### Video Segmentation Strategy
 
-Videos are segmented using a fixed-duration segmentation strategy.
-
-Each generated segment represents a contiguous temporal region within a source video and is used as a unit for self-supervised autoencoder training.
-
-Each segment includes:
+Videos are segmented using a fixed-duration segmentation strategy. Each segment includes:
 
 * Start, midpoint, and end timestamps
 * Frame boundary indices
@@ -118,9 +110,7 @@ This notebook implements a **fixed baseline segmentation strategy** for autoenco
 
 ### Dataset Statistics
 
-The current segmentation configuration generates a reusable segment metadata dataset for the complete NExT-QA benchmark.
-
-The generated metadata includes:
+The current segmentation configuration generates a reusable segment metadata dataset for the complete NExT-QA benchmark. The generated metadata includes:
 
 * Segment metadata for all **5,440** NExT-QA source videos
 * Fixed-duration **6-second** video segments
@@ -128,5 +118,5 @@ The generated metadata includes:
 * Motion and scene analysis disabled in the baseline configuration
 * Original dataset split (`train`, `val`, or `test`) retained for every segment
 
-The total number of generated segment metadata records depends on the configured segmentation strategy and the durations of the source videos. By retaining the original dataset split for each segment, the metadata can be reused throughout the project for autoencoder training, development evaluation, and future benchmark testing without regenerating the segmentation metadata.
+The total number of generated metadata records depends on the configured segmentation strategy and the durations of the source videos.
 
