@@ -14,9 +14,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark dataset using the Qwen2-VL-7B multimodal foundation model. The notebook generates standardized prediction, validation, and summary artifacts that establish the baseline reference for comparison with the project's representation-based VideoQA methods.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark using the Qwen2-VL-7B multimodal foundation model. It generates standardized prediction, validation, and summary artifacts that establish the baseline reference used to compare the project's representation-based VideoQA pipelines.
 
-Development-subset experiments enable rapid experimentation, workflow validation, and parameter tuning while minimizing computational cost. The validated baseline configuration provides the reference against which the CLIP representation method and the self-supervised autoencoder representation method are evaluated using the common evaluation framework implemented in Notebook 08.
+Development-subset evaluation enables rapid experimentation and workflow validation while minimizing computational cost before larger-scale experiments.
 
 ## Workflow Overview
 
@@ -57,9 +57,7 @@ These outputs provide the baseline performance reference used throughout the rem
 
 ## Runtime Requirements
 
-Development and testing were performed within the Google Colab environment.
-
-Standard CPU runtime environments are used for dataset preparation, repository setup, and file operations. GPU acceleration (NVIDIA L4 preferred) is required for Qwen2-VL-7B inference.
+Development and testing were performed in Google Colab. Standard CPU runtimes are sufficient for repository setup, dataset preparation, and file operations, while GPU acceleration (NVIDIA L4 preferred) is required for Qwen2-VL-7B inference.
 
 Baseline VideoQA development-subset experiments were evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during testing.
 
@@ -67,13 +65,8 @@ The NVIDIA T4 GPU was evaluated as a lower-tier alternative. Although the model 
 
 ## Notes
 
-* This notebook performs development-subset baseline VideoQA using direct Qwen2-VL-7B multimodal inference.
 * Representative video frames are sampled directly from the source videos during inference.
-* Prediction artifacts include multiple-choice predictions, validation results, summary statistics, and inference timing information.
 * Runtime performance depends on the selected evaluation dataset size, inference configuration, and available GPU resources.
 * GPU memory requirements vary with the number of sampled video frames and model generation parameters.
-* This notebook serves as the baseline method for comparison with the project's representation-based VideoQA methods.
-* Baseline prediction artifacts are generated locally, validated, and promoted to Google Drive.
-* Notebook 08 restores these artifacts and evaluates them using the same experiment-agnostic evaluation workflow applied to all implemented VideoQA methods.
-* The generated prediction, validation, and summary artifacts provide the baseline reference used throughout the remainder of the project.
+* Notebook 08 restores the generated prediction artifacts and evaluates them using the same experiment-agnostic workflow applied to all implemented VideoQA methods.
 
