@@ -17,17 +17,7 @@ Both representation-based approaches use a shared CLIP text embedding dataset, t
 
 ## Research Objective
 
-The objective of this project is to compare pretrained and self-supervised video representations for downstream multiple-choice VideoQA. Learned `autoencoder_video` representations are evaluated against pretrained `clip_video` representations using shared `clip_text` question-answer representations, configurable representation-based prediction methods, and a common evaluation framework.
-
-## Experimental Framework
-
-The project implements three complementary VideoQA pipelines:
-
-- Baseline VideoQA using Qwen2-VL.
-- Representation-Based VideoQA using pretrained CLIP video representations.
-- Representation-Based VideoQA using self-supervised autoencoder representations.
-
-Both representation-based pipelines use identical CLIP text representations and evaluation methodology, enabling controlled comparison of different video representations.
+The objective of this project is to compare pretrained and self-supervised video representations for downstream multiple-choice VideoQA. Pretrained `clip_video` and learned `autoencoder_video` representations are evaluated using shared `clip_text` question-answer representations, identical prediction methods, and a common evaluation framework.
 
 ## Dataset
 
@@ -48,14 +38,14 @@ The videos are used for baseline VideoQA inference, pretrained CLIP video repres
 - Shared CLIP representations generated once and reused
 - Experiment-specific autoencoder artifacts stored by experiment
 
-## 🌐 Documentation
+## Documentation
 
 Complete project documentation, notebook walkthroughs, architecture
 diagrams, and experimental methodology are available at:
 
 https://pgailinas.github.io/videoqa-representation-comparison/
 
-## 👤 Author
+## Author
 
 **Phil Gailinas**
 
