@@ -14,7 +14,7 @@ has_toc: false
 
 ## Purpose
 
-This notebook generates reusable pretrained CLIP video representations for the NExT-QA videos referenced by the project annotation dataset. These standardized `clip_video` representations provide the video representation source for CLIP-based representation VideoQA experiments.
+This notebook generates pretrained CLIP video representations for the NExT-QA videos referenced by the project annotation dataset. These standardized `clip_video` representations provide the video representation source for CLIP-based representation VideoQA experiments.
 
 For each selected video, the notebook uniformly samples representative frames, generates normalized frame-level embeddings using a pretrained CLIP image encoder, mean-pools the frame embeddings, and normalizes the resulting video-level representation.
 
