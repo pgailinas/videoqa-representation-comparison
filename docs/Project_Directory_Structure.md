@@ -35,7 +35,7 @@ videoqa-representation-comparison/
 │   ├── 01_Run_Qwen2VL_Baseline.md
 │   ├── 02_Prepare_Autoencoder_Segment_Metadata.md
 │   ├── 03_Train_Video_Autoencoder.md
-│   ├── 04_Generate_Autoencoder_Video_Representations.md
+│   ├── 04_Validate_Autoencoder_Video_Representations.md
 │   ├── 05_Generate_CLIP_Text_Representations.md
 │   ├── 06_Generate_CLIP_Video_Representations.md
 │   ├── 07_Run_Representation_VideoQA.md
@@ -46,7 +46,7 @@ videoqa-representation-comparison/
 │           ├── 01_Run_Qwen2VL_Baseline_workflow.png
 │           ├── 02_Prepare_Autoencoder_Segment_Metadata_workflow.png
 │           ├── 03_Train_Video_Autoencoder_workflow.png
-│           ├── 04_Generate_Autoencoder_Video_Representations_workflow.png
+│           ├── 04_Validate_Autoencoder_Video_Representations_workflow.png
 │           ├── 05_Generate_CLIP_Text_Representations_workflow.png
 │           ├── 06_Generate_CLIP_Video_Representations_workflow.png
 │           ├── 07_Run_Representation_VideoQA_workflow.png
@@ -55,7 +55,7 @@ videoqa-representation-comparison/
 │               ├── 01_Run_Qwen2VL_Baseline_workflow.mmd
 │               ├── 02_Prepare_Autoencoder_Segment_Metadata_workflow.mmd
 │               ├── 03_Train_Video_Autoencoder_workflow.mmd
-│               ├── 04_Generate_Autoencoder_Video_Representations_workflow.mmd
+│               ├── 04_Validate_Autoencoder_Video_Representations_workflow.mmd
 │               ├── 05_Generate_CLIP_Text_Representations_workflow.mmd
 │               ├── 06_Generate_CLIP_Video_Representations_workflow.mmd
 │               ├── 07_Run_Representation_VideoQA_workflow.mmd
@@ -64,7 +64,7 @@ videoqa-representation-comparison/
 │   ├── 01_Run_Qwen2VL_Baseline.ipynb
 │   ├── 02_Prepare_Autoencoder_Segment_Metadata.ipynb
 │   ├── 03_Train_Video_Autoencoder.ipynb
-│   ├── 04_Generate_Autoencoder_Video_Representations.ipynb
+│   ├── 04_Validate_Autoencoder_Video_Representations.ipynb
 │   ├── 05_Generate_CLIP_Text_Representations.ipynb
 │   ├── 06_Generate_CLIP_Video_Representations.ipynb
 │   ├── 07_Run_Representation_VideoQA.ipynb
