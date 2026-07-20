@@ -11,7 +11,7 @@ The project evaluates three complementary VideoQA pipelines:
 - **CLIP Representation Pipeline** using pretrained `clip_video` representations.
 - **Autoencoder Representation Pipeline** using learned `autoencoder_video` representations.
 
-Both representation-based approaches use a shared CLIP text embedding dataset, the same downstream classifier, and identical evaluation methodology, allowing differences in VideoQA performance to be attributed primarily to the quality of the video representations.
+Both representation-based approaches use a shared CLIP text representation dataset, the same configurable downstream prediction framework, and identical evaluation methodology. This design enables controlled comparison of different video representation sources while evaluating multiple prediction strategies under a common experimental framework.
 
 ## Research Objective
 
