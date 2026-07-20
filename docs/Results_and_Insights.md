@@ -140,7 +140,7 @@ The completed experiments provide the following answers to the project's researc
 
 **Can self-supervised autoencoder training learn compact video representations that support competitive downstream VideoQA performance?**
 
-Yes. The self-supervised autoencoder learned compact latent video representations suitable for downstream evaluation. However, the reconstruction-based representations did not achieve competitive VideoQA performance, indicating that reconstruction alone was insufficient to learn the semantic information required for effective VideoQA.
+No. While the autoencoder successfully learned compact visual representations through self-supervised reconstruction, those representations did not achieve competitive VideoQA performance relative to pretrained semantic representations. This suggests that reconstruction alone is insufficient for learning representations well aligned with language-based reasoning tasks.
 
 ---
 
