@@ -71,8 +71,6 @@ The encoder progressively compresses each input frame into a compact latent repr
 
 Frame reconstruction serves as the self-supervised learning objective used to optimize the encoder. The resulting latent representation is intended to preserve the visual information required for accurate reconstruction while providing a compact representation suitable for downstream VideoQA experiments.
 
-The resulting latent representation is intended to preserve the visual information required for accurate reconstruction while providing a compact representation suitable for downstream VideoQA experiments.
-
 ### Autoencoder Configuration Parameters
 
 The baseline configuration defines the model and training behavior used for representation learning.
