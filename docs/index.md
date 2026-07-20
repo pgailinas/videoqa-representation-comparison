@@ -89,7 +89,7 @@ The experimental framework consists of three complementary VideoQA pipelines tha
 
 - **Autoencoder Representation Pipeline** — Uses learned `autoencoder_video` representations together with the same shared `clip_text` representations for representation-based VideoQA.
 
-Both representation-based pipelines use identical downstream prediction methods and evaluation procedures, enabling controlled comparison of different video representations.
+Both representation-based pipelines use the same downstream VideoQA framework and evaluation procedures while supporting the same configurable prediction methods, enabling controlled comparison of different video representations.
 
 ---
 
