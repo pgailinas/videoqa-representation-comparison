@@ -363,6 +363,29 @@ def get_autoencoder_paths(experiment_name: str) -> dict:
     }
 
 
+def get_hybrid_video_representation_paths(
+    autoencoder_experiment_name: str,
+) -> dict:
+    """Return source paths used to construct hybrid video embeddings."""
+    autoencoder_paths = get_autoencoder_paths(
+        autoencoder_experiment_name
+    )
+
+    return {
+        "hybrid_clip_video_representations_csv": (
+            CLIP_VIDEO_REPRESENTATIONS_DRIVE_CSV
+        ),
+        "hybrid_autoencoder_video_representations_csv": (
+            autoencoder_paths[
+                "autoencoder_video_representations_csv"
+            ]
+        ),
+        "hybrid_autoencoder_experiment_name": (
+            autoencoder_experiment_name
+        ),
+    }
+
+
 def get_videoqa_artifact_filenames(experiment_type: str) -> dict:
     """Return prediction/validation/summary filenames for an experiment type."""
     if experiment_type == "baseline":
@@ -372,7 +395,14 @@ def get_videoqa_artifact_filenames(experiment_type: str) -> dict:
             "summary": BASELINE_SUMMARY_FILENAME,
         }
 
-    if experiment_type in {"clip", "clip_video", "autoencoder", "ae"}:
+    if experiment_type in {
+        "clip",
+        "clip_video",
+        "autoencoder",
+        "ae",
+        "hybrid",
+        "hybrid_video",
+    }:
         return {
             "predictions": REPRESENTATION_VIDEOQA_PREDICTIONS_FILENAME,
             "validation": REPRESENTATION_VIDEOQA_VALIDATION_FILENAME,
@@ -381,7 +411,8 @@ def get_videoqa_artifact_filenames(experiment_type: str) -> dict:
 
     raise ValueError(
         "Unsupported experiment_type. Expected one of: "
-        "baseline, clip, clip_video, autoencoder, ae."
+        "baseline, clip, clip_video, autoencoder, ae, "
+        "hybrid, hybrid_video."
     )
 
 
@@ -389,14 +420,19 @@ def infer_experiment_type(experiment_name: str) -> str:
     """Infer the experiment type from the notebook-selected experiment name."""
     if experiment_name.startswith("qwen2vl"):
         return "baseline"
+
+    if experiment_name.startswith("hybrid_"):
+        return "hybrid_video"
+
     if experiment_name.startswith("clip"):
         return "clip_video"
+
     if experiment_name.startswith("ae_"):
         return "autoencoder"
 
     raise ValueError(
         "Unable to infer experiment type from experiment_name. "
-        "Expected prefixes: qwen2vl, clip, or ae_."
+        "Expected prefixes: qwen2vl, hybrid_, clip, or ae_."
     )
 
 
@@ -723,8 +759,31 @@ AUTOENCODER_REPRESENTATIONS_CSV = (
 # -----------------------------------------------------------------
 CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
 AUTOENCODER_VIDEO_REPRESENTATION_SOURCE = "autoencoder_video"
+HYBRID_VIDEO_REPRESENTATION_SOURCE = "hybrid_clip_autoencoder"
+
+SUPPORTED_VIDEO_REPRESENTATION_SOURCES = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE,
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE,
+    HYBRID_VIDEO_REPRESENTATION_SOURCE,
+}
+
 DEFAULT_VIDEO_REPRESENTATION_SOURCE = CLIP_VIDEO_REPRESENTATION_SOURCE
 DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
+
+# -----------------------------------------------------------------
+# Hybrid CLIP + Autoencoder Representation
+# -----------------------------------------------------------------
+
+# Each source is normalized independently before concatenation.
+HYBRID_NORMALIZE_CLIP_VIDEO = True
+HYBRID_NORMALIZE_AUTOENCODER_VIDEO = True
+
+# Concatenate normalized CLIP and autoencoder video embeddings.
+HYBRID_VIDEO_COMBINATION_METHOD = "concatenate"
+
+SUPPORTED_HYBRID_VIDEO_COMBINATION_METHODS = {
+    "concatenate",
+}
 
 # -----------------------------------------------------------------
 # Representation-Based VideoQA Prediction Methods
@@ -776,6 +835,50 @@ REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS = {
     "gated_fusion_classifier": "gated",
     "bilinear_fusion_classifier": "bilinear",
 }
+
+VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE: {
+        "cosine_similarity",
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: {
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+    HYBRID_VIDEO_REPRESENTATION_SOURCE: {
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+}
+
+if (
+    set(VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS)
+    != SUPPORTED_VIDEO_REPRESENTATION_SOURCES
+):
+    raise ValueError(
+        "VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS must "
+        "define exactly the supported video representation sources."
+    )
+
+invalid_source_methods = {
+    source: methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+    for source, methods
+    in VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS.items()
+    if methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+}
+
+if invalid_source_methods:
+    raise ValueError(
+        "Video representation sources contain unsupported "
+        f"prediction methods: {invalid_source_methods}"
+    )
 
 # -----------------------------------------------------------------
 # Prediction Method Configuration Validation
@@ -833,8 +936,24 @@ CLIP_VIDEO_EMBEDDING_DIM = 512
 CLIP_TEXT_EMBEDDING_DIM = 512
 AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
 
+HYBRID_VIDEO_EMBEDDING_DIM = (
+    CLIP_VIDEO_EMBEDDING_DIM
+    + AUTOENCODER_VIDEO_EMBEDDING_DIM
+)
+
 # Common latent dimension used by the fusion classifier.
 FUSION_EMBEDDING_DIM = 128
+
+VIDEO_REPRESENTATION_SOURCE_DIMENSIONS = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE: CLIP_VIDEO_EMBEDDING_DIM,
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: (
+        AUTOENCODER_VIDEO_EMBEDDING_DIM
+    ),
+    HYBRID_VIDEO_REPRESENTATION_SOURCE: (
+        HYBRID_VIDEO_EMBEDDING_DIM
+    ),
+}
+
 
 # -----------------------------------------------------------------
 # Classifier Architecture
