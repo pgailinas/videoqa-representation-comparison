@@ -60,9 +60,7 @@ Several important observations emerged from the full-validation experiments:
 
 ## Hybrid Representation Results
 
-To investigate whether reconstruction-based representations provide complementary information beyond pretrained semantic representations, a hybrid representation was created by concatenating normalized CLIP video representations with autoencoder video representations. The resulting hybrid representation was evaluated using the Bilinear Fusion prediction method.
-
-The hybrid representation combined normalized 512-dimensional CLIP video representations with 256-dimensional autoencoder video representations before Bilinear Fusion classification.
+To investigate whether reconstruction-based representations provide complementary information beyond pretrained semantic representations, a hybrid representation was created by concatenating normalized 512-dimensional CLIP video representations with 256-dimensional autoencoder video representations. The resulting hybrid representation was evaluated using the Bilinear Fusion prediction method.
 
 | Method | Accuracy |
 |--------|---------:|
@@ -188,7 +186,7 @@ Several engineering decisions contributed significantly to the success of the pr
 - A modular notebook workflow allowed new representation-learning experiments to be executed with minimal code changes.
 - Development-mode experiments effectively identified promising prediction methods before committing to computationally expensive full-validation experiments.
 - Maintaining a common evaluation framework simplified direct comparison among competing representation-learning approaches.
-- Hybrid representation experiments demonstrated that combining multiple representation sources is straightforward within the common evaluation framework, enabling rapid investigation of complementary representation-learning strategies.
+- The hybrid representation experiment demonstrated that combining multiple representation sources is straightforward within the common evaluation framework, enabling rapid investigation of complementary representation-learning strategies.
 
 ---
 
