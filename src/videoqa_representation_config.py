@@ -364,11 +364,11 @@ def get_autoencoder_paths(experiment_name: str) -> dict:
 
 
 def get_hybrid_video_representation_paths(
-    autoencoder_experiment_name: str,
+    source_autoencoder_experiment_name: str,
 ) -> dict:
-    """Return source paths used to construct hybrid video embeddings."""
+    """Return CLIP and source autoencoder representation paths used to construct hybrid video embeddings."""
     autoencoder_paths = get_autoencoder_paths(
-        autoencoder_experiment_name
+        source_autoencoder_experiment_name
     )
 
     return {
@@ -380,8 +380,8 @@ def get_hybrid_video_representation_paths(
                 "autoencoder_video_representations_csv"
             ]
         ),
-        "hybrid_autoencoder_experiment_name": (
-            autoencoder_experiment_name
+        "source_autoencoder_experiment_name": (
+            source_autoencoder_experiment_name
         ),
     }
 
