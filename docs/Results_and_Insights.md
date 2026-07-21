@@ -62,10 +62,11 @@ Several important observations emerged from the full-validation experiments:
 
 To investigate whether reconstruction-based representations provide complementary information beyond pretrained semantic representations, a hybrid representation was created by concatenating normalized CLIP video representations with autoencoder video representations. The resulting hybrid representation was evaluated using the Bilinear Fusion prediction method.
 
+The hybrid representation combined normalized 512-dimensional CLIP video representations with 256-dimensional autoencoder video representations before Bilinear Fusion classification.
+
 | Method | Accuracy |
 |--------|---------:|
-| Hybrid Bilinear Fusion | xx.xx% |
-| Hybrid Interaction Fusion | xx.xx% |
+| **Hybrid CLIP + Autoencoder Bilinear Fusion (Development, 500 videos)** | **31.29%** |
 
 The hybrid experiment substantially outperformed the autoencoder-only representation (21.78%) but remained well below the pretrained CLIP representation (46.42%). These results indicate that simply combining reconstruction-based and pretrained semantic representations is insufficient to improve downstream VideoQA performance. The quality of the underlying semantic representation remained the dominant factor influencing prediction accuracy.
 
@@ -102,7 +103,7 @@ The self-supervised autoencoder pipeline was evaluated using learned video repre
 
 Although the autoencoder successfully learned compact video representations, increasing the development training set from 100 to 500 videos did not improve downstream VideoQA accuracy. The larger experiment achieved **21.78%** accuracy compared with **23.46%** for the smaller development experiment, indicating that the current reconstruction-based representation learning approach, rather than the amount of development data, is the primary limitation on downstream VideoQA performance.
 
-The hybrid experiments indicate that these limitations are primarily attributable to representation quality rather than the downstream fusion architecture, reinforcing the importance of semantic representation learning.
+The hybrid experiment further demonstrated that these limitations are primarily attributable to representation quality rather than the downstream fusion architecture, reinforcing the importance of semantic representation learning.
 
 ---
 
@@ -123,7 +124,9 @@ Several practical observations improved the efficiency and reproducibility of th
 
 ## Representation Analysis
 
-The hybrid experiments further suggest that combining representations alone is insufficient when one representation source lacks comparable semantic information. Zero-shot cosine similarity achieved more than **44%** validation accuracy without supervised classifier training, indicating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
+The experiments demonstrate that pretrained CLIP representations provide a strong semantic representation space for VideoQA. Parameter-free cosine similarity achieved more than **44%** validation accuracy without supervised classifier training, indicating that CLIP's pretrained alignment between visual and textual representations transfers effectively to multiple-choice VideoQA.
+
+The hybrid experiment further demonstrated that combining pretrained semantic representations with reconstruction-based representations alone is insufficient to improve downstream VideoQA performance. These results reinforce that semantic representation quality, rather than representation quantity, is the dominant factor influencing performance.
 
 ---
 
@@ -140,7 +143,7 @@ The completed experiments support the following scientific conclusions:
 - Qwen2-VL achieved the highest overall VideoQA accuracy.
 - Pretrained CLIP representations substantially outperformed both the evaluated self-supervised autoencoder representations and the hybrid CLIP–autoencoder representations.
 - Bilinear Fusion achieved the highest representation-based VideoQA accuracy.
-- Interaction Fusion surpassed the zero-shot cosine similarity baseline after supervised training.
+- Interaction Fusion surpassed the parameter-free cosine similarity baseline after supervised training.
 - Extending Interaction Fusion training from 20 to 100 epochs reduced training loss but also reduced validation accuracy, demonstrating overfitting rather than undertraining.
 - Increasing the autoencoder development experiment from 100 to 500 videos did not improve downstream VideoQA accuracy, indicating that representation quality rather than training-set size was the dominant limitation.
 - Across all representation-based experiments, semantic representation quality had a greater influence on downstream VideoQA performance than the choice of prediction method, indicating that representation quality is the primary determinant of representation-based VideoQA accuracy.
@@ -156,7 +159,7 @@ The completed experiments provide the following answers to the project's researc
 
 **Can self-supervised autoencoder training learn compact video representations that support competitive downstream VideoQA performance?**
 
-No. The self-supervised autoencoder successfully learned compact latent video representations suitable for downstream evaluation. However, the reconstruction-based representations did not achieve competitive VideoQA performance, indicating that reconstruction alone was insufficient to learn the semantic information required for effective VideoQA.
+No. The self-supervised autoencoder successfully learned compact video representations suitable for downstream evaluation. However, the reconstruction-based representations did not achieve competitive VideoQA performance, indicating that reconstruction alone was insufficient to learn the semantic information required for effective VideoQA.
 
 ---
 
