@@ -27,7 +27,7 @@ The notebook supports five prediction mothods:
 
 Each prediction method produces one score for each of the five candidate answers. The five scores are passed to a shared prediction-generation stage, which selects the answer with the highest score.
 
-Cosine similarity performs direct validation scoring without training a classifier and requires compatible text and video embedding dimensions. The four learned fusion methods train on representation records from the NExT-QA training split and generate validation scores using distinct multimodal fusion strategies.
+Cosine similarity performs direct validation scoring without training a classifier and requires compatible text and video representation dimensions. The four learned fusion methods train on representation records from the NExT-QA training split and generate validation scores using distinct multimodal fusion strategies.
 
 This design enables controlled comparison of both the video representation source and the mathematical strategy used to combine video and question-answer representations.
 
