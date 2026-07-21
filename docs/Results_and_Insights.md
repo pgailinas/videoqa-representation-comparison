@@ -164,7 +164,7 @@ No. The self-supervised autoencoder successfully learned compact latent video re
 
 **How does VideoQA performance compare across reconstruction-based autoencoder representations, pretrained CLIP representations, hybrid CLIP–autoencoder representations, and direct Qwen2-VL foundation-model inference?**
 
-Qwen2-VL achieved the highest accuracy (**79.84%**). Among the representation-based approaches, pretrained CLIP representations achieved the strongest performance (46.42%). The hybrid CLIP–autoencoder representation achieved an intermediate accuracy of 31.29%, substantially outperforming the autoencoder-only representation (21.78%) but remaining well below pretrained CLIP. These results indicate that simply augmenting pretrained semantic representations with reconstruction-based representations does not improve downstream VideoQA performance.
+Qwen2-VL achieved the highest accuracy (**79.84%**). Among the representation-based approaches, pretrained CLIP representations achieved the strongest performance (**46.42%**). The hybrid CLIP–autoencoder representation achieved an intermediate accuracy of **31.29%**, substantially outperforming the autoencoder-only representation (**21.78%**) but remaining well below pretrained CLIP. These results indicate that simply augmenting pretrained semantic representations with reconstruction-based representations does not improve downstream VideoQA performance.
 
 ---
 
@@ -172,7 +172,7 @@ Qwen2-VL achieved the highest accuracy (**79.84%**). Among the representation-ba
 
 **How does the quality of the underlying video representation influence downstream VideoQA performance under a common evaluation framework?**
 
-Representation quality proved to be the dominant factor influencing downstream VideoQA performance. Semantically aligned pretrained CLIP representations consistently outperformed reconstruction-based autoencoder representations, while additional classifier training reduced training loss but not validation accuracy. These results indicate that future improvements are more likely to come from better representation learning and semantic alignment than from increasingly complex prediction methods.
+The hybrid experiment demonstrated that representation quality, rather than representation quantity, was the dominant factor influencing downstream VideoQA performance. Although combining pretrained CLIP and reconstruction-based autoencoder representations increased the amount of available representation information, the resulting hybrid representation remained substantially less effective than pretrained CLIP alone. These results suggest that future improvements require semantically richer learned representations rather than simply combining heterogeneous representation sources.
 
 ---
 
