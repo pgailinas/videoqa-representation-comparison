@@ -15,9 +15,9 @@ has_toc: false
 
 ## Purpose
 
-This notebook performs representation-based VideoQA using precomputed text and video representations. Rather than performing direct multimodal inference, the notebook combines shared `clip_text` question–answer representations with either `clip_video` or `autoencoder_video` representations and applies the configured scoring or learned fusion method to generate multiple-choice predictions for the NExT-QA benchmark.
+This notebook performs representation-based VideoQA using precomputed text and video representations. Rather than performing direct multimodal inference, the notebook combines shared clip_text question–answer representations with clip_video, autoencoder_video, or the optional hybrid_clip_autoencoder representation source and applies the configured scoring or learned fusion method to generate multiple-choice predictions for the NExT-QA benchmark.
 
-The notebook supports five prediction models:
+The notebook supports five prediction mothods:
 
 - Cosine Similarity
 - Fusion MLP Classifier
@@ -25,30 +25,30 @@ The notebook supports five prediction models:
 - Gated Fusion Classifier
 - Bilinear Fusion Classifier
 
-Each model produces one score for each of the five candidate answers. The five scores are passed to a shared prediction-generation stage, which selects the answer with the highest score.
+Each prediction method produces one score for each of the five candidate answers. The five scores are passed to a shared prediction-generation stage, which selects the answer with the highest score.
 
-Cosine similarity performs direct validation scoring without training a classifier and requires compatible text and video embedding dimensions. The four learned fusion models train on representation records from the NExT-QA training split and generate validation scores using distinct multimodal fusion strategies.
+Cosine similarity performs direct validation scoring without training a classifier and requires compatible text and video embedding dimensions. The four learned fusion methods train on representation records from the NExT-QA training split and generate validation scores using distinct multimodal fusion strategies.
 
 This design enables controlled comparison of both the video representation source and the mathematical strategy used to combine video and question-answer representations.
 
 ## Workflow Overview
 
-The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
+The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated experiment artifacts.
 
 <a href="images/workflows/07_Run_Representation_VideoQA_workflow.png" target="_blank">
   <img src="images/workflows/07_Run_Representation_VideoQA_workflow.png" width="800">
 </a>
 
-## Prediction Models
+## Prediction Methods
 
-The notebook supports five prediction models ranging from a parameter-free similarity measure to four learned multimodal fusion classifiers. Each model produces five candidate scores for every question using the same video and question-answer representations, enabling direct comparison of different prediction strategies while holding the underlying representations constant.
+The notebook supports five prediction methods ranging from a parameter-free similarity measure to four learned multimodal fusion classifiers. Each prediction methods produces five candidate scores for every question using the same video and question-answer representations, enabling direct comparison of different prediction strategies while holding the underlying representations constant.
 
 For each question, the notebook compares one video representation with the five candidate question-answer representations.
 
 Let:
 
-- **v** denote the video embedding.
-- **tᵢ** denote the embedding of candidate answer *i*.
+- **v** denote the video representation.
+- **tᵢ** denote the representation of candidate answer *i*.
 - **sᵢ** denote the score assigned to candidate answer *i*.
 
 Each prediction model produces a five-element score vector
@@ -59,7 +59,7 @@ The shared prediction-generation stage selects the candidate with the highest sc
 
 ### Cosine Similarity
 
-Cosine Similarity directly measures the semantic similarity between the video and each candidate question-answer embedding. Because it performs no training, it provides a simple baseline for evaluating the quality of pretrained representations.
+Cosine Similarity directly measures the semantic similarity between the video and each candidate question-answer representation. Because it performs no training, it provides a simple baseline for evaluating the quality of pretrained representations.
 
 **Score**
 
@@ -71,7 +71,7 @@ sᵢ = cosine(v, tᵢ)
 
 ### Fusion MLP Classifier
 
-The video and text embeddings are first projected into a shared fusion space and then concatenated into a single multimodal representation. This approach allows the classifier to learn relationships between the two modalities that are not captured by cosine similarity alone. A multilayer perceptron (MLP) learns to assign a score to each candidate answer.
+The video and text representations are first projected into a shared fusion space and then concatenated into a single multimodal representation. This approach allows the classifier to learn relationships between the two modalities that are not captured by cosine similarity alone. A multilayer perceptron (MLP) learns to assign a score to each candidate answer.
 
 **Fusion**
 
@@ -89,7 +89,7 @@ sᵢ = MLP(xᵢ)
 
 ### Interaction Fusion Classifier
 
-Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text embeddings using their difference and elementwise product. These interaction features encode agreement and disagreement between the projected video and text representations, providing richer information for classification.
+Interaction Fusion extends the basic Fusion MLP by explicitly modeling relationships between the projected video and text representations using their difference and elementwise product. These interaction features encode agreement and disagreement between the projected video and text representations, providing richer information for classification.
 
 **Fusion**
 
@@ -129,7 +129,7 @@ sᵢ = MLP(xᵢ)
 
 ### Bilinear Fusion Classifier
 
-Bilinear Fusion models multiplicative interactions between the projected video and text representations, enabling the classifier to learn richer multimodal relationships than simple concatenation. Bilinear fusion is the most expressive of the five prediction models because it can learn feature-to-feature relationships between the projected video and text representations rather than treating them independently.
+Bilinear Fusion models multiplicative interactions between the projected video and text representations, enabling the classifier to learn richer multimodal relationships than simple concatenation. Bilinear fusion captures rich feature-to-feature interactions between projected video and text representations.
 
 **Fusion**
 
@@ -145,11 +145,11 @@ sᵢ = MLP(xᵢ)
 
 The four learned fusion classifiers are trained using grouped five-choice samples and cross-entropy loss.
 
-### Prediction Model Comparison
+### Prediction Method Comparison
 
-The following table summarizes the characteristics of the five prediction models implemented in this notebook.
+The following table summarizes the characteristics of the five prediction methods implemented in this notebook.
 
-| Prediction Model | Trains a Classifier | Fusion Strategy | Loss Function | Primary Strength |
+| Prediction Method | Trains a Classifier | Fusion Strategy | Loss Function | Primary Strength |
 |------------------|:-------------------:|-----------------|---------------|------------------|
 | **Cosine Similarity** | No | Direct semantic similarity | None | Simple baseline that evaluates the quality of pretrained representations without additional training. |
 | **Fusion MLP** | Yes | Concatenation | Cross-Entropy | Learns nonlinear relationships between projected video and text representations. |
@@ -159,13 +159,13 @@ The following table summarizes the characteristics of the five prediction models
 
 Cosine Similarity is a parameter-free scoring method and therefore does not require training or a loss function. The four learned fusion classifiers are trained as grouped five-choice multiple-choice classifiers using the cross-entropy loss function, which compares the predicted score distribution with the ground-truth answer during optimization.
 
-Together, these prediction models provide a progression from a simple parameter-free similarity measure to increasingly expressive learned multimodal fusion strategies, enabling direct comparison of different approaches while using the same underlying video and text representations.
+Together, these prediction methods provide a progression from a simple parameter-free similarity measure to increasingly expressive learned multimodal fusion strategies, enabling direct comparison of different approaches while using the same underlying video and text representations.
 
 ## Inputs
 
 - NExT-QA training and validation annotations
 - Shared CLIP text representations (`clip_text_representations.csv`)
-- Selected CLIP or autoencoder video representations
+- Selected CLIP, autoencoder, or hybrid video representations
 - Project and prediction-method configuration
 
 ## Processing Summary
@@ -175,13 +175,16 @@ Together, these prediction models provide a progression from a simple parameter-
 3. Load and validate the shared CLIP text representations and selected video representations.
 4. Construct candidate-level training and validation representation datasets.
 5. Build grouped five-choice training and validation samples.
-6. Run the selected prediction model:
-   - direct cosine-similarity scoring, or
-   - one of four learned multimodal fusion classifiers.
-7. Produce a standardized five-score vector for each validation question.
-8. Convert the score vectors into multiple-choice predictions.
-9. Validate the prediction datasets and generate the completed experiment summary.
-10. Save and promote the generated artifacts.
+6. Run the selected prediction method:
+   - Cosine Similarity,
+   - Fusion MLP,
+   - Interaction Fusion,
+   - Gated Fusion, or
+   - Bilinear Fusion.
+7. Build the standardized prediction dataset.
+8. Validate prediction datasets and generated experiment artifacts.
+9. Generate experiment summary reports.
+10. Save the prediction, validation, and summary artifacts.
 
 The supported prediction methods are cosine similarity, Fusion MLP, Interaction Fusion, Gated Fusion, and Bilinear Fusion. Cosine similarity performs validation-only scoring, while the learned fusion methods train on the NExT-QA training split and generate predictions for the validation split.
 
@@ -206,4 +209,5 @@ The notebook generates the following persistent artifacts for downstream evaluat
 - Development mode selects a deterministic subset of unique videos independently from the training and validation splits while preserving all associated QA records.
 - This notebook performs representation-based VideoQA using precomputed representations and does not perform direct Qwen2-VL multimodal inference.
 - Prediction artifacts generated by this notebook are consumed by Notebook 08 using the same experiment-agnostic evaluation workflow as the Qwen2-VL baseline.
+- Hybrid video representations are created by concatenating normalized CLIP and autoencoder video representations when the `hybrid_clip_autoencoder` representation source is selected.
 
