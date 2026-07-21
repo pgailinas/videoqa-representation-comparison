@@ -101,6 +101,19 @@ All representation-based experiments use the same downstream VideoQA framework a
   <img src="images/overview_pipeline.png" width="800">
 </a>
 
+### Experimental Results at a Glance
+
+The completed experiments compared four complementary VideoQA approaches using a common evaluation framework. The highest observed accuracy for each approach is summarized below.
+
+| Approach | Best Accuracy |
+|----------|--------------:|
+| **Qwen2-VL Baseline** | **79.84%** |
+| **Pretrained CLIP Representations** | **46.42%** |
+| **Hybrid CLIP + Autoencoder Representations** | **31.29%** |
+| **Self-Supervised Autoencoder Representations** | **21.78%** |
+
+These results demonstrate that pretrained semantic representations substantially outperform reconstruction-based representations for downstream VideoQA. Although the hybrid representation improved upon the autoencoder-only approach, it did not surpass pretrained CLIP representations, indicating that semantic representation quality—not simply combining multiple representation sources—is the primary determinant of representation-based VideoQA performance.
+
 ### Notebook Workflow
 
 The project is organized as eight modular notebooks supporting the three primary VideoQA pipelines together with additional hybrid representation experiments.
