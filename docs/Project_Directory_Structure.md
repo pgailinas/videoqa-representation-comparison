@@ -87,7 +87,7 @@ videoqa-representation-comparison/
 | `datasets/` | NExT-QA dataset metadata, question annotations, and repository documentation. Large benchmark videos are stored separately in Google Drive. |
 | `docs/` | GitHub Pages documentation, notebook descriptions, project documentation, references, and supporting images. |
 | `notebooks/` | Google Colab notebooks implementing the complete VideoQA experimental workflow. |
-| `src/` | Shared Python modules providing configuration, data management, validation, model definitions, and reusable utilities used throughout the notebooks. |
+| `src/` | Shared Python modules providing centralized project configuration, data management, validation, model definitions, and reusable utilities used throughout the notebooks. |
 | `README.md` | Repository overview, project introduction, and navigation entry point. |
 
 ## Google Drive Project Structure
@@ -196,6 +196,8 @@ Project-wide paths, experiment parameters, artifact locations, and notebook conf
 ```text
 src/videoqa_representation_config.py
 ```
+
+Experiment-specific paths and artifact aliases are initialized by each notebook using configure_experiment(EXPERIMENT_NAME). This design keeps the shared configuration module import-safe while providing a consistent set of experiment-specific paths and artifact names across all notebooks.
 
 This shared configuration module provides a consistent interface across all notebooks by defining:
 
