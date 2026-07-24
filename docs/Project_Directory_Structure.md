@@ -199,10 +199,16 @@ src/videoqa_representation_config.py
 
 This shared configuration module provides a consistent interface across all notebooks by defining:
 
-- Dataset paths
-- Experiment names and output directories
-- Representation source selection (`clip_video` or `autoencoder_video`)
-- Prediction method configuration (cosine similarity or learned fusion classifier)
+- Repository and Google Drive directory paths
+- Dataset configuration and metadata locations
+- Shared CLIP representation locations
+- Representation source configuration
+- Representation-based VideoQA prediction methods
+- Video segmentation parameters
+- Baseline and autoencoder model settings
+- CLIP text and video representation settings
+- Training metadata schema
+- Experiment directory helper functions
 - Standardized artifact filenames
 
 Centralizing these settings ensures that all notebooks use consistent directory structures, artifact names, and experiment configurations throughout the project.
