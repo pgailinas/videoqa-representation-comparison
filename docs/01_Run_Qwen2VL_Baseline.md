@@ -12,7 +12,7 @@ has_toc: false
   </a>
 </p>
 
-# IMPORTANT NOTE ABOUT REPOSITORY USAGE: The notebooks in this repository are publicly available through GitHub and may be viewed without an account. Executing the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible Python notebook environment.
+**IMPORTANT NOTE ABOUT REPOSITORY USAGE:** The notebooks in this repository are publicly available through GitHub and may be viewed without an account. Executing the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible Python notebook environment.
 
 ## Purpose
 
