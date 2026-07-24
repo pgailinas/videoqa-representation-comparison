@@ -13,7 +13,7 @@ The project evaluates three complementary VideoQA pipelines: (1) direct multimod
 
 Both representation-based pipelines use shared CLIP question-answer representations and a common evaluation framework, allowing different video representations and prediction methods to be compared independently.
 
-**IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Executing the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or another compatible notebook environment.**
+**IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
 ## Motivation and Research Problem
 
