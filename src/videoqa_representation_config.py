@@ -2,20 +2,40 @@
 # VideoQA Project Configuration
 # ============================================================
 #
-# This file centralizes dataset paths, experiment paths, shared
-# representation paths, model settings, and notebook artifact aliases.
+# This file centralizes shared configuration for the VideoQA
+# project, including repository paths, dataset locations,
+# representation settings, model parameters, training settings,
+# and experiment helper functions used across all notebooks.
 #
-# Directory philosophy:
+# Table of Contents
+#
+#  1. Project Roots
+#  2. Dataset Configuration
+#  3. Shared CLIP Representation Paths
+#  4. Common Development Settings
+#  5. Representation-Based VideoQA Settings
+#  6. Video Segmentation Settings
+#  7. Baseline VideoQA Model Settings
+#  8. Autoencoder Training Settings
+#  9. CLIP Text Representation Settings
+# 10. CLIP Video Representation Settings
+# 11. Training Metadata Schema
+# 12. Experiment Directory Helpers
+# 13. Experiment-Specific Path Helpers
+#
+# Directory Philosophy
 #
 #   1. GitHub repository paths live under BASE_DIR.
-#   2. Google Drive persistent project storage lives under GOOGLE_DRIVE_ROOT.
-#   3. Shared artifacts live under GOOGLE_DRIVE_ROOT / "representations".
+#   2. Google Drive persistent project storage lives under
+#      GOOGLE_DRIVE_ROOT.
+#   3. Shared artifacts live under
+#      GOOGLE_DRIVE_ROOT / "representations".
 #   4. Experiment-specific artifacts live under
 #      GOOGLE_DRIVE_ROOT / "experiments" / EXPERIMENT_NAME.
 #
-# Shared CLIP text/video representations are intentionally not stored
-# inside individual experiment folders. Prediction and evaluation results
-# are experiment-specific and should be stored inside each experiment.
+# Shared CLIP text and video representations are intentionally
+# stored outside individual experiment folders. Prediction and
+# evaluation artifacts remain experiment-specific.
 #
 # ============================================================
 
@@ -44,7 +64,7 @@ SHARED_REPRESENTATIONS_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "representations"
 
 
 # ============================================================
-# 3. Dataset Configuration
+# 2. Dataset Configuration
 # ============================================================
 
 DATASETS_DIR = BASE_DIR / "datasets"
@@ -72,69 +92,7 @@ NEXTQA_COMBINED_ARCHIVE_PATH = ARCHIVES_DIR / NEXTQA_COMBINED_ARCHIVE_NAME
 
 
 # ============================================================
-# 4. Common Development Settings
-# ============================================================
-
-DEVELOPMENT_SUBSET_SIZE = 500
-EVALUATION_SPLIT = "val"
-RANDOM_SEED = 42
-
-ANSWER_MODE = "multiple_choice"
-CHOICE_COLUMNS = ["a0", "a1", "a2", "a3", "a4"]
-GROUND_TRUTH_ANSWER_COLUMN = "answer"
-QUESTION_COLUMN = "question"
-VIDEO_ID_COLUMN = "video"
-
-
-# ============================================================
-# 5. Experiment Directory Helpers
-# ============================================================
-
-def get_drive_experiment_dir(experiment_name: str) -> Path:
-    """Return the persistent Google Drive directory for an experiment."""
-    return EXPERIMENTS_DRIVE_DIR / experiment_name
-
-
-def get_local_experiment_dir(experiment_name: str) -> Path:
-    """Return the temporary local runtime output directory for an experiment."""
-    return OUTPUTS_DIR / "experiments" / experiment_name
-
-
-def get_experiment_videoqa_dir(experiment_name: str) -> Path:
-    """Return the Google Drive VideoQA output directory for an experiment."""
-    return get_drive_experiment_dir(experiment_name) / "videoqa"
-
-
-def get_experiment_evaluation_dir(experiment_name: str) -> Path:
-    """Return the Google Drive evaluation output directory for an experiment."""
-    return get_drive_experiment_dir(experiment_name) / "evaluation"
-
-
-def get_experiment_manifest_path(experiment_name: str) -> Path:
-    """Return the optional manifest file for an experiment."""
-    return get_drive_experiment_dir(experiment_name) / "experiment.json"
-
-def get_experiment_paths(experiment_name):
-    experiment_drive_dir = get_drive_experiment_dir(experiment_name)
-    experiment_local_dir = get_local_experiment_dir(experiment_name)
-
-    return {
-        "experiment_drive_dir": experiment_drive_dir,
-        "experiment_local_dir": experiment_local_dir,
-        "videoqa_drive_dir": experiment_drive_dir / "videoqa",
-        "evaluation_drive_dir": experiment_drive_dir / "evaluation",
-        "videoqa_local_dir": experiment_local_dir / "videoqa",
-        "evaluation_local_dir": experiment_local_dir / "evaluation",
-        "manifest_path": experiment_drive_dir / "experiment.json",
-    }
-
-VIDEOQA_PREDICTIONS_FILENAME = "predictions.csv"
-VIDEOQA_VALIDATION_FILENAME = "validation.csv"
-VIDEOQA_SUMMARY_FILENAME = "summary.csv"
-
-
-# ============================================================
-# 6. Shared CLIP Representation Paths
+# 3. Shared CLIP Representation Paths
 # ============================================================
 
 CLIP_SHARED_REPRESENTATIONS_DRIVE_DIR = SHARED_REPRESENTATIONS_DRIVE_DIR / "clip"
@@ -185,7 +143,489 @@ CLIP_VIDEO_REPRESENTATIONS_CSV = CLIP_VIDEO_REPRESENTATIONS_LOCAL_CSV
 
 
 # ============================================================
-# 7. Experiment-Specific Path Helpers
+# 4. Common Development Settings
+# ============================================================
+
+DEVELOPMENT_SUBSET_SIZE = 500
+EVALUATION_SPLIT = "val"
+RANDOM_SEED = 42
+
+ANSWER_MODE = "multiple_choice"
+CHOICE_COLUMNS = ["a0", "a1", "a2", "a3", "a4"]
+GROUND_TRUTH_ANSWER_COLUMN = "answer"
+QUESTION_COLUMN = "question"
+VIDEO_ID_COLUMN = "video"
+
+
+# ============================================================
+# 5. Representation-Based VideoQA Settings
+# ============================================================
+
+# -----------------------------------------------------------------
+# Representation Sources
+# -----------------------------------------------------------------
+CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
+AUTOENCODER_VIDEO_REPRESENTATION_SOURCE = "autoencoder_video"
+HYBRID_VIDEO_REPRESENTATION_SOURCE = "hybrid_clip_autoencoder"
+
+SUPPORTED_VIDEO_REPRESENTATION_SOURCES = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE,
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE,
+    HYBRID_VIDEO_REPRESENTATION_SOURCE,
+}
+
+DEFAULT_VIDEO_REPRESENTATION_SOURCE = CLIP_VIDEO_REPRESENTATION_SOURCE
+DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
+
+# -----------------------------------------------------------------
+# Hybrid CLIP + Autoencoder Representation
+# -----------------------------------------------------------------
+
+# Each source is normalized independently before concatenation.
+HYBRID_NORMALIZE_CLIP_VIDEO = True
+HYBRID_NORMALIZE_AUTOENCODER_VIDEO = True
+
+# Concatenate normalized CLIP and autoencoder video embeddings.
+HYBRID_VIDEO_COMBINATION_METHOD = "concatenate"
+
+SUPPORTED_HYBRID_VIDEO_COMBINATION_METHODS = {
+    "concatenate",
+}
+
+# -----------------------------------------------------------------
+# Representation-Based VideoQA Prediction Methods
+# -----------------------------------------------------------------
+#
+# Supported methods:
+#
+#   cosine_similarity
+#       CLIP zero-shot cosine-similarity baseline.
+#
+#   fusion_mlp_classifier
+#       Learned Fusion MLP classifier using projected video and
+#       question-answer embeddings.
+#
+#   interaction_fusion_classifier
+#       Learned fusion classifier using explicit video-text
+#       interaction features.
+#
+#   gated_fusion_classifier
+#       Learned fusion classifier using adaptive modality gates.
+#
+#   bilinear_fusion_classifier
+#       Learned fusion classifier using multiplicative bilinear
+#       video-text interactions.
+#
+# Notebook 07 selects the active method locally.
+REPRESENTATION_VIDEOQA_METHOD = None
+
+SUPPORTED_REPRESENTATION_VIDEOQA_METHODS = {
+    "cosine_similarity",
+    "fusion_mlp_classifier",
+    "interaction_fusion_classifier",
+    "gated_fusion_classifier",
+    "bilinear_fusion_classifier",
+}
+
+REPRESENTATION_VIDEOQA_METHOD_LABELS = {
+    "cosine_similarity": "Cosine Similarity",
+    "fusion_mlp_classifier": "Fusion MLP",
+    "interaction_fusion_classifier": "Interaction Fusion",
+    "gated_fusion_classifier": "Gated Fusion",
+    "bilinear_fusion_classifier": "Bilinear Fusion",
+}
+
+REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS = {
+    "cosine_similarity": "similarity",
+    "fusion_mlp_classifier": "mlp",
+    "interaction_fusion_classifier": "interaction",
+    "gated_fusion_classifier": "gated",
+    "bilinear_fusion_classifier": "bilinear",
+}
+
+VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE: {
+        "cosine_similarity",
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: {
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+    HYBRID_VIDEO_REPRESENTATION_SOURCE: {
+        "fusion_mlp_classifier",
+        "interaction_fusion_classifier",
+        "gated_fusion_classifier",
+        "bilinear_fusion_classifier",
+    },
+}
+
+if (
+    set(VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS)
+    != SUPPORTED_VIDEO_REPRESENTATION_SOURCES
+):
+    raise ValueError(
+        "VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS must "
+        "define exactly the supported video representation sources."
+    )
+
+invalid_source_methods = {
+    source: methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+    for source, methods
+    in VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS.items()
+    if methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+}
+
+if invalid_source_methods:
+    raise ValueError(
+        "Video representation sources contain unsupported "
+        f"prediction methods: {invalid_source_methods}"
+    )
+
+# -----------------------------------------------------------------
+# Prediction Method Configuration Validation
+# -----------------------------------------------------------------
+
+if (
+    set(REPRESENTATION_VIDEOQA_METHOD_LABELS)
+    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+):
+    raise ValueError(
+        "REPRESENTATION_VIDEOQA_METHOD_LABELS must define exactly "
+        "the supported representation-based VideoQA methods."
+    )
+
+if (
+    set(REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS)
+    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
+):
+    raise ValueError(
+        "REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS must define "
+        "exactly the supported representation-based VideoQA methods."
+    )
+
+method_experiment_tokens = list(
+    REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS.values()
+)
+
+if len(method_experiment_tokens) != len(
+    set(method_experiment_tokens)
+):
+    raise ValueError(
+        "Representation-based VideoQA experiment tokens must be unique."
+    )
+
+invalid_method_experiment_tokens = [
+    token
+    for token in method_experiment_tokens
+    if (
+        not token
+        or token != token.lower()
+        or not token.replace("_", "").isalnum()
+    )
+]
+
+if invalid_method_experiment_tokens:
+    raise ValueError(
+        "Invalid representation-based VideoQA experiment tokens: "
+        + ", ".join(invalid_method_experiment_tokens)
+    )
+
+# -----------------------------------------------------------------
+# Shared Representation Dimensions
+# -----------------------------------------------------------------
+CLIP_VIDEO_EMBEDDING_DIM = 512
+CLIP_TEXT_EMBEDDING_DIM = 512
+AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
+
+HYBRID_VIDEO_EMBEDDING_DIM = (
+    CLIP_VIDEO_EMBEDDING_DIM
+    + AUTOENCODER_VIDEO_EMBEDDING_DIM
+)
+
+# Common latent dimension used by the fusion classifier.
+FUSION_EMBEDDING_DIM = 128
+
+VIDEO_REPRESENTATION_SOURCE_DIMENSIONS = {
+    CLIP_VIDEO_REPRESENTATION_SOURCE: CLIP_VIDEO_EMBEDDING_DIM,
+    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: (
+        AUTOENCODER_VIDEO_EMBEDDING_DIM
+    ),
+    HYBRID_VIDEO_REPRESENTATION_SOURCE: (
+        HYBRID_VIDEO_EMBEDDING_DIM
+    ),
+}
+
+# -----------------------------------------------------------------
+# Classifier Architecture
+# -----------------------------------------------------------------
+FUSION_MODEL_TYPE = "mlp"
+
+# -----------------------------------------------------------------
+# Fusion MLP Architecture
+# -----------------------------------------------------------------
+FUSION_NUM_INPUT_EMBEDDINGS = 3
+FUSION_INPUT_DIM = (
+    FUSION_NUM_INPUT_EMBEDDINGS
+    * FUSION_EMBEDDING_DIM
+)
+FUSION_HIDDEN_DIM_1 = 256
+FUSION_HIDDEN_DIM_2 = 64
+FUSION_OUTPUT_DIM = 1
+FUSION_DROPOUT = 0.20
+
+# -----------------------------------------------------------------
+# Training Hyperparameters
+# -----------------------------------------------------------------
+FUSION_BATCH_SIZE = 64
+FUSION_LEARNING_RATE = 1e-3
+FUSION_WEIGHT_DECAY = 1e-5
+FUSION_EPOCHS = 20
+FUSION_RANDOM_SEED = RANDOM_SEED
+
+# -----------------------------------------------------------------
+# Optimization
+# -----------------------------------------------------------------
+FUSION_OPTIMIZER = "adam"
+FUSION_LOSS = "cross_entropy"
+
+# -----------------------------------------------------------------
+# Inference
+# -----------------------------------------------------------------
+FUSION_SCORE_REDUCTION = "argmax"
+
+# -----------------------------------------------------------------
+# Candidate Answers
+# -----------------------------------------------------------------
+NUM_MULTIPLE_CHOICE_ANSWERS = 5
+
+# -----------------------------------------------------------------
+# Projection Layers
+# -----------------------------------------------------------------
+USE_VIDEO_PROJECTION = True
+USE_TEXT_PROJECTION = True
+USE_BATCH_NORMALIZATION = False
+USE_LAYER_NORMALIZATION = True
+
+# -----------------------------------------------------------------
+# Model Checkpoints
+# -----------------------------------------------------------------
+SAVE_FUSION_MODEL = True
+FUSION_MODEL_FILENAME = "fusion_classifier.pt"
+
+# -----------------------------------------------------------------
+# Training Data Source
+# -----------------------------------------------------------------
+FUSION_TRAIN_SPLIT = "train"
+FUSION_EVALUATION_SPLIT = "val"
+
+
+# ============================================================
+# 6. Video Segmentation Settings
+# ============================================================
+
+DEFAULT_SEGMENT_DURATION_SEC = 6.0
+MIN_SEGMENT_DURATION_SEC = 4.0
+MAX_SEGMENT_DURATION_SEC = 8.0
+DEFAULT_SEGMENT_STRATEGY = "fixed_duration"
+
+ENABLE_HIERARCHICAL_SEGMENTS = False
+PARENT_SEGMENT_DURATION_SEC = None
+DEFAULT_SEGMENT_LEVEL = 0
+
+ENABLE_MOTION_SCORING = False
+ENABLE_SCENE_CHANGE_SCORING = False
+DEFAULT_SCENE_CHANGE_SCORE = 0.0
+
+DEFAULT_SEGMENT_STRIDE_SEC = 6.0
+DEFAULT_MIN_SEGMENT_DURATION_SEC = 1.0
+
+
+# ============================================================
+# 7. Baseline VideoQA Model Settings
+# ============================================================
+
+BASELINE_MODEL_NAME = "Qwen/Qwen2-VL-7B-Instruct"
+MAX_SEGMENTS_PER_VIDEO = 5
+MAX_FRAMES_PER_QUESTION = 8
+MAX_NEW_TOKENS = 64
+TEMPERATURE = 0.0
+DO_SAMPLE = False
+
+
+# ============================================================
+# 8. Autoencoder Training Settings
+# ============================================================
+
+AUTOENCODER_FRAME_SIZE = 128
+AUTOENCODER_FRAMES_PER_SEGMENT = 8
+AUTOENCODER_BATCH_SIZE = 8
+AUTOENCODER_EPOCHS = 3
+AUTOENCODER_LATENT_DIM = 256
+AUTOENCODER_LEARNING_RATE = 1e-3
+AUTOENCODER_RECONSTRUCTION_SAMPLE_COUNT = 10
+
+
+# ============================================================
+# 9. CLIP Text Representation Settings
+# ============================================================
+
+CLIP_TEXT_MODEL_NAME = "openai/clip-vit-base-patch32"
+CLIP_TEXT_BATCH_SIZE = 32
+CLIP_TEXT_REPRESENTATION_SCOPE = "questions_and_answer_choices"
+
+TEXT_INPUT_TYPES = [
+    "question_answer",
+]
+
+
+# ============================================================
+# 10. CLIP Video Representation Settings
+# ============================================================
+
+CLIP_VIDEO_MODEL_NAME = "openai/clip-vit-base-patch32"
+CLIP_VIDEO_REPRESENTATION_SCOPE = "referenced_videos"
+
+CLIP_VIDEO_FRAMES_PER_VIDEO = 8
+CLIP_VIDEO_FRAME_BATCH_SIZE = 16
+CLIP_VIDEO_POOLING_METHOD = "mean"
+CLIP_VIDEO_FILE_EXTENSIONS = [".mp4", ".avi", ".mov", ".mkv"]
+
+
+# ============================================================
+# 11. Training Metadata Schema
+# ============================================================
+
+TRAINING_SCHEMA = {
+    "segment_id": "str",
+    "video_id": "str",
+    "split": "str",
+    "video_path": "str",
+    "segment_index": "int",
+
+    "segment_level": "int",
+    "parent_segment_id": "str",
+    "segment_strategy": "str",
+
+    "start_time_sec": "float",
+    "midpoint_time_sec": "float",
+    "end_time_sec": "float",
+
+    "segment_duration_sec": "float",
+
+    "start_frame_idx": "int",
+    "midpoint_frame_idx": "int",
+    "end_frame_idx": "int",
+
+    "representative_frame_index": "int",
+
+    "fps": "float",
+    "frame_count": "int",
+    "width": "int",
+    "height": "int",
+
+    "motion_score": "float",
+    "scene_change_score": "float",
+}
+
+TRAINING_COLUMNS = list(TRAINING_SCHEMA.keys())
+
+REQUIRED_TRAINING_COLUMNS = [
+    "segment_id",
+    "video_id",
+    "split",
+    "video_path",
+
+    "start_time_sec",
+    "midpoint_time_sec",
+    "end_time_sec",
+
+    "segment_duration_sec",
+
+    "start_frame_idx",
+    "midpoint_frame_idx",
+    "end_frame_idx",
+
+    "representative_frame_index",
+]
+
+UNIQUE_TRAINING_COLUMNS = [
+    "segment_id",
+]
+
+RETRIEVAL_REFERENCE_COLUMNS = [
+    "segment_id",
+    "video_id",
+    "video_path",
+
+    "start_time_sec",
+    "midpoint_time_sec",
+    "end_time_sec",
+
+    "start_frame_idx",
+    "midpoint_frame_idx",
+    "end_frame_idx",
+
+    "representative_frame_index",
+
+    "motion_score",
+]
+
+
+# ============================================================
+# 12. Experiment Directory Helpers
+# ============================================================
+
+def get_drive_experiment_dir(experiment_name: str) -> Path:
+    """Return the persistent Google Drive directory for an experiment."""
+    return EXPERIMENTS_DRIVE_DIR / experiment_name
+
+
+def get_local_experiment_dir(experiment_name: str) -> Path:
+    """Return the temporary local runtime output directory for an experiment."""
+    return OUTPUTS_DIR / "experiments" / experiment_name
+
+
+def get_experiment_videoqa_dir(experiment_name: str) -> Path:
+    """Return the Google Drive VideoQA output directory for an experiment."""
+    return get_drive_experiment_dir(experiment_name) / "videoqa"
+
+
+def get_experiment_evaluation_dir(experiment_name: str) -> Path:
+    """Return the Google Drive evaluation output directory for an experiment."""
+    return get_drive_experiment_dir(experiment_name) / "evaluation"
+
+
+def get_experiment_manifest_path(experiment_name: str) -> Path:
+    """Return the optional manifest file for an experiment."""
+    return get_drive_experiment_dir(experiment_name) / "experiment.json"
+
+def get_experiment_paths(experiment_name):
+    experiment_drive_dir = get_drive_experiment_dir(experiment_name)
+    experiment_local_dir = get_local_experiment_dir(experiment_name)
+
+    return {
+        "experiment_drive_dir": experiment_drive_dir,
+        "experiment_local_dir": experiment_local_dir,
+        "videoqa_drive_dir": experiment_drive_dir / "videoqa",
+        "evaluation_drive_dir": experiment_drive_dir / "evaluation",
+        "videoqa_local_dir": experiment_local_dir / "videoqa",
+        "evaluation_local_dir": experiment_local_dir / "evaluation",
+        "manifest_path": experiment_drive_dir / "experiment.json",
+    }
+
+VIDEOQA_PREDICTIONS_FILENAME = "predictions.csv"
+VIDEOQA_VALIDATION_FILENAME = "validation.csv"
+VIDEOQA_SUMMARY_FILENAME = "summary.csv"
+
+
+# ============================================================
+# 13. Experiment-Specific Path Helpers
 # ============================================================
 #
 # EXPERIMENT_NAME is intentionally not defined in this file.
@@ -750,421 +1190,3 @@ AUTOENCODER_REPRESENTATIONS_CSV = (
 )
 
 
-# ============================================================
-# 10. Representation-Based VideoQA Settings
-# ============================================================
-
-# -----------------------------------------------------------------
-# Representation Sources
-# -----------------------------------------------------------------
-CLIP_VIDEO_REPRESENTATION_SOURCE = "clip_video"
-AUTOENCODER_VIDEO_REPRESENTATION_SOURCE = "autoencoder_video"
-HYBRID_VIDEO_REPRESENTATION_SOURCE = "hybrid_clip_autoencoder"
-
-SUPPORTED_VIDEO_REPRESENTATION_SOURCES = {
-    CLIP_VIDEO_REPRESENTATION_SOURCE,
-    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE,
-    HYBRID_VIDEO_REPRESENTATION_SOURCE,
-}
-
-DEFAULT_VIDEO_REPRESENTATION_SOURCE = CLIP_VIDEO_REPRESENTATION_SOURCE
-DEFAULT_TEXT_REPRESENTATION_SOURCE = "clip_text"
-
-# -----------------------------------------------------------------
-# Hybrid CLIP + Autoencoder Representation
-# -----------------------------------------------------------------
-
-# Each source is normalized independently before concatenation.
-HYBRID_NORMALIZE_CLIP_VIDEO = True
-HYBRID_NORMALIZE_AUTOENCODER_VIDEO = True
-
-# Concatenate normalized CLIP and autoencoder video embeddings.
-HYBRID_VIDEO_COMBINATION_METHOD = "concatenate"
-
-SUPPORTED_HYBRID_VIDEO_COMBINATION_METHODS = {
-    "concatenate",
-}
-
-# -----------------------------------------------------------------
-# Representation-Based VideoQA Prediction Methods
-# -----------------------------------------------------------------
-#
-# Supported methods:
-#
-#   cosine_similarity
-#       CLIP zero-shot cosine-similarity baseline.
-#
-#   fusion_mlp_classifier
-#       Learned Fusion MLP classifier using projected video and
-#       question-answer embeddings.
-#
-#   interaction_fusion_classifier
-#       Learned fusion classifier using explicit video-text
-#       interaction features.
-#
-#   gated_fusion_classifier
-#       Learned fusion classifier using adaptive modality gates.
-#
-#   bilinear_fusion_classifier
-#       Learned fusion classifier using multiplicative bilinear
-#       video-text interactions.
-#
-# Notebook 07 selects the active method locally.
-REPRESENTATION_VIDEOQA_METHOD = None
-
-SUPPORTED_REPRESENTATION_VIDEOQA_METHODS = {
-    "cosine_similarity",
-    "fusion_mlp_classifier",
-    "interaction_fusion_classifier",
-    "gated_fusion_classifier",
-    "bilinear_fusion_classifier",
-}
-
-REPRESENTATION_VIDEOQA_METHOD_LABELS = {
-    "cosine_similarity": "Cosine Similarity",
-    "fusion_mlp_classifier": "Fusion MLP",
-    "interaction_fusion_classifier": "Interaction Fusion",
-    "gated_fusion_classifier": "Gated Fusion",
-    "bilinear_fusion_classifier": "Bilinear Fusion",
-}
-
-REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS = {
-    "cosine_similarity": "similarity",
-    "fusion_mlp_classifier": "mlp",
-    "interaction_fusion_classifier": "interaction",
-    "gated_fusion_classifier": "gated",
-    "bilinear_fusion_classifier": "bilinear",
-}
-
-VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS = {
-    CLIP_VIDEO_REPRESENTATION_SOURCE: {
-        "cosine_similarity",
-        "fusion_mlp_classifier",
-        "interaction_fusion_classifier",
-        "gated_fusion_classifier",
-        "bilinear_fusion_classifier",
-    },
-    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: {
-        "fusion_mlp_classifier",
-        "interaction_fusion_classifier",
-        "gated_fusion_classifier",
-        "bilinear_fusion_classifier",
-    },
-    HYBRID_VIDEO_REPRESENTATION_SOURCE: {
-        "fusion_mlp_classifier",
-        "interaction_fusion_classifier",
-        "gated_fusion_classifier",
-        "bilinear_fusion_classifier",
-    },
-}
-
-if (
-    set(VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS)
-    != SUPPORTED_VIDEO_REPRESENTATION_SOURCES
-):
-    raise ValueError(
-        "VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS must "
-        "define exactly the supported video representation sources."
-    )
-
-invalid_source_methods = {
-    source: methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
-    for source, methods
-    in VIDEO_REPRESENTATION_SOURCE_SUPPORTED_METHODS.items()
-    if methods - SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
-}
-
-if invalid_source_methods:
-    raise ValueError(
-        "Video representation sources contain unsupported "
-        f"prediction methods: {invalid_source_methods}"
-    )
-
-# -----------------------------------------------------------------
-# Prediction Method Configuration Validation
-# -----------------------------------------------------------------
-
-if (
-    set(REPRESENTATION_VIDEOQA_METHOD_LABELS)
-    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
-):
-    raise ValueError(
-        "REPRESENTATION_VIDEOQA_METHOD_LABELS must define exactly "
-        "the supported representation-based VideoQA methods."
-    )
-
-if (
-    set(REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS)
-    != SUPPORTED_REPRESENTATION_VIDEOQA_METHODS
-):
-    raise ValueError(
-        "REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS must define "
-        "exactly the supported representation-based VideoQA methods."
-    )
-
-method_experiment_tokens = list(
-    REPRESENTATION_VIDEOQA_METHOD_EXPERIMENT_TOKENS.values()
-)
-
-if len(method_experiment_tokens) != len(
-    set(method_experiment_tokens)
-):
-    raise ValueError(
-        "Representation-based VideoQA experiment tokens must be unique."
-    )
-
-invalid_method_experiment_tokens = [
-    token
-    for token in method_experiment_tokens
-    if (
-        not token
-        or token != token.lower()
-        or not token.replace("_", "").isalnum()
-    )
-]
-
-if invalid_method_experiment_tokens:
-    raise ValueError(
-        "Invalid representation-based VideoQA experiment tokens: "
-        + ", ".join(invalid_method_experiment_tokens)
-    )
-
-# -----------------------------------------------------------------
-# Shared Representation Dimensions
-# -----------------------------------------------------------------
-CLIP_VIDEO_EMBEDDING_DIM = 512
-CLIP_TEXT_EMBEDDING_DIM = 512
-AUTOENCODER_VIDEO_EMBEDDING_DIM = 256
-
-HYBRID_VIDEO_EMBEDDING_DIM = (
-    CLIP_VIDEO_EMBEDDING_DIM
-    + AUTOENCODER_VIDEO_EMBEDDING_DIM
-)
-
-# Common latent dimension used by the fusion classifier.
-FUSION_EMBEDDING_DIM = 128
-
-VIDEO_REPRESENTATION_SOURCE_DIMENSIONS = {
-    CLIP_VIDEO_REPRESENTATION_SOURCE: CLIP_VIDEO_EMBEDDING_DIM,
-    AUTOENCODER_VIDEO_REPRESENTATION_SOURCE: (
-        AUTOENCODER_VIDEO_EMBEDDING_DIM
-    ),
-    HYBRID_VIDEO_REPRESENTATION_SOURCE: (
-        HYBRID_VIDEO_EMBEDDING_DIM
-    ),
-}
-
-
-# -----------------------------------------------------------------
-# Classifier Architecture
-# -----------------------------------------------------------------
-FUSION_MODEL_TYPE = "mlp"
-
-# -----------------------------------------------------------------
-# Fusion MLP Architecture
-# -----------------------------------------------------------------
-FUSION_NUM_INPUT_EMBEDDINGS = 3
-FUSION_INPUT_DIM = (
-    FUSION_NUM_INPUT_EMBEDDINGS
-    * FUSION_EMBEDDING_DIM
-)
-FUSION_HIDDEN_DIM_1 = 256
-FUSION_HIDDEN_DIM_2 = 64
-FUSION_OUTPUT_DIM = 1
-FUSION_DROPOUT = 0.20
-
-# -----------------------------------------------------------------
-# Training Hyperparameters
-# -----------------------------------------------------------------
-FUSION_BATCH_SIZE = 64
-FUSION_LEARNING_RATE = 1e-3
-FUSION_WEIGHT_DECAY = 1e-5
-FUSION_EPOCHS = 20
-FUSION_RANDOM_SEED = RANDOM_SEED
-
-# -----------------------------------------------------------------
-# Optimization
-# -----------------------------------------------------------------
-FUSION_OPTIMIZER = "adam"
-FUSION_LOSS = "cross_entropy"
-
-# -----------------------------------------------------------------
-# Inference
-# -----------------------------------------------------------------
-FUSION_SCORE_REDUCTION = "argmax"
-
-# -----------------------------------------------------------------
-# Candidate Answers
-# -----------------------------------------------------------------
-NUM_MULTIPLE_CHOICE_ANSWERS = 5
-
-# -----------------------------------------------------------------
-# Projection Layers
-# -----------------------------------------------------------------
-USE_VIDEO_PROJECTION = True
-USE_TEXT_PROJECTION = True
-USE_BATCH_NORMALIZATION = False
-USE_LAYER_NORMALIZATION = True
-
-# -----------------------------------------------------------------
-# Model Checkpoints
-# -----------------------------------------------------------------
-SAVE_FUSION_MODEL = True
-FUSION_MODEL_FILENAME = "fusion_classifier.pt"
-
-# -----------------------------------------------------------------
-# Training Data Source
-# -----------------------------------------------------------------
-FUSION_TRAIN_SPLIT = "train"
-FUSION_EVALUATION_SPLIT = "val"
-
-# ============================================================
-# 12. Video Segmentation Settings
-# ============================================================
-
-DEFAULT_SEGMENT_DURATION_SEC = 6.0
-MIN_SEGMENT_DURATION_SEC = 4.0
-MAX_SEGMENT_DURATION_SEC = 8.0
-DEFAULT_SEGMENT_STRATEGY = "fixed_duration"
-
-ENABLE_HIERARCHICAL_SEGMENTS = False
-PARENT_SEGMENT_DURATION_SEC = None
-DEFAULT_SEGMENT_LEVEL = 0
-
-ENABLE_MOTION_SCORING = False
-ENABLE_SCENE_CHANGE_SCORING = False
-DEFAULT_SCENE_CHANGE_SCORE = 0.0
-
-DEFAULT_SEGMENT_STRIDE_SEC = 6.0
-DEFAULT_MIN_SEGMENT_DURATION_SEC = 1.0
-
-
-# ============================================================
-# 13. Baseline VideoQA Model Settings
-# ============================================================
-
-BASELINE_MODEL_NAME = "Qwen/Qwen2-VL-7B-Instruct"
-MAX_SEGMENTS_PER_VIDEO = 5
-MAX_FRAMES_PER_QUESTION = 8
-MAX_NEW_TOKENS = 64
-TEMPERATURE = 0.0
-DO_SAMPLE = False
-
-
-# ============================================================
-# 14. Autoencoder Training Settings
-# ============================================================
-
-AUTOENCODER_FRAME_SIZE = 128
-AUTOENCODER_FRAMES_PER_SEGMENT = 8
-AUTOENCODER_BATCH_SIZE = 8
-AUTOENCODER_EPOCHS = 3
-AUTOENCODER_LATENT_DIM = 256
-AUTOENCODER_LEARNING_RATE = 1e-3
-AUTOENCODER_RECONSTRUCTION_SAMPLE_COUNT = 10
-
-
-# ============================================================
-# 15. CLIP Text Representation Settings
-# ============================================================
-
-CLIP_TEXT_MODEL_NAME = "openai/clip-vit-base-patch32"
-CLIP_TEXT_BATCH_SIZE = 32
-CLIP_TEXT_REPRESENTATION_SCOPE = "questions_and_answer_choices"
-
-TEXT_INPUT_TYPES = [
-    "question_answer",
-]
-
-
-# ============================================================
-# 16. CLIP Video Representation Settings
-# ============================================================
-
-CLIP_VIDEO_MODEL_NAME = "openai/clip-vit-base-patch32"
-CLIP_VIDEO_REPRESENTATION_SCOPE = "referenced_videos"
-
-CLIP_VIDEO_FRAMES_PER_VIDEO = 8
-CLIP_VIDEO_FRAME_BATCH_SIZE = 16
-CLIP_VIDEO_POOLING_METHOD = "mean"
-CLIP_VIDEO_FILE_EXTENSIONS = [".mp4", ".avi", ".mov", ".mkv"]
-
-
-# ============================================================
-# 17. Training Metadata Schema
-# ============================================================
-
-TRAINING_SCHEMA = {
-    "segment_id": "str",
-    "video_id": "str",
-    "split": "str",
-    "video_path": "str",
-    "segment_index": "int",
-
-    "segment_level": "int",
-    "parent_segment_id": "str",
-    "segment_strategy": "str",
-
-    "start_time_sec": "float",
-    "midpoint_time_sec": "float",
-    "end_time_sec": "float",
-
-    "segment_duration_sec": "float",
-
-    "start_frame_idx": "int",
-    "midpoint_frame_idx": "int",
-    "end_frame_idx": "int",
-
-    "representative_frame_index": "int",
-
-    "fps": "float",
-    "frame_count": "int",
-    "width": "int",
-    "height": "int",
-
-    "motion_score": "float",
-    "scene_change_score": "float",
-}
-
-TRAINING_COLUMNS = list(TRAINING_SCHEMA.keys())
-
-REQUIRED_TRAINING_COLUMNS = [
-    "segment_id",
-    "video_id",
-    "split",
-    "video_path",
-
-    "start_time_sec",
-    "midpoint_time_sec",
-    "end_time_sec",
-
-    "segment_duration_sec",
-
-    "start_frame_idx",
-    "midpoint_frame_idx",
-    "end_frame_idx",
-
-    "representative_frame_index",
-]
-
-UNIQUE_TRAINING_COLUMNS = [
-    "segment_id",
-]
-
-RETRIEVAL_REFERENCE_COLUMNS = [
-    "segment_id",
-    "video_id",
-    "video_path",
-
-    "start_time_sec",
-    "midpoint_time_sec",
-    "end_time_sec",
-
-    "start_frame_idx",
-    "midpoint_frame_idx",
-    "end_frame_idx",
-
-    "representative_frame_index",
-
-    "motion_score",
-]
