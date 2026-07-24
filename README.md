@@ -15,6 +15,8 @@ The representation-based framework also supports hybrid CLIP–autoencoder video
 
 Both representation-based approaches use shared CLIP question-answer representations, the same configurable downstream prediction framework, and identical evaluation methodology. This design enables controlled comparison of different video representation sources while evaluating multiple prediction methods under a common experimental framework.
 
+## IMPORTANT NOTE ABOUT REPOSITORY USAGE: The notebooks in this repository are publicly available through GitHub and may be viewed without an account. Executing the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible Python notebook environment.
+
 ## Research Objective
 
 The objective of this project is to compare pretrained, hybrid, and self-supervised video representations for downstream multiple-choice VideoQA. By evaluating all representation sources using shared CLIP question-answer representations, common prediction methods, and a standardized evaluation framework, the project isolates the influence of video representation quality on downstream VideoQA performance.
