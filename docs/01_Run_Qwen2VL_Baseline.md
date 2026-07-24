@@ -18,8 +18,6 @@ has_toc: false
 >
 > Executing the notebook in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible notebook environment.
 
-**IMPORTANT NOTE: This notebook is part of a complete VideoQA tutorial available through the project's public GitHub repository. The notebook may be viewed directly on GitHub without an account. Executing it in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible notebook environment.**
-
 ## Purpose
 
 This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark using the Qwen2-VL-7B multimodal foundation model. It generates standardized prediction, validation, and summary artifacts that establish the baseline reference used to compare the project's representation-based VideoQA pipelines.
