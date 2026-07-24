@@ -13,6 +13,8 @@ The project evaluates three complementary VideoQA pipelines: (1) direct multimod
 
 Both representation-based pipelines use shared CLIP question-answer representations and a common evaluation framework, allowing different video representations and prediction methods to be compared independently.
 
+**IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Executing the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or another compatible notebook environment.**
+
 ## Motivation and Research Problem
 
 VideoQA requires models to understand both the visual content of individual frames and the temporal relationships that occur throughout a video. Unlike static-image recognition, VideoQA demands reasoning about actions, events, object interactions, and causal relationships, making it a challenging benchmark for multimodal machine learning systems.
