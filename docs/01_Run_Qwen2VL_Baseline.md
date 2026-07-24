@@ -12,7 +12,7 @@ has_toc: false
   </a>
 </p>
 
-**Repository Usage: This notebook is part of a complete VideoQA tutorial available through the project's public GitHub repository. The notebook may be viewed directly on GitHub without an account. Executing it in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible notebook environment.**
+**IMPORTANT: This notebook is part of a complete VideoQA tutorial available through the project's public GitHub repository. The notebook may be viewed directly on GitHub without an account. Executing it in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded and the notebooks run locally using Jupyter or another compatible notebook environment.**
 
 ## Purpose
 
