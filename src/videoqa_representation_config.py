@@ -146,6 +146,7 @@ CLIP_VIDEO_REPRESENTATIONS_CSV = CLIP_VIDEO_REPRESENTATIONS_LOCAL_CSV
 # 4. Common Development Settings
 # ============================================================
 
+DEVELOPMENT_SUBSET_SIZE = 500
 EVALUATION_SPLIT = "val"
 RANDOM_SEED = 42
 
@@ -215,8 +216,6 @@ SUPPORTED_HYBRID_VIDEO_COMBINATION_METHODS = {
 #       Learned fusion classifier using multiplicative bilinear
 #       video-text interactions.
 #
-# Notebook 07 selects the active method locally.
-REPRESENTATION_VIDEOQA_METHOD = None
 
 SUPPORTED_REPRESENTATION_VIDEOQA_METHODS = {
     "cosine_similarity",
