@@ -4,72 +4,131 @@ import torch.nn as nn
 
 class ConvAutoencoder(nn.Module):
     """
-    EXACT MATCH to Notebook 03 trained model.
+    Convolutional autoencoder matching the Notebook 03 trained model.
 
     Structure:
-        encoder (Sequential)
+        named encoder layers
         to_latent (Linear)
         from_latent (Linear)
-        decoder (Sequential)
+        named decoder layers
     """
 
     def __init__(self):
         super().__init__()
 
-        # --------------------------------------------------------
-        # Encoder (Conv stack)
-        # --------------------------------------------------------
-        self.encoder = nn.Sequential(
-            nn.Conv2d(3, 32, 4, stride=2, padding=1),  # encoder.0
-            nn.ReLU(),
+        self.latent_dim = 256
+        self.encoded_feature_shape = (128, 16, 16)
+        self.encoded_feature_size = 128 * 16 * 16
 
-            nn.Conv2d(32, 64, 4, stride=2, padding=1),  # encoder.2
-            nn.ReLU(),
+        # --------------------------------------------------------
+        # Encoder
+        # --------------------------------------------------------
+        self.encoder_conv1 = nn.Conv2d(
+            in_channels=3,
+            out_channels=32,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.encoder_relu1 = nn.ReLU()
 
-            nn.Conv2d(64, 128, 4, stride=2, padding=1), # encoder.4
-            nn.ReLU(),
+        self.encoder_conv2 = nn.Conv2d(
+            in_channels=32,
+            out_channels=64,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.encoder_relu2 = nn.ReLU()
+
+        self.encoder_conv3 = nn.Conv2d(
+            in_channels=64,
+            out_channels=128,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.encoder_relu3 = nn.ReLU()
+
+        self.encoder_flatten = nn.Flatten()
+
+        self.to_latent = nn.Linear(
+            in_features=self.encoded_feature_size,
+            out_features=self.latent_dim,
         )
 
         # --------------------------------------------------------
-        # Bottleneck (MLP)
+        # Decoder
         # --------------------------------------------------------
-        self.to_latent = nn.Linear(128 * 16 * 16, 256)
-        self.from_latent = nn.Linear(256, 128 * 16 * 16)
-
-        # --------------------------------------------------------
-        # Decoder (ConvTranspose stack)
-        # --------------------------------------------------------
-        self.decoder = nn.Sequential(
-            nn.ReLU(),
-
-            nn.ConvTranspose2d(128, 64, 4, stride=2, padding=1),  # decoder.1
-            nn.ReLU(),
-
-            nn.ConvTranspose2d(64, 32, 4, stride=2, padding=1),   # decoder.3
-            nn.ReLU(),
-
-            nn.ConvTranspose2d(32, 3, 4, stride=2, padding=1),    # decoder.5
-            nn.Sigmoid(),
+        self.from_latent = nn.Linear(
+            in_features=self.latent_dim,
+            out_features=self.encoded_feature_size,
         )
 
-    def forward(self, x):
-        x = self.encoder(x)
+        self.decoder_unflatten = nn.Unflatten(
+            dim=1,
+            unflattened_size=self.encoded_feature_shape,
+        )
 
-        b = x.shape[0]
-        x = x.view(b, -1)
+        self.decoder_conv1 = nn.ConvTranspose2d(
+            in_channels=128,
+            out_channels=64,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.decoder_relu1 = nn.ReLU()
 
-        z = self.to_latent(x)
-        x = self.from_latent(z)
+        self.decoder_conv2 = nn.ConvTranspose2d(
+            in_channels=64,
+            out_channels=32,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.decoder_relu2 = nn.ReLU()
 
-        x = x.view(b, 128, 16, 16)
-
-        x = self.decoder(x)
-
-        return x, z
+        self.decoder_conv3 = nn.ConvTranspose2d(
+            in_channels=32,
+            out_channels=3,
+            kernel_size=4,
+            stride=2,
+            padding=1,
+        )
+        self.decoder_output = nn.Sigmoid()
 
     def encode(self, x):
-        x = self.encoder(x)
-        b = x.shape[0]
-        x = x.view(b, -1)
-        return self.to_latent(x)
+        x = self.encoder_conv1(x)
+        x = self.encoder_relu1(x)
 
+        x = self.encoder_conv2(x)
+        x = self.encoder_relu2(x)
+
+        x = self.encoder_conv3(x)
+        x = self.encoder_relu3(x)
+
+        x = self.encoder_flatten(x)
+        latent = self.to_latent(x)
+
+        return latent
+
+    def decode(self, latent):
+        x = self.from_latent(latent)
+        x = self.decoder_unflatten(x)
+
+        x = self.decoder_conv1(x)
+        x = self.decoder_relu1(x)
+
+        x = self.decoder_conv2(x)
+        x = self.decoder_relu2(x)
+
+        x = self.decoder_conv3(x)
+        reconstruction = self.decoder_output(x)
+
+        return reconstruction
+
+    def forward(self, x):
+        latent = self.encode(x)
+        reconstruction = self.decode(latent)
+
+        return reconstruction, latent
