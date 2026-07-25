@@ -146,7 +146,6 @@ CLIP_VIDEO_REPRESENTATIONS_CSV = CLIP_VIDEO_REPRESENTATIONS_LOCAL_CSV
 # 4. Common Development Settings
 # ============================================================
 
-DEVELOPMENT_SUBSET_SIZE = 500
 EVALUATION_SPLIT = "val"
 RANDOM_SEED = 42
 
