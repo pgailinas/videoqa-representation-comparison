@@ -17,6 +17,8 @@ Both representation-based approaches use shared CLIP question-answer representat
 
 **IMPORTANT: This repository contains a complete VideoQA tutorial and research framework that is publicly available through GitHub. The notebooks and documentation may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
+**NOTE:** Google Drive is mounted with read-only access by default when running the notebooks in Google Colab. Steps that would normally save artifacts instead report the intended output location. Write support may be enabled by modifying the notebook configuration.
+
 ## Research Objective
 
 The objective of this project is to compare pretrained, hybrid, and self-supervised video representations for downstream multiple-choice VideoQA. By evaluating all representation sources using shared CLIP question-answer representations, common prediction methods, and a standardized evaluation framework, the project isolates the influence of video representation quality on downstream VideoQA performance.
