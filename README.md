@@ -19,6 +19,14 @@ Both representation-based approaches use shared CLIP question-answer representat
 
 **NOTE:** Google Drive is mounted with read-only access by default when running the notebooks in Google Colab. Steps that would normally save artifacts instead report the intended output location. Write support may be enabled by modifying the notebook configuration.
 
+## Research Paper
+
+The complete IEEE-format research paper describing the motivation, methodology, experiments, results, and conclusions is available here:
+
+**📄 Investigating Self-Supervised Representation Learning for Video Question Answering (PDF)**
+
+[/paper/ECE-551_VideoQA_Representation_Comparison.pdf](paper/ECE-551_VideoQA_Representation_Comparison.pdf)
+
 ## Research Objective
 
 The objective of this project is to compare pretrained, hybrid, and self-supervised video representations for downstream multiple-choice VideoQA. By evaluating all representation sources using shared CLIP question-answer representations, common prediction methods, and a standardized evaluation framework, the project isolates the influence of video representation quality on downstream VideoQA performance.
