@@ -46,21 +46,32 @@ from pathlib import Path
 # 1. Project Roots
 # ============================================================
 
-# GitHub repository cloned into the Colab runtime.
-BASE_DIR = Path("/content/videoqa-representation-comparison")
+# Local project extracted into the Colab runtime.
+VIDEOQA_PROJECT_DIR = Path("/content/VideoQA_Project")
+
+# GitHub repository contained within the extracted project.
+BASE_DIR = (
+    VIDEOQA_PROJECT_DIR
+    / "videoqa-representation-comparison"
+)
 
 # Local notebook output root inside the Colab runtime.
-# These artifacts are temporary unless promoted to Google Drive.
 OUTPUTS_DIR = BASE_DIR / "outputs"
 
 # Persistent Google Drive project root.
-GOOGLE_DRIVE_ROOT = Path("/content/drive/MyDrive/VideoQA_Project")
+GOOGLE_DRIVE_ROOT = Path(
+    "/content/drive/MyDrive/VideoQA_Project"
+)
 
 # Persistent Google Drive experiment root.
-EXPERIMENTS_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "experiments"
+EXPERIMENTS_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "experiments"
+)
 
 # Persistent Google Drive shared representation root.
-SHARED_REPRESENTATIONS_DRIVE_DIR = GOOGLE_DRIVE_ROOT / "representations"
+SHARED_REPRESENTATIONS_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "representations"
+)
 
 
 # ============================================================
