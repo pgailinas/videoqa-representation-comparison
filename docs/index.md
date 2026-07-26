@@ -15,6 +15,20 @@ Both representation-based pipelines use shared CLIP question-answer representati
 
 **IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
+## Research Paper
+
+A complete IEEE-format paper describing this project is available.
+
+📄 **Investigating Self-Supervised Representation Learning for Video Question Answering**
+
+- Complete methodology
+- Experimental design
+- Results
+- Discussion
+- Conclusions
+
+[View the paper](paper/ECE-551_VideoQA_Representation_Comparison.pdf)
+
 ## Motivation and Research Problem
 
 VideoQA requires models to understand both the visual content of individual frames and the temporal relationships that occur throughout a video. Unlike static-image recognition, VideoQA demands reasoning about actions, events, object interactions, and causal relationships, making it a challenging benchmark for multimodal machine learning systems.
