@@ -25,12 +25,12 @@
 #
 # Directory Philosophy
 #
-#   1. GitHub repository paths live under BASE_DIR.
-#   2. Google Drive persistent project storage lives under
+#   1. Local project files live under VIDEOQA_PROJECT_DIR.
+#   2. GitHub repository paths live under BASE_DIR.
+#   3. Google Drive persistent project storage lives under
 #      GOOGLE_DRIVE_ROOT.
-#   3. Shared artifacts live under
-#      GOOGLE_DRIVE_ROOT / "representations".
-#   4. Experiment-specific artifacts live under
+#   4. Shared artifacts live under GOOGLE_DRIVE_ROOT / "representations".
+#   5. Experiment-specific artifacts live under
 #      GOOGLE_DRIVE_ROOT / "experiments" / EXPERIMENT_NAME.
 #
 # Shared CLIP text and video representations are intentionally
@@ -78,7 +78,8 @@ SHARED_REPRESENTATIONS_DRIVE_DIR = (
 # 2. Dataset Configuration
 # ============================================================
 
-DATASETS_DIR = BASE_DIR / "datasets"
+# Parent directory containing all project datasets.
+DATASETS_DIR = VIDEOQA_PROJECT_DIR / "datasets"
 
 DATASET_NAME = "NExT-QA"
 EXPECTED_VIDEO_COUNT = 5440
@@ -96,11 +97,6 @@ DATASET_DIR = DATASET_CONFIG[DATASET_NAME]["dataset_dir"]
 VIDEOS_DIR = DATASET_CONFIG[DATASET_NAME]["videos_dir"]
 QUESTIONS_DIR = DATASET_CONFIG[DATASET_NAME]["questions_dir"]
 METADATA_DIR = DATASET_CONFIG[DATASET_NAME]["metadata_dir"]
-
-ARCHIVES_DIR = DATASET_DIR / "archives"
-NEXTQA_COMBINED_ARCHIVE_NAME = "NExTVideo_combined.zip"
-NEXTQA_COMBINED_ARCHIVE_PATH = ARCHIVES_DIR / NEXTQA_COMBINED_ARCHIVE_NAME
-
 
 # ============================================================
 # 3. Shared CLIP Representation Paths
