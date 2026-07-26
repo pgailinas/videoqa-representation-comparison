@@ -69,6 +69,8 @@ videoqa-representation-comparison/
 │   ├── 06_Generate_CLIP_Video_Representations.ipynb
 │   ├── 07_Run_Representation_VideoQA.ipynb
 │   └── 08_Evaluate_Development_Results.ipynb
+├── paper/
+│   └── ECE-551_VideoQA_Representation_Comparison.pdf
 ├── src/
 │   ├── autoencoder_model.py
 │   ├── nextqa_metadata.py
