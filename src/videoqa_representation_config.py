@@ -105,6 +105,33 @@ PROJECT_ARTIFACTS_LOCAL_ARCHIVE = (
     / PROJECT_ARTIFACTS_ARCHIVE_NAME
 )
 
+# ============================================================
+# Public Tutorial Archive Downloads
+# ============================================================
+
+# Google Drive file IDs for the public tutorial archives.
+# These files are downloaded automatically when a required
+# local archive is not already available.
+
+NEXTQA_VIDEO_ARCHIVE_FILE_ID = (
+    "1pgumkEDzMq570Qo1eYElj04k90OksJeF"
+)
+
+PROJECT_ARTIFACTS_ARCHIVE_FILE_ID = (
+    "1T6zYA23EZXKLQxnrjep4uPUFxAsXBDQi"
+)
+
+# Construct direct-download URLs from the shared file IDs.
+NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL = (
+    "https://drive.google.com/uc?export=download&id="
+    f"{NEXTQA_VIDEO_ARCHIVE_FILE_ID}"
+)
+
+PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL = (
+    "https://drive.google.com/uc?export=download&id="
+    f"{PROJECT_ARTIFACTS_ARCHIVE_FILE_ID}"
+)
+
 
 # ============================================================
 # 2. Dataset Configuration
