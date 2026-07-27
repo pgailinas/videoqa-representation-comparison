@@ -31,6 +31,10 @@ Cosine similarity performs direct validation scoring without training a classifi
 
 This design enables controlled comparison of both the video representation source and the mathematical strategy used to combine video and question-answer representations.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
+
 ## Workflow Overview
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated experiment artifacts.
