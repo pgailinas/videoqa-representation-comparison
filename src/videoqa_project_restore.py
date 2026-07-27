@@ -29,16 +29,66 @@ def download_public_archive(
     if verbose:
         print("Downloading public tutorial archive...")
 
+    last_reported_percent = -1
+    last_reported_bytes = 0
+
+    def report_progress(
+        block_count: int,
+        block_size: int,
+        total_size: int,
+    ) -> None:
+        nonlocal last_reported_percent
+        nonlocal last_reported_bytes
+
+        if not verbose:
+            return
+
+        downloaded_size = block_count * block_size
+
+        if total_size > 0:
+            percent_complete = min(
+                100,
+                int(downloaded_size * 100 / total_size),
+            )
+
+            if percent_complete == last_reported_percent:
+                return
+
+            last_reported_percent = percent_complete
+
+            print(
+                f"\rDownloaded "
+                f"{downloaded_size / 1024**3:.2f} GB of "
+                f"{total_size / 1024**3:.2f} GB "
+                f"({percent_complete}%)",
+                end="",
+                flush=True,
+            )
+
+        elif downloaded_size - last_reported_bytes >= 256 * 1024**2:
+            last_reported_bytes = downloaded_size
+
+            print(
+                f"\rDownloaded "
+                f"{downloaded_size / 1024**3:.2f} GB",
+                end="",
+                flush=True,
+            )
+
     try:
         urlretrieve(
             download_url,
             destination_path,
+            reporthook=report_progress,
         )
     except Exception as exc:
         raise RuntimeError(
             "Failed to download public tutorial archive:\n"
             f"{download_url}"
         ) from exc
+
+    if verbose:
+        print()
 
     if not destination_path.exists():
         raise FileNotFoundError(
@@ -48,7 +98,7 @@ def download_public_archive(
 
 
 def restore_project_artifacts(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
@@ -76,12 +126,12 @@ def restore_project_artifacts(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying project artifacts archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
@@ -135,7 +185,7 @@ def restore_project_artifacts(
 
 
 def restore_nextqa_videos(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
@@ -163,12 +213,12 @@ def restore_nextqa_videos(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying locally available dataset archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
