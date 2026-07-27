@@ -48,7 +48,7 @@ def download_public_archive(
 
 
 def restore_project_artifacts(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
@@ -76,12 +76,12 @@ def restore_project_artifacts(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying project artifacts archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
@@ -135,7 +135,7 @@ def restore_project_artifacts(
 
 
 def restore_nextqa_videos(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
@@ -163,12 +163,12 @@ def restore_nextqa_videos(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying locally available dataset archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
