@@ -5,6 +5,7 @@
 import shutil
 import zipfile
 from pathlib import Path
+from urllib.request import urlretrieve
 
 from src.nextqa_video_cache import extract_nextqa_video_archive
 from src.videoqa_representation_config import (
@@ -13,20 +14,12 @@ from src.videoqa_representation_config import (
 )
 
 
-def download_google_drive_archive(
+def download_public_archive(
     download_url: str,
     destination_path: Path,
     verbose: bool = True,
 ) -> None:
-    """Download a shared tutorial archive from Google Drive."""
-
-    try:
-        import gdown
-    except ImportError as exc:
-        raise ImportError(
-            "The gdown package is required to download shared "
-            "Google Drive archives."
-        ) from exc
+    """Download a public tutorial archive."""
 
     destination_path.parent.mkdir(
         parents=True,
@@ -34,27 +27,28 @@ def download_google_drive_archive(
     )
 
     if verbose:
-        print("Downloading shared tutorial archive...")
+        print("Downloading public tutorial archive...")
 
-    downloaded_path = gdown.download(
-        url=download_url,
-        output=str(destination_path),
-        quiet=not verbose,
-        fuzzy=True,
-    )
+    try:
+        urlretrieve(
+            download_url,
+            destination_path,
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            "Failed to download public tutorial archive:\n"
+            f"{download_url}"
+        ) from exc
 
-    if (
-        downloaded_path is None
-        or not destination_path.exists()
-    ):
+    if not destination_path.exists():
         raise FileNotFoundError(
-            "Failed to download shared tutorial archive locally:\n"
+            "Downloaded archive was not found locally:\n"
             f"{destination_path}"
         )
 
 
 def restore_project_artifacts(
-    drive_archive_path: Path,
+    source_archive_path: Path,
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
@@ -82,17 +76,17 @@ def restore_project_artifacts(
         exist_ok=True,
     )
 
-    if drive_archive_path.exists():
+    if source_archive_path.exists():
         if verbose:
             print("Copying project artifacts archive...")
 
         shutil.copy2(
-            drive_archive_path,
+            source_archive_path,
             local_archive_path,
         )
 
     else:
-        download_google_drive_archive(
+        download_public_archive(
             download_url=PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL,
             destination_path=local_archive_path,
             verbose=verbose,
@@ -141,7 +135,7 @@ def restore_project_artifacts(
 
 
 def restore_nextqa_videos(
-    drive_archive_path: Path,
+    source_archive_path: Path,
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
@@ -169,17 +163,17 @@ def restore_nextqa_videos(
         exist_ok=True,
     )
 
-    if drive_archive_path.exists():
+    if source_archive_path.exists():
         if verbose:
-            print("Copying dataset archive from Google Drive...")
+            print("Copying locally available dataset archive...")
 
         shutil.copy2(
-            drive_archive_path,
+            source_archive_path,
             local_archive_path,
         )
 
     else:
-        download_google_drive_archive(
+        download_public_archive(
             download_url=NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL,
             destination_path=local_archive_path,
             verbose=verbose,
