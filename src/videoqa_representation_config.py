@@ -25,12 +25,15 @@
 #
 # Directory Philosophy
 #
-#   1. Local project files live under VIDEOQA_PROJECT_DIR.
-#   2. GitHub repository paths live under BASE_DIR.
-#   3. Google Drive persistent project storage lives under
-#      GOOGLE_DRIVE_ROOT.
-#   4. Shared artifacts live under GOOGLE_DRIVE_ROOT / "representations".
-#   5. Experiment-specific artifacts live under
+#   1. GitHub repository files live under BASE_DIR.
+#   2. Runtime dataset files live under BASE_DIR / "datasets".
+#   3. Restored project artifacts live under VIDEOQA_PROJECT_DIR.
+#   4. GOOGLE_DRIVE_ROOT is a backward-compatible alias for the
+#      restored local project artifact mirror.
+#   5. Actual Google Drive archive sources live under
+#      GOOGLE_DRIVE_SOURCE_ROOT.
+#   6. Shared artifacts live under GOOGLE_DRIVE_ROOT / "representations".
+#   7. Experiment-specific artifacts live under
 #      GOOGLE_DRIVE_ROOT / "experiments" / EXPERIMENT_NAME.
 #
 # Shared CLIP text and video representations are intentionally
@@ -46,31 +49,60 @@ from pathlib import Path
 # 1. Project Roots
 # ============================================================
 
-# Local project extracted into the Colab runtime.
-VIDEOQA_PROJECT_DIR = Path("/content/VideoQA_Project")
-
-# GitHub repository contained within the extracted project.
-BASE_DIR = (
-    VIDEOQA_PROJECT_DIR
-    / "videoqa-representation-comparison"
+# GitHub repository cloned into the Colab runtime.
+BASE_DIR = Path(
+    "/content/videoqa-representation-comparison"
 )
 
-# Local notebook output root inside the Colab runtime.
-OUTPUTS_DIR = BASE_DIR / "outputs"
+# Local runtime mirror of the project artifact tree restored from
+# the Google Drive artifacts archive.
+VIDEOQA_PROJECT_DIR = Path(
+    "/content/VideoQA_Project"
+)
 
-# Persistent Google Drive project root.
-GOOGLE_DRIVE_ROOT = Path(
+# Actual mounted Google Drive project root used only as the source
+# of project and dataset archives.
+GOOGLE_DRIVE_SOURCE_ROOT = Path(
     "/content/drive/MyDrive/VideoQA_Project"
 )
 
-# Persistent Google Drive experiment root.
+# Backward-compatible artifact root.
+#
+# Restored artifact mirror used in place of direct Google Drive access.
+GOOGLE_DRIVE_ROOT = VIDEOQA_PROJECT_DIR
+
+# Temporary notebook outputs generated inside the cloned repository.
+OUTPUTS_DIR = BASE_DIR / "outputs"
+
+# Restored local experiment root.
 EXPERIMENTS_DRIVE_DIR = (
     GOOGLE_DRIVE_ROOT / "experiments"
 )
 
-# Persistent Google Drive shared representation root.
+# Restored local shared representation root.
 SHARED_REPRESENTATIONS_DRIVE_DIR = (
     GOOGLE_DRIVE_ROOT / "representations"
+)
+
+# Restored local evaluation root.
+EVALUATION_DRIVE_DIR = (
+    GOOGLE_DRIVE_ROOT / "evaluation"
+)
+
+# Source project artifacts archive stored on actual Google Drive.
+PROJECT_ARTIFACTS_ARCHIVE_NAME = (
+    "VideoQA_Project_Artifacts.zip"
+)
+
+PROJECT_ARTIFACTS_DRIVE_ARCHIVE = (
+    GOOGLE_DRIVE_SOURCE_ROOT
+    / PROJECT_ARTIFACTS_ARCHIVE_NAME
+)
+
+# Temporary local copy of the project artifacts archive.
+PROJECT_ARTIFACTS_LOCAL_ARCHIVE = (
+    Path("/content")
+    / PROJECT_ARTIFACTS_ARCHIVE_NAME
 )
 
 
@@ -78,8 +110,9 @@ SHARED_REPRESENTATIONS_DRIVE_DIR = (
 # 2. Dataset Configuration
 # ============================================================
 
-# Parent directory containing all project datasets.
-DATASETS_DIR = VIDEOQA_PROJECT_DIR / "datasets"
+# Dataset support files and the restored video cache live inside
+# the cloned GitHub repository.
+DATASETS_DIR = BASE_DIR / "datasets"
 
 DATASET_NAME = "NExT-QA"
 EXPECTED_VIDEO_COUNT = 5440
@@ -90,6 +123,7 @@ DATASET_CONFIG = {
         "videos_dir": DATASETS_DIR / "NExT-QA" / "videos",
         "questions_dir": DATASETS_DIR / "NExT-QA" / "questions",
         "metadata_dir": DATASETS_DIR / "NExT-QA" / "metadata",
+        "archives_dir": DATASETS_DIR / "NExT-QA" / "archives",
     },
 }
 
@@ -97,6 +131,33 @@ DATASET_DIR = DATASET_CONFIG[DATASET_NAME]["dataset_dir"]
 VIDEOS_DIR = DATASET_CONFIG[DATASET_NAME]["videos_dir"]
 QUESTIONS_DIR = DATASET_CONFIG[DATASET_NAME]["questions_dir"]
 METADATA_DIR = DATASET_CONFIG[DATASET_NAME]["metadata_dir"]
+DATASET_ARCHIVES_DIR = DATASET_CONFIG[DATASET_NAME]["archives_dir"]
+
+# Google Drive source location for the combined NExT-QA video archive.
+NEXTQA_DRIVE_DATASET_DIR = (
+    GOOGLE_DRIVE_SOURCE_ROOT
+    / "datasets"
+    / "NExT-QA"
+)
+
+NEXTQA_DRIVE_RELEASES_DIR = (
+    NEXTQA_DRIVE_DATASET_DIR
+    / "releases"
+)
+
+NEXTQA_COMBINED_ARCHIVE_NAME = (
+    "NExTVideo_combined.zip"
+)
+
+NEXTQA_COMBINED_DRIVE_ARCHIVE = (
+    NEXTQA_DRIVE_RELEASES_DIR
+    / NEXTQA_COMBINED_ARCHIVE_NAME
+)
+
+NEXTQA_COMBINED_LOCAL_ARCHIVE = (
+    DATASET_ARCHIVES_DIR
+    / NEXTQA_COMBINED_ARCHIVE_NAME
+)
 
 # ============================================================
 # 3. Shared CLIP Representation Paths
@@ -586,7 +647,7 @@ RETRIEVAL_REFERENCE_COLUMNS = [
 # ============================================================
 
 def get_drive_experiment_dir(experiment_name: str) -> Path:
-    """Return the persistent Google Drive directory for an experiment."""
+    """Return the restored local artifact directory for an experiment."""
     return EXPERIMENTS_DRIVE_DIR / experiment_name
 
 
@@ -596,18 +657,19 @@ def get_local_experiment_dir(experiment_name: str) -> Path:
 
 
 def get_experiment_videoqa_dir(experiment_name: str) -> Path:
-    """Return the Google Drive VideoQA output directory for an experiment."""
+    """Return the restored VideoQA artifact directory for an experiment."""
     return get_drive_experiment_dir(experiment_name) / "videoqa"
 
 
 def get_experiment_evaluation_dir(experiment_name: str) -> Path:
-    """Return the Google Drive evaluation output directory for an experiment."""
+    """Return the restored evaluation artifact directory for an experiment."""
     return get_drive_experiment_dir(experiment_name) / "evaluation"
 
 
 def get_experiment_manifest_path(experiment_name: str) -> Path:
     """Return the optional manifest file for an experiment."""
     return get_drive_experiment_dir(experiment_name) / "experiment.json"
+
 
 def get_experiment_paths(experiment_name):
     experiment_drive_dir = get_drive_experiment_dir(experiment_name)
