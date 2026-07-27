@@ -17,7 +17,7 @@ Both representation-based approaches use shared CLIP question-answer representat
 
 **IMPORTANT: This repository contains a complete VideoQA tutorial and research framework that is publicly available through GitHub. The notebooks and documentation may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
-**NOTE:** Google Drive is mounted with read-only access by default when running the notebooks in Google Colab. Steps that would normally save artifacts instead report the intended output location. Write support may be enabled by modifying the notebook configuration.
+**NOTE:** The public tutorial archives are hosted in the project's Hugging Face dataset repository and are downloaded automatically when not already available locally or through a mounted Google Drive. Google Drive is mounted with read-only access by default when running the notebooks in Google Colab. Steps that would normally save artifacts instead report the intended output location. Write support may be enabled by modifying the notebook configuration.
 
 ## Research Paper
 
@@ -41,6 +41,27 @@ The primary benchmark dataset is **NExT-QA**, containing:
 -   Temporal, causal, and descriptive reasoning tasks
 
 The videos are used for baseline VideoQA inference, pretrained CLIP representation generation, self-supervised autoencoder training, and learned video representation generation. NExT-QA questions and answer choices are encoded as a reusable shared CLIP question-answer representation dataset for downstream representation-based VideoQA evaluation.
+
+## Public Tutorial Archives
+
+The large project archives required by the tutorial are hosted in the project's public Hugging Face dataset repository rather than this GitHub repository.
+
+The notebooks automatically restore the required resources by:
+
+1. Using locally available archives when present.
+2. Using matching archives from a mounted Google Drive when available.
+3. Downloading the public archives from Hugging Face when needed.
+
+The public tutorial currently uses two archives:
+
+- `VideoQA_Project_Artifacts.zip`
+- `NExTVideo_combined.zip`
+
+This approach keeps the GitHub repository compact while allowing the complete VideoQA tutorial to be executed directly in Google Colab or a local Jupyter environment.
+
+Public Hugging Face dataset repository:
+
+https://huggingface.co/datasets/PhilGaUNM/VideoQA
 
 ## Experimental Results
 
