@@ -18,6 +18,10 @@ This notebook generates standardized metadata describing fixed-duration video se
 
 The resulting segment metadata establishes a consistent segmentation strategy that supports reproducible self-supervised representation learning and downstream comparison with pretrained CLIP video representations.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
+
 ## Workflow Overview
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
