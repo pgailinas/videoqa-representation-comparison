@@ -7,14 +7,15 @@ nav_order: 1
 
 ## Overview
 
-This document describes the two complementary directory structures that together comprise the VideoQA research project:
+This document describes the three complementary storage locations that together comprise the VideoQA research project:
 
 1. **GitHub Repository** — stores version-controlled source code, notebooks, documentation, dataset metadata, and shared Python modules.
-2. **Google Drive Project Storage** — stores large benchmark datasets and generated experiment artifacts that are impractical to maintain within the GitHub repository.
+2. **Hugging Face Dataset Repository** — stores the large public ZIP archives required to restore the tutorial datasets and project artifacts.
+3. **Google Drive Project Storage** — provides optional persistent storage for local archive copies and generated experiment artifacts.
 
-Together, these two storage locations form a single logical project. The notebooks execute from the GitHub repository while reading from and writing to the Google Drive project structure.
+Together, these three storage locations form a single logical project. The notebooks execute from the GitHub repository, restore required resources from locally available or mounted Google Drive archives when present, and otherwise download the public archives from Hugging Face.
 
-This document serves as the primary reference for the project directory organization, storage conventions, and notebook artifact dependencies.
+This document serves as the primary reference for the project directory organization, storage conventions, public archive distribution, and notebook artifact dependencies.
 
 ## GitHub Repository Structure
 
@@ -86,7 +87,7 @@ videoqa-representation-comparison/
 
 | Directory | Purpose |
 |-----------|---------|
-| `datasets/` | NExT-QA dataset metadata, question annotations, and repository documentation. Large benchmark videos are stored separately in Google Drive. |
+| `datasets/`  | NExT-QA dataset metadata, question annotations, and repository documentation. Large benchmark video archives are distributed separately through the project's public Hugging Face dataset repository. |
 | `docs/` | GitHub Pages documentation, notebook descriptions, project documentation, references, and supporting images. |
 | `notebooks/` | Google Colab notebooks implementing the complete VideoQA experimental workflow. |
 | `src/` | Shared Python modules providing centralized project configuration, data management, validation, model definitions, and reusable utilities used throughout the notebooks. |
@@ -94,7 +95,7 @@ videoqa-representation-comparison/
 
 ## Google Drive Project Structure
 
-Google Drive stores the persistent datasets and generated artifacts created during notebook execution. Large benchmark video archives, trained models, learned representations, prediction artifacts, and evaluation outputs are intentionally stored outside the GitHub repository.
+Google Drive provides optional persistent storage for local copies of the public tutorial archives and for experiment artifacts generated during notebook execution. While the public tutorial downloads the required archives from the project's Hugging Face dataset repository when necessary, Google Drive may be used to cache those archives locally and to preserve generated outputs between notebook sessions.
 
 The current Google Drive project root is:
 
