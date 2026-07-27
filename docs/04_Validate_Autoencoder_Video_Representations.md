@@ -21,6 +21,10 @@ Rather than training the autoencoder or generating new latent embeddings, the no
 
 The validated `autoencoder_video` representation dataset serves as the experiment-specific video input to the shared Fusion MLP classifier implemented in Notebook 07. Notebook 07 selects the required training and validation records and merges them with the corresponding NExT-QA annotations and shared CLIP text embeddings.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
+
 ## Workflow Overview
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
