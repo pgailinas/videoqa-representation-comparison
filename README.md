@@ -61,7 +61,9 @@ This approach keeps the GitHub repository compact while allowing the complete Vi
 
 Public Hugging Face dataset repository files:
 
-https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main
+[https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main](https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main)
+
+[/paper/ECE-551_VideoQA_Representation_Comparison.pdf](paper/ECE-551_VideoQA_Representation_Comparison.pdf)
 
 ## Experimental Results
 
