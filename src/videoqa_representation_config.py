@@ -105,20 +105,27 @@ PROJECT_ARTIFACTS_LOCAL_ARCHIVE = (
     / PROJECT_ARTIFACTS_ARCHIVE_NAME
 )
 
+# Source archive filenames.
+PROJECT_ARTIFACTS_ARCHIVE_NAME = (
+    "VideoQA_Project_Artifacts.zip"
+)
+
+NEXTQA_COMBINED_ARCHIVE_NAME = (
+    "NExTVideo_combined.zip"
+)
+
 # ============================================================
 # Public Tutorial Archive Sources
 # ============================================================
 
 # Public Hugging Face dataset repository containing the
 # tutorial archives required by the notebooks.
-
 HUGGINGFACE_DATASET_ROOT = (
     "https://huggingface.co/datasets/"
     "PhilGaUNM/VideoQA/resolve/main"
 )
 
 # Direct download URLs for the public tutorial archives.
-
 PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL = (
     f"{HUGGINGFACE_DATASET_ROOT}/"
     f"{PROJECT_ARTIFACTS_ARCHIVE_NAME}"
@@ -167,10 +174,6 @@ NEXTQA_DRIVE_DATASET_DIR = (
 NEXTQA_DRIVE_RELEASES_DIR = (
     NEXTQA_DRIVE_DATASET_DIR
     / "releases"
-)
-
-NEXTQA_COMBINED_ARCHIVE_NAME = (
-    "NExTVideo_combined.zip"
 )
 
 NEXTQA_COMBINED_DRIVE_ARCHIVE = (
