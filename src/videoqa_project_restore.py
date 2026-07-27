@@ -48,7 +48,7 @@ def download_public_archive(
 
 
 def restore_project_artifacts(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
@@ -135,7 +135,7 @@ def restore_project_artifacts(
 
 
 def restore_nextqa_videos(
-    source_archive_path: Path,
+    drive_archive_path: Path,
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
