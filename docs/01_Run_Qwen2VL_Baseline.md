@@ -12,15 +12,16 @@ has_toc: false
   </a>
 </p>
 
-**IMPORTANT: This notebook is part of a complete VideoQA tutorial available through the project's public GitHub repository. It may be viewed directly on GitHub without an account. Running the notebook in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
+**IMPORTANT: This notebook is part of a complete VideoQA tutorial available through the project's public GitHub repository. It may be viewed directly on GitHub without an account. Running the notebook in Google Colab requires a Google account. During execution, the notebook automatically restores the required project archives from locally available files, a mounted Google Drive when available, or the project's public Hugging Face dataset repository. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
 **NOTE:** Google Drive is mounted with read-only access by default when running the notebooks in Google Colab. Steps that would normally save artifacts instead report the intended output location. Write support may be enabled by modifying the notebook configuration.
 
 ## Purpose
 
-This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark using the Qwen2-VL-7B multimodal foundation model. It generates standardized prediction, validation, and summary artifacts that establish the baseline reference used to compare the project's representation-based VideoQA pipelines.
+This notebook performs development-subset baseline Video Question Answering (VideoQA) experiments for the NExT-QA benchmark using the Qwen2-VL-7B multimodal foundation model. It restores the required project resources, generates standardized prediction, validation, and summary artifacts, and establishes the baseline reference used to compare the project's representation-based VideoQA pipelines.
 
 Development-subset evaluation enables rapid experimentation and workflow validation while minimizing computational cost before larger-scale experiments.
+
 
 ## Workflow Overview
 
@@ -39,7 +40,7 @@ The following diagram summarizes the notebook workflow, including the required i
 
 ## Processing Summary
 
-* Initialize the notebook environment and restore the NExT-QA dataset.
+* Initialize the notebook environment and restore the required project resources.
 * Configure the baseline VideoQA experiment.
 * Verify GPU runtime readiness and model dependencies.
 * Load the Qwen2-VL-7B model and processor.
@@ -47,7 +48,7 @@ The following diagram summarizes the notebook workflow, including the required i
 * Execute development-subset multiple-choice VideoQA inference.
 * Validate generated prediction artifacts.
 * Save prediction artifacts locally.
-* Promote prediction artifacts to Google Drive.
+* Optionally promote prediction artifacts to Google Drive.
 * Display representative prediction samples.
 * Finalize baseline artifacts for downstream evaluation.
 
@@ -61,7 +62,7 @@ These outputs provide the baseline performance reference used throughout the rem
 
 ## Runtime Requirements
 
-Development and testing were performed in Google Colab. Standard CPU runtimes are sufficient for repository setup, dataset preparation, and file operations, while GPU acceleration (NVIDIA L4 preferred) is required for Qwen2-VL-7B inference.
+Development and testing were performed in Google Colab. Standard CPU runtimes are sufficient for repository setup, project resource restoration, dataset preparation, and file operations, while GPU acceleration (NVIDIA L4 preferred) is required for Qwen2-VL-7B inference.
 
 Baseline VideoQA development-subset experiments were evaluated using the NVIDIA L4 GPU. The L4 successfully executed Qwen2-VL-7B inference and achieved an average runtime of approximately 2.2 seconds per evaluation sample during testing.
 
