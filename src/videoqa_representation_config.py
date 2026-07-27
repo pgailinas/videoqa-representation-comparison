@@ -106,30 +106,27 @@ PROJECT_ARTIFACTS_LOCAL_ARCHIVE = (
 )
 
 # ============================================================
-# Public Tutorial Archive Downloads
+# Public Tutorial Archive Sources
 # ============================================================
 
-# Google Drive file IDs for the public tutorial archives.
-# These files are downloaded automatically when a required
-# local archive is not already available.
+# Public Hugging Face dataset repository containing the
+# tutorial archives required by the notebooks.
 
-NEXTQA_VIDEO_ARCHIVE_FILE_ID = (
-    "1pgumkEDzMq570Qo1eYElj04k90OksJeF"
+HUGGINGFACE_DATASET_ROOT = (
+    "https://huggingface.co/datasets/"
+    "PhilGaUNM/VideoQA/resolve/main"
 )
 
-PROJECT_ARTIFACTS_ARCHIVE_FILE_ID = (
-    "1T6zYA23EZXKLQxnrjep4uPUFxAsXBDQi"
-)
-
-# Construct direct-download URLs from the shared file IDs.
-NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL = (
-    "https://drive.google.com/uc?export=download&id="
-    f"{NEXTQA_VIDEO_ARCHIVE_FILE_ID}"
-)
+# Direct download URLs for the public tutorial archives.
 
 PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL = (
-    "https://drive.google.com/uc?export=download&id="
-    f"{PROJECT_ARTIFACTS_ARCHIVE_FILE_ID}"
+    f"{HUGGINGFACE_DATASET_ROOT}/"
+    f"{PROJECT_ARTIFACTS_ARCHIVE_NAME}"
+)
+
+NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL = (
+    f"{HUGGINGFACE_DATASET_ROOT}/"
+    f"{NEXTQA_COMBINED_ARCHIVE_NAME}"
 )
 
 
