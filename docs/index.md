@@ -13,7 +13,7 @@ The project evaluates three complementary VideoQA pipelines: (1) direct multimod
 
 Both representation-based pipelines use shared CLIP question-answer representations and a common evaluation framework, allowing different video representations and prediction methods to be compared independently.
 
-**IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
+**IMPORTANT: This documentation is part of a complete VideoQA tutorial and research framework available through the project's public GitHub repository. The documentation and notebooks may be viewed directly on GitHub without an account. Running the notebooks in Google Colab requires a Google account. During execution, required project archives are restored automatically from locally available archives, a mounted Google Drive when available, or the project's public Hugging Face dataset repository. Alternatively, the repository may be cloned or downloaded, and the notebooks can be run locally using Jupyter or any compatible notebook environment.**
 
 ## Research Paper
 
@@ -58,6 +58,29 @@ Within this project, the NExT-QA videos serve three complementary purposes:
 * **Baseline VideoQA** — Original videos are processed directly by Qwen2-VL-7B to establish baseline performance.
 * **Representation Learning** — Unlabeled videos are used to train self-supervised autoencoder models and to generate pretrained CLIP video representations.
 * **Evaluation** — The benchmark questions and answer choices are encoded once as a reusable shared CLIP question-answer representation dataset and combined with the video representations to evaluate downstream multiple-choice VideoQA performance.
+
+### Public Tutorial Archives
+
+The complete VideoQA tutorial requires project artifacts and benchmark videos that are too large to be distributed through the GitHub repository. These resources are hosted in the project's public Hugging Face dataset repository.
+
+When executing the notebooks, the project automatically restores the required resources by:
+
+1. Using locally available archives when present.
+2. Using matching archives from a mounted Google Drive when available.
+3. Downloading the public archives from Hugging Face when needed.
+
+The public tutorial currently uses the following archives:
+
+- `VideoQA_Project_Artifacts.zip`
+- `NExTVideo_combined.zip`
+
+The public archives are available at:
+
+<a href="https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main" target="_blank" rel="noopener noreferrer">
+https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main
+</a>
+
+This approach keeps the GitHub repository compact while allowing the complete VideoQA tutorial to execute in Google Colab or a local Jupyter environment.
 
 ### NExT-QA Reasoning Categories
 
