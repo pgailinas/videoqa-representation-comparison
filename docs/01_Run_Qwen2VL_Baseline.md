@@ -22,6 +22,9 @@ This notebook performs development-subset baseline Video Question Answering (Vid
 
 Development-subset evaluation enables rapid experimentation and workflow validation while minimizing computational cost before larger-scale experiments.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
 
 ## Workflow Overview
 
