@@ -9,11 +9,52 @@ from pathlib import Path
 from src.nextqa_video_cache import extract_nextqa_video_archive
 
 
+def download_google_drive_archive(
+    download_url: str,
+    destination_path: Path,
+    verbose: bool = True,
+) -> None:
+    """Download a shared tutorial archive from Google Drive."""
+
+    try:
+        import gdown
+    except ImportError as exc:
+        raise ImportError(
+            "The gdown package is required to download shared "
+            "Google Drive archives."
+        ) from exc
+
+    destination_path.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    if verbose:
+        print("Downloading shared tutorial archive...")
+
+    downloaded_path = gdown.download(
+        url=download_url,
+        output=str(destination_path),
+        quiet=not verbose,
+        fuzzy=True,
+    )
+
+    if (
+        downloaded_path is None
+        or not destination_path.exists()
+    ):
+        raise FileNotFoundError(
+            "Failed to download shared tutorial archive locally:\n"
+            f"{destination_path}"
+        )
+
+
 def restore_project_artifacts(
     drive_archive_path: Path,
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
+    download_url: str | None = None,
     verbose: bool = True,
 ) -> None:
     """Restore the local VideoQA project artifact mirror."""
@@ -31,30 +72,38 @@ def restore_project_artifacts(
 
     if verbose:
         print("Local project artifacts missing or incomplete.")
-        print("Restoring artifacts from Google Drive...")
-
-    if not drive_archive_path.exists():
-        raise FileNotFoundError(
-            "Missing VideoQA project artifacts archive:\n"
-            f"{drive_archive_path}"
-        )
+        print("Restoring project artifacts...")
 
     local_archive_path.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    if verbose:
-        print("Copying project artifacts archive...")
+    if drive_archive_path.exists():
+        if verbose:
+            print("Copying project artifacts archive...")
 
-    shutil.copy2(
-        drive_archive_path,
-        local_archive_path,
-    )
+        shutil.copy2(
+            drive_archive_path,
+            local_archive_path,
+        )
+
+    elif download_url is not None:
+        download_google_drive_archive(
+            download_url=download_url,
+            destination_path=local_archive_path,
+            verbose=verbose,
+        )
+
+    else:
+        raise FileNotFoundError(
+            "Missing VideoQA project artifacts archive:\n"
+            f"{drive_archive_path}"
+        )
 
     if not local_archive_path.exists():
         raise FileNotFoundError(
-            "Failed to copy project artifacts archive locally:\n"
+            "Failed to obtain project artifacts archive locally:\n"
             f"{local_archive_path}"
         )
 
@@ -99,6 +148,7 @@ def restore_nextqa_videos(
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
+    download_url: str | None = None,
     verbose: bool = True,
 ) -> None:
     """Restore and verify the local NExT-QA video cache."""
@@ -116,30 +166,38 @@ def restore_nextqa_videos(
     if verbose:
         print("Local video cache missing or incomplete.")
         print(f"Videos found locally: {len(existing_video_files):,}")
-        print("Restoring videos from Google Drive...")
-
-    if not drive_archive_path.exists():
-        raise FileNotFoundError(
-            "Missing NExT-QA combined archive in Google Drive:\n"
-            f"{drive_archive_path}"
-        )
+        print("Restoring videos...")
 
     local_archive_path.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
 
-    if verbose:
-        print("Copying dataset archive from Google Drive...")
+    if drive_archive_path.exists():
+        if verbose:
+            print("Copying dataset archive from Google Drive...")
 
-    shutil.copy2(
-        drive_archive_path,
-        local_archive_path,
-    )
+        shutil.copy2(
+            drive_archive_path,
+            local_archive_path,
+        )
+
+    elif download_url is not None:
+        download_google_drive_archive(
+            download_url=download_url,
+            destination_path=local_archive_path,
+            verbose=verbose,
+        )
+
+    else:
+        raise FileNotFoundError(
+            "Missing NExT-QA combined archive in Google Drive:\n"
+            f"{drive_archive_path}"
+        )
 
     if not local_archive_path.exists():
         raise FileNotFoundError(
-            "Failed to copy NExT-QA archive locally:\n"
+            "Failed to obtain NExT-QA archive locally:\n"
             f"{local_archive_path}"
         )
 
@@ -172,4 +230,3 @@ def restore_nextqa_videos(
     if verbose:
         print("Video cache restored.")
         print(f"Videos found: {len(restored_video_files):,}")
-
