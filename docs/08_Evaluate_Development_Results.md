@@ -21,6 +21,9 @@ The notebook supports the Qwen2-VL baseline and any completed representation-bas
 
 Evaluation is performed using a common multiple-choice framework, enabling direct comparison of all loaded experiments using identical validation, accuracy, question-type, error-analysis, visualization, and reporting procedures.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
 
 ## Workflow Overview
 
