@@ -24,6 +24,10 @@ Following training, the notebook inspects the complete flow of information throu
 
 It generates standardized segment/frame-level and video-level latent representations, together with the trained autoencoder model and experiment artifacts, for validation in Notebook 04 and downstream representation-based VideoQA experiments.
 
+## Step 0 — Notebook Configuration
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing the notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
+
 ## Workflow Overview
 
 The following diagram summarizes the notebook workflow, including the required inputs, primary processing stages, and generated output artifacts.
