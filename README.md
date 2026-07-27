@@ -61,7 +61,6 @@ This approach keeps the GitHub repository compact while allowing the complete Vi
 
 Public Hugging Face dataset repository files:
 
-[https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main](https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main)
 <a href="https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main"
    target="_blank"
    rel="noopener noreferrer">
