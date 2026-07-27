@@ -168,6 +168,10 @@ The project is organized as eight modular notebooks supporting the three primary
 | **07_Run_Representation_VideoQA** | Execute representation-based multiple-choice VideoQA using shared `clip_text` question-answer representations together with `clip_video`, `autoencoder_video`, or `hybrid_clip_autoencoder` video representations using the selected scoring or learned fusion prediction method. |
 | **08_Evaluate_Development_Results** | Compare all completed development experiments using common validation metrics, error analysis, question-type analysis, visualization, and experiment selection. |
 
+### Notebook Execution
+
+Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Before executing a notebook, review these options to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support. The default settings are appropriate for the documented tutorial workflow.
+
 Development-subset experiments are used to compare competing methods before full-validation evaluation. Once the experimental configuration has been finalized, the complete NExT-QA dataset is processed to generate the project's primary evaluation results.
 
 ---
