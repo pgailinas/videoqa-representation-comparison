@@ -59,9 +59,9 @@ The public tutorial currently uses two archives:
 
 This approach keeps the GitHub repository compact while allowing the complete VideoQA tutorial to be executed directly in Google Colab or a local Jupyter environment.
 
-Public Hugging Face dataset repository:
+Public Hugging Face dataset repository files:
 
-https://huggingface.co/datasets/PhilGaUNM/VideoQA
+https://huggingface.co/datasets/PhilGaUNM/VideoQA/tree/main
 
 ## Experimental Results
 
