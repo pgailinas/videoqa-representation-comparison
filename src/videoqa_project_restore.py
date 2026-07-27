@@ -7,6 +7,10 @@ import zipfile
 from pathlib import Path
 
 from src.nextqa_video_cache import extract_nextqa_video_archive
+from src.videoqa_representation_config import (
+    NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL,
+    PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL,
+)
 
 
 def download_google_drive_archive(
@@ -54,7 +58,6 @@ def restore_project_artifacts(
     local_archive_path: Path,
     project_dir: Path,
     required_paths: list[Path],
-    download_url: str | None = None,
     verbose: bool = True,
 ) -> None:
     """Restore the local VideoQA project artifact mirror."""
@@ -88,17 +91,11 @@ def restore_project_artifacts(
             local_archive_path,
         )
 
-    elif download_url is not None:
+    else:
         download_google_drive_archive(
-            download_url=download_url,
+            download_url=PROJECT_ARTIFACTS_ARCHIVE_DOWNLOAD_URL,
             destination_path=local_archive_path,
             verbose=verbose,
-        )
-
-    else:
-        raise FileNotFoundError(
-            "Missing VideoQA project artifacts archive:\n"
-            f"{drive_archive_path}"
         )
 
     if not local_archive_path.exists():
@@ -148,7 +145,6 @@ def restore_nextqa_videos(
     local_archive_path: Path,
     videos_dir: Path,
     expected_video_count: int,
-    download_url: str | None = None,
     verbose: bool = True,
 ) -> None:
     """Restore and verify the local NExT-QA video cache."""
@@ -182,17 +178,11 @@ def restore_nextqa_videos(
             local_archive_path,
         )
 
-    elif download_url is not None:
+    else:
         download_google_drive_archive(
-            download_url=download_url,
+            download_url=NEXTQA_VIDEO_ARCHIVE_DOWNLOAD_URL,
             destination_path=local_archive_path,
             verbose=verbose,
-        )
-
-    else:
-        raise FileNotFoundError(
-            "Missing NExT-QA combined archive in Google Drive:\n"
-            f"{drive_archive_path}"
         )
 
     if not local_archive_path.exists():
