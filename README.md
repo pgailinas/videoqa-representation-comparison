@@ -82,11 +82,12 @@ The experiments demonstrate that pretrained semantic representations substantial
 
 ## Execution Notes
 
-- Google Colab and Jupyter supported
-- Development and full-dataset execution modes
-- GPU acceleration where appropriate
-- Shared CLIP representations generated once and reused
-- Experiment-specific autoencoder artifacts stored by experiment
+* Each notebook begins with **Step 0**, which centralizes the notebook's user-configurable settings. Review these options before execution to select the desired experiment configuration, dataset scope, runtime behavior, and optional Google Drive write support.
+* Google Colab and Jupyter supported
+* Development and full-dataset execution modes
+* GPU acceleration where appropriate
+* Shared CLIP representations generated once and reused
+* Experiment-specific autoencoder artifacts stored by experiment
 
 ## Documentation
 
