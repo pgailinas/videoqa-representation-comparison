@@ -76,12 +76,12 @@ def restore_project_artifacts(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying project artifacts archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
@@ -163,12 +163,12 @@ def restore_nextqa_videos(
         exist_ok=True,
     )
 
-    if source_archive_path.exists():
+    if drive_archive_path.exists():
         if verbose:
             print("Copying locally available dataset archive...")
 
         shutil.copy2(
-            source_archive_path,
+            drive_archive_path,
             local_archive_path,
         )
 
