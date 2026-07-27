@@ -79,6 +79,8 @@ videoqa-representation-comparison/
 │   ├── training_metadata_io.py
 │   ├── training_validation.py
 │   ├── video_segments.py
+│   ├── videoqa_fusion_training.py
+│   ├── videoqa_project_restore.py
 │   └── videoqa_representation_config.py
 └── README.md
 ```
