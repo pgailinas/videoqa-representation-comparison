@@ -133,10 +133,10 @@ QUESTIONS_DIR = DATASET_CONFIG[DATASET_NAME]["questions_dir"]
 METADATA_DIR = DATASET_CONFIG[DATASET_NAME]["metadata_dir"]
 DATASET_ARCHIVES_DIR = DATASET_CONFIG[DATASET_NAME]["archives_dir"]
 
-# Google Drive source location for the combined NExT-QA video archive.
+# Actual Google Drive location of the NExT-QA release archives.
+# These archives are copied into the Colab runtime when needed.
 NEXTQA_DRIVE_DATASET_DIR = (
     GOOGLE_DRIVE_SOURCE_ROOT
-    / "datasets"
     / "NExT-QA"
 )
 
