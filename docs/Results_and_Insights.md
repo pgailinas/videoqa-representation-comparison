@@ -86,7 +86,7 @@ The hybrid experiment substantially outperformed the autoencoder-only representa
 
 To investigate whether additional training could further improve representation-based VideoQA performance, the Interaction Fusion classifier was trained for **100 epochs** using the complete NExT-QA training split. The canonical experiment used throughout this project employed **20 training epochs**, which achieved the highest validation accuracy of **45.30%**.
 
-Figure 1 compares the canonical 20-epoch experiment with the extended 100-epoch training run. Although continued optimization reduced the training loss from **0.2558** to **0.0724**, the corresponding validation accuracy decreased from **45.30%** to **43.15%**. This behavior indicates that the model continued fitting the training data while losing generalization performance on unseen validation samples.
+Figure 2 compares the canonical 20-epoch experiment with the extended 100-epoch training run. Although continued optimization reduced the training loss from **0.2558** to **0.0724**, the corresponding validation accuracy decreased from **45.30%** to **43.15%**. This behavior indicates that the model continued fitting the training data while losing generalization performance on unseen validation samples.
 
 <p align="center">
   <img src="images/interaction_fusion_training_loss_comparison.png"
@@ -95,7 +95,7 @@ Figure 1 compares the canonical 20-epoch experiment with the extended 100-epoch 
 </p>
 
 <p align="center">
-<b>Figure 1.</b> Interaction Fusion training-loss comparison. The curve represents the 100-epoch training run, while the highlighted marker at epoch 20 corresponds to the final result of the separate canonical 20-epoch experiment. Although additional training substantially reduced training loss, validation accuracy declined from 45.30% to 43.15%, providing evidence of overfitting.
+<b>Figure 2.</b> Interaction Fusion training-loss comparison. The curve represents the 100-epoch training run, while the highlighted marker at epoch 20 corresponds to the final result of the separate canonical 20-epoch experiment. Although additional training substantially reduced training loss, validation accuracy declined from 45.30% to 43.15%, providing evidence of overfitting.
 </p>
 
 Based on these observations, **20 epochs** was retained as the default training configuration for all reported Interaction Fusion experiments presented in this repository.
