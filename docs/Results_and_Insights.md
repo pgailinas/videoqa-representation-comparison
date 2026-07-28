@@ -8,7 +8,7 @@ has_toc: false
 
 This page summarizes the experimental results obtained throughout the project and highlights the principal observations from comparing foundation-model, pretrained representation-based, hybrid representation-based, and self-supervised representation-based VideoQA pipelines.
 
-The following figure provides a high-level comparison of the final accuracy achieved by each completed VideoQA approach. It summarizes the principal outcome of the project before the individual experiments are discussed in detail throughout the remainder of this page.
+The following figure provides a high-level comparison of the accuracy achieved across the completed VideoQA experiments. The experiment names correspond directly to the configured experiment identifiers used throughout the notebook workflow.
 
 <p align="center">
   <img src="images/experiment_accuracy.png"
@@ -17,7 +17,7 @@ The following figure provides a high-level comparison of the final accuracy achi
 </p>
 
 <p align="center">
-<b>Figure 1.</b> Overall VideoQA accuracy comparison across the completed experiments. Direct multimodal inference using Qwen2-VL achieved the highest validation accuracy (79.84%). Among the representation-based approaches, pretrained CLIP video representations consistently outperformed both hybrid CLIP–autoencoder and self-supervised autoencoder representations, with Bilinear Fusion achieving the strongest representation-based performance (46.42%).
+<b>Figure 1.</b> Overall accuracy comparison across the completed VideoQA experiments. Direct multimodal inference using Qwen2-VL achieved the highest accuracy, while the strongest representation-based result was obtained using pretrained CLIP representations with Bilinear Fusion.
 </p>
 
 ---
